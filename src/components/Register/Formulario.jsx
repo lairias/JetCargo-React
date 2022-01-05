@@ -2,72 +2,67 @@ import { PeopleInformation } from "./PeopleInformation";
 import { DirectionInformation } from "./DirectionInformation";
 import { NavLink } from "react-router-dom";
 
+import Logo from "../../img/login-office-dark.jpeg";
 import  {useState} from "react"
+import { Fooder } from "./Fooder";
 
 export const Formulario = () => {
   const [ParteOne, set_ParteOne] = useState(0)
 
-
-  return (
-    <div className="container mx-auto ">
-      <div className="mt-12 ">
-        <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-lg w-full space-y-10">
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              {ParteOne === 0 ? "Crea tu cuenta de Jetcargo" : ""}
-              {ParteOne === 1 ? "Apertura de Casillero": ""}
-            </h2>
-
-            <form
-              className="bg-white shadow-xl rounded-lg py-10 px-5 mb-10  "
-              action="#"
-              method="POST"
-            >
-              {ParteOne === 0 ? <PeopleInformation /> : ""}
-              {ParteOne === 1 ? <DirectionInformation /> : ""}
-
-              <div className="flex  justify-between">
-                {ParteOne === 0 ? (
-                  <NavLink
-                    to="/login"
-                    className="group relative  flex  py-2 px-4"
-                  >
-                    <span className="absolute left-0 inset-y-0 block  pl-3 font-medium text-sky-600 hover:text-sky-500  ">
-                      Iniciar sesión
-                    </span>
-                  </NavLink>
-                ) : (
-                  <button
-                    type="submit"
-                    className="group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:translate-y-1 hover:shadow-2xl   hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      set_ParteOne(ParteOne - 1);
-                    }}
-                  >
-                    <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
-                    Anterior
-                  </button>
-                )}
-
-                <button
-                  type="submit"
-                  className="group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:translate-y-1 hover:shadow-2xl   hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    set_ParteOne(ParteOne + 1);
-                  }}
-                >
-                  <span className="absolute left-0 inset-y-0 flex items-center pl-3"></span>
-                  Siguiente
-                </button>
-              </div>
-            </form>
+return (<>
+ <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+  <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+    <div className="flex flex-col overflow-y-auto md:flex-row">
+      <div className="h-32 md:h-auto md:w-1/2">
+        <img aria-hidden="true" className="object-cover w-full h-full dark:hidden" src="../assets/img/create-account-office.jpeg" alt="Office" />
+        <img aria-hidden="true" className="hidden object-cover w-full h-full dark:block" src="../assets/img/create-account-office-dark.jpeg" alt="Office" />
+      </div>
+      <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+        <div className="w-full">
+          <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+            Create account
+          </h1>
+          <label className="block text-sm">
+            <span className="text-gray-700 dark:text-gray-400">Email</span>
+            <input className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Jane Doe" />
+          </label>
+          <label className="block mt-4 text-sm">
+            <span className="text-gray-700 dark:text-gray-400">Password</span>
+            <input className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="***************" type="password" />
+          </label>
+          <label className="block mt-4 text-sm">
+            <span className="text-gray-700 dark:text-gray-400">
+              Confirm password
+            </span>
+            <input className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="***************" type="password" />
+          </label>
+          <div className="flex mt-6 text-sm">
+            <label className="flex items-center dark:text-gray-400">
+              <input type="checkbox" className="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+              <span className="ml-2">
+                I agree to the
+                <span className="underline">privacy policy</span>
+              </span>
+            </label>
           </div>
+          {/* You should use a button here, as the anchor is only used for the example  */}
+          <button className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            Create account
+          </button>
+         
+
+
+<Fooder />
+
+
         </div>
       </div>
     </div>
-  );
+  </div>
+</div>
+
+</>
+);
 }
 
 

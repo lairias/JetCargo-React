@@ -2,40 +2,28 @@ import { NavLink } from "react-router-dom"
 export const Formulario = () =>
 {
     return (
-      <form
-        className="bg-white shadow-xl rounded-lg py-10 px-5 mb-10 "
-        action="#"
-        method="POST"
-      >
-        <div className="py-5">
-          <label className="block text-sm font-medium text-gray-700">
-            Número de Casillero
-          </label>
-          <input className="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-300"></input>
-        </div>
-
-        <div>
-          <button
-            type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-600 hover:translate-y-1 hover:shadow-2xl   hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500"
-          >
-            <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-              <i class="fas fa-sign-in-alt"></i>
+      <form className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+        <div className="w-full">
+          <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+            Forgot password
+          </h1>
+          <label className="block mt-4 text-sm">
+            <span className="text-gray-700 dark:text-gray-400">
+              Confirm password
             </span>
-            SEND
-          </button>
-        </div>
-        <div className="flex  justify-end">
-          <span className="">
-            {" "}
-            <NavLink
-              to="/login"
-              className="font-medium text-sky-600 hover:text-sky-500"
-            >
-              {" "}
-              Regresar
-            </NavLink>{" "}
-          </span>
+            <input
+              className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+              placeholder="***************"
+              type="password"
+            />
+          </label>
+          {/* You should use a button here, as the anchor is only used for the example  */}
+          <a
+            className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+            href="./login.html"
+          >
+            Recover password
+          </a>
         </div>
       </form>
     );
