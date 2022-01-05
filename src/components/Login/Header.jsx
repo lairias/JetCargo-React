@@ -9,7 +9,7 @@ export const Header = () => {
           <div>
             <img className="mx-auto h-12 w-auto" src={Logo} alt="Workflow" />
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Iniciar sesión en su cuenta
+              Iniciar sesión en su cuenta 2 
             </h2>
           </div>
 
