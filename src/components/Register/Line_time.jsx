@@ -1,5 +1,4 @@
 import { Check } from "./animation/Check";
-import { Message } from "./animation/Message";
 import { Present } from "./animation/Present";
 
 export const LineTime = ({ ParteOne }) => {

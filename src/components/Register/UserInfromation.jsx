@@ -3,7 +3,10 @@ export const UserInfromation = ({title}) => {
   
     return (
       <>
-        <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+        <h1 className="
+        
+        
+        mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
           {title}
         </h1>
 
