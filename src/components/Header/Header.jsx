@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //Importancion de los Hooks
-import  {useUser}  from "../../hoosk/useUser";
+// import  {useUser}  from "../../hoosk/useUser";
 
 
 export const  Header = ()=> {
-  const [IsLogged,login] = useUser();
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
+  const IsLogged =false
  
 
   return (

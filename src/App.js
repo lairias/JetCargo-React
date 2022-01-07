@@ -16,12 +16,14 @@ import {Header} from "./components/Header/Header"
 //Contexto
 
 import {UserContextProvider}from "./context/UserContext"
-
+import { UserState } from "./context/Users/UserState";
 
 function App() {
   
   return (
     <UserContextProvider >
+      <UserState >
+
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<> <Login />  <Fooder /></> } />
@@ -33,6 +35,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      </UserState>
     </UserContextProvider>
   );
 }

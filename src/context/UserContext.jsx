@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useState, createContext } from "react";
 
-const Context = React.createContext({});
+const Context = createContext({});
 
-export function UserContextProvider({ children }) {
+export function UserContextProvider(props) {
   const [jwt, setJWT] = useState(null);
 
   return (
@@ -12,7 +12,7 @@ export function UserContextProvider({ children }) {
         setJWT,
       }}
     >
-      {children}
+      {props.children}
     </Context.Provider>
   );
 }
