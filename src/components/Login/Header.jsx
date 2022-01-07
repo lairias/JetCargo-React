@@ -1,38 +1,31 @@
 
 import Logo from "../../img/login-office-dark.jpeg";
 import {Formulario} from './Formulario'
-import { NavLink } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
 
 export const Header = () => {
   const [email, set_email] = useState("");
   const [password, set_password] = useState("");
   const [classemail, set_classemail] = useState(true);
   const [classpassword, set_classpassword] = useState(true);
+  const history = useNavigate()
 
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
-if([email].includes("")){
-  set_classemail(false)
-  toast.error("El campo email es necesario", {
-    duration: 6000,
-  });
-}else{
-  
-  set_classemail(true)
-}
-if([password].includes("")){
-  set_classpassword(false)
-  toast.error("El campo password es requerido", {
-    duration: 6000,
-  });
-}else{
-  set_classpassword(true);
-}
-  }
+    if ([email, password].includes("")) {
+      set_classemail(false);
+      toast.error("El campo email es necesario", {
+        duration: 6000,
+      });
+    } else {
+      set_classemail(true);
+      set_classpassword(true);
+      history("/admin")
+    }
+     }
 
     return (
       <>
@@ -72,4 +65,4 @@ if([password].includes("")){
         </div>
       </>
     );
-}
+  };

@@ -1,9 +1,16 @@
+//Importanto las librerias de react
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+
+//Importancion de los Hooks
+import  {useUser}  from "../../hoosk/useUser";
+
+
 export const  Header = ()=> {
-  const [searchInput, setSearchInput] = useState(true);
+  const [IsLogged,login] = useUser();
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
+ 
 
   return (
     <div className="dark:bg-gray-900">
@@ -21,14 +28,10 @@ export const  Header = ()=> {
             {/* Escritorio */}
             <div className="container mx-auto flex items-center justify-between">
               <h1 className="md:w-2/12 cursor-pointer font-bold text-2xl text-gray-800 dark:text-white">
-                  <NavLink 
-                  to="/">
-                JetCargo
-                  </NavLink>
+                <NavLink to="/">JetCargo</NavLink>
               </h1>
               <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
-                <li>
-                </li>
+                <li></li>
                 <li>
                   <NavLink
                     to="#"
@@ -65,12 +68,21 @@ export const  Header = ()=> {
 
               <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
-                  <NavLink
-                    to="/login"
-                    className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
-                  >
-                    Sing in
-                  </NavLink>
+                  {IsLogged ? (
+                    <NavLink
+                      to="/logout"
+                      className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                    >
+                      Logout
+                    </NavLink>
+                  ) : (
+                    <NavLink
+                      to="/login"
+                      className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                    >
+                      Sing in
+                    </NavLink>
+                  )}
                   {/* <button
                     aria-label="view favourites"
                     className="text-gray-800 dark:hover:text-gray-300 dark:text-white focus:outline-none focus:ring-2 focus:ring-gray-800"
@@ -216,12 +228,21 @@ export const  Header = ()=> {
           >
             <div className="flex items-center justify-between border-b border-gray-200 dark:border-gray-700 pb-4 p-4">
               <div className="flex items-center space-x-3">
-                <NavLink
-                  to="/login"
-                  className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
-                >
-                  Sing in
-                </NavLink>
+                {IsLogged ? (
+                  <NavLink
+                    to="/logout"
+                    className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                  >
+                    Logout
+                  </NavLink>
+                ) : (
+                  <NavLink
+                    to="/login"
+                    className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                  >
+                    Sing in
+                  </NavLink>
+                )}
               </div>
               <button
                 onClick={() => setShowMenu(false)}
