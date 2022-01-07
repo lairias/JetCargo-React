@@ -2,10 +2,12 @@ import toast, { Toaster } from "react-hot-toast";
 import {Formulario} from "./Formulario"
 import Logo from "../../img/forgot-password-office-dark.jpeg";
 import { useState } from "react";
+import { Tooltip } from "./Tooltip";
 
 export const Header = () => {
   const [resetpass,set_resetpass] = useState("");
   const [classreset,set_classreset] = useState(true);
+    const [tooltipStatus, setTooltipStatus] = useState(0);
 
   const handleSubmit = e=>{
     e.preventDefault();
@@ -40,6 +42,7 @@ export const Header = () => {
               onSubmit={handleSubmit}
               className="flex items-center justify-center p-6 sm:p-12 md:w-1/2"
             >
+              <Tooltip   tooltipStatus ={tooltipStatus} setTooltipStatus={setTooltipStatus}  />
               <Formulario
                 classreset={classreset}
                 set_resetpass={set_resetpass}

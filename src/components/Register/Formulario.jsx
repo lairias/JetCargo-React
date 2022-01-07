@@ -97,11 +97,7 @@ export const Formulario = () =>
                     <Fooder />
                   ) : (
                     <>
-                      <div className="w-11/12 lg:w-2/6 mx-auto">
-                        <div className="bg-gray-200 h-1 flex items-center justify-between">
-                          <LineTime ParteOne={ParteOne} />
-                        </div>
-                      </div>
+                    
                     </>
                   )}
                 </div>
