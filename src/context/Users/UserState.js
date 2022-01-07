@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react'
-import { UserReducer } from "./UserReducer"
+import  UserReducer  from "./UserReducer"
 import { UserContext } from "./UserContext";
 import axios from "axios"
 
@@ -14,7 +14,7 @@ export const UserState = ({ children }) =>
 
     const getUsers = async() => {
        const res =  await axios.get("http://localhost:4000/api/users/");
-       console.log(res)
+       console.log(res.data.data)
        dispatch({
          type: "GET_USERS",
          payload: res.data.data,
