@@ -1,26 +1,36 @@
 import toast, { Toaster } from "react-hot-toast";
-import {Formulario} from "./Formulario"
+import { Formulario } from "./Formulario";
 import Logo from "../../img/forgot-password-office-dark.jpeg";
 import { useState } from "react";
 import { Tooltip } from "./Tooltip";
+import { ResetChema } from "../validations/ResetPass";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
-  const [resetpass,set_resetpass] = useState("");
-  const [classreset,set_classreset] = useState(true);
-    const [tooltipStatus, setTooltipStatus] = useState(0);
+  const [resetpass, set_resetpass] = useState("");
+  const [classreset, set_classreset] = useState(true);
+  const [tooltipStatus, setTooltipStatus] = useState(0);
+  const history = useNavigate();
 
-  const handleSubmit = e=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if([resetpass].includes("")){
-      set_classreset(false)
-      toast.error("El campo email es necesario", {
-        duration: 6000,
-      });return
-    } set_classreset(true)
-  }
+    let formData = {
+      email: resetpass,
+    };
+    const isValid = await ResetChema.isValid(formData);
+    console.log(isValid);
+    if (!isValid)
+      return [
+        toast.error("Ingrese un correo valido", {
+          duration: 6000,
+        }),
+        set_classreset(false),
+      ];
+    history("/admin");
+  };
   return (
     <>
-    <Toaster />
+      <Toaster />
       <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
         <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
           <div className="flex flex-col overflow-y-auto md:flex-row">
@@ -42,7 +52,10 @@ export const Header = () => {
               onSubmit={handleSubmit}
               className="flex items-center justify-center p-6 sm:p-12 md:w-1/2"
             >
-              <Tooltip   tooltipStatus ={tooltipStatus} setTooltipStatus={setTooltipStatus}  />
+              <Tooltip
+                tooltipStatus={tooltipStatus}
+                setTooltipStatus={setTooltipStatus}
+              />
               <Formulario
                 classreset={classreset}
                 set_resetpass={set_resetpass}

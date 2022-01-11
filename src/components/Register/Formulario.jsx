@@ -4,17 +4,18 @@ import { DirectionInformation } from "./DirectionInformation";
 import Logo from "../../img/login-office-dark.jpeg";
 import { useState } from "react";
 import { Fooder } from "./Fooder";
-import { LineTime } from "./Line_time";
 import { UserInfromation } from "./UserInfromation";
+import {  Stepper, Step, StepLabel } from "@mui/material";
 
 export const Formulario = () =>
 {
+
   const [ParteOne, set_ParteOne] = useState(0);
-  // const [ParteOne, set_ParteOne] = useState(0)
-  // const [ParteOne, set_ParteOne] = useState(0)
-  // const [ParteOne, set_ParteOne] = useState(0)
-  // const [ParteOne, set_ParteOne] = useState(0)
-  // const [ParteOne, set_ParteOne] = useState(0)
+  const steps = [
+    "Ingresp sus datos pesonales",
+    "Create an ad group",
+    "Create an ad",
+  ];
 
   return (
     <>
@@ -62,8 +63,7 @@ export const Formulario = () =>
 
                 {ParteOne === 0 ? (
                   <button
-                    onClick={(e) =>
-                    {
+                    onClick={(e) => {
                       set_ParteOne(ParteOne + 1);
                     }}
                     className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -71,10 +71,9 @@ export const Formulario = () =>
                     Create account
                   </button>
                 ) : (
-                  <div className="flex justify-between  ">
+                  <div className="flex justify-between  pt-5">
                     <button
-                      onClick={(e) =>
-                      {
+                      onClick={(e) => {
                         set_ParteOne(ParteOne - 1);
                       }}
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -82,8 +81,7 @@ export const Formulario = () =>
                       <i class="fas fa-angle-double-left"></i>
                     </button>
                     <button
-                      onClick={(e) =>
-                      {
+                      onClick={(e) => {
                         set_ParteOne(ParteOne + 1);
                       }}
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -92,12 +90,22 @@ export const Formulario = () =>
                     </button>
                   </div>
                 )}
+
                 <div className="mt-10">
                   {ParteOne === 0 ? (
                     <Fooder />
                   ) : (
                     <>
                     
+                      <Stepper className="bg-gray-600  rounded py-2"  activeStep={ParteOne - 1} alternativeLabel>
+                        {steps.map((label) => (
+                          <Step key={label}>
+                            <StepLabel >
+                              {label}
+                            </StepLabel>
+                          </Step>
+                        ))}
+                      </Stepper>
                     </>
                   )}
                 </div>

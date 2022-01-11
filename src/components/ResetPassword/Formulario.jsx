@@ -12,11 +12,11 @@ export const Formulario = ({ set_resetpass, classreset }) => {
           className={`block w-full mt-1 text-sm  ${
             classreset
               ? "dark:bg-gray-700 focus:border-purple-400"
-              : "dark:bg-red-300 focus:border-red-600 handleSubmitborder-red-600"
-          }  focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input`}
-          placeholder="***************"
+              : "dark:bg-red-200 border-red-800 handleSubmitborder-red-600"
+          }  focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input`}
+          placeholder="correo@correo.com"
           onChange={(e) => set_resetpass(e.target.value)}
-          type="password"
+          type="text"
         />
       </label>
       <button

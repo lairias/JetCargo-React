@@ -14,14 +14,14 @@ export const Formulario = ({
         </h1>
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-400">
-            Email {email}{" "}
+            Email 
           </span>
           <input
             className={`block w-full mt-1 text-sm  ${
               classemail
                 ? "dark:bg-gray-700 focus:border-purple-400"
-                : "dark:bg-red-300 focus:border-red-600 border-red-600"
-            }  focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input`}
+                : "dark:bg-red-200  border-red-600 "
+            }  focus:outline-none focus:shadow-outline-purple dark:text-black dark:focus:shadow-outline-gray form-input`}
             placeholder="Email"
             type="text"
             onChange={(e) => {
@@ -36,7 +36,7 @@ export const Formulario = ({
               classpassword
                 ? "dark:bg-gray-700 focus:border-purple-400"
                 : "dark:bg-red-300 focus:border-red-600 border-red-600"
-            }  focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input`}
+            }  focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input`}
             placeholder="***************"
             type="password"
             onChange={(e) => {

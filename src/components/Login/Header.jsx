@@ -4,6 +4,8 @@ import {Formulario} from './Formulario'
 import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import * as yup from "yup"
+import { inputEmail,inputPassword } from "../validations/Login";
 
 export const Header = () => {
   const [email, set_email] = useState("");
@@ -13,17 +15,32 @@ export const Header = () => {
   const history = useNavigate()
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if ([email, password].includes("")) {
-      set_classemail(false);
-      toast.error("El campo email es necesario", {
-        duration: 6000,
-      });
-    } else {
-      set_classemail(true);
-      set_classpassword(true);
-      history("/admin")
+    let DataEmail = {
+      email: email
+    }
+    let DataPass = {
+      password: password
+    }
+    try{
+    if(! await inputEmail.isValid(DataEmail))return [
+        toast.error("Ingrese un correo valido", {
+          duration: 6000,
+        }),
+        set_classemail(false),];
+        
+    if (!(await inputPassword.isValid(DataPass)))
+      return [
+        toast.error("Ingrese una contraseña valida", {
+          duration: 6000,
+        }),
+        set_classpassword(false),
+      ];
+
+     history("/admin");
+    }catch(error){
+      console.log(error)
     }
      }
 
