@@ -12,9 +12,8 @@ export const Formulario = () =>
 
   const [ParteOne, set_ParteOne] = useState(0);
   const steps = [
-    "Ingresp sus datos pesonales",
-    "Create an ad group",
-    "Create an ad",
+    "Igresar los datos le localización",
+    "Ingresar los datos personales ",
   ];
 
   return (
@@ -37,6 +36,7 @@ export const Formulario = () =>
               />
             </div>
             <div className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+
               <div className="w-full">
                 {ParteOne === 0 ? (
                   <>
@@ -109,6 +109,7 @@ export const Formulario = () =>
                     </>
                   )}
                 </div>
+                
               </div>
             </div>
           </div>
