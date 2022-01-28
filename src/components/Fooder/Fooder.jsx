@@ -23,17 +23,17 @@ export const Fooder = () => {
               <div className="flex items-center gap-x-4 mt-12">
                 <div className=" w-8 h-8  jetcargo-color  cursor-pointer  rounded-full flex items-center justify-center">
                   <a href="https://www.facebook.com/jetcargohonduras">
-                    <i class="fab fa-facebook-square"></i>
+                    <i className="fab fa-facebook-square"></i>
                   </a>
                 </div>
                 <div className=" w-8 h-8  jetcargo-color  cursor-pointer  rounded-full flex items-center justify-center">
                   <a href="https://www.jetcargo.vip">
-                    <i class="fas fa-globe"></i>
+                    <i className="fas fa-globe"></i>
                   </a>
                 </div>
                 <div className=" w-8 h-8  jetcargo-color  cursor-pointer  rounded-full flex items-center justify-center">
                   <a href="https://www.facebook.com/jetcargohonduras">
-                    <i class="fab fa-facebook-square"></i>
+                    <i className="fab fa-facebook-square"></i>
                   </a>
                 </div>
               </div>

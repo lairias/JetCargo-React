@@ -4,10 +4,10 @@ import {Formulario} from './Formulario'
 import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import * as yup from "yup"
 import { inputEmail,inputPassword } from "../validations/Login";
-
+import axios from "axios"
 export const Header = () => {
+  
   const [email, set_email] = useState("");
   const [password, set_password] = useState("");
   const [classemail, set_classemail] = useState(true);
@@ -17,28 +17,32 @@ export const Header = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    let DataEmail = {
-      email: email
-    }
-    let DataPass = {
-      password: password
-    }
+    let DataEmail = {email: email}
+    let DataPass = {password: password}
+    if(! await inputEmail.isValid(DataEmail) && !await inputPassword.isValid(DataPass)) return [
+      toast.error("Contraseña o correo electrónico invalidos ", {
+        duration: 6000,
+      }),      set_classemail(false),
+      set_classpassword(false)];
     try{
-    if(! await inputEmail.isValid(DataEmail))return [
-        toast.error("Ingrese un correo valido", {
-          duration: 6000,
-        }),
-        set_classemail(false),];
         
-    if (!(await inputPassword.isValid(DataPass)))
-      return [
-        toast.error("Ingrese una contraseña valida", {
-          duration: 6000,
-        }),
-        set_classpassword(false),
-      ];
+        const Data = async( )=>{
+        return   await axios.post("http://localhost:4000/api/auth/signin", {
+            EMAIL: email,
+            PAS_USER: password,
+          });
+        } 
+      const resultado =  await Data();
+        if (!resultado.data.token) {
+          toast.error(`${resultado.data.message}`, { duration: 3000 });
+        } else {
+          toast.promise(Data(), {
+            loading: "Loading",
+            success: "Usuario permitido",
+          }).then(_=>{setTimeout(()=>{history("/admin");},2000)})
+      
+        }
 
-     history("/admin");
     }catch(error){
       console.log(error)
     }

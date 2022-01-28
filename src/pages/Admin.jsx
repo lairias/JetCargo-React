@@ -1,12 +1,8 @@
-import React, {useEffect, useContext} from 'react'
-import {UserContext} from "../context/Users/UserContext"
+import {useAuth} from "../context/auth/index"
 export const Admin = () => {
-    const { users, getUsers } = useContext(UserContext);
-    useEffect(() => {
-        
-      getUsers()
-     
-    }, [getUsers]);
+
+    const auth = useAuth()
+    console.log(auth);
     return (
         <div>
             Dentro del sistema

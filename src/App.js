@@ -15,15 +15,11 @@ import {Header} from "./components/Header/Header"
 
 //Contexto
 
-import {UserContextProvider}from "./context/UserContext"
-import { UserState } from "./context/Users/UserState";
-
+import {AuthProvider} from "./context/auth/index"
 function App() {
   
   return (
-    <UserContextProvider >
-      <UserState >
-
+    <AuthProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<> <Login />  <Fooder /></> } />
@@ -35,8 +31,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-      </UserState>
-    </UserContextProvider>
+    </AuthProvider>
   );
 }
 

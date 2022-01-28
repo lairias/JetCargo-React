@@ -78,7 +78,7 @@ export const Formulario = () =>
                       }}
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                     >
-                      <i class="fas fa-angle-double-left"></i>
+                      <i className="fas fa-angle-double-left"></i>
                     </button>
                     <button
                       onClick={(e) => {
@@ -86,7 +86,7 @@ export const Formulario = () =>
                       }}
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                     >
-                      <i class="fas fa-angle-double-right"></i>
+                      <i className="fas fa-angle-double-right"></i>
                     </button>
                   </div>
                 )}
