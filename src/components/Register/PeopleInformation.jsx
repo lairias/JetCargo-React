@@ -1,21 +1,28 @@
 import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 
-export const PeopleInformation = ({ title }) => {
-const [edad,set_edad] = useState("")
+export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}) => {
+  const [edad, set_edad] = useState("")
 
-  const FechaNacimiento = (e) => {
+  const FechaNacimiento = (e) =>
+  {
     var hoy = new Date();
     var cumpleanos = new Date(e.target.value);
-    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var age = hoy.getFullYear() - cumpleanos.getFullYear();
     var m = hoy.getMonth() - cumpleanos.getMonth();
-    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-      edad--;
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate()))
+    {
+      age--;
     }
-    if (edad < 18) return toast.error("No puede ingresar una persona menor de edad");
-     set_edad(edad)
+    if (age < 18) {
+      toast.error("No puede ingresar una persona menor de edad");
+      return ""
+    }
+    set_edad(age)
+   return age;
   };
-  
+
+
   return (
     <>
     <Toaster />
@@ -28,26 +35,30 @@ const [edad,set_edad] = useState("")
             Identificación
           </span>
           <input
+            onChange={e => { set_DatosPersonales({ ...DatosPersonales, identificacion: e.target.value})}}
             className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             placeholder="---- ----"
-            type="password"
+            type="text"
           />
         </label>
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-400">
             Tipo documento
           </span>
-          <select className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input">
+          <select
+            onChange={e => { set_DatosPersonales({ ...DatosPersonales, tipodocumento: e.target.value }) }}
+           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input">
             <option value="">-- Seleccione --</option>
-            <option value="">ID</option>
-            <option value="">PASSPORT</option>
-            <option value="">LICENSE</option>
+            <option value="ID">ID</option>
+            <option value="PASSPORT">PASSPORT</option>
+            <option value="LICENSE">LICENSE</option>
           </select>
         </label>
       </div>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-400">Nombre</span>
         <input
+          onChange={e => { set_DatosPersonales({ ...DatosPersonales, nombre: e.target.value }) }}
           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
         />
@@ -55,6 +66,7 @@ const [edad,set_edad] = useState("")
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-400">Segundo Nombre</span>
         <input
+          onChange={e => { set_DatosPersonales({ ...DatosPersonales, segundoNombre: e.target.value }) }}
           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
         />
@@ -62,6 +74,7 @@ const [edad,set_edad] = useState("")
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-400">Apellido</span>
         <input
+          onChange={e => { set_DatosPersonales({ ...DatosPersonales, apellido: e.target.value }) }}
           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
         />
@@ -74,7 +87,7 @@ const [edad,set_edad] = useState("")
           <input
             className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             type="date"
-            onChange={FechaNacimiento}
+            onChange={e => { set_DatosPersonales({ ...DatosPersonales, fechaNacimiento: e.target.value, añoNacimiento: FechaNacimiento(e)}); }  }
           />
         </label>
         <label className="block mt-4 text-sm mx-1">

@@ -1,10 +1,8 @@
 import { NavLink, Navigate} from "react-router-dom";
 export const Formulario = ({
-  classemail,
-  email,
-  set_email,
-  set_password,
-  classpassword,
+  classerror,
+  user,
+  set_user,
 }) => {
   return (
     <>
@@ -13,19 +11,17 @@ export const Formulario = ({
           Login
         </h1>
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">
-            Email 
-          </span>
+          <span className="text-gray-700 dark:text-gray-400">Email</span>
           <input
             className={`block w-full mt-1 text-sm  ${
-              classemail
+              classerror.correo
                 ? "dark:bg-gray-700 focus:border-purple-400"
                 : "dark:bg-red-200  border-red-600 "
             }  focus:outline-none focus:shadow-outline-purple dark:text-black dark:focus:shadow-outline-gray form-input`}
             placeholder="Email"
             type="text"
             onChange={(e) => {
-              set_email(e.target.value);
+              set_user({ ...user, correo: e.target.value });
             }}
           />
         </label>
@@ -33,14 +29,14 @@ export const Formulario = ({
           <span className="text-gray-700 dark:text-gray-400">Password</span>
           <input
             className={`block w-full mt-1 text-sm  ${
-              classpassword
+              classerror.password
                 ? "dark:bg-gray-700 focus:border-purple-400"
                 : "dark:bg-red-300 focus:border-red-600 border-red-600"
             }  focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input`}
             placeholder="***************"
             type="password"
             onChange={(e) => {
-              set_password(e.target.value);
+              set_user({ ...user, password: e.target.value });
             }}
           />
         </label>

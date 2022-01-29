@@ -7,46 +7,60 @@ import toast, { Toaster } from "react-hot-toast";
 import { inputEmail,inputPassword } from "../validations/Login";
 import axios from "axios"
 export const Header = () => {
-  
-  const [email, set_email] = useState("");
-  const [password, set_password] = useState("");
-  const [classemail, set_classemail] = useState(true);
-  const [classpassword, set_classpassword] = useState(true);
+  const [user, set_user] = useState({correo:"", password:""})
+  const [classerror, set_classerror] = useState({correo:true, password:true})
   const history = useNavigate()
 
-
-  const handleSubmit = async (e) => {
+  ///**************************************funciones de eventos programados
+//Evento on
+  const handleSubmit = async (e) =>
+  {
     e.preventDefault();
-    let DataEmail = {email: email}
-    let DataPass = {password: password}
-    if(! await inputEmail.isValid(DataEmail) && !await inputPassword.isValid(DataPass)) return [
-      toast.error("Contraseña o correo electrónico invalidos ", {
-        duration: 6000,
-      }),      set_classemail(false),
-      set_classpassword(false)];
-    try{
-        
-        const Data = async( )=>{
-        return   await axios.post("http://localhost:4000/api/auth/signin", {
-            EMAIL: email,
-            PAS_USER: password,
-          });
-        } 
-      const resultado =  await Data();
-        if (!resultado.data.token) {
-          toast.error(`${resultado.data.message}`, { duration: 3000 });
-        } else {
-          toast.promise(Data(), {
+    let DataEmail = { email: user.correo };
+    let DataPass = { password: user.password };
+    if (
+      !(await inputEmail.isValid(DataEmail)) &&
+      !(await inputPassword.isValid(DataPass))
+    )
+    {
+      toast.error("Todos los campos son necesarios", { duration: 3000 });
+      set_classerror({ ...classerror, correo: false, password: false });
+      return;
+    }
+    set_classerror({ ...classerror, correo: true, password: true });
+    try
+    {
+      const Data = async () =>
+      {
+        return await axios.post("http://localhost:4000/api/auth/signin", {
+          EMAIL: user.correo,
+          PAS_USER: user.password,
+        });
+      };
+      const resultado = await Data();
+      if (!resultado.data.token)
+      {
+        toast.error(`${resultado.data.message}`, { duration: 3000 });
+      } else
+      {
+        toast
+          .promise(Data(), {
             loading: "Loading",
             success: "Usuario permitido",
-          }).then(_=>{setTimeout(()=>{history("/admin");},2000)})
-      
-        }
-
-    }catch(error){
-      console.log(error)
+          })
+          .then((_) =>
+          {
+            setTimeout(() =>
+            {
+              history("/admin");
+            }, 2000);
+          });
+      }
+    } catch (error)
+    {
+      console.log(error);
     }
-     }
+  };
 
     return (
       <>
@@ -55,31 +69,10 @@ export const Header = () => {
           <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
             <div className="flex flex-col overflow-y-auto md:flex-row">
               <div className="h-32 md:h-auto md:w-1/2">
-                <img
-                  aria-hidden="true"
-                  className="object-cover w-full h-full dark:hidden"
-                  src={Logo}
-                  alt="Office"
-                />
-                <img
-                  aria-hidden="true"
-                  className="hidden object-cover w-full h-full dark:block"
-                  src={Logo}
-                  alt="Office"
-                />
-              </div>
-              <h1> </h1>
-              <form
-                onSubmit={handleSubmit}
-                className="flex items-center justify-center p-6 sm:p-12 md:w-1/2"
-              >
-                <Formulario
-                  email={email}
-                  set_email={set_email}
-                  set_password={set_password}
-                  classemail={classemail}
-                  classpassword={classpassword}
-                />
+                <img aria-hidden="true" className="object-cover w-full h-full dark:hidden" src={Logo} alt="Office"/>
+                <img aria-hidden="true" className="hidden object-cover w-full h-full dark:block" src={Logo} alt="Office" /></div>
+              <form onSubmit={handleSubmit} className="flex items-center justify-center p-6 sm:p-12 md:w-1/2">
+                <Formulario user={user} set_user={set_user}classerror={classerror} />
               </form>
             </div>
           </div>
