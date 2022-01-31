@@ -2,7 +2,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { useState } from "react";
 
 export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}) => {
-  const [edad, set_edad] = useState("")
 
   const FechaNacimiento = (e) =>
   {
@@ -18,7 +17,6 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
       toast.error("No puede ingresar una persona menor de edad");
       return ""
     }
-    set_edad(age)
    return age;
   };
 
@@ -39,6 +37,7 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
             className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             placeholder="---- ----"
             type="text"
+            value={DatosPersonales.identificacion}
           />
         </label>
         <label className="block mt-4 text-sm">
@@ -47,7 +46,9 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
           </span>
           <select
             onChange={e => { set_DatosPersonales({ ...DatosPersonales, tipodocumento: e.target.value }) }}
-           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input">
+           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            value={DatosPersonales.tipodocumento}
+           >
             <option value="">-- Seleccione --</option>
             <option value="ID">ID</option>
             <option value="PASSPORT">PASSPORT</option>
@@ -61,6 +62,7 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
           onChange={e => { set_DatosPersonales({ ...DatosPersonales, nombre: e.target.value }) }}
           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
+          value={DatosPersonales.nombre}
         />
       </label>
       <label className="block mt-4 text-sm">
@@ -69,6 +71,7 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
           onChange={e => { set_DatosPersonales({ ...DatosPersonales, segundoNombre: e.target.value }) }}
           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
+          value={DatosPersonales.segundoNombre}
         />
       </label>
       <label className="block mt-4 text-sm">
@@ -77,6 +80,7 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
           onChange={e => { set_DatosPersonales({ ...DatosPersonales, apellido: e.target.value }) }}
           className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
+          value={DatosPersonales.apellido}
         />
       </label>
       <div className=" md:justify-between md:flex  ">
@@ -88,6 +92,7 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
             className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             type="date"
             onChange={e => { set_DatosPersonales({ ...DatosPersonales, fechaNacimiento: e.target.value, añoNacimiento: FechaNacimiento(e)}); }  }
+            value={DatosPersonales.fechaNacimiento}
           />
         </label>
         <label className="block mt-4 text-sm mx-1">
@@ -95,7 +100,7 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
           <input
             className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             type="text"
-            value={edad}
+            value={DatosPersonales.añoNacimiento}
             readOnly
           />
         </label>

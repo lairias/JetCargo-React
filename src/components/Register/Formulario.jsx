@@ -16,7 +16,7 @@ export const Formulario = () =>
 //States de inputs
   const [DatosCuente, set_DatosCuente] = useState({ email: "", password: "", confirpassword: ""})
 const [DatosPersonales, set_DatosPersonales] = useState({ identificacion:"",  tipodocumento:"", nombre:"",segundoNombre:"", apellido:"", fechaNacimiento:"", añoNacimiento:""})
-  const [Datoslocalizacion, set_Datoslocalizacion] = useState({ telefono: "", area: "", direccion: "", pais: "", departamento: "", ciudad: ""})
+  const [Datoslocalizacion, set_Datoslocalizacion] = useState({ telefono: "", area: "", direccion: "", pais: "", departamento: "", ciudad: "", validado:false})
   ///*********************Instancia de las variables********************** */
   const steps = [
     "Igresar los datos le localización",
@@ -26,9 +26,9 @@ const [DatosPersonales, set_DatosPersonales] = useState({ identificacion:"",  ti
   ///*********************Instancia de las Funciones********************** */
   const handleSubmit = async (e)=>{
     e.preventDefault();
-    console.log(DatosCuente.completado)
+    
+    alert("funciona")
   }
-
 
   return (
     <>
@@ -80,7 +80,6 @@ const [DatosPersonales, set_DatosPersonales] = useState({ identificacion:"",  ti
                   <button
                   
                     onClick={(e) => {
-                      handleSubmit(e)
                       if([DatosCuente.email,  DatosCuente.password, DatosCuente.confirpassword].includes("")) {
                          toast.error("Todos los datos son necesarios") 
                       }else{
@@ -96,8 +95,9 @@ const [DatosPersonales, set_DatosPersonales] = useState({ identificacion:"",  ti
                   <div className="flex justify-between  pt-5">
                     <button
                       onClick={_ => {
-                        
+                          set_Datoslocalizacion({ ...Datoslocalizacion, validado: false })
                         set_ParteOne(ParteOne - 1);
+
                       }}
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                       
@@ -105,18 +105,30 @@ const [DatosPersonales, set_DatosPersonales] = useState({ identificacion:"",  ti
                       <i className="fas fa-angle-double-left"></i>
                     </button>
                     <button
-                      onClick={_ => {
-                          if ([DatosPersonales.identificacion, DatosPersonales.tipodocumento, DatosPersonales.nombre, DatosPersonales.segundoNombre, DatosPersonales.apellido, DatosPersonales.fechaNacimiento,DatosPersonales.añoNacimiento].includes("") )
-                          {
-                            toast.error("Todos los datos son necesarios")
-                          } else
-                          {
-                            set_ParteOne(ParteOne + 1)
-                          } 
+                      onClick={e => {
+                          if (ParteOne === 1 ){
+                            if ([DatosPersonales.identificacion, DatosPersonales.tipodocumento, DatosPersonales.nombre, DatosPersonales.segundoNombre, DatosPersonales.apellido, DatosPersonales.fechaNacimiento, DatosPersonales.añoNacimiento].includes(""))
+                            {
+                              toast.error("Todos los datos son necesarios")
+                            } else
+                            {
+                              set_ParteOne(ParteOne + 1)
+                              set_Datoslocalizacion({ ...Datoslocalizacion, validado: true })
+                            } 
+                          } else if (ParteOne === 2){
+                            if ([Datoslocalizacion.telefono, Datoslocalizacion.area, Datoslocalizacion.direccion, Datoslocalizacion.pais, Datoslocalizacion.ciudad, Datoslocalizacion.departamento].includes(""))
+                            {
+                              toast.error("Todos los datos son necesarios")
+                            }else{
+                              handleSubmit(e)
+                            }
+                          }
                       }}
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                     >
-                      <i className="fas fa-angle-double-right"></i>
+                        {Datoslocalizacion.validado ? ("Guardar") : (<i className="fas fa-angle-double-right"></i>)}
+
+                     
                     </button>
                   </div>
                 )}

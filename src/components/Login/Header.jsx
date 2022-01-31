@@ -4,7 +4,7 @@ import {Formulario} from './Formulario'
 import {  useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { inputEmail,inputPassword } from "../validations/Login";
+import { Login_email, Login_password } from "../validations";
 import axios from "axios"
 export const Header = () => {
   const [user, set_user] = useState({correo:"", password:""})
@@ -16,14 +16,15 @@ export const Header = () => {
   const handleSubmit = async (e) =>
   {
     e.preventDefault();
-    let DataEmail = { email: user.correo };
-    let DataPass = { password: user.password };
+
+    const DataEmail = await Login_email.validate({ email: user.correo }).catch(function (err) { toast.error(`${err.errors}`, { duration: 3000 }); });
+    const DataPass = await Login_password.validate({ password: user.password }).catch(function (err) { toast.error(`${err.errors}`, { duration: 3000 }); });
     if (
-      !(await inputEmail.isValid(DataEmail)) &&
-      !(await inputPassword.isValid(DataPass))
+      !DataEmail &&
+        !DataPass
     )
     {
-      toast.error("Todos los campos son necesarios", { duration: 3000 });
+
       set_classerror({ ...classerror, correo: false, password: false });
       return;
     }

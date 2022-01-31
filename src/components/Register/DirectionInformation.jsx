@@ -49,14 +49,17 @@ export const DirectionInformation = ({ title, Datoslocalizacion, set_Datoslocali
               onChange={(e) => set_Datoslocalizacion({...Datoslocalizacion, telefono: e.target.value})}
               className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
               placeholder="---- ----"
-              type="password"
+              type="text"
+              value={Datoslocalizacion.telefono}
             />
           </label>
           <label className="block mt-4 text-sm">
             <span className="text-gray-700 dark:text-gray-400">Área</span>
             <select 
               onChange={(e) => set_Datoslocalizacion({ ...Datoslocalizacion, area: e.target.value })}
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input">
+            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+              value={Datoslocalizacion.area}
+            >
               <option value="">-- Seleccione --</option>
               <option value="504">+504</option>
               <option value="503">+503</option>
@@ -70,7 +73,8 @@ export const DirectionInformation = ({ title, Datoslocalizacion, set_Datoslocali
             rows="3"
             onChange={(e) => set_Datoslocalizacion({ ...Datoslocalizacion, direccion: e.target.value })}
             className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
-          ></textarea>
+            value={Datoslocalizacion.direccion}
+          > </textarea>
         </label>
         <div className=" md:justify-between md:flex  ">
           <label className="block mt-4 text-sm mx-1">
@@ -79,6 +83,7 @@ export const DirectionInformation = ({ title, Datoslocalizacion, set_Datoslocali
               onChange={(e) => {set_pais(e.target.value);
                 set_Datoslocalizacion({ ...Datoslocalizacion, pais: e.target.value })}}
               className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+              value={Datoslocalizacion.pais}
             >
               <option value="">-- Seleccione --</option>
               <SelectCountry ApiCountry={ApiCountry} />
@@ -91,10 +96,11 @@ export const DirectionInformation = ({ title, Datoslocalizacion, set_Datoslocali
             </span>
 
             <select
-              disabled={Pais > 0 ? false : true}
+              disabled={Datoslocalizacion.pais  ? false : true}
               onChange={(e) => { set_state(e.target.value); set_Datoslocalizacion({ ...Datoslocalizacion, departamento: e.target.value })}}
               className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
-            >
+              value={Datoslocalizacion.departamento}
+              >
               <option value="">-- Seleccione --</option>
               <SelectState ApiState={ApiState} />
             </select>
@@ -103,10 +109,11 @@ export const DirectionInformation = ({ title, Datoslocalizacion, set_Datoslocali
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-400">Ciudad</span>
           <select
-            disabled={State > 0 ? false : true}
+            disabled={Datoslocalizacion.departamento  ? false : true}
             onChange={(e) => { set_city(e.target.value); set_Datoslocalizacion({ ...Datoslocalizacion, ciudad: e.target.value })}}
             className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
-          >
+            value={Datoslocalizacion.ciudad}
+            >
             <option value="">-- Seleccione --</option>
             <SelectCity ApiCities={ApiCities} />
           </select>
