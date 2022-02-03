@@ -15,7 +15,6 @@ import {Header} from "./components/Header/Header"
 //Componentes params
 import {ForgotPassword} from "./pages/ForgotPassword"
 //Contexto
-import {AuthProvider} from "./context/auth/index"
 import { TokenPassProvider } from "./context/token/index";
 import { UserContextProvider } from "./context/users/UserContext.js";
 function App() {
