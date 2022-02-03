@@ -33,8 +33,6 @@ export const DirectionInformation = ({ title, Datoslocalizacion, set_Datoslocali
       const respustaState = await axios.get(url);
       set_ApiState(respustaState.data);
     }
-   
- 
     return (
       <>
         <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">

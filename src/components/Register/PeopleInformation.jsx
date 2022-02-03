@@ -1,5 +1,4 @@
-import toast, { Toaster } from "react-hot-toast";
-import { useState } from "react";
+import toast  from "react-hot-toast";
 
 export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}) => {
 
@@ -23,7 +22,6 @@ export const PeopleInformation = ({ title, DatosPersonales, set_DatosPersonales}
 
   return (
     <>
-    <Toaster />
       <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
         {title}
       </h1>

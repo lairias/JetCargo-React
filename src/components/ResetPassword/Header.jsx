@@ -24,11 +24,10 @@ export const Header = () => {
            return email
       }
       const callback = FetchData()
- const consulta =  toast.promise(callback, {  loading: "Enviando",
+  toast.promise(callback, {  loading: "Enviando",
     success: "Email enviado",
     error: "Correo electrónico no valido",
   }).then(_=>  setTimeout(_=>{history("/login");},2000) )
-  console.log(consulta)
     set_classreset(true);
     }catch(error){
       console.log(error)
