@@ -4,8 +4,9 @@ export const useUser = ()=>
 {
     const { jwt, set_jwt } = useContext(Context);
 
-    const login = useCallback(()=>{
-        set_jwt("text")
+    const login = useCallback((token )=>{
+        console.log(token)
+        set_jwt(token)
     },[set_jwt])
     const logout = useCallback(()=>{
         set_jwt(null)

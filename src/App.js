@@ -24,7 +24,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<> <Login /></> } />
-          <Route path="/Admin" element={<> <Admin />  <Fooder /></> } />
+          <Route path="/Admin" element={<> <Admin />  </> } />
           <Route path="/register" element={<>  <Register />  </>} />
           <Route path="/forget-password/:token/:correo" element={<> <ForgotPassword /> </>} />
            <Route path="/reset-password" element={<> <ResetPassword /> <Fooder /></>} />

@@ -2,20 +2,20 @@
 import { useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import axios from "axios"
 import { Login_email, Login_password } from "../validations";
+import {LoginService} from "../../service/Login"
 import {Formulario} from './Formulario'
 import {useUser} from "../../hooks/useUser";
 export const Header = () => {
   ///**************************************Instancias de los States
   const [user, set_user] = useState({correo:"", password:""});
   const [classerror, set_classerror] = useState({correo:true, password:true});
-  const { login, isLogged } = useUser();
+  const { login, isLogged,  } = useUser();
   ///**************************************Instancias de las Variables
   const history = useNavigate();
   ///**************************************Instancias de useEffect
-  useEffect(( ) => {
-    if (isLogged) return history("/");
+  useEffect(() => {
+    if (isLogged) return history("/admin");
   }, [isLogged, history]);
 
   ///**************************************funciones de eventos programados
@@ -35,28 +35,22 @@ export const Header = () => {
     set_classerror({ ...classerror, correo: true, password: true });
     try
     {
-      const Data = async () =>
-      {
-        return await axios.post("http://localhost:4000/api/auth/signin", {
-          EMAIL: user.correo,
-          PAS_USER: user.password,
-        });
-      };
-      const resultado = await Data();
+    
+      const resultado = await LoginService(user.correo, user.password);
+
       if (!resultado.data.token)
       {
         toast.error(`${resultado.data.message}`, { duration: 3000 });
       } else
       {
         toast
-          .promise(Data(), {
+          .promise(  LoginService(user.correo, user.password), {
             loading: "Loading",
             success: "Usuario permitido",
           })
-          .then((_) =>
-          {
-            setTimeout(() =>
-            {login()
+          .then((_) => {
+            setTimeout(() => {
+              login(resultado.data.token);
             }, 2000);
           });
       }
