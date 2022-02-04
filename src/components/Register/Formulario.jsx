@@ -20,7 +20,15 @@ export const Formulario = () =>
   //States de inputs
   const [DatosCuente, set_DatosCuente] = useState({ email: "", password: "", confirpassword: "" })
   const [DatosPersonales, set_DatosPersonales] = useState({ identificacion: "", tipodocumento: "", nombre: "", segundoNombre: "", apellido: "", fechaNacimiento: "", añoNacimiento: 0 })
-  const [Datoslocalizacion, set_Datoslocalizacion] = useState({ telefono: "", area: "", direccion: "", pais: "", departamento: "", ciudad: "", validado: false })
+  const [Datoslocalizacion, set_Datoslocalizacion] = useState({
+    telefono: "",
+    area: "",
+    direccion: "",
+    País: "",
+    departamento: "",
+    ciudad: "",
+    validado: false,
+  });
   ///*********************Instancia de las variables********************** */
   const steps = [
     "Igresar los datos le localización",
@@ -80,7 +88,7 @@ export const Formulario = () =>
 
   const DataDesscripcion = await Register_Descripcion.validate({ desDireccion: Datoslocalizacion.direccion }).catch(function (err) { toast.error(`${err.errors}`, { duration: 2000 }); });
 
-  const DataPais = await Register_Pais.validate({ pais: Datoslocalizacion.pais }).catch(function (err) { toast.error(`${err.errors}`, { duration: 2000 }); });
+  const DataPais = await Register_Pais.validate({ pais: Datoslocalizacion.País }).catch(function (err) { toast.error(`${err.errors}`, { duration: 2000 }); });
 
   const DataDepartemento = await Register_departamento.validate({ departamento: Datoslocalizacion.departamento }).catch(function (err) { toast.error(`${err.errors}`, { duration: 2000 }); });
 
@@ -96,18 +104,18 @@ export const Formulario = () =>
           MIDDLENAME: DatosPersonales.segundoNombre,
           LASTNAME: DatosPersonales.apellido,
           AGE: DatosPersonales.añoNacimiento,
-          EMAIL: DatosCuente.email ,
+          EMAIL: DatosCuente.email,
           PAS_USER: DatosCuente.password,
           ROL: 1,
           DAT_BIRTH: DatosPersonales.fechaNacimiento,
-          COD_COUNTRY: Datoslocalizacion.pais,
+          COD_COUNTRY: Datoslocalizacion.País,
           COD_STATE: Datoslocalizacion.departamento,
           COD_CITY: Datoslocalizacion.ciudad,
-          DES_ADDRESS: Datoslocalizacion.direccion ,
+          DES_ADDRESS: Datoslocalizacion.direccion,
           NUM_AREA: Datoslocalizacion.area,
           NUM_PHONE: Datoslocalizacion.telefono,
-          USR_ADD: "Registro"
-        })
+          USR_ADD: "Registro",
+        });
       }
       const resultado = await  Data();
       console.log(resultado)

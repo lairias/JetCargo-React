@@ -9,13 +9,11 @@ console.log(token)
 };
 
 export function TokenPassProvider({ children }) {
-
   const TokenP = {
     token: true,
     id: "",
     correo: "",
   };
-  
   return (
     <TokenPassContex.Provider value={{ TokenP }}>
       {children}

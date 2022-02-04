@@ -1,21 +1,26 @@
 
-import {Formulario} from './Formulario'
+import { useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
-import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { Login_email, Login_password } from "../validations";
 import axios from "axios"
+import { Login_email, Login_password } from "../validations";
+import {Formulario} from './Formulario'
+import {useUser} from "../../hooks/useUser";
 export const Header = () => {
-  const [user, set_user] = useState({correo:"", password:""})
-  const [classerror, set_classerror] = useState({correo:true, password:true})
-  const history = useNavigate()
+  ///**************************************Instancias de los States
+  const [user, set_user] = useState({correo:"", password:""});
+  const [classerror, set_classerror] = useState({correo:true, password:true});
+  const { login, isLogged } = useUser();
+  ///**************************************Instancias de las Variables
+  const history = useNavigate();
+  ///**************************************Instancias de useEffect
+  useEffect(( ) => {
+    if (isLogged) return history("/");
+  }, [isLogged, history]);
 
   ///**************************************funciones de eventos programados
-//Evento on
   const handleSubmit = async (e) =>
-  {
-    e.preventDefault();
-
+  { e.preventDefault();
     const DataEmail = await Login_email.validate({ email: user.correo }).catch(function (err) { toast.error(`${err.errors}`, { duration: 3000 }); });
     const DataPass = await Login_password.validate({ password: user.password }).catch(function (err) { toast.error(`${err.errors}`, { duration: 3000 }); });
     if (
@@ -51,8 +56,7 @@ export const Header = () => {
           .then((_) =>
           {
             setTimeout(() =>
-            {
-              history("/admin");
+            {login()
             }, 2000);
           });
       }
@@ -61,6 +65,7 @@ export const Header = () => {
       console.log(error);
     }
   };
+  
 
     return (
       <>
