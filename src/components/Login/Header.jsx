@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
-import { Login_email, Login_password } from "../validations";
+import {  Login_email, Login_password } from "../validations";
 import {LoginService} from "../../service/Login"
 import {Formulario} from './Formulario'
 import {useUser} from "../../hooks/useUser";
@@ -21,6 +21,7 @@ export const Header = () => {
   ///**************************************funciones de eventos programados
   const handleSubmit = async (e) =>
   { e.preventDefault();
+    //**Eventos de Alertar de errores */
     const DataEmail = await Login_email.validate({ email: user.correo }).catch(function (err) { toast.error(`${err.errors}`, { duration: 3000 }); });
     const DataPass = await Login_password.validate({ password: user.password }).catch(function (err) { toast.error(`${err.errors}`, { duration: 3000 }); });
     if (
@@ -28,32 +29,19 @@ export const Header = () => {
         !DataPass
     )
     {
-
+      //Evento de mosntar erroe en los input 
       set_classerror({ ...classerror, correo: false, password: false });
       return;
     }
     set_classerror({ ...classerror, correo: true, password: true });
     try
     {
-    
-      const resultado = await LoginService(user.correo, user.password);
+      //Peticion Http al servidor
+      const resultado = await LoginService({ EMAIL : user.correo,  PAS_USER : user.password});
 
-      if (!resultado.data.token)
-      {
-        toast.error(`${resultado.data.message}`, { duration: 3000 });
-      } else
-      {
-        toast
-          .promise(  LoginService(user.correo, user.password), {
-            loading: "Loading",
-            success: "Usuario permitido",
-          })
-          .then((_) => {
-            setTimeout(() => {
-              login(resultado.data.token);
-            }, 2000);
-          });
-      }
+      if (!resultado.data.token) return toast.error(`${resultado.data.message}`, { duration: 3000 });
+      login(resultado.data.token);
+
     } catch (error)
     {
       console.log(error);
