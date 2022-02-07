@@ -1,6 +1,4 @@
-import {Formulario} from "../components/Register/Formulario"
+import { Formulario } from "../components/Register/Formulario";
 export const Register = () => {
-    return (
-<Formulario />
-    )
-}
+  return <Formulario />;
+};

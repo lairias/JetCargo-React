@@ -1,9 +1,9 @@
-import { Header } from "../components/ResetPassword/Header"
+import { Header } from "../components/ResetPassword/Header";
 
 export const ResetPassword = () => {
-    return (
-      <>
-       <Header />
-      </>
-    );
-}
+  return (
+    <>
+      <Header />
+    </>
+  );
+};

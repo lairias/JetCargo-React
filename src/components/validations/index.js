@@ -1,26 +1,24 @@
-import * as yup  from "yup"
+import * as yup from "yup";
 //******************Validaciones de Login */
 
 export const Login_email = yup.object().shape({
-  email: 
-  yup
-  .string()
-  .email("Ingreser un correo electrónico valido").required("El dato Email es necesario"),
+  email: yup
+    .string()
+    .email("Ingreser un correo electrónico valido")
+    .required("El dato Email es necesario"),
 });
 export const Login_password = yup.object().shape({
-  password: yup
-    .string()
-    .required("El dato Password es necesario")
+  password: yup.string().required("El dato Password es necesario"),
 });
 
-  //******************Validaciones de Registro */
+//******************Validaciones de Registro */
 export const Register_email = yup.object().shape({
   email: yup
     .string()
     .required("El dato email es necesario")
     .email("Ingrese un correo electrónico valido")
     .min(5, "El dato email minínimo de caracteres permitidos 5")
-    .max(30, "El dato email minínimo de caracteres permitidos 5")
+    .max(30, "El dato email minínimo de caracteres permitidos 5"),
 });
 export const Register_password = yup.object().shape({
   password: yup
@@ -29,7 +27,7 @@ export const Register_password = yup.object().shape({
     .strict(true)
     .required("El dato Password es necesario")
     .min(5, "La contraseña minínimo de caracteres permitidos 5")
-    .max(18, "La contraseña maxímo de caracteres permitidos 18")
+    .max(18, "La contraseña maxímo de caracteres permitidos 18"),
 });
 export const Register_Identificacion = yup.object().shape({
   identificacion: yup
@@ -47,12 +45,12 @@ export const Register_typeDocumentacion = yup.object().shape({
 });
 export const Register_nombre = yup.object().shape({
   nombre: yup
-  .string()
+    .string()
     .trim("El dato  nombre  no puede contener espacios")
     .strict(true)
     .max(15, "El dato  nombre maxímo de caracteres permitidos 15")
     .min(2, "El dato  nombre minínimo de caracteres permitidos 3")
-    .required("El dato nombre es necesario")
+    .required("El dato nombre es necesario"),
 });
 export const Register_segundoNombre = yup.object().shape({
   segundoNombre: yup
@@ -97,9 +95,7 @@ export const Register_telefono = yup.object().shape({
     .min(7, " El dato teléfono minímo de caracteres permitidos 7 "),
 });
 export const Register_Area = yup.object().shape({
-  area: yup
-    .string()
-    .required("El dato aréa es necesario")
+  area: yup.string().required("El dato aréa es necesario"),
 });
 export const Register_Descripcion = yup.object().shape({
   desDireccion: yup
@@ -109,21 +105,14 @@ export const Register_Descripcion = yup.object().shape({
     .min(15, " El dato Dirección minímo de caracteres permitidos 20 "),
 });
 export const Register_Pais = yup.object().shape({
-  pais: yup
-    .string()
-    .nullable()
-    .required("El dato país es necesario")
+  pais: yup.string().nullable().required("El dato país es necesario"),
 });
 export const Register_departamento = yup.object().shape({
   departamento: yup
     .string()
     .nullable()
-    .required("El dato departamento es necesario")
+    .required("El dato departamento es necesario"),
 });
 export const Register_ciudad = yup.object().shape({
-  ciudad: yup
-    .string()
-    .nullable()
-    .required("El dato ciudad es necesario")
+  ciudad: yup.string().nullable().required("El dato ciudad es necesario"),
 });
-

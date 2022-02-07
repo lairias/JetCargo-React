@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
-import { CountryService,StateService,CityService } from "../../service/Direciont";
-import { SelectCity} from "./Select/SelectCity";
+import {
+  CountryService,
+  StateService,
+  CityService,
+} from "../../service/Direciont";
+import { SelectCity } from "./Select/SelectCity";
 import { SelectCountry } from "./Select/SelectCountry";
 import { SelectState } from "./Select/SelectState";
 import { SelectArea } from "./Select/SelectArea";
@@ -18,13 +22,17 @@ export const DirectionInformation = ({
   const [State, set_state] = useState();
   const [City, set_city] = useState();
   ///*********************UseEfect********************** */
-  
+
   useEffect(() => {
-       CountryService().then(element =>{set_ApiCountry(element.data)})
-       StateService(Pais ).then(element =>{set_ApiState(element.data)})
-       CityService(State).then(element =>{set_ApiCities(element.data)})
-     
-    
+    CountryService().then((element) => {
+      set_ApiCountry(element.data);
+    });
+    StateService(Pais).then((element) => {
+      set_ApiState(element.data);
+    });
+    CityService(State).then((element) => {
+      set_ApiCities(element.data);
+    });
   }, [Pais, State]);
   ///*********************Funciones de peticiones Http********************** */
   return (

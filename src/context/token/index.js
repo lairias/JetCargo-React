@@ -3,8 +3,8 @@ import { createContext, useContext } from "react";
 export const TokenPassContex = createContext();
 
 export const TokenPass = (token) => {
-console.log(token)
-    const context = useContext(TokenPassContex);
+  console.log(token);
+  const context = useContext(TokenPassContex);
   return context;
 };
 

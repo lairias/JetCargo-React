@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 export const Dashboard = () => {
   const [show, setShow] = useState(false);
@@ -135,9 +134,7 @@ export const Dashboard = () => {
               <div className="flex flex-col justify-between h-full w-full">
                 <div>
                   <div className="flex items-center justify-between px-8">
-                    <div className="h-16 w-full flex items-center">
-                      
-                    </div>
+                    <div className="h-16 w-full flex items-center"></div>
                     <div
                       id="closeSideBar"
                       className="flex items-center justify-center h-10 w-10"

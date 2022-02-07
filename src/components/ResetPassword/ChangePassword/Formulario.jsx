@@ -29,7 +29,7 @@ export const Header = () => {
         });
         return email;
       };
-    toast
+      toast
         .promise(FetchData(), {
           loading: "Enviando",
           success: "Email enviado",

@@ -1,18 +1,15 @@
-import { NavLink} from "react-router-dom";
-export const Formulario = ({
-  classerror,
-  user,
-  set_user,
-}) => {
+import { NavLink } from "react-router-dom";
+export const Formulario = ({ classerror, user, set_user }) => {
   return (
     <>
       <div className="w-full">
-        
         <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
           Iniciar sesión
         </h1>
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">Correo electrónico</span>
+          <span className="text-gray-700 dark:text-gray-400">
+            Correo electrónico
+          </span>
           <input
             className={`block w-full mt-1 text-sm  ${
               classerror.correo
@@ -27,7 +24,9 @@ export const Formulario = ({
           />
         </label>
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">Introduce tu contraseña</span>
+          <span className="text-gray-700 dark:text-gray-400">
+            Introduce tu contraseña
+          </span>
           <input
             className={`block w-full mt-1 text-sm  ${
               classerror.password

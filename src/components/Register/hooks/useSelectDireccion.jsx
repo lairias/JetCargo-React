@@ -1,11 +1,7 @@
 import { useState } from "react";
-export const useSelectDireccion = (
-  label,
-  opciones,
-  view,
-) => {
+export const useSelectDireccion = (label, opciones, view) => {
   const [state, set_state] = useState("");
-  const selectDireccion = () => ( 
+  const selectDireccion = () => (
     <>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-400">{label} </span>
@@ -27,6 +23,6 @@ export const useSelectDireccion = (
         </select>
       </label>
     </>
-  )
+  );
   return [state, selectDireccion];
 };

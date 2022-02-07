@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Tooltip } from "./Tooltip";
 import { ResetChema } from "../validations/ResetPass";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 export const Header = () => {
   const [resetpass, set_resetpass] = useState("");
@@ -15,22 +15,35 @@ export const Header = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-        let formData = {email: resetpass};
+    let formData = { email: resetpass };
     const isValid = await ResetChema.isValid(formData);
-    if (!isValid)return [toast.error("Ingrese un correo valido",{duration: 6000}),set_classreset(false)];
-    try{
-      const FetchData = async()=>{
-        const email = await axios.post("http://localhost:4000/api/passreset", { EMAIL: resetpass })
-           return email
-      }
-      const callback = FetchData()
-  toast.promise(callback, {  loading: "Enviando",
-    success: "Email enviado",
-    error: "Correo electrónico no valido",
-  }).then(_=>  setTimeout(_=>{history("/login");},2000) )
-    set_classreset(true);
-    }catch(error){
-      console.log(error)
+    if (!isValid)
+      return [
+        toast.error("Ingrese un correo valido", { duration: 6000 }),
+        set_classreset(false),
+      ];
+    try {
+      const FetchData = async () => {
+        const email = await axios.post("http://localhost:4000/api/passreset", {
+          EMAIL: resetpass,
+        });
+        return email;
+      };
+      const callback = FetchData();
+      toast
+        .promise(callback, {
+          loading: "Enviando",
+          success: "Email enviado",
+          error: "Correo electrónico no valido",
+        })
+        .then((_) =>
+          setTimeout((_) => {
+            history("/login");
+          }, 2000)
+        );
+      set_classreset(true);
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

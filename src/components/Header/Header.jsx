@@ -2,8 +2,8 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 //Importancion de los Hooks
-import {useUser} from "../../hooks/useUser";
-export const  Header = ()=> {
+import { useUser } from "../../hooks/useUser";
+export const Header = () => {
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const { isLogged, logout } = useUser();
@@ -62,7 +62,7 @@ export const  Header = ()=> {
                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
                   {isLogged ? (
                     <button
-                      onClick={ logout}
+                      onClick={logout}
                       className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                     >
                       Logout
@@ -75,7 +75,6 @@ export const  Header = ()=> {
                       Sing in
                     </NavLink>
                   )}
-                
                 </div>
                 <div className="flex lg:hidden">
                   <button
@@ -167,7 +166,7 @@ export const  Header = ()=> {
               <div className="flex items-center space-x-3">
                 {isLogged ? (
                   <button
-                    onClick={ logout}
+                    onClick={logout}
                     className="dark:text-white text-base rounded-full border-2 w-full px-2 hover:bg-sky-400 transition duration-500 text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
                     Logout
@@ -323,4 +322,4 @@ export const  Header = ()=> {
       </div>
     </div>
   );
-}
+};

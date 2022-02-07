@@ -1,17 +1,21 @@
 import axios from "axios";
-export const LoginService = async  ( {EMAIL, PAS_USER} ) => {
-return await axios.post("http://localhost:4000/api/auth/signin", {
-  EMAIL,  PAS_USER
-});
+export const LoginService = async ({ EMAIL, PAS_USER }) => {
+  return await axios.post("http://localhost:4000/api/auth/signin", {
+    EMAIL,
+    PAS_USER,
+  });
 };
 
-export const RegisterVeryEmail = async ( EMAIL ) => {
-return await axios.get(`http://localhost:4000/api/email/${EMAIL}`);
+export const RegisterVeryEmail = async (EMAIL) => {
+  return await axios.get(`http://localhost:4000/api/email/${EMAIL}`);
 };
 
-
-export const RegisterService = async ( DatosPersonales,DatosCuente, Datoslocalizacion) => {
-return  axios.post("http://localhost:4000/api/auth/signup", {
+export const RegisterService = async (
+  DatosPersonales,
+  DatosCuente,
+  Datoslocalizacion
+) => {
+  return axios.post("http://localhost:4000/api/auth/signup", {
     ID: DatosPersonales.identificacion,
     TIP_DOCUMENT: DatosPersonales.tipodocumento,
     FRISTNAME: DatosPersonales.nombre,
@@ -29,5 +33,5 @@ return  axios.post("http://localhost:4000/api/auth/signup", {
     NUM_AREA: Datoslocalizacion.area,
     NUM_PHONE: Datoslocalizacion.telefono,
     USR_ADD: "Registro",
-  })
+  });
 };

@@ -1,1 +1,1 @@
-import {Route} from "rea"
+import { Route } from "rea";
