@@ -26,7 +26,7 @@ export const RegisterService = async (
     PAS_USER: DatosCuente.password,
     ROL: 1,
     DAT_BIRTH: DatosPersonales.fechaNacimiento,
-    COD_COUNTRY: Datoslocalizacion.País,
+    COD_COUNTRY: Datoslocalizacion.pais,
     COD_STATE: Datoslocalizacion.departamento,
     COD_CITY: Datoslocalizacion.ciudad,
     DES_ADDRESS: Datoslocalizacion.direccion,

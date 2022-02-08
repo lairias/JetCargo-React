@@ -10,7 +10,7 @@ export const useSelectDireccion = (label, opciones, view) => {
           onChange={({ target }) => {
             set_state(target.value);
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           name={label}
         >
           <option>-- Seleccione --</option>

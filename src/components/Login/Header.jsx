@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import { Login_email, Login_password } from "../validations";
-import { LoginService } from "../../service/Login";
+import { LoginService } from "../../service/ServiceLogin";
 import { Formulario } from "./Formulario";
 import { useUser } from "../../hooks/useUser";
 export const Header = () => {
@@ -59,7 +59,7 @@ export const Header = () => {
     <>
       <Toaster />
       <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
-        <div className="flex-1 h-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+        <div className="flex-1 h-full max-w-sm mx-auto overflow-hidden border-white border-2 bg-white rounded-lg shadow-xl dark:bg-gray-200">
           <div className="flex justify-center pt-5">
             <img
               src="https://jetcargo.vip/wp-content/uploads/2021/11/cropped-JetCargo-png-file-e1637610869136.png"

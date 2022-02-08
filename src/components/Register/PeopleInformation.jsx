@@ -37,7 +37,7 @@ export const PeopleInformation = ({
                 identificacion: e.target.value,
               });
             }}
-            className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             placeholder="---- ----"
             type="text"
             value={DatosPersonales.identificacion}
@@ -54,7 +54,7 @@ export const PeopleInformation = ({
                 tipodocumento: e.target.value,
               });
             }}
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             value={DatosPersonales.tipodocumento}
           >
             <option value="">-- Seleccione --</option>
@@ -70,7 +70,7 @@ export const PeopleInformation = ({
           onChange={(e) => {
             set_DatosPersonales({ ...DatosPersonales, nombre: e.target.value });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
           value={DatosPersonales.nombre}
         />
@@ -84,7 +84,7 @@ export const PeopleInformation = ({
               segundoNombre: e.target.value,
             });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
           value={DatosPersonales.segundoNombre}
         />
@@ -98,7 +98,7 @@ export const PeopleInformation = ({
               apellido: e.target.value,
             });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           type="text"
           value={DatosPersonales.apellido}
         />
@@ -109,7 +109,7 @@ export const PeopleInformation = ({
             Fecha Nacimiento
           </span>
           <input
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             type="date"
             onChange={(e) => {
               set_DatosPersonales({
@@ -124,7 +124,7 @@ export const PeopleInformation = ({
         <label className="block mt-4 text-sm mx-1">
           <span className="text-gray-700 dark:text-gray-400">Edad</span>
           <input
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             type="text"
             value={DatosPersonales.añoNacimiento}
             readOnly

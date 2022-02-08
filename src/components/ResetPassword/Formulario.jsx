@@ -9,7 +9,7 @@ export const Formulario = ({ set_resetpass, classreset }) => {
         <input
           className={`block w-full mt-1 text-sm  ${
             classreset
-              ? "dark:bg-gray-700 focus:border-purple-400"
+              ? "dark:bg-gray-700 focus:border-sky-400"
               : "dark:bg-red-200 border-red-800 handleSubmitborder-red-600"
           }  focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input`}
           placeholder="correo@correo.com"
@@ -18,7 +18,7 @@ export const Formulario = ({ set_resetpass, classreset }) => {
         />
       </label>
       <button
-        className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+        className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple"
         type="submit"
       >
         Recuperar contraseña

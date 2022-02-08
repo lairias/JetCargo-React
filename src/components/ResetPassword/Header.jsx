@@ -5,8 +5,7 @@ import { useState } from "react";
 import { Tooltip } from "./Tooltip";
 import { ResetChema } from "../validations/ResetPass";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
+import {SendEmailPasswordService} from "../../service/ServicePassword";
 export const Header = () => {
   const [resetpass, set_resetpass] = useState("");
   const [classreset, set_classreset] = useState(true);
@@ -24,10 +23,7 @@ export const Header = () => {
       ];
     try {
       const FetchData = async () => {
-        const email = await axios.post("http://localhost:4000/api/passreset", {
-          EMAIL: resetpass,
-        });
-        return email;
+        return await SendEmailPasswordService(resetpass)
       };
       const callback = FetchData();
       toast

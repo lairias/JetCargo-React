@@ -3,7 +3,7 @@ import {
   CountryService,
   StateService,
   CityService,
-} from "../../service/Direciont";
+} from "../../service/ServiceDireciont";
 import { SelectCity } from "./Select/SelectCity";
 import { SelectCountry } from "./Select/SelectCountry";
 import { SelectState } from "./Select/SelectState";
@@ -52,7 +52,7 @@ export const DirectionInformation = ({
                 telefono: e.target.value,
               })
             }
-            className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             placeholder="---- ----"
             type="text"
             value={Datoslocalizacion.telefono}
@@ -67,7 +67,7 @@ export const DirectionInformation = ({
                 area: e.target.value,
               })
             }
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             value={Datoslocalizacion.area}
           >
             <option value="">-- Seleccione --</option>
@@ -86,7 +86,7 @@ export const DirectionInformation = ({
               direccion: e.target.value,
             })
           }
-          className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           value={Datoslocalizacion.direccion}
         >
           {" "}
@@ -103,7 +103,7 @@ export const DirectionInformation = ({
                 pais: e.target.value,
               });
             }}
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             value={Datoslocalizacion.pais}
           >
             <option value="">-- Seleccione --</option>
@@ -123,7 +123,7 @@ export const DirectionInformation = ({
                 departamento: e.target.value,
               });
             }}
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
             value={Datoslocalizacion.departamento}
           >
             <option value="">-- Seleccione --</option>
@@ -142,7 +142,7 @@ export const DirectionInformation = ({
               ciudad: e.target.value,
             });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
           value={Datoslocalizacion.ciudad}
         >
           <option value="">-- Seleccione --</option>
