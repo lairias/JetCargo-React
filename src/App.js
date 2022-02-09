@@ -12,19 +12,25 @@ import { NotFound } from "./components/Error/NotFound";
 import { Fooder } from './components/Fooder/Fooder';
 import {Header} from "./components/Header/Header"
 
+//Componentes de Inicio de administrativo
+import { Widgets } from './components/Admin/Widgets/Widgets';
+
+//Componentes de Usuario de administrativo
+
 //Componentes params
 import {ForgotPassword} from "./pages/ForgotPassword"
 //Contexto
-import { TokenPassProvider } from "./context/token/index";
 import { UserContextProvider } from "./context/users/UserContext.js";
+import {PermissionContextProvider} from "./context/users/Permission/PermissionContex";
 function App() {
   return (
+    <PermissionContextProvider >
     <UserContextProvider>
-          <TokenPassProvider >
       <BrowserRouter>
         <Routes>
           <Route path="/login" element={<> <Login /></> } />
-          <Route path="/Admin" element={<> <Admin />  </> } />
+          <Route path="/admin" element={<> <Admin> <Widgets/> </Admin> </> } />
+          <Route path="/admin/user/profile/:COD_USER" element={<> < Admin> Hola </Admin>  </> } />
           <Route path="/register" element={<>  <Register />  </>} />
           <Route path="/forget-password/:token/:correo" element={<> <ForgotPassword /> </>} />
            <Route path="/reset-password" element={<> <ResetPassword /> <Fooder /></>} />
@@ -32,8 +38,8 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
-          </TokenPassProvider>
     </UserContextProvider>
+    </PermissionContextProvider>
   );
 }
 

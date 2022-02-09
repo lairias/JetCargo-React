@@ -1,15 +1,16 @@
-import { useUser } from "../hooks/useUser";
+import { useEffect, useContext} from "react";
+import Contex from "../context/users/Permission/PermissionContex"
 import { Dashboard } from "../components/Admin/Dashboard/Dashboard";
-import { Header } from "../components/Admin/Header/Header";
-export const Admin = () => {
+export const Admin = ({children}) => {
+  const {Permission} = useContext(Contex)
+  console.log(Permission)
   return (
     <>
       <div
         className="flex h-screen bg-gray-50 dark:bg-gray-900"
         class="{ 'overflow-hidden': isSideMenuOpen}"
       >
-        <Header />
-        <Dashboard />
+        <Dashboard children={children} />
       </div>
     </>
   );

@@ -7,17 +7,15 @@ import { Register_password } from "../validations";
 import {ForgotPasswordService} from "../../service/ServicePassword"
 import { TokenNotValid } from "../Error/TokenNotValid";
 
+import {ocultarEmail} from "../../util/OcultarEmail"
 export const Header = ({ email, token, id, veryToken,SpinnerLoader }) => {
   const [newPassword, set_newPassword] = useState({
     password: "",
     confirpassword: "",
   });
+  
   const history = useNavigate();
-  const ocultarEmail = (correo) => {
-    const parte = correo.split("@");
-    const final = correo.split(".");
-    return [parte[0] + "@" + parte[1].substring(0, -4) + "****" + final[1]];
-  };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const DataPassword = await Register_password.validate({
@@ -37,11 +35,11 @@ export const Header = ({ email, token, id, veryToken,SpinnerLoader }) => {
         return  await ForgotPasswordService(id,email,token,newPassword,headers);
       }
       const Data = await sendCorreo();
-      if (Data.data.status === 202)
+      if (Data.status === 202 || Data.status === 203)
         return toast(
           (_) => (
             <span>
-              {Data.data.data.message}
+              {Data.data.message}
               <button
                 className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple"
                 onClick={() => history("/reset-password")}
