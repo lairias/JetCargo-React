@@ -9,11 +9,14 @@ import { Admin } from './pages/Admin';
 
 //Componentes de las páginas
 import { NotFound } from "./components/Error/NotFound";
-import { Fooder } from './components/Fooder/Fooder';
+import { Fooder } from './components/Admin/Fooder/Fooder';
 import {Header} from "./components/Header/Header"
 
 //Componentes de Inicio de administrativo
 import { Widgets } from './components/Admin/Widgets/Widgets';
+//Componentes de Usuarios */
+import { GetProfile } from './components/Admin/users/GetProfile';
+import { EditProfile } from './components/Admin/users/EditProfile';
 
 //Componentes de Usuario de administrativo
 
@@ -22,19 +25,34 @@ import {ForgotPassword} from "./pages/ForgotPassword"
 //Contexto
 import { UserContextProvider } from "./context/users/UserContext.js";
 import {PermissionContextProvider} from "./context/users/Permission/PermissionContex";
+import { NewDast } from './components/Admin/Dashboard/newDast';
 function App() {
   return (
     <PermissionContextProvider >
     <UserContextProvider>
       <BrowserRouter>
         <Routes>
+          {/******************************** LOGIN*/}
           <Route path="/login" element={<> <Login /></> } />
-          <Route path="/admin" element={<> <Admin> <Widgets/> </Admin> </> } />
-          <Route path="/admin/user/profile/:COD_USER" element={<> < Admin> Hola </Admin>  </> } />
           <Route path="/register" element={<>  <Register />  </>} />
           <Route path="/forget-password/:token/:correo" element={<> <ForgotPassword /> </>} />
-           <Route path="/reset-password" element={<> <ResetPassword /> <Fooder /></>} />
-          <Route path="/" element={<> <Header /> <Fooder /></>} />
+
+          {/******************************** INICIO*/}
+          <Route path="/" element={<> <NewDast /> </>} />
+
+          {/******************************** ADMIN-INICIO*/}
+          <Route path="/admin" element={<> <Admin> <Widgets/> </Admin> </> } />
+
+          {/******************************** ADMIN-USER*/}
+          {/************ GET-USER*/}
+          <Route path="/admin/user/profile/:COD_USER" element={<> < Admin> <GetProfile /> <Fooder/> </Admin>  </>}/>
+          {/************ EDIT-USER*/}
+          <Route path="/admin/user/profile/:COD_USER/edit" element={<><Admin> <EditProfile /> <Fooder/> </Admin> </>}/>
+
+          <Route path="/reset-password" element={<> <ResetPassword /> <Fooder /></>} />
+          {/************ CREATE-USER*/}
+
+          {/******************************** NOFOUND*/}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

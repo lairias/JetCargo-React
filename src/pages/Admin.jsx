@@ -8,7 +8,7 @@ export const Admin = ({children}) => {
     <>
       <div
         className="flex h-screen bg-gray-50 dark:bg-gray-900"
-        class="{ 'overflow-hidden': isSideMenuOpen}"
+        className="{ 'overflow-hidden': isSideMenuOpen}"
       >
         <Dashboard children={children} />
       </div>

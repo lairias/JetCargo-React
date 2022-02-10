@@ -2,10 +2,8 @@
 import {ArrayItems} from "../../../service/ServiceItemsDashboard"
 import {NavLink} from "react-router-dom"
 export const Items = ({ruta}) => {
-  
-
   return (
-    <>  <div className="absolute lg:relative w-64 h-screen shadow bg-gray-100 hidden lg:block">
+    <>  <div className="absolute  lg:relative w-64  shadow bg-gray-100 hidden lg:block">
     <div className="h-16 w-full flex items-center px-8">
     <img
       src="https://jetcargo.vip/wp-content/uploads/2021/11/cropped-JetCargo-png-file-e1637610869136.png"

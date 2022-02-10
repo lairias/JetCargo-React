@@ -10,7 +10,7 @@ export const Dashboard = ({children}) => {
   const ruta = useLocation().pathname;
   return (
     <>
-      <div className="w-full h-full bg-gray-200">
+      <div className="w-full h-full bg-gray-200 relative">
         <div className="flex flex-no-wrap">
           {/*Desktop responsive */}
           <Items ruta={ruta} />
@@ -101,8 +101,9 @@ export const Dashboard = ({children}) => {
                     </div>
                   </div>
             </nav>
-
-{children}
+            <div className="container h-  mx-auto py-1  md:w-4/5 w-11/12 relative ">
+              {children}
+            </div>
           </div>
         </div>
       </div>
