@@ -47,18 +47,7 @@ export const ItemsMovile = ({setShow,show,ruta}) => {
               </svg>
             </div>
           </div>
-          <ul className=" py-6">
-          {ArrayItems.map((element)=>( 
- <li className={`pl-6 cursor-pointer text-white text-lg leading-4 tracking-normal pb-4 pt-5 ${ruta === element.url ? "text-sky-700 focus:text-sky-500 focus:outline-none": "hover:text-sky-500 text-gray-600 focus:text-gray-900 focus:outline-none"}`}>
- <div className="flex items-center">
-   <div>
-   <i className={element.icon} ></i>
-   </div>
-   <span className="ml-2">{element.text} </span>
- </div>
-</li>
-        ))}
-          </ul>
+          
         </div>
         
       </div>

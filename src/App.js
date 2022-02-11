@@ -26,6 +26,7 @@ import {ForgotPassword} from "./pages/ForgotPassword"
 import { UserContextProvider } from "./context/users/UserContext.js";
 import {PermissionContextProvider} from "./context/users/Permission/PermissionContex";
 import { NewDast } from './components/Admin/Dashboard/newDast';
+import { MapsPackage } from './components/Package/Maps/MapsPackage';
 function App() {
   return (
     <PermissionContextProvider >
@@ -43,11 +44,22 @@ function App() {
           {/******************************** ADMIN-INICIO*/}
           <Route path="/admin" element={<> <Admin> <Widgets/> </Admin> </> } />
 
+
+
           {/******************************** ADMIN-USER*/}
           {/************ GET-USER*/}
           <Route path="/admin/user/profile/:COD_USER" element={<> < Admin> <GetProfile /> <Fooder/> </Admin>  </>}/>
           {/************ EDIT-USER*/}
           <Route path="/admin/user/profile/:COD_USER/edit" element={<><Admin> <EditProfile /> <Fooder/> </Admin> </>}/>
+
+
+          {/******************************** ADMIN-USER*/}
+          {/************ NEW-PACKAGE*/}
+          <Route path="/admin/packages/new" element={<><Admin> <Fooder/> </Admin> </>}/>
+          {/************ GET-PACKAGE*/}
+          <Route path="/admin/packages/:COD_PACKAGE" element={<><Admin> <MapsPackage /> <Fooder/> </Admin> </>}/>
+
+
 
           <Route path="/reset-password" element={<> <ResetPassword /> <Fooder /></>} />
           {/************ CREATE-USER*/}

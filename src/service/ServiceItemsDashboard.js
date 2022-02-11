@@ -1,38 +1,106 @@
-export const  ArrayItems = [
+import { IoIosArrowBack,IoIosArrowDown,IoIosAdd} from "react-icons/io";
+import { FiPackage} from "react-icons/fi";
+import { MdGpsFixed} from "react-icons/md";
+
+export const SidebarData = [
     {
-    'text' : 'Inicio',
-    'url'  : '/admin',
-    'icon' : 'fa-thin fa-grid-horizontal',
-    'can'  : 'admin.users.index',
-},
+    title: 'Seguimiento',
+    path: '/overview',
+    icon: <MdGpsFixed /> ,
+    iconClosed:<IoIosArrowDown/>,
+    iconOpened:<IoIosArrowBack/> ,
+    subNav: [
+        {
+        title: 'Paketes',
+        path: '/admin/packages/4',
+        icon:<FiPackage/>
+        },
+        {
+        title: 'Nuevo Paquete',
+        path: '/admin/packages/new',
+        accion: "create",
+        icon: < IoIosAdd />
+        }
+      ]
+    },
     {
-    'text' : 'Usuarios',
-    'url'  : 'admin/users',
-    'icon' : 'fas fa-fw fa-users',
-    'can'  : 'admin.users.index',
-},
+      title: 'Overview',
+      path: '/overview',
+      icon:"fa-solid fa-users",
+      iconClosed:<IoIosArrowDown/>,
+      iconOpened:<IoIosArrowBack/> ,
+  
+      subNav: [
+        {
+          title: 'Users',
+          path: '/overview/users',
+          icon:"fa-solid fa-user-group-crown"
+        },
+        {
+          title: 'Revenue',
+          path: '/overview/revenue',
+          icon:"fa-solid fa-user-robot"
+        }
+      ]
+    },
     {
-    'text' : 'Usuarios',
-    'url'  : 'admin/users',
-    'icon' : 'fas fa-fw fa-users',
-    'can'  : 'admin.users.index',
-},
+      title: 'Overview',
+      path: '/overview',
+      icon:"fa-solid fa-users",
+      iconClosed:<IoIosArrowDown/>,
+      iconOpened:<IoIosArrowBack/> ,
+  
+      subNav: [
+        {
+          title: 'Users',
+          path: '/overview/users',
+          icon:"fa-solid fa-user-group-crown"
+        },
+        {
+          title: 'Revenue',
+          path: '/overview/revenue',
+          icon:"fa-solid fa-user-robot"
+        }
+      ]
+    },
     {
-    'text' : 'Usuarios',
-    'url'  : 'admin/users',
-    'icon' : 'fas fa-fw fa-users',
-    'can'  : 'admin.users.index',
-},
+      title: 'Overview',
+      path: '/overview',
+      icon:"fa-solid fa-users",
+      iconClosed:<IoIosArrowDown/>,
+      iconOpened:<IoIosArrowBack/> ,
+  
+      subNav: [
+        {
+          title: 'Users',
+          path: '/overview/users',
+          icon:"fa-solid fa-user-group-crown"
+        },
+        {
+          title: 'Revenue',
+          path: '/overview/revenue',
+          icon:"fa-solid fa-user-robot"
+        }
+      ]
+    },
     {
-    'text' : 'Usuarios',
-    'url'  : 'admin/users',
-    'icon' : 'fas fa-fw fa-users',
-    'can'  : 'admin.users.index',
-},
-    {
-    'text' : 'Usuarios',
-    'url'  : 'admin/users',
-    'icon' : 'fas fa-fw fa-users',
-    'can'  : 'admin.users.index',
-},
-]
+      title: 'Overview',
+      path: '/overview',
+      icon:"fa-solid fa-users",
+      iconClosed:<IoIosArrowDown/>,
+      iconOpened:<IoIosArrowBack/> ,
+  
+      subNav: [
+        {
+          title: 'Users',
+          path: '/overview/users',
+          icon:"fa-solid fa-user-group-crown"
+        },
+        {
+          title: 'Revenue',
+          path: '/overview/revenue',
+          icon:"fa-solid fa-user-robot"
+        }
+      ]
+    },
+  ];

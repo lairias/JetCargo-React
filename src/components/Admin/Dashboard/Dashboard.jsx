@@ -13,7 +13,7 @@ export const Dashboard = ({children}) => {
       <div className="w-full h-full bg-gray-200 relative">
         <div className="flex flex-no-wrap">
           {/*Desktop responsive */}
-          <Items ruta={ruta} />
+          <Items  />
            {/*Mobile responsive sidebar*/}
            <ItemsMovile show={show} setShow={setShow} ruta={ruta} />
           {/* Sidebar ends */}
@@ -101,7 +101,7 @@ export const Dashboard = ({children}) => {
                     </div>
                   </div>
             </nav>
-            <div className="container h-  mx-auto py-1  md:w-4/5 w-11/12 relative ">
+            <div className="container h-screen  mx-auto py-1  md:w-4/5 w-11/12 relative ">
               {children}
             </div>
           </div>

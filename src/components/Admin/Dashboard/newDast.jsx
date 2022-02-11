@@ -1,19 +1,14 @@
 import { useState } from "react";
 export const NewDast = () => {
-   
-    let menuArray = [true, false, false];
+    let menuArray = [false, false, false,false,false];
     const [menu, setMenu] = useState(menuArray);
     const [show, setShow] = useState(true);
-
     const setMenuValue = (props) => {
         let newArr = [...menu];
         newArr[props] = !newArr[props];
         setMenu(newArr);
     }
-
-
-    return (
-        <div>
+    return (<div>
             <div className="rounded-r bg-gray-900 xl:hidden flex justify-between w-full p-6 items-center ">
                 <div className="flex justify-between  items-center space-x-3">
                     <svg width={34} height={34} viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">

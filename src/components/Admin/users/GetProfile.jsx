@@ -34,7 +34,7 @@ export const GetProfile = () => {
                 </div>
               </div>
       <div className="text-center mt-2">
-        <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+        <h3 className="text-xl font-semibold leading-normal mb-2 text-blueGray-700 ">
           Jenna Stones
         </h3>
         <div className="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
