@@ -3,7 +3,6 @@ import { defaultCenter } from '../../../service/ServiceMaps';
 export const MapsPackage = () => {
   return (
     
-    <div className="px-3 md:px-8 h-auto -mt-28 mb-16">
     <div className="container mx-auto ">
         <div className="grid grid-cols-1 px-4 h-[600px]">
     <div className=" w-full rounded-xl shadow-lg">
@@ -19,6 +18,5 @@ export const MapsPackage = () => {
     </div>
         </div>
     </div>
-</div>
 );
 }

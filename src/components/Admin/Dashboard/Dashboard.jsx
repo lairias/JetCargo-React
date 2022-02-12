@@ -101,7 +101,7 @@ export const Dashboard = ({children}) => {
                     </div>
                   </div>
             </nav>
-            <div className="container h-screen  mx-auto py-1  md:w-4/5 w-11/12 relative ">
+            <div className="container h-full lg:h-screen md:h-screen mx-auto py-1  md:w-4/5 w-11/12 relative ">
               {children}
             </div>
           </div>

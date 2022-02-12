@@ -14,6 +14,7 @@ import {Header} from "./components/Header/Header"
 
 //Componentes de Inicio de administrativo
 import { Widgets } from './components/Admin/Widgets/Widgets';
+
 //Componentes de Usuarios */
 import { GetProfile } from './components/Admin/users/GetProfile';
 import { EditProfile } from './components/Admin/users/EditProfile';
@@ -27,6 +28,8 @@ import { UserContextProvider } from "./context/users/UserContext.js";
 import {PermissionContextProvider} from "./context/users/Permission/PermissionContex";
 import { NewDast } from './components/Admin/Dashboard/newDast';
 import { MapsPackage } from './components/Package/Maps/MapsPackage';
+import { Blank } from './pages/Blank';
+import { ShowPackage } from './components/Package/IndePakage';
 function App() {
   return (
     <PermissionContextProvider >
@@ -45,19 +48,20 @@ function App() {
           <Route path="/admin" element={<> <Admin> <Widgets/> </Admin> </> } />
 
 
-
           {/******************************** ADMIN-USER*/}
           {/************ GET-USER*/}
           <Route path="/admin/user/profile/:COD_USER" element={<> < Admin> <GetProfile /> <Fooder/> </Admin>  </>}/>
+
           {/************ EDIT-USER*/}
           <Route path="/admin/user/profile/:COD_USER/edit" element={<><Admin> <EditProfile /> <Fooder/> </Admin> </>}/>
 
 
           {/******************************** ADMIN-USER*/}
+          
           {/************ NEW-PACKAGE*/}
           <Route path="/admin/packages/new" element={<><Admin> <Fooder/> </Admin> </>}/>
           {/************ GET-PACKAGE*/}
-          <Route path="/admin/packages/:COD_PACKAGE" element={<><Admin> <MapsPackage /> <Fooder/> </Admin> </>}/>
+          <Route path="/admin/packages/:COD_PACKAGE" element={<><Admin> <ShowPackage/> <Fooder/> </Admin> </>}/>
 
 
 
