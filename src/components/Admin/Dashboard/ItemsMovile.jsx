@@ -1,5 +1,6 @@
 
-import {ArrayItems} from "../../../service/ServiceItemsDashboard"
+import {ArrayItems, SidebarData} from "../../../service/ServiceItemsDashboard"
+import { SubItems } from "./SubItems"
 export const ItemsMovile = ({setShow,show,ruta}) => {
   return (
     <>  <div
@@ -47,7 +48,9 @@ export const ItemsMovile = ({setShow,show,ruta}) => {
               </svg>
             </div>
           </div>
-          
+          <div className="flex flex-col justify-start items-center  w-full mx-4  ">
+          {SidebarData.map((element,Dindex)=> {return <SubItems item={element} Dindex={Dindex} key={Dindex} /> })}
+          </div>
         </div>
         
       </div>

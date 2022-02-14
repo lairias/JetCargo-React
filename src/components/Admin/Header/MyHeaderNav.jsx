@@ -1,4 +1,6 @@
-export const MyHeaderNav = ({profile,setProfile }) => {
+import {Link} from "react-router-dom"
+export const MyHeaderNav = ({profile,setProfile,notification, set_notification }) => {
+
   return <> <div className="hidden lg:flex w-full pr-6">
   <div className="w-1/2 h-full hidden lg:flex items-center pl-6 pr-24">
     <div className="relative w-full">
@@ -28,9 +30,11 @@ export const MyHeaderNav = ({profile,setProfile }) => {
     </div>
   </div>
   <div className="w-1/2 hidden lg:flex">
-    <div className="w-full flex items-center pl-8 justify-end">
-      <div className="h-full w-20 flex items-center justify-center border-r border-l">
-        <div className="relative cursor-pointer text-gray-600">
+    <div className="w-full flex items-center pl-8 justify-end cursor-pointer">
+      <div className="h-full w-20 flex items-center justify-center border-r border-l"
+      onClick={()=> set_notification(!notification)}
+      >
+        <div className="relative  text-gray-600">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="icon icon-tabler icon-tabler-bell"
@@ -93,7 +97,9 @@ export const MyHeaderNav = ({profile,setProfile }) => {
                     <circle cx={12} cy={7} r={4} />
                     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                   </svg>
+                  <Link to={"/admin/user/profile/2"} >
                   <span className="text-sm ml-2">My Profile</span>
+                  </Link>
                 </div>
               </li>
               <li className="flex w-full justify-between text-gray-600 hover:text-indigo-700 cursor-pointer items-center mt-2">

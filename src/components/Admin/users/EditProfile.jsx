@@ -64,8 +64,8 @@ export const EditProfile = () => {
                   </div>
                   </div>
                   <div className=" w-full flex justify-end my-" >
-                  <button class="bg-sky-500 text-black active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">Settings</button>
-                  <button class="bg-sky-500 text-black active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">Settings</button></div>
+                  <button className="bg-sky-500 text-black active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">Settings</button>
+                  <button className="bg-sky-500 text-black active:bg-sky-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150" type="button">Settings</button></div>
                   </form>
 
       </div>

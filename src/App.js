@@ -29,7 +29,9 @@ import {PermissionContextProvider} from "./context/users/Permission/PermissionCo
 import { NewDast } from './components/Admin/Dashboard/newDast';
 import { MapsPackage } from './components/Package/Maps/MapsPackage';
 import { Blank } from './pages/Blank';
-import { ShowPackage } from './components/Package/IndePakage';
+import { ShowPackages} from './components/Package/IndePakage';
+import { GetPackage } from './components/Package/GetPackage';
+import { IndexReceptionCountry } from './components/Admin/Reception/IndexReceptionCountry';
 function App() {
   return (
     <PermissionContextProvider >
@@ -40,30 +42,26 @@ function App() {
           <Route path="/login" element={<> <Login /></> } />
           <Route path="/register" element={<>  <Register />  </>} />
           <Route path="/forget-password/:token/:correo" element={<> <ForgotPassword /> </>} />
-
           {/******************************** INICIO*/}
           <Route path="/" element={<> <NewDast /> </>} />
-
           {/******************************** ADMIN-INICIO*/}
           <Route path="/admin" element={<> <Admin> <Widgets/> </Admin> </> } />
-
-
           {/******************************** ADMIN-USER*/}
           {/************ GET-USER*/}
-          <Route path="/admin/user/profile/:COD_USER" element={<> < Admin> <GetProfile /> <Fooder/> </Admin>  </>}/>
-
+          <Route path="/admin/user/profile/:COD_USER" element={<> <Admin> <GetProfile/> <Fooder/> </Admin>  </>}/>
           {/************ EDIT-USER*/}
-          <Route path="/admin/user/profile/:COD_USER/edit" element={<><Admin> <EditProfile /> <Fooder/> </Admin> </>}/>
-
-
+          <Route path="/admin/user/profile/:COD_USER/edit" element={<><Admin> <EditProfile/><Fooder/></Admin></>}/>
           {/******************************** ADMIN-USER*/}
-          
           {/************ NEW-PACKAGE*/}
           <Route path="/admin/packages/new" element={<><Admin> <Fooder/> </Admin> </>}/>
+
           {/************ GET-PACKAGE*/}
-          <Route path="/admin/packages/:COD_PACKAGE" element={<><Admin> <ShowPackage/> <Fooder/> </Admin> </>}/>
-
-
+          <Route path="/admin/packages/" element={<><Admin> <ShowPackages/> <Fooder/> </Admin> </>}/>
+          <Route path="/admin/packages/:COD_PACKAGE" element={<><Admin> <GetPackage/> <Fooder/> </Admin> </>}/>
+          
+          {/******************************** ADMIN-recepcion*/}
+          {/************ GET-PACKAGE-FOR-COUNTRY-ADMIN*/}
+          <Route path="/admin/reception/country/:COD_COUNTRY" element={<><Admin> <IndexReceptionCountry/>  </Admin> </>}/>
 
           <Route path="/reset-password" element={<> <ResetPassword /> <Fooder /></>} />
           {/************ CREATE-USER*/}

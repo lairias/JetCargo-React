@@ -1,11 +1,13 @@
 import { useState } from "react";
 import {MyHeaderNav} from "../Header/MyHeaderNav"
 import {Items} from "../Dashboard/Items"
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ItemsMovile } from "./ItemsMovile";
+import { NotificacionesNav } from "../Header/NotificacionesNav";
 export const Dashboard = ({children}) => {
   const [show, setShow] = useState(false);
   const [profile, setProfile] = useState(false);
+  const [notification, set_notification] = useState(false);
 
   const ruta = useLocation().pathname;
   return (
@@ -20,7 +22,9 @@ export const Dashboard = ({children}) => {
           <div className="w-full h-full">
             {/* Navigation starts */}
             <nav className="h-16 flex items-center lg:items-stretch justify-between lg:justify-between bg-white shadow relative z-10">
-            <MyHeaderNav profile = {profile} setProfile={setProfile} />
+            
+            <MyHeaderNav profile = {profile} setProfile={setProfile} notification={notification} set_notification={set_notification} />
+            
               <div
                 className="text-gray-600 mr-8 visible lg:hidden relative"
                 onClick={() => setShow(!show)}
@@ -48,8 +52,9 @@ export const Dashboard = ({children}) => {
                   </svg>
                 )}
               </div>
-              <div className="border-t lg:hidden border-gray-300">
-                    <div className="w-full flex items-center justify-between px-6 pt-1">
+              <div className="border-x-2 lg:hidden border-gray-300">
+                    <div className="w-full flex items-center justify-around px-6 pt-1">
+                      <Link to={"/admin/user/profile/2"}>
                       <div className="flex items-center">
                         <img
                           alt="profile-pic"
@@ -60,8 +65,9 @@ export const Dashboard = ({children}) => {
                           Jane Doe
                         </p>
                       </div>
-                      <ul className="flex">
-                        <li className="cursor-pointer text-white pt-5 pb-3">
+                      </Link>
+                      <ul className="flex ">
+                        <li className="cursor-pointer text-white pt-5 pb-3 mx-2">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon icon-tabler icon-tabler-messages"
@@ -79,7 +85,9 @@ export const Dashboard = ({children}) => {
                             <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
                           </svg>
                         </li>
-                        <li className="cursor-pointer text-white pt-5 pb-3 pl-3">
+                        <li className="cursor-pointer text-white pt-5 pb-3 pl-3"
+                        onClick={() => set_notification(!notification)}
+                        >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="icon icon-tabler icon-tabler-bell"
@@ -101,6 +109,7 @@ export const Dashboard = ({children}) => {
                     </div>
                   </div>
             </nav>
+              {notification ? (<NotificacionesNav notification = {notification} set_notification={set_notification} />) : ("")}
             <div className="container h-full lg:h-screen md:h-screen mx-auto py-1  md:w-4/5 w-11/12 relative ">
               {children}
             </div>

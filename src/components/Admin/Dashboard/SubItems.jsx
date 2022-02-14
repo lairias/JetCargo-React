@@ -20,7 +20,7 @@ export const SubItems = ({item,Dindex}) => {
       <div id="menu1" className={`${showSubnav ? 'flex' : 'hidden'} justify-start  flex-col w-full md:w-auto items-start pb-1 `}>
 
       {subnav && item.subNav.map((item, index) => ( 
-            <NavLink to={item.path}  className="flex justify-start items-center space-x-6 mb-1 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-sky-700 text-gray-400 rounded px-3 py-2 w-60 ">
+            <NavLink to={item.path} key={index} className="flex justify-start items-center space-x-6 mb-1 hover:text-white focus:bg-gray-700 focus:text-white hover:bg-sky-700 text-gray-400 rounded px-3 py-2 w-60 ">
               {item.icon}
       <p className="text-base leading-4"> {item.title} </p>
   </NavLink >))}
