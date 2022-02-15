@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ModalNewPackage } from "../../Modal/Package/ModalNewPackage";
 import { GetReceptionCountry } from "./GetReceptionCountry";
-
+import PaginationTable from "./PaginationTable";
 export const IndexReceptionCountry = () => {
     const [shoModal, set_shoModal] = useState(false);
 
@@ -17,6 +17,9 @@ export const IndexReceptionCountry = () => {
         </div>
         {/* Insertar contenido de las paginas **/}
         <GetReceptionCountry />
+        <PaginationTable />
+
+
         </>
   )
 }

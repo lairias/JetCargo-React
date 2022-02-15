@@ -19,7 +19,7 @@ export const Dashboard = ({children}) => {
            {/*Mobile responsive sidebar*/}
            <ItemsMovile show={show} setShow={setShow} ruta={ruta} />
           {/* Sidebar ends */}
-          <div className="w-full h-full">
+          <div className="w-full h-screen overflow-y-auto">
             {/* Navigation starts */}
             <nav className="h-16 flex items-center lg:items-stretch justify-between lg:justify-between bg-white shadow relative z-10">
             
@@ -79,8 +79,7 @@ export const Dashboard = ({children}) => {
                             fill="none"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                          >
-                            <path stroke="none" d="M0 0h24v24H0z" />
+                          ><path stroke="none" d="M0 0h24v24H0z" />
                             <path d="M21 14l-3 -3h-7a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1h9a1 1 0 0 1 1 1v10" />
                             <path d="M14 15v2a1 1 0 0 1 -1 1h-7l-3 3v-10a1 1 0 0 1 1 -1h2" />
                           </svg>
@@ -110,7 +109,7 @@ export const Dashboard = ({children}) => {
                   </div>
             </nav>
               {notification ? (<NotificacionesNav notification = {notification} set_notification={set_notification} />) : ("")}
-            <div className="container h-full lg:h-screen md:h-screen mx-auto py-1  md:w-4/5 w-11/12 relative ">
+            <div className="container h-full lg:h-screen md:h-screen mx-auto py-1  md:w-4/5 w-11/12">
               {children}
             </div>
           </div>
