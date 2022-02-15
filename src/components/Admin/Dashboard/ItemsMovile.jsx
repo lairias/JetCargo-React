@@ -1,5 +1,5 @@
 
-import {ArrayItems, SidebarData} from "../../../service/ServiceItemsDashboard"
+import { SidebarData} from "../../../service/ServiceItemsDashboard"
 import { SubItems } from "./SubItems"
 export const ItemsMovile = ({setShow,show,ruta}) => {
   return (

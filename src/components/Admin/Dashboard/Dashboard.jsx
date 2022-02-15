@@ -109,7 +109,7 @@ export const Dashboard = ({children}) => {
                   </div>
             </nav>
               {notification ? (<NotificacionesNav notification = {notification} set_notification={set_notification} />) : ("")}
-            <div className="container h-full lg:h-screen md:h-screen mx-auto py-1  md:w-4/5 w-11/12">
+            <div className="container mx-auto h-full lg:h-screen md:h-screen  py-1  md:w-4/5 w-11/12">
               {children}
             </div>
           </div>

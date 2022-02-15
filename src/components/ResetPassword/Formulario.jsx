@@ -1,7 +1,6 @@
 export const Formulario = ({ set_resetpass, classreset }) => {
   return (
     <div className="w-full">
-      <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200"></h1>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-400">
           Ingrese Correo Eletrónico

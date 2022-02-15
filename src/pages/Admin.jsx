@@ -1,4 +1,4 @@
-import { useEffect, useContext} from "react";
+import { useContext} from "react";
 import Contex from "../context/users/Permission/PermissionContex"
 import { Dashboard } from "../components/Admin/Dashboard/Dashboard";
 export const Admin = ({children}) => {
@@ -8,7 +8,6 @@ export const Admin = ({children}) => {
     <>
       <div
         className="flex h-screen bg-gray-50 dark:bg-gray-900"
-        className="{ 'overflow-hidden': isSideMenuOpen}"
       >
         <Dashboard children={children} />
       </div>

@@ -8,7 +8,7 @@ export const ShowPackages = ()=>{
 
     return(
         <>
-    <div className="container px-6 mx-auto grid">
+    <div className="container  mx-auto grid">
         <div className="flex justify-between">
         <h2 className="my-6 text-2xl font-semibold text-gray-700"> Seguimiento de paquetes </h2>
         <div className="px-6 my-6">

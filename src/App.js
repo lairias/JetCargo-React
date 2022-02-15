@@ -26,9 +26,6 @@ import {ForgotPassword} from "./pages/ForgotPassword"
 //Contexto
 import { UserContextProvider } from "./context/users/UserContext.js";
 import {PermissionContextProvider} from "./context/users/Permission/PermissionContex";
-import { NewDast } from './components/Admin/Dashboard/newDast';
-import { MapsPackage } from './components/Package/Maps/MapsPackage';
-import { Blank } from './pages/Blank';
 import { ShowPackages} from './components/Package/IndePakage';
 import { GetPackage } from './components/Package/GetPackage';
 import { IndexReceptionCountry } from './components/Admin/Reception/IndexReceptionCountry';
@@ -43,7 +40,7 @@ function App() {
           <Route path="/register" element={<>  <Register />  </>} />
           <Route path="/forget-password/:token/:correo" element={<> <ForgotPassword /> </>} />
           {/******************************** INICIO*/}
-          <Route path="/" element={<> <NewDast /> </>} />
+          <Route path="/" element={<> <Header /> </>} />
           {/******************************** ADMIN-INICIO*/}
           <Route path="/admin" element={<> <Admin> <Widgets/> </Admin> </> } />
           {/******************************** ADMIN-USER*/}
