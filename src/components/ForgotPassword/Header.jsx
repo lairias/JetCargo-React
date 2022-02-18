@@ -1,21 +1,20 @@
 import { Formulario } from "./Formulario";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {SpinerLoader} from "../../components/Spinners/Loader"
+import { SpinerLoader } from "../../components/Spinners/Loader";
 import toast, { Toaster } from "react-hot-toast";
 import { Register_password } from "../validations";
-import {ForgotPasswordService} from "../../service/ServicePassword"
+import { ForgotPasswordService } from "../../service/ServicePassword";
 import { TokenNotValid } from "../Error/TokenNotValid";
+import { ocultarEmail } from "../../util/OcultarEmail";
 
-import {ocultarEmail} from "../../util/OcultarEmail"
-export const Header = ({ email, token, id, veryToken,SpinnerLoader }) => {
+export const Header = ({ email, token, id, veryToken, SpinnerLoader }) => {
   const [newPassword, set_newPassword] = useState({
     password: "",
     confirpassword: "",
   });
-  
+
   const history = useNavigate();
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const DataPassword = await Register_password.validate({
@@ -31,9 +30,15 @@ export const Header = ({ email, token, id, veryToken,SpinnerLoader }) => {
         "Content-Type": "application/json",
         "x-pass-reset-token": token,
       };
-      const sendCorreo= async ()=>{
-        return  await ForgotPasswordService(id,email,token,newPassword,headers);
-      }
+      const sendCorreo = async () => {
+        return await ForgotPasswordService(
+          id,
+          email,
+          token,
+          newPassword,
+          headers
+        );
+      };
       const Data = await sendCorreo();
       if (Data.status === 202 || Data.status === 203)
         return toast(
@@ -52,25 +57,24 @@ export const Header = ({ email, token, id, veryToken,SpinnerLoader }) => {
         );
     }
   };
+
   return (
     <>
       <Toaster />
       <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
         <div className="flex-1 h-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
           <form className="flex items-center justify-center p-6    ">
-            {SpinnerLoader  ? (
-              (<SpinerLoader />)
-            ) : (
-              veryToken 
-              ? (
-                
+            {SpinnerLoader ? (
+              <SpinerLoader />
+            ) : veryToken ? (
               <Formulario
                 email={ocultarEmail(email)}
                 newPassword={newPassword}
                 set_newPassword={set_newPassword}
                 handleSubmit={handleSubmit}
-              /> ) : 
-             ( <TokenNotValid />)
+              />
+            ) : (
+              <TokenNotValid />
             )}
           </form>
         </div>

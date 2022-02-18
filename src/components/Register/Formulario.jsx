@@ -29,7 +29,7 @@ import { RegisterService, RegisterVeryEmail } from "../../service/ServiceLogin";
 export const Formulario = () => {
   ///*********************Instancia de los States********************** */
   //States de secciones
-  const [ParteOne, set_ParteOne] = useState(0);
+  const [ParteOne, set_ParteOne] = useState(2);
 
   //States de inputs
   const [DatosCuente, set_DatosCuente] = useState({
@@ -335,7 +335,6 @@ export const Formulario = () => {
                           handleDirectionInformation();
                         }
                       }}
-                      
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-md active:bg-sky-400 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple"
                     >
                       {Datoslocalizacion.validado ? (

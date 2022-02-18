@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Tooltip } from "./Tooltip";
 import { ResetChema } from "../validations/ResetPass";
 import { useNavigate } from "react-router-dom";
-import {SendEmailPasswordService} from "../../service/ServicePassword";
+import { SendEmailPasswordService } from "../../service/ServicePassword";
 export const Header = () => {
   const [resetpass, set_resetpass] = useState("");
   const [classreset, set_classreset] = useState(true);
@@ -23,7 +23,7 @@ export const Header = () => {
       ];
     try {
       const FetchData = async () => {
-        return await SendEmailPasswordService(resetpass)
+        return await SendEmailPasswordService(resetpass);
       };
       const callback = FetchData();
       toast

@@ -1,5 +1,1 @@
-
-
-export const GetPackageService = {
-    
-}
+export const GetPackageService = {};
