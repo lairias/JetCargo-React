@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import  { Toaster } from "react-hot-toast";
 import { Formulario } from "./../components/Login/Formulario";
 import { useUser } from "../hooks/useUser";
+import { Toaster } from "react-hot-toast";
 export const Login = () => {
   ///**************************************Instancias de los States
   const {  isLogged } = useUser();
@@ -11,9 +11,10 @@ export const Login = () => {
     if (isLogged) return history("/admin");
   }, [isLogged, history]);
 
+
   return (
     <>
-      <Toaster />
+    <Toaster />
       <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
         <div className="flex-1 h-full max-w-sm mx-auto overflow-hidden border-white border-2 bg-white rounded-lg shadow-xl dark:bg-gray-200">
           <div className="flex justify-center pt-5">
@@ -22,7 +23,7 @@ export const Login = () => {
               alt=""
             />
           </div>
-  
+
             <div className="flex items-center justify-center p-6 sm:p-12" >
             <Formulario
             />

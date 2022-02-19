@@ -6,8 +6,8 @@ import { Login_email, Login_password } from "../validations";
 import toast from "react-hot-toast";
 
 
-export const Formulario = ()=>{
-  const { login, isLogged,PermisosUser,permission } = useUser();
+export const Formulario = React.memo(()=>{
+  const { login,PermisosUser,permission } = useUser();
   const [user, set_user] = useState({ correo: "", password: "" });
   const [classerror, set_classerror] = useState({
     correo: true,
@@ -56,7 +56,7 @@ export const Formulario = ()=>{
 
   return (
     <>
-   
+    
       <div className="w-full">
         <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-900">
           Iniciar sesión
@@ -96,7 +96,7 @@ export const Formulario = ()=>{
           />
         </label>
         <button
-          onChange={handleSubmit}
+          onClick={handleSubmit}
           className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple"
         >
           Siguiente
@@ -120,4 +120,4 @@ export const Formulario = ()=>{
       </div>
     </>
   );
-};
+});

@@ -29,6 +29,8 @@ import { PermissionContextProvider } from "./context/users/Permission/Permission
 import { ShowPackages } from "./components/Package/IndePakage";
 import { GetPackage } from "./components/Package/GetPackage";
 import { IndexReceptionCountry } from "./components/Admin/Reception/IndexReceptionCountry";
+import IndexTypes from "./components/Admin/TypeUsers/IndexType";
+import GetTypeUser from "./components/Admin/TypeUsers/GetTypeUser";
 function App() {
   return (
     <PermissionContextProvider>
@@ -175,6 +177,30 @@ function App() {
               }
             />
             {/************ CREATE-USER*/}
+
+            {/******************************** ADMIN-TYPE-USERS*/}
+            <Route
+              path="/admin/roles"
+              element={
+                <>
+                  <Admin>
+                    {" "}
+                    <IndexTypes /> 
+                  </Admin>{" "}
+                </>
+              }
+            />
+            <Route
+              path="/admin/roles/:COD_TYPEUSERS/view"
+              element={
+                <>
+                  <Admin>
+                    {" "}
+                    <GetTypeUser /> 
+                  </Admin>{" "}
+                </>
+              }
+            />
 
             {/******************************** NOFOUND*/}
             <Route path="*" element={<NotFound />} />
