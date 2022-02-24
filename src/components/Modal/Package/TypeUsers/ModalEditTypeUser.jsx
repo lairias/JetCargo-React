@@ -1,20 +1,28 @@
 import { useTypeUser } from "../../../../hooks/useTypeUser";
 import { useUser } from "../../../../hooks/useUser";
-import TcheckLt from "../../../Admin/TypeUsers/components/TcheckLt";
 import { SpinerLoader } from "../../../Spinners/Loader";
+import { GetItemPermission } from "../../../../service/ServiceItemPermisso";
+import CardLtEdit from "../../../Admin/TypeUsers/components/CardLtEdit";
+import { useState } from "react";
 
 export default function ModalEditTypeUser({ handleShoweditModal, _id }) {
   const { userToken } = useUser();
+  const [searchcard, setsearchcard] = useState("");
   const { typeUsesState, loading } = useTypeUser(userToken, _id);
   console.log(typeUsesState);
+  const hadleSearchcard = (e) => {
+    e.preventDefault();
+    console.log(searchcard)
+    setsearchcard(e.target.value)
+  }
   return (
-    <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
+    <div id="popup" className="z-50 fixed w-full flex h-screen justify-center inset-0">
       <div
-        onclick="popuphandler(false)"
-        className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0"
+      
+        className="w-full  bg-gray-500 bg-opacity-50 z-0 absolute inset-0"
       />
-      <div className="mx-auto container">
-        <div className="flex items-center justify-center h-full w-full">
+      <div className="mx-auto container ">
+        <div className="flex items-center justify-center h-full w-full ">
           <div className="bg-white rounded-md shadow fixed overflow-x-auto sm:h-auto w-10/12 md:w-8/12 lg:w-2/3 xl:w-2/3">
             <div className="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
               <p className="text-base font-semibold">
@@ -50,8 +58,35 @@ export default function ModalEditTypeUser({ handleShoweditModal, _id }) {
               </button>
             </div>
             {loading ? (
-              <div className="px-4 md:px-10  pt-6 md:pb-4 pb-7  ">
-                <form>
+              <div className="px-4 md:px-10  pt-6 md:pb-4 pb-7   ">
+                <div className="relative ">
+                  <div className="text-gray-500 absolute ml-4 inset-0 m-auto w-4 h-4">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="icon icon-tabler icon-tabler-search"
+                      width={16}
+                      height={16}
+                      viewBox="0 0 24 24"
+                      strokeWidth={1}
+                      stroke="#A0AEC0"
+                      fill="none"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path stroke="none" d="M0 0h24v24H0z" />
+                      <circle cx={10} cy={10} r={7} />
+                      <line x1={21} y1={21} x2={15} y2={15} />
+                    </svg>
+                  </div>
+                  <input
+                    className=" focus:outline-none rounded w-full text-sm text-gray-500 bg-gray-100 pl-10 py-2"
+                    type="text"
+                    placeholder="Search"
+                    value={searchcard}
+                    onChange={hadleSearchcard}
+                  />
+                </div>
+                <form className="overflow-y-scroll max-h-80">
                   <div className="flex items-center ">
                     <input
                       placeholder="Nombre Permiso"
@@ -62,15 +97,25 @@ export default function ModalEditTypeUser({ handleShoweditModal, _id }) {
                     />
                   </div>
                   <hr className="w-full" />
-                  <div className="rounded border-dashed border-2 border-gray-300   ">
-                    <div className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-5   xl:grid-cols-6 ">
-                      {loading
-                        ? typeUsesState.permisos.map((element) => (
-                            <TcheckLt key={element.COD_PERMISO} {...element}  />
-                          ))
-                        : "cargando "}
+                    <div className="w-full overflow-y-auto grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols- xl:grid-cols-5 gap-8  ">
+                     
+                        {loading
+              ?
+              GetItemPermission.filter(element => {
+                if(searchcard === ""){
+                  return element
+                }else if (element.name.toLowerCase().includes(searchcard.toLowerCase())){
+                  return element;
+                }else{
+                  return "Data no encontrada"                }
+              }).map((element)=>(
+                <CardLtEdit key={element.id} name={element.name} Inicio={element.Inicio} Final={element.Final}  permiso={typeUsesState} /> 
+              )
+                )
+              
+              : <SpinerLoader />}
+
                     </div>
-                  </div>
                 </form>
                 <div className="flex items-center justify-between mt-9 ">
                   <button

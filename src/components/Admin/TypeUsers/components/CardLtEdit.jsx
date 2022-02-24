@@ -1,6 +1,6 @@
-import TbabgeLt from "./TbabgeLt";
+import TcheckLt from "./TcheckLt";
 
-export default function CardLt({permiso,Inicio,Final,search= "",name}) {
+export default function CardLtEdit({permiso,Inicio,Final,search= "",name}) {
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function CardLt({permiso,Inicio,Final,search= "",name}) {
                         return element;
                       }
                     }).map((element) => (
-            element.COD_PERMISO >= Inicio && element.COD_PERMISO <= Final &&( <TbabgeLt  NAM_PERMISOS={element.NAM_PERMISOS} />) 
+            element.COD_PERMISO >= Inicio && element.COD_PERMISO <= Final &&( <TcheckLt  NAM_PERMISOS={element.NAM_PERMISOS} />) 
             
           ))}
                     </div>

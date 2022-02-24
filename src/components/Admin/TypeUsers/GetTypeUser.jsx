@@ -4,7 +4,6 @@ import { useTypeUser } from "../../../hooks/useTypeUser";
 import { useUser } from "../../../hooks/useUser";
 import { GetItemPermission } from "../../../service/ServiceItemPermisso";
 import { SpinerLoader } from "../../Spinners/Loader";
-import { SelectDisplay } from "../Reception/SelectDisplay";
 import CardLt from "./components/CardLt";
 
 export default function GetTypeUser() {

@@ -9,7 +9,12 @@ import { useState } from "react";
 export default function GetTypeUsers() {
   const dispatch = useDispatch()
   const [search, setsearch] = useState("");
-
+  const [showItem, setswoItem] = useState({
+    "nombre":true,
+    "Modelo":true,
+    "Cantidad":true,
+    "Fecha":true,
+  })
   useEffect(()=>{
     dispatch(Startgetallpermission())
   }, [dispatch]);
@@ -60,7 +65,7 @@ export default function GetTypeUsers() {
                 </div>
 
                 <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer">
-                  <SelectDisplay />
+                  <SelectDisplay   showItem={showItem} setswoItem={setswoItem} />
                 </div>
               </div>
             </div>
@@ -69,48 +74,26 @@ export default function GetTypeUsers() {
               <table className="w-full whitespace-nowrap ">
                 <thead>
                   <tr className="w-full h-16 border-gray-300 dark:border-gray-200 border-b py-8">
-                    <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      <div className="text-gray-600 dark:text-gray-400 opacity-0 cursor-default relative w-10">
-                        <div className="absolute top-0 right-0 w-5 h-5 mr-2 -mt-1 rounded-full bg-indigo-700 text-white flex justify-center items-center text-xs">
-                          3
-                        </div>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="icon icon-tabler icon-tabler-file"
-                          width={28}
-                          height={28}
-                          viewBox="0 0 24 24"
-                          strokeWidth="1.5"
-                          stroke="currentColor"
-                          fill="none"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path stroke="none" d="M0 0h24v24H0z" />
-                          <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                          <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                        </svg>
-                      </div>
-                    </th>
-                    <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Invoice Number
-                    </th>
-                    <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Client
-                    </th>
-                    <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Company Contact
-                    </th>
-                    <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Amount
-                    </th>
-                    <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Date
-                    </th>
-
-                    <td className="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
-                      More
+                  {showItem.nombre && ( <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                      Nombre
+                    </th>)}
+                    {showItem.Modelo &&(<th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                      Modedador
+                    </th>)}
+                    
+                   { showItem.Cantidad &&( <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                      Cantidad
+                    </th>)}
+                   
+                    {showItem.Fecha &&( <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                      Fecha de creación
+                    </th>)}
+                   
+                  <td className="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
+                      Eventos
                     </td>
+
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -123,7 +106,7 @@ export default function GetTypeUsers() {
                       }
                     }).map((element) => (
                       <>
-                        <TbodyTd key={element.COD_TYPEUSERS} element={element} />
+                        <TbodyTd key={element.COD_TYPEUSERS} showItem={showItem} element={element} />
                       </>
                     ))
                   ) : (
