@@ -1,7 +1,7 @@
 import { useContext, useCallback } from "react";
 import Context from "../context/users/UserContext";
 export const useUser = () => {
-  const { jwt, set_jwt , permission, set_permission} = useContext(Context);
+  const { jwt, set_jwt, permission, set_permission } = useContext(Context);
 
   const login = useCallback(
     (token) => {

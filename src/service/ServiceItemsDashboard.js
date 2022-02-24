@@ -1,6 +1,6 @@
 import { IoIosArrowBack, IoIosArrowDown, IoIosAdd } from "react-icons/io";
 import { FiPackage } from "react-icons/fi";
-import { MdGpsFixed, MdOutlineAdminPanelSettings} from "react-icons/md";
+import { MdGpsFixed, MdOutlineAdminPanelSettings } from "react-icons/md";
 import { FaTruckLoading } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
 import { RiAdminFill } from "react-icons/ri";
@@ -56,7 +56,7 @@ export const SidebarData = [
       {
         title: "Roles administrativos",
         path: "/admin/roles",
-        icon: <MdOutlineAdminPanelSettings/> ,
+        icon: <MdOutlineAdminPanelSettings />,
       },
       {
         title: "Revenue",

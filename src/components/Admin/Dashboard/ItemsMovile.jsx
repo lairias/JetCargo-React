@@ -1,6 +1,6 @@
 import { SidebarData } from "../../../service/ServiceItemsDashboard";
 import { SubItems } from "./SubItems";
-export const ItemsMovile = ({ setShow, show, ruta }) => {
+export const ItemsMovile = ({ setShow, show }) => {
   return (
     <>
       {" "}
@@ -16,7 +16,7 @@ export const ItemsMovile = ({ setShow, show, ruta }) => {
           className="bg-gray-800 opacity-50 absolute h-full w-full lg:hidden"
           onClick={() => setShow(!show)}
         />
-        <div className="absolute  h-screen z-40 sm:relative w-64  shadow pb-4 bg-gray-100 lg:hidden transition duration-150 ease-in-out h-full">
+        <div className="absolute  z-40 sm:relative w-64  shadow pb-4 bg-gray-100 lg:hidden transition duration-150 ease-in-out h-full">
           <div className="flex flex-col justify-between h-full w-full">
             <div>
               <div className="flex items-center justify-between px-8">

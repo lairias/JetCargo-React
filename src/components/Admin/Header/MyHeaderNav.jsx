@@ -1,10 +1,18 @@
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Logout } from "../../../actions/authAction";
 export const MyHeaderNav = ({
   profile,
   setProfile,
   notification,
   set_notification,
 }) => {
+  const dispatch = useDispatch();
+  const { lastname, name, id } = useSelector((state) => state.auth);
+
+  const hadleSignout = () => {
+    dispatch(Logout());
+  };
   return (
     <>
       {" "}
@@ -105,7 +113,7 @@ export const MyHeaderNav = ({
                           <circle cx={12} cy={7} r={4} />
                           <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                         </svg>
-                        <Link to={"/admin/user/profile/2"}>
+                        <Link to={`/admin/user/profile/${id}`}>
                           <span className="text-sm ml-2">My Profile</span>
                         </Link>
                       </div>
@@ -128,7 +136,9 @@ export const MyHeaderNav = ({
                           <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
                           <path d="M7 12h14l-3 -3m0 6l3 -3" />
                         </svg>
-                        <span className="text-sm ml-2">Sign out</span>
+                        <span className="text-sm ml-2" onClick={hadleSignout}>
+                          Sign out
+                        </span>
                       </div>
                     </li>
                   </ul>
@@ -144,7 +154,10 @@ export const MyHeaderNav = ({
                   <div className="w-2 h-2 rounded-full bg-green-400 border border-white absolute inset-0 mb-0 mr-0 m-auto" />
                 </div>
               </div>
-              <p className="text-gray-800 text-sm mx-3">Jane Doe</p>
+              <p className="text-gray-800 text-sm mx-3">
+                {" "}
+                {name} {lastname}{" "}
+              </p>
               <div className="cursor-pointer text-gray-600">
                 <svg
                   aria-haspopup="true"

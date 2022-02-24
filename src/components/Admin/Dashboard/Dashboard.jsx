@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { MyHeaderNav } from "../Header/MyHeaderNav";
 import { Items } from "../Dashboard/Items";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ItemsMovile } from "./ItemsMovile";
 import { NotificacionesNav } from "../Header/NotificacionesNav";
+import { useSelector } from "react-redux";
 export const Dashboard = ({ children }) => {
   const [show, setShow] = useState(false);
   const [profile, setProfile] = useState(false);
   const [notification, set_notification] = useState(false);
 
-  const ruta = useLocation().pathname;
+  const { name, lastname, img_fhoto, id } = useSelector((state) => state.auth);
   return (
     <>
       <div className="w-full h-full bg-gray-200 relative">
@@ -17,7 +18,7 @@ export const Dashboard = ({ children }) => {
           {/*Desktop responsive */}
           <Items />
           {/*Mobile responsive sidebar*/}
-          <ItemsMovile show={show} setShow={setShow} ruta={ruta} />
+          <ItemsMovile show={show} setShow={setShow} />
           {/* Sidebar ends */}
           <div className="w-full h-screen overflow-y-auto">
             {/* Navigation starts */}
@@ -58,15 +59,19 @@ export const Dashboard = ({ children }) => {
               </div>
               <div className="border-x-2 lg:hidden border-gray-300">
                 <div className="w-full flex items-center justify-around px-6 pt-1">
-                  <Link to={"/admin/user/profile/2"}>
+                  <Link to={`/admin/user/profile/${id}`}>
                     <div className="flex items-center">
                       <img
                         alt="profile-pic"
-                        src="https://tuk-cdn.s3.amazonaws.com/assets/components/boxed_layout/bl_1.png"
+                        src={
+                          !!img_fhoto
+                            ? `${img_fhoto}`
+                            : "https://cdn.icon-icons.com/icons2/2406/PNG/512/user_account_icon_145918.png"
+                        }
                         className="w-8 h-8 rounded-md"
                       />
                       <p className="md:text-xl text-gray-800 text-base leading-4 ml-2">
-                        Jane Doe
+                        {name} {lastname}
                       </p>
                     </div>
                   </Link>

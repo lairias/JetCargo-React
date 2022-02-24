@@ -1,12 +1,13 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Formulario } from "./../components/Login/Formulario";
-import { useUser } from "../hooks/useUser";
 import { Toaster } from "react-hot-toast";
-export const Login = () => {
+import { Formulario } from "./Formulario";
+import { useUser } from "../../hooks/useUser";
+export const Header = () => {
   ///**************************************Instancias de los States
   const { isLogged } = useUser();
   const history = useNavigate();
+
   useEffect(() => {
     if (isLogged) return history("/admin");
   }, [isLogged, history]);
@@ -23,9 +24,7 @@ export const Login = () => {
             />
           </div>
 
-          <div className="flex items-center justify-center p-6 sm:p-12">
-            <Formulario />
-          </div>
+          <Formulario />
         </div>
       </div>
     </>

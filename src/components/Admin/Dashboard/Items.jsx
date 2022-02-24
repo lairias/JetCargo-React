@@ -13,7 +13,7 @@ export const Items = () => {
         </div>
         <div className="flex flex-col justify-start items-center border-b border-gray-600 w-full  ">
           {SidebarData.map((element, Dindex) => {
-            return <SubItems item={element} Dindex={Dindex} key={Dindex} />;
+            return <SubItems item={element}  key={Dindex} />;
           })}
         </div>
       </div>
