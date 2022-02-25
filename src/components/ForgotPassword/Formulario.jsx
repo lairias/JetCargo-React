@@ -16,15 +16,16 @@ export const Formulario = ({
             alt=""
           />
         </div>
-        <h1 className="mb-4 text-xl font-semibold text-center text-gray-700 dark:text-gray-200">
+        <h1 className="mb-4 text-xl font-semibold text-center text-gray-700 dark:text-gray-800">
           Cambiar contraseña para
         </h1>
-        <span className=" font-bold text-white text-center"> {email} </span>
+        <div className="flex justify-center">
+        <span className=" font-bold text-gray-800 text-center"> {email} </span>
+        </div>
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">Contraseña</span>
+          <span className="text-gray-700 dark:text-gray-800">Contraseña</span>
           <input
-            className="block w-full mt-1 text-sm dark:bg-gray-700 focus:border-sky-400
-                      focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="***************"
             type={viewPassword ? "text" : "password"}
             onChange={({ target }) => {
@@ -33,12 +34,11 @@ export const Formulario = ({
           />
         </label>
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">
+          <span className="text-gray-700 dark:text-gray-800">
             Confirmar contraseña
           </span>
           <input
-            className="block w-full mt-1 text-sm dark:bg-gray-700 focus:border-sky-400
-                          focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="***************"
             type={viewPassword ? "text" : "password"}
             onChange={({ target }) => {
@@ -47,7 +47,7 @@ export const Formulario = ({
           />
         </label>
         <div className="flex mt-6 text-sm">
-          <label className="flex items-center dark:text-gray-400">
+          <label className="flex items-center dark:text-gray-800">
             <input
               type="checkbox"
               onClick={(_) => {

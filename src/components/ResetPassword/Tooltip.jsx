@@ -17,7 +17,7 @@ export const Tooltip = ({ tooltipStatus, setTooltipStatus }) => {
             height={25}
             viewBox="0 0 24 24"
             strokeWidth="1.5"
-            stroke="#A0AEC0"
+            stroke="#000"
             fill="none"
             strokeLinecap="round"
             strokeLinejoin="round"

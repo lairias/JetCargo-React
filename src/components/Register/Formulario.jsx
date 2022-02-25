@@ -251,8 +251,9 @@ export const Formulario = () => {
   return (
     <>
       <Toaster position="top-left" reverseOrder={true} />
-      <div className="flex items-center min-h-screen p-6 bg-gray-100 dark:bg-gray-400">
-        <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
+      <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
+     
+        <div className="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-200">
           <div className="flex flex-col overflow-y-auto md:flex-row  ">
             <div className="h-32 md:h-auto md:w-1/2">
               <img
@@ -361,7 +362,7 @@ export const Formulario = () => {
                           </Step>
                         ))}
                       </Stepper>
-                      <span className="absolute inset-x-0 bottom-0 text-center  dark:text-gray-400 text-sm ">
+                      <span className="absolute inset-x-0 bottom-0 text-center pt-4 mt-4 dark:text-gray-800 text-sm ">
                         Tu información personal es{" "}
                         <span className="underline">
                           privada y está protegida{" "}

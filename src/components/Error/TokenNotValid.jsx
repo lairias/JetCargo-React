@@ -8,8 +8,8 @@ export const TokenNotValid = () => {
           alt=""
         />
       </div>
-      <h1 className="mb-4 text-xl font-semibold text-center text-gray-700 dark:text-gray-200">
-        Cambio de contraseña no valido
+      <h1 className="mb-4 text-xl font-semibold text-center text-gray-700 dark:text-gray-800">
+        Link de recuperación de contraseña invalido
       </h1>
       <NavLink
         className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple"

@@ -22,12 +22,12 @@ export const PeopleInformation = ({
 
   return (
     <>
-      <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+      <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-800">
         {title}
       </h1>
       <div className=" md:justify-between md:flex  ">
         <label className="block mt-4 text-sm mx-1">
-          <span className="text-gray-700 dark:text-gray-400">
+          <span className="text-gray-700 dark:text-gray-800">
             Identificación
           </span>
           <input
@@ -37,14 +37,14 @@ export const PeopleInformation = ({
                 identificacion: e.target.value,
               });
             }}
-            className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="---- ----"
             type="text"
             value={DatosPersonales.identificacion}
           />
         </label>
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">
+          <span className="text-gray-700 dark:text-gray-800">
             Tipo documento
           </span>
           <select
@@ -54,7 +54,7 @@ export const PeopleInformation = ({
                 tipodocumento: e.target.value,
               });
             }}
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             value={DatosPersonales.tipodocumento}
           >
             <option value="">-- Seleccione --</option>
@@ -65,18 +65,18 @@ export const PeopleInformation = ({
         </label>
       </div>
       <label className="block mt-4 text-sm">
-        <span className="text-gray-700 dark:text-gray-400">Nombre</span>
+        <span className="text-gray-700 dark:text-gray-800">Nombre</span>
         <input
           onChange={(e) => {
             set_DatosPersonales({ ...DatosPersonales, nombre: e.target.value });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           type="text"
           value={DatosPersonales.nombre}
         />
       </label>
       <label className="block mt-4 text-sm">
-        <span className="text-gray-700 dark:text-gray-400">Segundo Nombre</span>
+        <span className="text-gray-700 dark:text-gray-800">Segundo Nombre</span>
         <input
           onChange={(e) => {
             set_DatosPersonales({
@@ -84,13 +84,13 @@ export const PeopleInformation = ({
               segundoNombre: e.target.value,
             });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           type="text"
           value={DatosPersonales.segundoNombre}
         />
       </label>
       <label className="block mt-4 text-sm">
-        <span className="text-gray-700 dark:text-gray-400">Apellido</span>
+        <span className="text-gray-700 dark:text-gray-800">Apellido</span>
         <input
           onChange={(e) => {
             set_DatosPersonales({
@@ -98,18 +98,18 @@ export const PeopleInformation = ({
               apellido: e.target.value,
             });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           type="text"
           value={DatosPersonales.apellido}
         />
       </label>
       <div className=" md:justify-between md:flex  ">
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">
+          <span className="text-gray-700 dark:text-gray-800">
             Fecha Nacimiento
           </span>
           <input
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             type="date"
             onChange={(e) => {
               set_DatosPersonales({
@@ -122,9 +122,9 @@ export const PeopleInformation = ({
           />
         </label>
         <label className="block mt-4 text-sm mx-1">
-          <span className="text-gray-700 dark:text-gray-400">Edad</span>
+          <span className="text-gray-700 dark:text-gray-800">Edad</span>
           <input
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             type="text"
             value={DatosPersonales.añoNacimiento}
             readOnly

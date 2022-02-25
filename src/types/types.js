@@ -18,4 +18,9 @@ export const types = {
 
   ///Bucador de datos
   DataSearch: "[DataSearch] DataSearch",
+
+
+
+  //Verificacion de token
+  forgotPasswordChecking: "[Auth] Checking token for forgot password",
 };

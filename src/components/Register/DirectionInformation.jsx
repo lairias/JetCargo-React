@@ -37,12 +37,12 @@ export const DirectionInformation = ({
   ///*********************Funciones de peticiones Http********************** */
   return (
     <>
-      <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
+      <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-800">
         {title}
       </h1>
       <div className=" md:justify-between md:flex  ">
         <label className="block mt-4 text-sm mx-1">
-          <span className="text-gray-700 dark:text-gray-400">
+          <span className="text-gray-700 dark:text-gray-800">
             Número teléfonico
           </span>
           <input
@@ -52,14 +52,14 @@ export const DirectionInformation = ({
                 telefono: e.target.value,
               })
             }
-            className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             placeholder="---- ----"
             type="text"
             value={Datoslocalizacion.telefono}
           />
         </label>
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">Área</span>
+          <span className="text-gray-700 dark:text-gray-800">Área</span>
           <select
             onChange={(e) =>
               set_Datoslocalizacion({
@@ -67,7 +67,7 @@ export const DirectionInformation = ({
                 area: e.target.value,
               })
             }
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             value={Datoslocalizacion.area}
           >
             <option value="">-- Seleccione --</option>
@@ -76,7 +76,7 @@ export const DirectionInformation = ({
         </label>
       </div>
       <label className="block mt-4 text-sm">
-        <span className="text-gray-700 dark:text-gray-400">Dirección</span>
+        <span className="text-gray-700 dark:text-gray-800">Dirección</span>
         <textarea
           cols="3"
           rows="3"
@@ -86,7 +86,7 @@ export const DirectionInformation = ({
               direccion: e.target.value,
             })
           }
-          className="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           value={Datoslocalizacion.direccion}
         >
           {" "}
@@ -94,7 +94,7 @@ export const DirectionInformation = ({
       </label>
       <div className=" md:justify-between md:flex  ">
         <label className="block mt-4 text-sm mx-1">
-          <span className="text-gray-700 dark:text-gray-400">País</span>
+          <span className="text-gray-700 dark:text-gray-800">País</span>
           <select
             onChange={(e) => {
               set_pais(e.target.value);
@@ -103,7 +103,7 @@ export const DirectionInformation = ({
                 pais: e.target.value,
               });
             }}
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             value={Datoslocalizacion.pais}
           >
             <option value="">-- Seleccione --</option>
@@ -112,7 +112,7 @@ export const DirectionInformation = ({
         </label>
 
         <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-400">Departamento</span>
+          <span className="text-gray-700 dark:text-gray-800">Departamento</span>
 
           <select
             disabled={Datoslocalizacion.pais ? false : true}
@@ -123,7 +123,7 @@ export const DirectionInformation = ({
                 departamento: e.target.value,
               });
             }}
-            className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
             value={Datoslocalizacion.departamento}
           >
             <option value="">-- Seleccione --</option>
@@ -132,7 +132,7 @@ export const DirectionInformation = ({
         </label>
       </div>
       <label className="block mt-4 text-sm">
-        <span className="text-gray-700 dark:text-gray-400">Ciudad</span>
+        <span className="text-gray-700 dark:text-gray-800">Ciudad</span>
         <select
           disabled={Datoslocalizacion.departamento ? false : true}
           onChange={(e) => {
@@ -142,7 +142,7 @@ export const DirectionInformation = ({
               ciudad: e.target.value,
             });
           }}
-          className=" w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-sky-400 focus:outline-none focus:shadow-outline-purple dark:text-blackdark:focus:shadow-outline-gray form-input"
+          className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           value={Datoslocalizacion.ciudad}
         >
           <option value="">-- Seleccione --</option>
