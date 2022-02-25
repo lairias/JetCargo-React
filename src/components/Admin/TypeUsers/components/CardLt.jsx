@@ -17,7 +17,7 @@ export default function CardLt({permiso,Inicio,Final,search= "",name}) {
                         return element;
                       }
                     }).map((element) => (
-            element.COD_PERMISO >= Inicio && element.COD_PERMISO <= Final &&( <TbabgeLt  NAM_PERMISOS={element.NAM_PERMISOS} />) 
+            element.COD_PERMISO >= Inicio && element.COD_PERMISO <= Final &&( <TbabgeLt key={element.NAM_PERMISOS} NAM_PERMISOS={element.NAM_PERMISOS} />) 
             
           ))}
                     </div>

@@ -1,34 +1,50 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { useTypeUser } from "../../../hooks/useTypeUser";
-import { useUser } from "../../../hooks/useUser";
+import { Startgetpermision } from "../../../actions/permissionAction";
 import { GetItemPermission } from "../../../service/ServiceItemPermisso";
 import { SpinerLoader } from "../../Spinners/Loader";
 import CardLt from "./components/CardLt";
 
 export default function GetTypeUser() {
+  //Contantes State
   const [search, setsearch] = useState("");
   const [searchcard, setsearchcard] = useState("");
+  //-----------------------------------------------------
+  //Contantes Dispatch
+  const dispatch = useDispatch()
   const { COD_TYPEUSERS } = useParams();
-  const { userToken } = useUser();
-  const { typeUsesState, loading } = useTypeUser(userToken, COD_TYPEUSERS);
-
+  const {loading, typeUsesState} = useSelector((state) => state.permission);
+  //-----------------------------------------------------
+  //Contantes Hooks
+  useEffect(() => {
+    dispatch(Startgetpermision(COD_TYPEUSERS))
+  },[dispatch,COD_TYPEUSERS])
+  //-----------------------------------------------------
+  //Contantes Funciones
   const hadleSearch = (e) => {
     e.preventDefault();
     setsearch(e.target.value)
   }
   const hadleSearchcard = (e) => {
     e.preventDefault();
-    console.log(searchcard)
     setsearchcard(e.target.value)
   }
+  //-----------------------------------------------------
   
+//Eventos console
+
+
+
   return (
     <>
+         <Toaster />
       <div className="flex justify-between">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">
-          Vista de rol adminsitrativo 
-          {loading ? typeUsesState.role.NOM_TYPE : "cargando "}
+          Vista de rol adminsitrativo {" "}
+          {loading ? (typeUsesState && ((typeUsesState.role.NOM_TYPE))) :  "cargando " }
         </h2>
       </div>
       <div className="sm:px-6 ">
@@ -104,17 +120,16 @@ export default function GetTypeUser() {
           <div className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 ">
             {loading
               ?
-              GetItemPermission.filter(element => {
+              (typeUsesState && (GetItemPermission.filter(element => {
                 if(searchcard === ""){
                   return element
                 }else if (element.name.toLowerCase().includes(searchcard.toLowerCase())){
                   return element;
                 }
               }).map((element)=>(
-                <CardLt key={element.id} name={element.name} Inicio={element.Inicio} Final={element.Final} search={search} permiso={typeUsesState} /> 
+                <CardLt key={element.name} name={element.name} Inicio={element.Inicio} Final={element.Final} search={search} permiso={typeUsesState} /> 
               )
-                )
-              
+                )))
               : <SpinerLoader />}
           </div>
         </div>

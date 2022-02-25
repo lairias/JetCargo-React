@@ -15,6 +15,9 @@ export default function GetTypeUsers() {
     "Cantidad":true,
     "Fecha":true,
   })
+  
+ 
+  
   useEffect(()=>{
     dispatch(Startgetallpermission())
   }, [dispatch]);
@@ -25,6 +28,8 @@ export default function GetTypeUsers() {
     e.preventDefault();
     setsearch(e.target.value)
   }
+  console.log("role",role)
+  console.log("loading",loading)
 
 //
   return (
@@ -98,17 +103,15 @@ export default function GetTypeUsers() {
                 </thead>
                 <tbody>
                   {loading ? (
-                    role.filter(element => {
-                      if(search === ""){
-                        return element
-                      }else if (element.NOM_TYPE.toLowerCase().includes(search.toLowerCase())){
-                        return element;
-                      }
-                    }).map((element) => (
+                    role && (role.map((element) => (
                       <>
-                        <TbodyTd key={element.COD_TYPEUSERS} showItem={showItem} element={element} />
+                        <TbodyTd 
+                        key={element.COD_TYPEUSERS} 
+                        showItem={showItem} 
+                        element={element}
+                        />
                       </>
-                    ))
+                    )))
                   ) : (
                     <SpinerLoader />
                   )}

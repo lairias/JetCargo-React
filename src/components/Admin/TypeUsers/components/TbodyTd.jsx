@@ -2,11 +2,24 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import ModalEditTypeUsk from "../../../Modal/Package/TypeUsers/ModalEditTypeUser";
 import moment from "moment";
+import { useVeryPermisso } from "../../../../hooks/useVeryPermission";
+import { useSelector } from "react-redux";
 export default function TbodyTd({ element,showItem }) {
+  //constante para el state
   const [showEditModal, setshowEditModal] = useState(false);
+  //---------------------------------
+  //constante para los Dispatch
+  const { permission } = useSelector((state) => state.auth);
+  //---------------------------------
+  //constante para los Hook
+  const [ViewAdmin] = useVeryPermisso(permission, "admin.view");
+  const [EditAdmin] = useVeryPermisso(permission, "admin.update");
+  //---------------------------------
+  //constante para funciones
   const handleShoweditModal = () => {
     setshowEditModal(!showEditModal);
   };
+  //---------------------------------
   return (
     <>
       <tr className="h-16 border border-gray-100 rounded">
@@ -136,21 +149,22 @@ export default function TbodyTd({ element,showItem }) {
           </button>
         </td>)}
         <td className="pl-4">
-          <Link
+          {ViewAdmin && (<Link
             to={`/admin/roles/${element.COD_TYPEUSERS}/view`}
             className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
           >
             View
-          </Link>
+          </Link>)}
+          
         </td>
-
         <td className="pl-4">
-          <button
+        {EditAdmin && (<button
             onClick={handleShoweditModal}
             className="text-sm leading-none text-gray-600 py-3 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
           >
             Editar
-          </button>
+          </button>)}
+          
         </td>
       </tr>
       {showEditModal && (

@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
-import { TypeUserService } from "../service/ServiceTypeUsers";
-export const useTypeUser = (token, id) => {
+import { fetchConToken } from "../util/fetch";
+export const useTypeUser = ( id) => {
   const [typeUsesState, settypeUsesState] = useState([]);
   const [loading, setloding] = useState(false);
 
   useEffect(() => {
-    TypeUserService(token, id).then((element) => {
-      settypeUsesState(element.data);
-      setloding(true);
-    });
-  }, [token, id]);
+    ( async () => {
+      const data = await fetchConToken(`roles/${id}`,{},'GET');
+      const json = await data.json();
+       settypeUsesState(json);
+       setloding(true)
+    })();
+   
+  }, [ id]);
   return {
     typeUsesState,
     loading,

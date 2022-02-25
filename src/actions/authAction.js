@@ -62,8 +62,6 @@ export function Logout() {
 export function startCheckingLogin() {
   return async function (dispatch) {
     const data = await RenewTokenService();
-    console.log(data);
-    console.log(data.COD_USER)
 
       if (data.ok) {
       localStorage.setItem("Jet-Cargo_jwt_login", data.token);

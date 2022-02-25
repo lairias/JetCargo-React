@@ -11,6 +11,16 @@ export const permissionReducer= (state = initialState, action)=>{
                 ...action.payload,
                 loading: true,
             }
+        case types.GetAPermission:
+            return{
+                ...action.payload,
+                loading: true,
+            }
+        case types.GetAPermissionEdit:
+            return{
+                ...action.payload,
+                loading: true,
+            }
         default:
             return state;
     }

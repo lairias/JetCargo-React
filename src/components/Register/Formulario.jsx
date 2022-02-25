@@ -229,7 +229,6 @@ export const Formulario = () => {
       };
 
       const resultado = await Data();
-      console.log(resultado);
       if (!resultado.data.token) {
         toast.error(`${resultado.data.message}`, { duration: 3000 });
       } else {

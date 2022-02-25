@@ -4,12 +4,12 @@ export default function CardLtEdit({permiso,Inicio,Final,search= "",name}) {
 
   return (
     <>
-            <div className="bg-white dark:bg-gray-800 rounded  flex justify-center shadow py-3">
+            <div className="bg-white dark:bg-gray-800 rounded  flex justify-center shadow ">
               
                 <div className=" items-center">
                     <h3 className="font-normal  text-center leading-4 text-gray-800 dark:text-gray-100 text-base"> {name} </h3>
                    <div className=" mx-auto">
-                   <div className="block mt-4">
+                   <div className="block ">
                     {permiso.permisos.filter(element => {
                       if(search === ""){
                         return element

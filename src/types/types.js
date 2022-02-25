@@ -12,12 +12,9 @@ export const types = {
   renewToken: "[Auth] Renew token",
 
   //Type de los permisos a solicitar
-  GetAllPermission : "[Permission] Get All Permission",
-
-
-
-
-
+  GetAllPermission: "[Permission] Get All Permission",
+  GetAPermission: "[Permission] Get one Permission",
+  GetAPermissionEdit: "[Permission] Get one Permission",
 
   ///Bucador de datos
   DataSearch: "[DataSearch] DataSearch",
