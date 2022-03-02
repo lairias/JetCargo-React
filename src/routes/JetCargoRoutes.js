@@ -39,8 +39,9 @@ import { IndexReceptionCountry } from "../components/Admin/Reception/IndexRecept
 import IndexTypes from "../components/Admin/TypeUsers/IndexType";
 import GetTypeUser from "../components/Admin/TypeUsers/GetTypeUser";
 import { startCheckingLogin } from "../actions/authAction";
+import IndexCatPackage from "../components/Admin/CategoryPakage/IndexCatPackage";
 function JetCargoRoutes() {
-  const { checking, id  } = useSelector((state) => state.auth);
+  const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
   useEffect(() => {
     distance(startCheckingLogin());
@@ -52,27 +53,23 @@ function JetCargoRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        {/******************************** LOGIN*/}
         <Route path="/" element={<PublicRoute isAuthenticated={!!id} />}>
           <Route path="login" element={<Login />} />
-        </Route>
-
-        {/******************************** REGISTER*/}
-        <Route path="/" element={<PublicRoute isAuthenticated={!!id} />}>
           <Route path="register" element={<Register />} />
-        </Route>
-
-        {/******************************** Forgot Password */}
-        <Route
-          path="/forget-password/:token/:correo"
-          element={<ForgotPassword />}
-        />
-
-        {/******************************** INICIO*/}
-        <Route path="/" element={<PublicRoute isAuthenticated={!!id} />}>
+          <Route
+            path="forget-password/:token/:correo"
+            element={<ForgotPassword />}
+          />
           <Route path="home" element={<Header />} />
+          <Route
+            path="reset-password"
+            element={
+              <>
+                <ResetPassword /> <Fooder />
+              </>
+            }
+          />
         </Route>
-        {/******************************** ADMIN-INICIO*/}
         <Route path="/" element={<PrivateRoute isAuthenticated={!!id} />}>
           <Route
             path="admin"
@@ -84,122 +81,99 @@ function JetCargoRoutes() {
               </>
             }
           />
+          <Route
+            path="admin/category/package"
+            element={
+              <>
+                <Admin>
+                  <IndexCatPackage />
+                </Admin>
+              </>
+            }
+          />
+
+          <Route
+            path="admin/user/profile/:COD_USER"
+            element={
+              <>
+                <Admin>
+                  <GetProfile />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="admin/user/profile/:COD_USER/edit"
+            element={
+              <>
+                <Admin>
+                  <EditProfile />
+                  <Fooder />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/packages/new"
+            element={
+              <>
+                <Admin>
+                  <Fooder />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/packages/"
+            element={
+              <>
+                <Admin>
+                  <ShowPackages /> <Fooder />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/packages/:COD_PACKAGE"
+            element={
+              <>
+                <Admin>
+                  <GetPackage /> <Fooder />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/reception/country/:COD_COUNTRY"
+            element={
+              <>
+                <Admin>
+                  <IndexReceptionCountry />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/roles"
+            element={
+              <>
+                <Admin>
+                  <IndexTypes />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/roles/:COD_TYPEUSERS/view"
+            element={
+              <>
+                <Admin>
+                  <GetTypeUser />
+                </Admin>
+              </>
+            }
+          />
         </Route>
-        {/******************************** ADMIN-USER*/}
-        {/************ GET-USER*/}
-        <Route
-          path="/admin/user/profile/:COD_USER"
-          element={
-            <>
-              {" "}
-              <Admin>
-                {" "}
-                <GetProfile /> <Fooder />{" "}
-              </Admin>{" "}
-            </>
-          }
-        />
-        {/************ EDIT-USER*/}
-        <Route
-          path="/admin/user/profile/:COD_USER/edit"
-          element={
-            <>
-              <Admin>
-                {" "}
-                <EditProfile />
-                <Fooder />
-              </Admin>
-            </>
-          }
-        />
-        {/******************************** ADMIN-USER*/}
-        {/************ NEW-PACKAGE*/}
-        <Route
-          path="/admin/packages/new"
-          element={
-            <>
-              <Admin>
-                {" "}
-                <Fooder />{" "}
-              </Admin>{" "}
-            </>
-          }
-        />
-
-        {/************ GET-PACKAGE*/}
-        <Route
-          path="/admin/packages/"
-          element={
-            <>
-              <Admin>
-                {" "}
-                <ShowPackages /> <Fooder />{" "}
-              </Admin>{" "}
-            </>
-          }
-        />
-        <Route
-          path="/admin/packages/:COD_PACKAGE"
-          element={
-            <>
-              <Admin>
-                {" "}
-                <GetPackage /> <Fooder />{" "}
-              </Admin>{" "}
-            </>
-          }
-        />
-
-        {/******************************** ADMIN-recepcion*/}
-        {/************ GET-PACKAGE-FOR-COUNTRY-ADMIN*/}
-        <Route
-          path="/admin/reception/country/:COD_COUNTRY"
-          element={
-            <>
-              <Admin>
-                {" "}
-                <IndexReceptionCountry />{" "}
-              </Admin>{" "}
-            </>
-          }
-        />
-
-        <Route
-          path="/reset-password"
-          element={
-            <>
-              {" "}
-              <ResetPassword /> <Fooder />
-            </>
-          }
-        />
-        {/************ CREATE-USER*/}
-
-        {/******************************** ADMIN-TYPE-USERS*/}
-        <Route
-          path="/admin/roles"
-          element={
-            <>
-              <Admin>
-                {" "}
-                <IndexTypes />
-              </Admin>{" "}
-            </>
-          }
-        />
-        <Route
-          path="/admin/roles/:COD_TYPEUSERS/view"
-          element={
-            <>
-              <Admin>
-                {" "}
-                <GetTypeUser />
-              </Admin>{" "}
-            </>
-          }
-        />
-
-        {/******************************** NOFOUND*/}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

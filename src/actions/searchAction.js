@@ -1,14 +1,17 @@
-import { types } from "../types/types"
+import { types } from "../types/types";
 
-export function DataSearInput(evento){
-    return async function (dispatch){
-        dispatch(DataSearch({
-            data: evento
-        }))
-    }
+export function DataSearInputClient(evento) {
+  return async function (dispatch) {
+    
+    dispatch(
+      DataSearchClient({
+        data: evento,
+      })
+    );
+  };
 }
 
-const DataSearch=(data)=>({
-    type:types.DataSearch,
-    payload: data
-})
+const DataSearchClient = (data) => ({
+  type: types.DataSearchClient,
+  payload: data,
+});

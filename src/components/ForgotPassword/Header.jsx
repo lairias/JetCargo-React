@@ -7,12 +7,14 @@ import { Register_password } from "../validations";
 import { ForgotPasswordService } from "../../service/ServicePassword";
 import { TokenNotValid } from "../Error/TokenNotValid";
 import { ocultarEmail } from "../../util/OcultarEmail";
+import jwt from "jwt-decode";
 
-export const Header = ({ email, token, id, veryToken, SpinnerLoader }) => {
+export const Header = ({ email, token, veryToken, SpinnerLoader }) => {
   const [newPassword, set_newPassword] = useState({
     password: "",
     confirpassword: "",
   });
+  const { id } = jwt(token);
 
   const history = useNavigate();
   const handleSubmit = async (e) => {
@@ -61,9 +63,7 @@ export const Header = ({ email, token, id, veryToken, SpinnerLoader }) => {
   return (
     <>
       <Toaster />
-      <div
-        className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900"
-      >
+      <div className="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
         <div className="flex-1 h-full max-w-sm mx-auto overflow-hidden border-white border-2 bg-white rounded-lg shadow-xl dark:bg-gray-200">
           <form className="flex items-center justify-center p-6    ">
             {SpinnerLoader ? (

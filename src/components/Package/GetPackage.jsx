@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { MapsPackage } from "./Maps/MapsPackage";
 import ListPackageUser from "./List/ListPackageUser";
 import ModalInvoicePackage from "../Modal/Package/invoice/ModalInvoicePackage";
 export const GetPackage = () => {
@@ -27,13 +26,6 @@ export const GetPackage = () => {
           setshoInvoice={setshoInvoice}
         />
 
-        <div className="flex justify-between">
-          <h2 className="my-6 text-2xl font-semibold text-gray-700">
-            {" "}
-            Monitoreo GPS{" "}
-          </h2>
-        </div>
-        <MapsPackage />
       </div>
     </>
   );

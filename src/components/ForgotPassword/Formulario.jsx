@@ -20,7 +20,10 @@ export const Formulario = ({
           Cambiar contraseña para
         </h1>
         <div className="flex justify-center">
-        <span className=" font-bold text-gray-800 text-center"> {email} </span>
+          <span className=" font-bold text-gray-800 text-center">
+            {" "}
+            {email}{" "}
+          </span>
         </div>
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-800">Contraseña</span>

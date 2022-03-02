@@ -7,31 +7,27 @@ import { Startgetallpermission } from "../../../actions/permissionAction";
 import { useState } from "react";
 
 export default function GetTypeUsers() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [search, setsearch] = useState("");
   const [showItem, setswoItem] = useState({
-    "nombre":true,
-    "Modelo":true,
-    "Cantidad":true,
-    "Fecha":true,
-  })
-  
- 
-  
-  useEffect(()=>{
-    dispatch(Startgetallpermission())
+    nombre: true,
+    Modelo: true,
+    Cantidad: true,
+    Fecha: true,
+  });
+
+  useEffect(() => {
+    dispatch(Startgetallpermission());
   }, [dispatch]);
-  
-  const {loading, role} = useSelector((state) => state.permission);
+
+  const { loading, role } = useSelector((state) => state.permission);
 
   const hadleSearch = (e) => {
     e.preventDefault();
-    setsearch(e.target.value)
-  }
-  console.log("role",role)
-  console.log("loading",loading)
+    setsearch(e.target.value);
+  };
 
-//
+  //
   return (
     <>
       <div>
@@ -59,7 +55,7 @@ export default function GetTypeUsers() {
                         <line x1={21} y1={21} x2={15} y2={15} />
                       </svg>
                     </div>
-                   <input
+                    <input
                       className=" focus:outline-none rounded w-full text-sm text-gray-500 bg-gray-100 pl-10 py-2"
                       type="text"
                       placeholder="Search"
@@ -70,7 +66,7 @@ export default function GetTypeUsers() {
                 </div>
 
                 <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer">
-                  <SelectDisplay   showItem={showItem} setswoItem={setswoItem} />
+                  <SelectDisplay showItem={showItem} setswoItem={setswoItem} />
                 </div>
               </div>
             </div>
@@ -79,39 +75,46 @@ export default function GetTypeUsers() {
               <table className="w-full whitespace-nowrap ">
                 <thead>
                   <tr className="w-full h-16 border-gray-300 dark:border-gray-200 border-b py-8">
-                  {showItem.nombre && ( <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Nombre
-                    </th>)}
-                    {showItem.Modelo &&(<th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Modedador
-                    </th>)}
-                    
-                   { showItem.Cantidad &&( <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Cantidad
-                    </th>)}
-                   
-                    {showItem.Fecha &&( <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Fecha de creación
-                    </th>)}
-                   
-                  <td className="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
+                    {showItem.nombre && (
+                      <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                        Nombre
+                      </th>
+                    )}
+                    {showItem.Modelo && (
+                      <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                        Modedador
+                      </th>
+                    )}
+
+                    {showItem.Cantidad && (
+                      <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                        Cantidad
+                      </th>
+                    )}
+
+                    {showItem.Fecha && (
+                      <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
+                        Fecha de creación
+                      </th>
+                    )}
+
+                    <td className="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
                       Eventos
                     </td>
-
-                    
                   </tr>
                 </thead>
                 <tbody>
                   {loading ? (
-                    role && (role.map((element) => (
+                    role &&
+                    role.map((element) => (
                       <>
-                        <TbodyTd 
-                        key={element.COD_TYPEUSERS} 
-                        showItem={showItem} 
-                        element={element}
+                        <TbodyTd
+                          key={element.COD_TYPEUSERS}
+                          showItem={showItem}
+                          element={element}
                         />
                       </>
-                    )))
+                    ))
                   ) : (
                     <SpinerLoader />
                   )}

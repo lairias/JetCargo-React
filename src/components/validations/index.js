@@ -116,3 +116,11 @@ export const Register_departamento = yup.object().shape({
 export const Register_ciudad = yup.object().shape({
   ciudad: yup.string().nullable().required("El dato ciudad es necesario"),
 });
+
+//Validacioens de nueva categoria de paquetes
+export const nombre_CategoriPaquete = yup.object().shape({
+  nombre: yup.string().nullable().required("El dato es nombre es necesario"),
+});
+export const descripcion_CategoriPaquete = yup.object().shape({
+  descripcion: yup.string().nullable().required("El dato es descripción es necesario"),
+});

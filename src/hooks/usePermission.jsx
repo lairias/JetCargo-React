@@ -1,16 +1,17 @@
-import { useContext, useCallback } from "react";
-import ContePermission from "../context/users/Permission/PermissionContex.js";
+import { useEffect, useState } from "react";
+import { fetchConToken } from "../util/fetch.js";
 export const usePermissionUser = () => {
-  const { Permission, set_Permission } = useContext(ContePermission);
+  const [typeUsesState, settypeUsesState] = useState([]);
+  const [loading, setloding] = useState(false);
 
-  const userPermission = useCallback(
-    (List) => {
-      set_Permission(List);
-    },
-    [set_Permission]
-  );
-  return {
-    userPermission,
-    Permission,
-  };
+  useEffect(() => {
+    (async () => {
+      const data = await fetchConToken(`permission/`, {}, "GET");
+      const json = await data.json();
+
+      settypeUsesState(json);
+      setloding(true);
+    })();
+  }, []);
+  return [typeUsesState, loading];
 };

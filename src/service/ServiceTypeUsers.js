@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 export const TypeUserService = async (token, id) => {
   const headers = {
     "Content-Type": "application/json",

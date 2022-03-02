@@ -1,4 +1,6 @@
-export const UserInfromation = ({ title, DatosCuente, set_DatosCuente }) => {
+import ReCAPTCHA from "react-google-recaptcha";
+
+export const UserInfromation = ({ title, DatosCuente, set_DatosCuente, onChange }) => {
   return (
     <>
       <h1
@@ -52,6 +54,14 @@ export const UserInfromation = ({ title, DatosCuente, set_DatosCuente }) => {
           value={DatosCuente.confirpassword}
         />
       </label>
+      <label className="block mt-4 text-sm">
+      <ReCAPTCHA
+    sitekey="6LfQ_K0eAAAAAD_lQVSR4_So9DTjUDTXN-CMpdvv
+    "
+    onChange={onChange}
+  />,
+      </label>
+      
       <div className="flex mt-6 text-sm"></div>
     </>
   );

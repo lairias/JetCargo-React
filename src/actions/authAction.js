@@ -6,7 +6,7 @@ import { RenewTokenService } from "../service/ServiceToken";
 
 //Acciones para el login
 export function StarLogin(correo, password) {
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     //-----------Validaciones del input de formulario
     const DataEmail = await Login_email.validate({ email: correo }).catch(
       function (err) {
@@ -28,8 +28,10 @@ export function StarLogin(correo, password) {
       });
       if (data.token) {
         localStorage.setItem("Jet-Cargo_jwt_login", data.token);
-        localStorage.setItem("Jet-Cargo_jwt_login_expiration_time",
-          new Date().getTime());
+        localStorage.setItem(
+          "Jet-Cargo_jwt_login_expiration_time",
+          new Date().getTime()
+        );
         dispatch(
           login({
             id: data.COD_USER,
@@ -57,15 +59,17 @@ export function Logout() {
   };
 }
 
-
 //acciones para renovar token
 export function startCheckingLogin() {
   return async function (dispatch) {
     const data = await RenewTokenService();
 
-      if (data.ok) {
+    if (data.ok) {
       localStorage.setItem("Jet-Cargo_jwt_login", data.token);
-      localStorage.setItem("Jet-Cargo_jwt_login_expiration_time", new Date().getTime());
+      localStorage.setItem(
+        "Jet-Cargo_jwt_login_expiration_time",
+        new Date().getTime()
+      );
       dispatch(
         login({
           id: data.COD_USER,

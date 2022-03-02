@@ -19,8 +19,26 @@ export const types = {
   ///Bucador de datos
   DataSearch: "[DataSearch] DataSearch",
 
-
-
   //Verificacion de token
   forgotPasswordChecking: "[Auth] Checking token for forgot password",
+
+
+
+  //Seccion de categorias de paquetes
+  GetAllCategoryPackage: "[CategoryPackage] Get All CategoryPackage",
+  GetACategoryPackage: "[CategoryPackage] Get one CategoryPackage",
+  GetACategoryPackageEdit: "[CategoryPackage] Get one CategoryPackage",
+  PostCategoryPackage: "[CategoryPackage] Post CategoryPackage",
+
+  //seccion de customes
+  GetAllCustomers: "[Customers] Get All Customers",
+
+
+
+
+  //Seccion de casilleros
+  GetAllCasilleros: "[Casilleros] Get All Casilleros",
+  GetCasilleroUser: "[Casilleros] Get one Casillero",
+
+
 };

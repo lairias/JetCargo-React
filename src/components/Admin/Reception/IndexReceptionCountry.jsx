@@ -1,13 +1,22 @@
 import { useState } from "react";
-import { ModalNewPackage } from "../../Modal/Package/ModalNewPackage";
+import { ModalNewPackage } from "../../Modal/Package/admin/ModalNewPackage";
 import { GetReceptionCountry } from "./GetReceptionCountry";
-import PaginationTable from "./PaginationTable";
+import { useParams } from "react-router-dom";
+import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
+import { useDispatch } from "react-redux";
 export const IndexReceptionCountry = () => {
+  //****************************Variables state */
   const [shoModal, set_shoModal] = useState(false);
-
-  const handleShoModal = () => {
-    set_shoModal(!shoModal);
-  };
+  //**********************************************
+  //****************************Variables Hooks */
+  const dispatch = useDispatch();
+  //**********************************************
+  //****************************Variables funciones */
+    const handleShoModal = () => {
+      dispatch(GetAllCategoryPackage());
+      set_shoModal(!shoModal);
+    };
+  //**********************************************
   return (
     <>
       <div className="flex justify-between">
@@ -28,7 +37,6 @@ export const IndexReceptionCountry = () => {
       </div>
       {/* Insertar contenido de las paginas **/}
       <GetReceptionCountry />
-      <PaginationTable />
     </>
   );
 };

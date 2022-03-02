@@ -4,11 +4,12 @@ import { MdGpsFixed, MdOutlineAdminPanelSettings } from "react-icons/md";
 import { FaTruckLoading } from "react-icons/fa";
 import { SiGooglemaps } from "react-icons/si";
 import { RiAdminFill } from "react-icons/ri";
+import { MdCategory } from "react-icons/md";
+import { BiCategoryAlt } from "react-icons/bi";
 
 export const SidebarData = [
   {
     title: "Seguimiento",
-    path: "/overview",
     icon: <MdGpsFixed />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowBack />,
@@ -58,30 +59,21 @@ export const SidebarData = [
         path: "/admin/roles",
         icon: <MdOutlineAdminPanelSettings />,
       },
-      {
-        title: "Revenue",
-        path: "/overview/revenue",
-        icon: "fa-solid fa-user-robot",
-      },
+      
     ],
   },
   {
-    title: "Overview",
-    path: "/overview",
-    icon: "fa-solid fa-users",
+    title: "Categorias de paquetes",
+    path: "/admin/category/package",
+    icon: <MdCategory />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowBack />,
 
     subNav: [
       {
-        title: "Users",
-        path: "/overview/users",
-        icon: "fa-solid fa-user-group-crown",
-      },
-      {
-        title: "Revenue",
-        path: "/overview/revenue",
-        icon: "fa-solid fa-user-robot",
+        title: "Categorias",
+        path: "/admin/category/package",
+        icon: <BiCategoryAlt />,
       },
     ],
   },

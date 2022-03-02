@@ -3,7 +3,6 @@ export default function ModalInvoicePackage({ showInvoice, setshoInvoice }) {
     <>
       <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
         <div
-          onclick="popuphandler(false)"
           className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0"
         />
         <div className="mx-auto container">
@@ -275,7 +274,6 @@ export default function ModalInvoicePackage({ showInvoice, setshoInvoice }) {
                     </p>
                     <div className="flex items-center justify-between mt-8">
                       <button
-                        onclick="modalHandler(false)"
                         className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
                       >
                         Close

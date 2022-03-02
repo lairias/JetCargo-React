@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-export const SelectDisplay = ({showItem, setswoItem}) => {
+export const SelectDisplay = ({ showItem, setswoItem }) => {
   const [show, setShow] = useState(false);
-  
+
   return (
     <div className="relative">
       <div
@@ -52,12 +52,14 @@ export const SelectDisplay = ({showItem, setswoItem}) => {
       </div>
       {show && (
         <ul className="visible transition duration-300 opacity-100 bg-white   shadow rounded mt-2 py-1 w-48 absolute">
-       
-          <li onClick={(e)=>{
-            setswoItem({...showItem, nombre: !showItem.nombre})
-          }} className={`cursor-pointer
+          <li
+            onClick={(e) => {
+              setswoItem({ ...showItem, nombre: !showItem.nombre });
+            }}
+            className={`cursor-pointer
             ${showItem.nombre ? "text-gray-600" : "text-sky-400 bg-gray-500"}
-            text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}>
+            text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-x"
@@ -76,11 +78,14 @@ export const SelectDisplay = ({showItem, setswoItem}) => {
             </svg>
             <span className="ml-2">Nombre</span>
           </li>
-          <li onClick={(e)=>{
-            setswoItem({...showItem, Modelo: !showItem.Modelo})
-          }}  className={`cursor-pointer
+          <li
+            onClick={(e) => {
+              setswoItem({ ...showItem, Modelo: !showItem.Modelo });
+            }}
+            className={`cursor-pointer
           ${showItem.Modelo ? "text-gray-600" : "text-sky-400 bg-gray-500"}
-          text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}>
+          text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-x"
@@ -99,11 +104,14 @@ export const SelectDisplay = ({showItem, setswoItem}) => {
             </svg>
             <span className="ml-2">Modedador</span>
           </li>
-          <li onClick={(e)=>{
-            setswoItem({...showItem, Cantidad: !showItem.Cantidad})
-          }}   className={`cursor-pointer
+          <li
+            onClick={(e) => {
+              setswoItem({ ...showItem, Cantidad: !showItem.Cantidad });
+            }}
+            className={`cursor-pointer
           ${showItem.Cantidad ? "text-gray-600" : "text-sky-400 bg-gray-500"}
-          text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}>
+          text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-x"
@@ -122,12 +130,14 @@ export const SelectDisplay = ({showItem, setswoItem}) => {
             </svg>
             <span className="ml-2">Cantidad</span>
           </li>
-          <li onClick={(e)=>{
-            setswoItem({...showItem, Fecha: !showItem.Fecha})
-          }} 
-           className={`cursor-pointer
+          <li
+            onClick={(e) => {
+              setswoItem({ ...showItem, Fecha: !showItem.Fecha });
+            }}
+            className={`cursor-pointer
           ${showItem.Fecha ? "text-gray-600" : "text-sky-400 bg-gray-500"}
-          text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}>
+          text-sm leading-3 tracking-normal py-3  px-3 flex items-center font-normal`}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="icon icon-tabler icon-tabler-x"

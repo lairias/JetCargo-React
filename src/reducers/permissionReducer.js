@@ -1,27 +1,27 @@
-import {types} from "../types/types";
+import { types } from "../types/types";
 const initialState = {
-    loading: false,
-  };
+  loading: false,
+};
 
-export const permissionReducer= (state = initialState, action)=>{
-    switch(action.type){
-        case types.GetAllPermission:
-            return{
-                ...state,
-                ...action.payload,
-                loading: true,
-            }
-        case types.GetAPermission:
-            return{
-                ...action.payload,
-                loading: true,
-            }
-        case types.GetAPermissionEdit:
-            return{
-                ...action.payload,
-                loading: true,
-            }
-        default:
-            return state;
-    }
-    }
+export const permissionReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case types.GetAllPermission:
+      return {
+        ...state,
+        ...action.payload,
+        loading: true,
+      };
+    case types.GetAPermission:
+      return {
+        ...action.payload,
+        loading: true,
+      };
+    case types.GetAPermissionEdit:
+      return {
+        ...action.payload,
+        loading: true,
+      };
+    default:
+      return state;
+  }
+};
