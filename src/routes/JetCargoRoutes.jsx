@@ -6,8 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //Importaciones de las rutas
-import { PublicRoute } from "../routes/PublicRoute";
-import { PrivateRoute } from "../routes/PrivateRoute";
+import { PublicRoute } from "./PublicRoute";
+import { PrivateRoute } from "./PrivateRoute";
 import Loaddin from "../components/Spinners/Loaddin";
 
 //Páginas principales

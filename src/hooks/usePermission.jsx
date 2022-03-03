@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchConToken } from "../util/fetch.js";
+import { fetchConToken } from "../util/fetch";
 export const usePermissionUser = () => {
   const [typeUsesState, settypeUsesState] = useState([]);
   const [loading, setloding] = useState(false);
