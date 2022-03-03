@@ -11,7 +11,6 @@ export default function CardLtEdit({
     setselectChecked(datos);
   };
 
-  console.log(selecChecked);
 
   return (
     <>

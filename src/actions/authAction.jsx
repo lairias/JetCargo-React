@@ -33,12 +33,14 @@ export function StarLogin(correo, password) {
           new Date().getTime()
         );
         dispatch(
+
           login({
             id: data.COD_USER,
             name: data.NAME,
             lastname: data.LASTNAME,
             img_perfil: data.IMG_FHOTO,
             permission: data.PermissionUser,
+            customer: data.CustomerLocker,
           })
         );
       } else {
@@ -53,7 +55,7 @@ export function StarLogin(correo, password) {
 
 //Acciones para serrar sesion
 export function Logout() {
-  return async function (dispatch, getState) {
+  return async function (dispatch) {
     localStorage.clear();
     dispatch(logout());
   };
@@ -77,6 +79,7 @@ export function startCheckingLogin() {
           lastname: data.LASTNAME,
           img_perfil: data.IMG_FHOTO,
           permission: data.PermissionUser,
+          customer: data.CustomerUser,
         })
       );
     } else {

@@ -40,6 +40,7 @@ import IndexTypes from "../components/Admin/TypeUsers/IndexType";
 import GetTypeUser from "../components/Admin/TypeUsers/GetTypeUser";
 import { startCheckingLogin } from "../actions/authAction";
 import IndexCatPackage from "../components/Admin/CategoryPakage/IndexCatPackage";
+import IndexHome from "../components/Admin/Home/IndexHome";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
@@ -70,13 +71,16 @@ function JetCargoRoutes() {
             }
           />
         </Route>
+
+        
         <Route path="/" element={<PrivateRoute isAuthenticated={!!id} />}>
           <Route
             path="admin"
             element={
               <>
                 <Admin>
-                  <Widgets />
+
+                  <IndexHome />
                 </Admin>
               </>
             }

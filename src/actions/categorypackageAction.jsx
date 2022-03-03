@@ -10,7 +10,6 @@ export function GetAllCategoryPackage() {
   return async function (dispatch) {
     const data = await fetchConToken("catpackage",{},"GET");
     const json = await data.json();
-    console.log(json);
     if(json.ok){
       dispatch(GetDataCategoryPackage({
        categoryPackage: json.catPackage
@@ -22,7 +21,6 @@ export function GetCategoryPackage(_id) {
   return async function (dispatch) {
     const data = await fetchConToken(`catpackage/${_id}`,{},"GET");
     const json = await data.json();
-    console.log(json);
     if(json.ok){
       dispatch(GetDataOneCategoryPackage({
        GetcategoryPackage: json.catPackage
