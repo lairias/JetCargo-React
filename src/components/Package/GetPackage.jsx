@@ -25,7 +25,6 @@ export const GetPackage = () => {
           showInvoice={showInvoice}
           setshoInvoice={setshoInvoice}
         />
-
       </div>
     </>
   );

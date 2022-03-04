@@ -59,7 +59,6 @@ export const SidebarData = [
         path: "/admin/roles",
         icon: <MdOutlineAdminPanelSettings />,
       },
-      
     ],
   },
   {

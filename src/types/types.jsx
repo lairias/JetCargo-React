@@ -22,8 +22,6 @@ export const types = {
   //Verificacion de token
   forgotPasswordChecking: "[Auth] Checking token for forgot password",
 
-
-
   //Seccion de categorias de paquetes
   GetAllCategoryPackage: "[CategoryPackage] Get All CategoryPackage",
   GetACategoryPackage: "[CategoryPackage] Get one CategoryPackage",
@@ -33,12 +31,11 @@ export const types = {
   //seccion de customes
   GetAllCustomers: "[Customers] Get All Customers",
 
-
-
-
   //Seccion de casilleros
   GetAllCasilleros: "[Casilleros] Get All Casilleros",
+  AddCasillerosCustomers: "[Casilleros] Add Casilleros Customers",
+  StartAddCasillerosCustomers: "[Casilleros] Add Casilleros Customers",
+  EndAddCasillerosCustomers: "[Casilleros] Add Casilleros Customers",
   GetCasilleroUser: "[Casilleros] Get one Casillero",
-
-
 };
+ 

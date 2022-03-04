@@ -96,9 +96,7 @@ export const Formulario = () => {
     }
   };
 
-  const onChange = ()=>{
-
-  }
+  const onChange = () => {};
   const handlePeopleInformation = async (_) => {
     //**Balidaciones de los input */
     if (

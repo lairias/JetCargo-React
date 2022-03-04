@@ -4,8 +4,7 @@ import { GetAllCategoryPackage } from "../../../../actions/categorypackageAction
 import { GetAllCustomers } from "../../../../actions/customesAction";
 import { SpinerLoader } from "../../../../components/Spinners/Loader";
 import { useForms } from "../../../../hooks/useForms";
-import Select from 'react-select';
-
+import Select from "react-select";
 
 export const ModalNewPackage = ({ handleShoModal }) => {
   const dispatch = useDispatch();
@@ -14,15 +13,18 @@ export const ModalNewPackage = ({ handleShoModal }) => {
     dispatch(GetAllCustomers());
     dispatch(GetAllCategoryPackage());
   }, [dispatch]);
-  const { customers,loadingCustomers } = useSelector((state) => state.customers);
-  
-  const { categoryPackage, loading } = useSelector((state) => state.categorypackage);
-  
+  const { customers, loadingCustomers } = useSelector(
+    (state) => state.customers
+  );
+
+  const { categoryPackage, loading } = useSelector(
+    (state) => state.categorypackage
+  );
+
   return (
     <>
       <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
-        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0"
-        />
+        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
         <div className="mx-auto container">
           <div className="flex items-center justify-center h-full w-full">
             <div className="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5">
@@ -41,11 +43,13 @@ export const ModalNewPackage = ({ handleShoModal }) => {
                       </span>
                       {loadingCustomers ? (
                         <Select
-                        defaultValue={selectedOption}
-                        onChange={setSelectedOption}
-                        options={customers}
+                          defaultValue={selectedOption}
+                          onChange={setSelectedOption}
+                          options={customers}
                         />
-                      ): (<SpinerLoader />)}
+                      ) : (
+                        <SpinerLoader />
+                      )}
                     </label>
                     <label className="block mt-4 text-sm w-full md:px-2">
                       <span className="text-gray-700 dark:text-gray-900">

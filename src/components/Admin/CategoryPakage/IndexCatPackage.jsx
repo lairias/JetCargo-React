@@ -32,11 +32,17 @@ export default function IndexCatPackage() {
           ""
         )}
 
-        {shoModal ? <ModalNewCatPackage handleShoModal={handleShoModal} isOpen={shoModal} /> : ""}
+        {shoModal ? (
+          <ModalNewCatPackage
+            handleShoModal={handleShoModal}
+            isOpen={shoModal}
+          />
+        ) : (
+          ""
+        )}
       </div>
       {/* Insertar contenido de las paginas **/}
-<GetCategoryPackage />
-      
+      <GetCategoryPackage />
     </>
   );
 }

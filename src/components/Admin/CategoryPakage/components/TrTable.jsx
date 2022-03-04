@@ -29,7 +29,7 @@ export default function TrTable({ elemento }) {
           </svg>
         </div>
       </td>
-     
+
       <td className="pl-5">
         <button className="py-3 px-3 text-sm focus:outline-none leading-none text-red-500 bg-red-100 hover:bg-red-200 rounded">
           {moment(elemento.DAT_ADD).calendar()}

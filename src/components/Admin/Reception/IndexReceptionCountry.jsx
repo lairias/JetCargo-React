@@ -12,10 +12,10 @@ export const IndexReceptionCountry = () => {
   const dispatch = useDispatch();
   //**********************************************
   //****************************Variables funciones */
-    const handleShoModal = () => {
-      dispatch(GetAllCategoryPackage());
-      set_shoModal(!shoModal);
-    };
+  const handleShoModal = () => {
+    dispatch(GetAllCategoryPackage());
+    set_shoModal(!shoModal);
+  };
   //**********************************************
   return (
     <>

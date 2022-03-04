@@ -11,7 +11,6 @@ export default function CardLtEdit({
     setselectChecked(datos);
   };
 
-
   return (
     <>
       <tr className="h-12  dark:border-gray-200 border-b">

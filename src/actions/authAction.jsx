@@ -33,7 +33,6 @@ export function StarLogin(correo, password) {
           new Date().getTime()
         );
         dispatch(
-
           login({
             id: data.COD_USER,
             name: data.NAME,

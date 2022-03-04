@@ -122,5 +122,8 @@ export const nombre_CategoriPaquete = yup.object().shape({
   nombre: yup.string().nullable().required("El dato es nombre es necesario"),
 });
 export const descripcion_CategoriPaquete = yup.object().shape({
-  descripcion: yup.string().nullable().required("El dato es descripción es necesario"),
+  descripcion: yup
+    .string()
+    .nullable()
+    .required("El dato es descripción es necesario"),
 });

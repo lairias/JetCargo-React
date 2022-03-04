@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // import PaginationTable from "./PaginationTable";
 import { NavLink } from "react-router-dom";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
@@ -9,7 +9,9 @@ export const GetCategoryPackage = () => {
   /******************************************* */
 
   /****************************************Variables Hooks*/
-  const {categoryPackage, loading} = useSelector((state) => state.categorypackage);
+  const { categoryPackage, loading } = useSelector(
+    (state) => state.categorypackage
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetAllCategoryPackage());
@@ -25,23 +27,43 @@ export const GetCategoryPackage = () => {
           <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
             <div className="block lg:flex xl:flex md:block items-center justify-between">
               <div className="flex items-center">
-                <NavLink  to={"/admin/reception/country/2"} className={({isActive})=> (isActive ? "text-indigo-700 rounded-full bg-indigo-100": "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full")}>
+                <NavLink
+                  to={"/admin/reception/country/2"}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-indigo-700 rounded-full bg-indigo-100"
+                      : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
+                  }
+                >
                   <div className="py-2 px-4  ">
                     <p>All</p>
                   </div>
                 </NavLink>
-                <NavLink  to={"/admin/reception/country/2"} className={({isActive})=> (isActive ? "text-indigo-700 rounded-full bg-indigo-100": "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full")}>
+                <NavLink
+                  to={"/admin/reception/country/2"}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-indigo-700 rounded-full bg-indigo-100"
+                      : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
+                  }
+                >
                   <div className="py-2 px-4  ml-4 sm:ml-8">
                     <p>Done</p>
                   </div>
                 </NavLink>
-                <NavLink  to={"/admin/reception/country/2"} className={({isActive})=> (isActive ? "text-indigo-700 rounded-full bg-indigo-100": "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full")}>
+                <NavLink
+                  to={"/admin/reception/country/2"}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "text-indigo-700 rounded-full bg-indigo-100"
+                      : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
+                  }
+                >
                   <div className="py-2 px-4  mr-4  sm:ml-8">
                     <p>Pending</p>
                   </div>
                 </NavLink>
-                <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer">
-                </div>
+                <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer"></div>
               </div>
               <div className="flex justify-between">
                 <div className="py-3 md:w-full lg:w-full xl:w-full w-1/2   flex items-center  text-sm font-medium leading-none cursor-pointer">
@@ -72,8 +94,7 @@ export const GetCategoryPackage = () => {
                   </div>
                 </div>
 
-                <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer">
-                </div>
+                <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer"></div>
               </div>
             </div>
 
@@ -82,33 +103,30 @@ export const GetCategoryPackage = () => {
                 <thead>
                   <tr className="w-full h-16 border-gray-300 dark:border-gray-200 border-b py-8">
                     <th className="pl-8 text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                     Nombre del producto
+                      Nombre del producto
                     </th>
-                   
-                 
+
                     <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
                       Fecha
                     </th>
-                    
+
                     <td className="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
                       More
                     </td>
                   </tr>
                 </thead>
                 <tbody>
-                  {loading && categoryPackage && categoryPackage.map((elemento) => (
-                    <TrTable elemento={elemento} />
-                  )) }
-                  
-                
+                  {loading &&
+                    categoryPackage &&
+                    categoryPackage.map((elemento) => (
+                      <TrTable elemento={elemento} />
+                    ))}
                 </tbody>
               </table>
-             
             </div>
-              {/* <PaginationTable /> */}
+            {/* <PaginationTable /> */}
           </div>
         </div>
-     
       </div>
     </>
   );

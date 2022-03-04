@@ -2,9 +2,7 @@ export default function ModalInvoicePackage({ showInvoice, setshoInvoice }) {
   return (
     <>
       <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
-        <div
-          className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0"
-        />
+        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
         <div className="mx-auto container">
           <div className="flex items-center justify-center h-full w-full">
             <div className="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5">
@@ -273,9 +271,7 @@ export default function ModalInvoicePackage({ showInvoice, setshoInvoice }) {
                       15 days from the issue of date of this invoice.
                     </p>
                     <div className="flex items-center justify-between mt-8">
-                      <button
-                        className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
-                      >
+                      <button className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
                         Close
                       </button>
                       <button className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">

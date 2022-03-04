@@ -1,21 +1,21 @@
 import { useEffect } from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
-import {SpinerLoader} from "../../../components/Spinners/Loader";
+import { SpinerLoader } from "../../../components/Spinners/Loader";
 export const ModalNewPackage = ({ handleShoModal }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetAllCategoryPackage());
   }, [dispatch]);
-  
-  const {categoryPackage,loading} = useSelector((state) => state.categorypackage);
+
+  const { categoryPackage, loading } = useSelector(
+    (state) => state.categorypackage
+  );
 
   return (
     <>
       <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
-        <div
-          className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0"
-        />
+        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
         <div className="mx-auto container">
           <div className="flex items-center justify-center h-full w-full">
             <div className="bg-white rounded-md shadow fixed overflow-y-auto sm:h-auto w-10/12 md:w-8/12 lg:w-1/2 2xl:w-2/5">
@@ -69,26 +69,27 @@ export const ModalNewPackage = ({ handleShoModal }) => {
                       <select className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
                         <option selected disabled value>
                           --- ---
-                          </option>
+                        </option>
                         {loading ? (
-                           categoryPackage && categoryPackage.map((category) => (
-                          <>
-                            Category
-                          <option value={category.COD_CATPACKAGE} >{category.NAM_CATPACKAGE} </option>
-                          </>
+                          categoryPackage &&
+                          categoryPackage.map((category) => (
+                            <>
+                              Category
+                              <option value={category.COD_CATPACKAGE}>
+                                {category.NAM_CATPACKAGE}{" "}
+                              </option>
+                            </>
                           ))
-                          ):(
-                            <SpinerLoader />
-                            )}
-                            </select>
-                        
+                        ) : (
+                          <SpinerLoader />
+                        )}
+                      </select>
                     </label>
                     <label className="block mt-4 text-sm w-full md:px-2">
                       <span className="text-gray-700 dark:text-gray-900">
                         Tipo de envio
                       </span>
                       <select className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
-
                         <option selected disabled value>
                           Category
                         </option>

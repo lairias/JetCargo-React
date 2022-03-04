@@ -1,5 +1,9 @@
-
-export const UserInfromation = ({ title, DatosCuente, set_DatosCuente, onChange }) => {
+export const UserInfromation = ({
+  title,
+  DatosCuente,
+  set_DatosCuente,
+  onChange,
+}) => {
   return (
     <>
       <h1
@@ -53,10 +57,8 @@ export const UserInfromation = ({ title, DatosCuente, set_DatosCuente, onChange 
           value={DatosCuente.confirpassword}
         />
       </label>
-      <label className="block mt-4 text-sm">
+      <label className="block mt-4 text-sm"></label>
 
-      </label>
-      
       <div className="flex mt-6 text-sm"></div>
     </>
   );

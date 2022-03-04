@@ -72,14 +72,12 @@ function JetCargoRoutes() {
           />
         </Route>
 
-        
         <Route path="/" element={<PrivateRoute isAuthenticated={!!id} />}>
           <Route
             path="admin"
             element={
               <>
                 <Admin>
-
                   <IndexHome />
                 </Admin>
               </>
