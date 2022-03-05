@@ -3,6 +3,7 @@ import { types } from "../types/types";
 const initialState = {
   loadingLokersUser: false,
   startloadingLoker: false,
+  getloadingLoker: false,
 };
 
 export const lokersReducer = (state = initialState, action) => {
@@ -17,16 +18,15 @@ export const lokersReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
-        startloadingLoker: true,
+        getloadingLoker: true,
       };
-    
+
     case types.EndAddCasillerosCustomers:
       return {
         ...state,
-        startloadingLoker: false,
+        startloadingLoker: action.payload,
       };
     default:
       return state;
   }
 };
- 

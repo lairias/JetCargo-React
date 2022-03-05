@@ -1,12 +1,13 @@
 import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
+import { showModal } from "./modal_Locker_Customer";
 
 //Acciones para el login
 
 //acciones para renovar token
 export function GetCasilleroUser(_id) {
   return async function (dispatch) {
-    const data = await fetchConToken(`locker/customer/${_id}`, {AddcasilleroCustomers:false}, "GET");
+    const data = await fetchConToken(`locker/customer/${_id}`, {}, "GET");
     const json = await data.json();
     if (json.ok) {
       dispatch(
@@ -19,7 +20,7 @@ export function GetCasilleroUser(_id) {
         CasilleroUser({
           lockerUser: json.locker,
         })
-      ); 
+      );
     }
   };
 }
@@ -29,36 +30,55 @@ export function StarCodLockerRandom() {
     const NumberArray = new Array();
     const data = await fetchConToken(`locker/ind`, {}, "GET");
     const json = await data.json();
-    json.lockersInd.forEach(element => {
+    json.lockersInd.forEach((element) => {
       NumberArray.push(element.COD_LOCKER);
     });
-    const randomIndex = Math.floor(
-      Math.random() * NumberArray.length
-    );
+    const randomIndex = Math.floor(Math.random() * NumberArray.length);
     const randomLockers = NumberArray[randomIndex];
-  // console.log(getState().locker.loadingLokersUser);
     if (json.ok) {
-    dispatch(
-      StarCodLockerRandomCustomer({
-        COD_LOCKER_RANDOM: randomLockers,
+      dispatch(
+        StarCodLockerRandomCustomer({
+          LockerCodRandom: randomLockers,
         })
       );
-    };
+      dispatch(
+        EndAddCasilleroUserCustomer({
+          startloadingLoker: true,
+        })
+      );
+    }
   };
 }
-export function EndAddCasilleroUser() {
+
+export function AddLokersCustomers(COD_CUSTOMER, COD_LOCKER) {
   return async function (dispatch, getState) {
-    const data = await fetchConToken(`locker/ind`, {}, "GET");
+    const data = await fetchConToken(
+      `locker/customer`,
+      { COD_CUSTOMER, COD_LOCKER },
+      "POST"
+    );
     const json = await data.json();
-    console.log(getState())
-  // console.log(getState().locker.loadingLokersUser);
     if (json.ok) {
-    dispatch(
-      EndAddCasilleroUserCustomer({
-        
-        })
+      const data1 = await fetchConToken(
+        `locker/customer/${COD_CUSTOMER}`,
+        {},
+        "GET"
       );
-    };
+      const json1 = await data1.json();
+      if (json1.ok) {
+        dispatch(
+          CasilleroUser({
+            lockerUser: json1.locker,
+          })
+        );
+        dispatch(
+          EndAddCasilleroUserCustomer({
+            startloadingLoker: false,
+          })
+        );
+        dispatch(showModal(false))
+      }
+    }
   };
 }
 
@@ -70,11 +90,12 @@ const AddCasilleroUser = (Casellero) => ({
   type: types.GetCasilleroUser,
   payload: Casellero,
 });
-const StarCodLockerRandomCustomer = (CaselleroRandom) => ({
-  type: types.StartAddCasillerosCustomers,
-  payload: CaselleroRandom,
-});
-const EndAddCasilleroUserCustomer = () => ({
-  type: types.EndAddCasillerosCustomers,
-});
 
+const StarCodLockerRandomCustomer = (data) => ({
+  type: types.StartAddCasillerosCustomers,
+  payload: data,
+});
+const EndAddCasilleroUserCustomer = (data) => ({
+  type: types.EndAddCasillerosCustomers,
+  payload: data,
+});

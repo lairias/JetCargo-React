@@ -1,29 +1,33 @@
-import { useEffect,useCallback } from "react";
+import { useEffect, useCallback } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StarCodLockerRandom,EndAddCasilleroUser } from "../../../actions/lockersAction";
-import SpinnerButton from "../../Spinners/SpinnerButton"
+import {
+  StarCodLockerRandom,
+  AddLokersCustomers,
+} from "../../../actions/lockersAction";
+import SpinnerButton from "../../Spinners/SpinnerButton";
 export default function ModalAddLockerCustomers({ isOpen, setIsOpen }) {
   /****************************************************Variables de State */
   /********************************************************************** */
   /****************************************************Variables de Hooks */
   const dispatch = useDispatch();
-  const {startloadingLoker} = useSelector((state) => state.locker);
-  const data = useSelector((state) => state.customers);
+  const { startloadingLoker, getloadingLoker, LockerCodRandom } = useSelector(
+    (state) => state.locker
+  );
   const { name, lastname, customer } = useSelector((state) => state.auth);
   /********************************************************************** */
-
   /****************************************************Variables de funciones */
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(StarCodLockerRandom());
   };
-  useEffect(()=>{
-    if(startloadingLoker){
-      dispatch(EndAddCasilleroUser(customer.COD_CUSTOMER));
+
+  useEffect(() => {
+    if (getloadingLoker) {
+      dispatch(AddLokersCustomers(customer.COD_CUSTOMER, LockerCodRandom));
     }
-  },[startloadingLoker,customer])
+  }, [getloadingLoker, customer, dispatch]);
   /********************************************************************** */
   /********************************************************************** */
   return (
@@ -77,21 +81,19 @@ export default function ModalAddLockerCustomers({ isOpen, setIsOpen }) {
                       Desea registrarse a un casillero
                     </p>
                   </div>
-
                   <div className="mt-4 flex justify-between">
                     <button
                       type="button"
                       onClick={handleSubmit}
-                      disabled = {startloadingLoker}
+                      disabled={startloadingLoker}
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     >
                       {startloadingLoker ? <SpinnerButton /> : "Si, Registrar"}
-                      
                     </button>
                     <button
                       type="button"
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                      onClick={_=>setIsOpen(false)}
+                      onClick={setIsOpen}
                     >
                       No, Gracias!
                     </button>

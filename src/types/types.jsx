@@ -37,5 +37,10 @@ export const types = {
   StartAddCasillerosCustomers: "[Casilleros] Add Casilleros Customers",
   EndAddCasillerosCustomers: "[Casilleros] Add Casilleros Customers",
   GetCasilleroUser: "[Casilleros] Get one Casillero",
+
+
+
+  //secciones de mostar los ModalEditTypeUser
+  ShowModalCreateLockerCustomer : "[ModalLockerCustomers] Show Modal Create Locker Customer",
+
 };
- 

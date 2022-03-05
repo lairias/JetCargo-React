@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import toast, { Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { GetCasilleroUser } from "../../../actions/lockersAction";
+import { showModal } from "../../../actions/modal_Locker_Customer";
 import { useVeryPermisso } from "../../../hooks/useVeryPermission";
 import ModalAddLockerCustomers from "../../Modal/Lockers/ModalAddLockerCustomers";
 import CardList from "./components/CardList";
@@ -9,13 +10,15 @@ import CardList from "./components/CardList";
 export default function IndexHome() {
   /**********************************Variables State */
   const [shoModalconLokers, set_shoModalconLokers] = useState(false);
-  const [shoModalsinLokers, set_shoModalsinLokers] = useState(false);
   /*************************************************** */
 
   /**********************************Variables Hooks */
   //importaciones de permisos
   const { permission, customer } = useSelector((state) => state.auth);
-  const { lockerUser, loadingLokersUser } = useSelector((state) => state.locker);
+  const { shoModalLockerCustomer } = useSelector((state) => state.modal_Locker_Customer);
+  const { lockerUser, loadingLokersUser } = useSelector(
+    (state) => state.locker
+  );
   const [Crear_ad] = useVeryPermisso(permission, "admin.crear");
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,20 +31,20 @@ export default function IndexHome() {
     set_shoModalconLokers(!shoModalconLokers);
   };
   const handleModalSinLokers = () => {
-    set_shoModalsinLokers(!shoModalsinLokers);
-    
+    dispatch(showModal(!shoModalLockerCustomer))
   };
   /***************************************************  */
   return (
     <>
-    <Toaster />
+      <Toaster />
       <div className="flex justify-between">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">Inicio</h2>
         <div className=" my-6">
           {Crear_ad && loadingLokersUser && (
             <button
               onClick={lockerUser ? handleModalConLokers : handleModalSinLokers}
-              className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+              className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+            >
               {lockerUser ? "Casilleros" : "Crea tu casillero"}
 
               <span className="ml-2"> + </span>
@@ -52,7 +55,9 @@ export default function IndexHome() {
       <div className="flex flex-wrap items-center justify-center  gap-7  sm:px-6 ">
         {loadingLokersUser ? (
           lockerUser ? (
-            lockerUser.map((item) => <CardList key={item.COD_LOCKER} item={item} />)
+            lockerUser.map((item) => (
+              <CardList key={item.COD_LOCKER} item={item} />
+            ))
           ) : (
             <h2 className="my-6 text-2xl font-semibold text-gray-700">
               No cuenta con casillero
@@ -62,7 +67,12 @@ export default function IndexHome() {
           "Cargando"
         )}
       </div>
-      {shoModalsinLokers && (<ModalAddLockerCustomers isOpen={shoModalsinLokers} setIsOpen={set_shoModalsinLokers} />)}
+      {shoModalLockerCustomer && (
+        <ModalAddLockerCustomers
+          isOpen={shoModalLockerCustomer}
+          setIsOpen={handleModalSinLokers}
+        />
+      )}
     </>
   );
 }
