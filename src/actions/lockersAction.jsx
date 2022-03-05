@@ -1,6 +1,7 @@
 import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
 import { showModal } from "./modal_Locker_Customer";
+import toast from "react-hot-toast";
 
 //Acciones para el login
 
@@ -52,32 +53,46 @@ export function StarCodLockerRandom() {
 
 export function AddLokersCustomers(COD_CUSTOMER, COD_LOCKER) {
   return async function (dispatch, getState) {
+    const FRISTNAME = getState().auth.name;
+    const  LASTNAME = getState().auth.lastname;
     const data = await fetchConToken(
       `locker/customer`,
-      { COD_CUSTOMER, COD_LOCKER },
+      { COD_CUSTOMER, COD_LOCKER,FRISTNAME,LASTNAME},
       "POST"
     );
     const json = await data.json();
     if (json.ok) {
-      const data1 = await fetchConToken(
-        `locker/customer/${COD_CUSTOMER}`,
-        {},
-        "GET"
-      );
-      const json1 = await data1.json();
-      if (json1.ok) {
-        dispatch(
-          CasilleroUser({
-            lockerUser: json1.locker,
-          })
+      const dataFect = async ()=>{
+        const data1 = await fetchConToken(`locker/customer/${COD_CUSTOMER}`,
+          {},
+          "GET"
         );
-        dispatch(
-          EndAddCasilleroUserCustomer({
-            startloadingLoker: false,
-          })
-        );
-        dispatch(showModal(false))
+        return await data1.json();
+        
       }
+      const callback =  dataFect()
+      callback.then(elemento => {
+        if(elemento.ok) { 
+          dispatch(
+                CasilleroUser({
+                  lockerUser: elemento.locker,
+                })
+              );
+              dispatch(
+                EndAddCasilleroUserCustomer({
+                  startloadingLoker: false,
+                })
+              );
+              dispatch(showModal(false));
+              toast
+              .promise(callback, {
+                loading: "Enviando",
+                success: "Email enviado",
+                error: "Error al enviar email",
+              })
+         }
+      })
+     
     }
   };
 }

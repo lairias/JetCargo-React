@@ -17,7 +17,7 @@ export default function CardList({ item }) {
         </div>
         <div className="w-56 h-9">
           <NavLink
-            to={"/admin/packages/4"}
+            to={`/admin/packages/${item.COD_LOCKER}`}
             role="button"
             aria-label="message"
             className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 hover:bg-gray-300 flex items-center justify-center flex-1 h-full py-3 px-20 bg-gray-50 border rounded border-gray-500"

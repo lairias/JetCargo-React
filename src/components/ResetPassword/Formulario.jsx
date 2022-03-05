@@ -1,4 +1,4 @@
-export const Formulario = ({ set_resetpass, classreset }) => {
+export const Formulario = ({ set_resetpass }) => {
   return (
     <div className="w-full">
       <label className="block mt-4 text-sm">

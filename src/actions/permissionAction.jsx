@@ -28,7 +28,7 @@ export function Startgetpermision(COD_TYPEUSERS) {
         })
       );
     } else {
-      toast.error(`Error de peticion`, { duration: 3000 });
+      toast.error(`Error de proceso`, { duration: 3000 });
     }
   };
 }
@@ -46,7 +46,7 @@ export function Starteditpermision(COD_TYPEUSERS) {
       );
       debugger;
     } else {
-      toast.error(`Error de peticion`, { duration: 3000 });
+      toast.error(`Error de proceso`, { duration: 3000 });
     }
   };
 }
