@@ -55,9 +55,10 @@ export function AddLokersCustomers(COD_CUSTOMER, COD_LOCKER) {
   return async function (dispatch, getState) {
     const FRISTNAME = getState().auth.name;
     const  LASTNAME = getState().auth.lastname;
+    const  EMAIL = getState().auth.email;
     const data = await fetchConToken(
       `locker/customer`,
-      { COD_CUSTOMER, COD_LOCKER,FRISTNAME,LASTNAME},
+      { COD_CUSTOMER, COD_LOCKER,FRISTNAME,LASTNAME,EMAIL},
       "POST"
     );
     const json = await data.json();

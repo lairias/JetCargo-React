@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Logo from "../../../../img/Tag.svg";
 
 export default function CardList({ item }) {
@@ -16,8 +16,8 @@ export default function CardList({ item }) {
           </div>
         </div>
         <div className="w-56 h-9">
-          <NavLink
-            to={`/admin/packages/${item.COD_LOCKER}`}
+          <Link 
+            to={`/admin/locker/${item.NUM_LOCKER}/${item.COD_LOCKER}/packages/`}
             role="button"
             aria-label="message"
             className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 hover:bg-gray-300 flex items-center justify-center flex-1 h-full py-3 px-20 bg-gray-50 border rounded border-gray-500"
@@ -25,7 +25,7 @@ export default function CardList({ item }) {
             <p className="text-sm font-medium leading-none text-gray-600">
               Seguimiento
             </p>
-          </NavLink>
+          </Link>
         </div>
       </div>
     </>

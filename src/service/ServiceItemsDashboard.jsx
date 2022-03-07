@@ -6,27 +6,42 @@ import { SiGooglemaps } from "react-icons/si";
 import { RiAdminFill } from "react-icons/ri";
 import { MdCategory } from "react-icons/md";
 import { BiCategoryAlt } from "react-icons/bi";
+import { AiOutlineHome } from "react-icons/ai";
+import { GiBoxUnpacking } from "react-icons/gi";
 
 export const SidebarData = [
   {
-    title: "Seguimiento",
-    icon: <MdGpsFixed />,
+    title: "Inicio",
+    icon: <AiOutlineHome />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowBack />,
     subNav: [
       {
-        title: "Paketes",
-        path: "/admin/packages",
-        icon: <FiPackage />,
-      },
-      {
-        title: "Nuevo Paquete",
-        path: "/admin/packages/new",
-        accion: "create",
-        icon: <IoIosAdd />,
+        title: "Casilleros",
+        path: "/admin/",
+        icon: <GiBoxUnpacking />,
       },
     ],
   },
+  // {
+  //   title: "Seguimiento",
+  //   icon: <MdGpsFixed />,
+  //   iconClosed: <IoIosArrowDown />,
+  //   iconOpened: <IoIosArrowBack />,
+  //   subNav: [
+  //     {
+  //       title: "Paketes",
+  //       path: "/admin/packages",
+  //       icon: <FiPackage />,
+  //     },
+  //     {
+  //       title: "Nuevo Paquete",
+  //       path: "/admin/packages/new",
+  //       accion: "create",
+  //       icon: <IoIosAdd />,
+  //     },
+  //   ],
+  // },
   {
     title: "Recepción de paquetes",
     path: "/admin",

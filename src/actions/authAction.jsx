@@ -37,9 +37,10 @@ export function StarLogin(correo, password) {
             id: data.COD_USER,
             name: data.NAME,
             lastname: data.LASTNAME,
+            email: data.EMAIL,
             img_perfil: data.IMG_FHOTO,
             permission: data.PermissionUser,
-            customer: data.CustomerLocker,
+            customer: data.CustomerUser,
           })
         );
       } else {
@@ -75,6 +76,7 @@ export function startCheckingLogin() {
           id: data.COD_USER,
           name: data.NAME,
           lastname: data.LASTNAME,
+          email: data.EMAIL,
           img_perfil: data.IMG_FHOTO,
           permission: data.PermissionUser,
           customer: data.CustomerUser,

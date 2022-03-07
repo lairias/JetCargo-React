@@ -126,7 +126,7 @@ function JetCargoRoutes() {
             }
           />
           <Route
-            path="/admin/packages/"
+            path="/admin/locker/:NUM_LOCKER/:COD_LOCKER/packages/"
             element={
               <>
                 <Admin>

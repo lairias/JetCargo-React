@@ -43,4 +43,13 @@ export const types = {
   //secciones de mostar los ModalEditTypeUser
   ShowModalCreateLockerCustomer : "[ModalLockerCustomers] Show Modal Create Locker Customer",
 
+
+
+
+//Seccion de los paquetes de un usuario y casillero
+  GetAllPackageLockerUser: "[PackageUserLocker] Get All PackageUserLocker",
+
+
+
+
 };
