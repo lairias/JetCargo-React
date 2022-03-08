@@ -1,8 +1,19 @@
 import React, { useState } from "react";
 import ListPackageUser from "./List/ListPackageUser";
 import ModalInvoicePackage from "../Modal/Package/invoice/ModalInvoicePackage";
+import { useParams } from "react-router-dom";
 export const GetPackage = () => {
+  //*********************************Variables de State */
   const [showInvoice, setshoInvoice] = useState(false);
+  //*************************************************** */
+  //*********************************Variables de Hooks*/
+  const {NUM_LOCKER,COD_LOCKER,COD_PACKAGE} = useParams();
+  //*************************************************** */
+  //*********************************Variables de Funciones */
+  //*************************************************** */
+  //*********************************Variables de consola */
+  console.log(NUM_LOCKER,COD_LOCKER,COD_PACKAGE);
+  //*************************************************** */
   return (
     <>
       <div className="container mx-auto grid">

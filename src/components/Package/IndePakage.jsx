@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { ModalNewPackage } from "../Modal/Package/ModalNewPackage";
 import { GetPackages } from "./GetPackages";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { StartGetAllPackageLocker } from "../../actions/packageLockersAction";
 import { SpinerLoader } from "../Spinners/Loader";
+import ModalVeryTracking from "../Modal/Package/ModalVeryTracking";
 export const ShowPackages = () => {
   //*******************************************Variables de state */
-  const [shoModal, set_shoModal] = useState(false);
   const {NUM_LOCKER,COD_LOCKER} = useParams();
   const {customer} = useSelector((state) => state.auth)
   const {loadingPackagesLocker,packagesLocker} = useSelector((state) => state.packageLockers)
+  const { shoModalLockerCustomer } = useSelector((state) => state.modal_Locker_Customer);
   //************************************************************* */
   //*******************************************Variables de Hooks */
   const dispatch = useDispatch();
@@ -45,12 +45,17 @@ export const ShowPackages = () => {
               Nuevo paquete <span className="ml-2">+</span>
             </button>
           </div>
-          {shoModal ? <ModalNewPackage handleShoModal={handleShoModal} /> : ""}
+          {shoModalLockerCustomer && (
+        <ModalVeryTracking
+          isOpen={shoModalLockerCustomer}
+          setIsOpen={handleModalSinLokers}
+        />
+      )}
         </div>
         {/* Insertar contenido de las paginas **/}
         {loadingPackagesLocker ? (loadingPackagesLocker && (
           packagesLocker ? (packagesLocker.map((packageLockers) => (
-            packageLockers.IND_LOCKER && packageLockers.IND_PACKAGE && (<GetPackages key={packageLockers.COD_PACKAGE} />)
+            packageLockers.IND_LOCKER && packageLockers.IND_PACKAGE && (<GetPackages key={packageLockers.COD_PACKAGE} items={packageLockers} />)
             
           ))): (<h2 className="my-6 text-2xl text-center font-semibold text-gray-700">
           No cuenta con paquetes

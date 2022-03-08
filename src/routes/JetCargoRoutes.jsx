@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 //Librerias
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
+import "primereact/resources/themes/lara-light-indigo/theme.css";  //theme
+import "primereact/resources/primereact.min.css";                  //core css
 /**Iportaciones de Reducer */
 import { useDispatch, useSelector } from "react-redux";
 
@@ -136,7 +137,7 @@ function JetCargoRoutes() {
             }
           />
           <Route
-            path="/admin/packages/:COD_PACKAGE"
+            path="/admin/locker/:NUM_LOCKER/:COD_LOCKER/packages/:COD_PACKAGE"
             element={
               <>
                 <Admin>
