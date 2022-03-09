@@ -12,7 +12,6 @@ export const GetPackage = () => {
   //*********************************Variables de Funciones */
   //*************************************************** */
   //*********************************Variables de consola */
-  console.log(NUM_LOCKER,COD_LOCKER,COD_PACKAGE);
   //*************************************************** */
   return (
     <>

@@ -4,7 +4,9 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { StartGetAllPackageLocker } from "../../actions/packageLockersAction";
 import { SpinerLoader } from "../Spinners/Loader";
+import {showModal} from "../../actions/modal_Locker_Customer"
 import ModalVeryTracking from "../Modal/Package/ModalVeryTracking";
+import ModalNewPackage from "../Modal/Package/ModalNewPackage";
 export const ShowPackages = () => {
   //*******************************************Variables de state */
   const {NUM_LOCKER,COD_LOCKER} = useParams();
@@ -20,7 +22,7 @@ export const ShowPackages = () => {
   //************************************************************* */
   //*******************************************Variables de funciones */
   const handleShoModal = () => {
-    set_shoModal(!shoModal);
+    dispatch(showModal(!shoModalLockerCustomer))
   };
   //************************************************************* */
   //*******************************************Variables de consola */
@@ -46,9 +48,9 @@ export const ShowPackages = () => {
             </button>
           </div>
           {shoModalLockerCustomer && (
-        <ModalVeryTracking
+        <ModalNewPackage
           isOpen={shoModalLockerCustomer}
-          setIsOpen={handleModalSinLokers}
+          setIsOpen={handleShoModal}
         />
       )}
         </div>

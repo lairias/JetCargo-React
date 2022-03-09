@@ -11,23 +11,23 @@ export default function ModalVeryTracking({ isOpen, setIsOpen }) {
   /****************************************************Variables de State */
   /********************************************************************** */
   /****************************************************Variables de Hooks */
-  const dispatch = useDispatch();
-  const { startloadingLoker, getloadingLoker, LockerCodRandom } = useSelector(
-    (state) => state.locker
-  );
-  const { name, lastname, customer } = useSelector((state) => state.auth);
-  /********************************************************************** */
-  /****************************************************Variables de funciones */
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(StarCodLockerRandom());
-  };
+  // const dispatch = useDispatch();
+  // const { startloadingLoker, getloadingLoker, LockerCodRandom } = useSelector(
+  //   (state) => state.locker
+  // );
+  // const { name, lastname, customer } = useSelector((state) => state.auth);
+  // /********************************************************************** */
+  // /****************************************************Variables de funciones */
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   dispatch(StarCodLockerRandom());
+  // };
 
-  useEffect(() => {
-    if (getloadingLoker) {
-      dispatch(AddLokersCustomers(customer.COD_CUSTOMER, LockerCodRandom));
-    }
-  }, [getloadingLoker, customer, dispatch]);
+  // useEffect(() => {
+  //   if (getloadingLoker) {
+  //     dispatch(AddLokersCustomers(customer.COD_CUSTOMER, LockerCodRandom));
+  //   }
+  // }, [getloadingLoker, customer, dispatch]);
   /********************************************************************** */
   /********************************************************************** */
   return (
@@ -52,8 +52,6 @@ export default function ModalVeryTracking({ isOpen, setIsOpen }) {
               >
                 <Dialog.Overlay className="fixed inset-0" />
               </Transition.Child>
-
-              {/* This element is to trick the browser into centering the modal contents. */}
               <span
                 className="inline-block h-screen align-middle"
                 aria-hidden="true"
@@ -74,12 +72,72 @@ export default function ModalVeryTracking({ isOpen, setIsOpen }) {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    {name} {lastname}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Desea registrarse a un casillero
-                    </p>
+                  <form className="mt-11">
+                  <div className=" md:justify-between md:flex w-full md:px-2">
+                    <label className="block mt-4 text-sm w-full md:px-2">
+                      <span className="text-gray-700 dark:text-gray-900">
+                        Nombre del paquete
+                      </span>
+                      <input
+                        className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Nombre del paquete"
+                        name="text"
+                      />
+                    </label>
+                    <label className="block mt-4 text-sm w-full md:px-2">
+                      <span className="text-gray-700 dark:text-gray-900">
+                        Número de tranking
+                      </span>
+                      <input
+                        className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Numero de tracking"
+                        name="text"
+                      />
+                    </label>
+                  </div>
+                  <div className="md:justify-between md:flex">
+                    <label className="block mt-4 text-sm w-full md:px-2">
+                      <span className="text-gray-700 dark:text-gray-900">
+                        Correo electrónico
+                      </span>
+                      <select className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                        <option selected disabled value>
+                          Número de Casillero
+                        </option>
+                        <option>#61801</option>
+                        <option>#62804</option>
+                      </select>
+                    </label>
+                    <label className="block mt-4 text-sm w-full md:px-2">
+                      <span className="text-gray-700 dark:text-gray-900">
+                        Tipo de paquete
+                      </span>
+                     
+                    </label>
+                    <label className="block mt-4 text-sm w-full md:px-2">
+                      <span className="text-gray-700 dark:text-gray-900">
+                        Tipo de envio
+                      </span>
+                      <select className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                        <option selected disabled value>
+                          Category
+                        </option>
+                        <option>Aéreo</option>
+                        <option>Maritimo</option>
+                        <option>Expres</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div className="mt-8">
+                    <textarea
+                      placeholder="Description"
+                      className="py-3 pl-3 overflow-y-auto h-24 border rounded border-gray-200 w-full resize-none focus:outline-none"
+                      defaultValue={""}
+                    />
+                  </div>
+                </form>
                   </div>
                   <div className="mt-4 flex justify-between">
                     <button
