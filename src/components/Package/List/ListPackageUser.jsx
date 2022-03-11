@@ -1,4 +1,3 @@
-import { FaFileInvoiceDollar } from "react-icons/fa";
 
 export default function ListPackageUser({ showInvoice, setshoInvoice }) {
   const handleShowInvoice = () => {
@@ -17,7 +16,6 @@ export default function ListPackageUser({ showInvoice, setshoInvoice }) {
                 {" "}
                 Factura{" "}
                 <span className="ml-2">
-                  <FaFileInvoiceDollar />
                 </span>
               </button>
             </div>

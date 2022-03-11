@@ -34,17 +34,14 @@ export function Startgetpermision(COD_TYPEUSERS) {
 }
 export function Starteditpermision(COD_TYPEUSERS) {
   return async function (dispatch) {
-    debugger;
     const data = await fetchConToken(`roles/${COD_TYPEUSERS}`, {}, "GET");
     const json = await data.json();
-    debugger;
     if (json.ok) {
       dispatch(
         GetPermissionEdit({
           typeUsesEditState: json,
         })
       );
-      debugger;
     } else {
       toast.error(`Error de proceso`, { duration: 3000 });
     }

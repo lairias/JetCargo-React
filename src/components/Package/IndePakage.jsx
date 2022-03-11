@@ -9,12 +9,13 @@ import ModalVeryTracking from "../Modal/Package/ModalVeryTracking";
 import ModalNewPackage from "../Modal/Package/ModalNewPackage";
 export const ShowPackages = () => {
   //*******************************************Variables de state */
+  const [modalCreatepackage, setmodalCreatepackage] = useState(false);
   const {NUM_LOCKER,COD_LOCKER} = useParams();
+  //************************************************************* */
+  //*******************************************Variables de Hooks */
   const {customer} = useSelector((state) => state.auth)
   const {loadingPackagesLocker,packagesLocker} = useSelector((state) => state.packageLockers)
   const { shoModalLockerCustomer } = useSelector((state) => state.modal_Locker_Customer);
-  //************************************************************* */
-  //*******************************************Variables de Hooks */
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(StartGetAllPackageLocker(customer.COD_CUSTOMER,COD_LOCKER))
@@ -24,9 +25,11 @@ export const ShowPackages = () => {
   const handleShoModal = () => {
     dispatch(showModal(!shoModalLockerCustomer))
   };
+  const handleShoModalNewPackage = () => {
+    setmodalCreatepackage(!modalCreatepackage);
+  }
   //************************************************************* */
   //*******************************************Variables de consola */
-  console.log(packagesLocker);
   //************************************************************* */
 
 
@@ -48,11 +51,21 @@ export const ShowPackages = () => {
             </button>
           </div>
           {shoModalLockerCustomer && (
-        <ModalNewPackage
+        <ModalVeryTracking
+        setmodalCreatepackage={setmodalCreatepackage}
           isOpen={shoModalLockerCustomer}
           setIsOpen={handleShoModal}
         />
       )}
+      {modalCreatepackage && (
+        <ModalNewPackage 
+        isOpen={modalCreatepackage}
+        setIsOpen ={handleShoModalNewPackage}
+        handleShoModal={handleShoModal}
+        handleShoModalNewPackage={handleShoModalNewPackage}
+        />
+      )}
+
         </div>
         {/* Insertar contenido de las paginas **/}
         {loadingPackagesLocker ? (loadingPackagesLocker && (
@@ -61,6 +74,7 @@ export const ShowPackages = () => {
             
           ))): (<h2 className="my-6 text-2xl text-center font-semibold text-gray-700">
           No cuenta con paquetes
+          
         </h2>)
           
         )   ):(<SpinerLoader />)}

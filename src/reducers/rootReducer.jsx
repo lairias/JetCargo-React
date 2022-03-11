@@ -9,6 +9,9 @@ import { customersReducer } from "./customerReducer";
 import { lokersReducer } from "./lockerReducer";
 import { modal_Locker_Customer } from "./modal_Locker_CustomerReducer";
 import { packagelockerReducer } from "./packagelockerReducer";
+import { serviceReducer } from "./serviceReducer";
+import { trackingReducer } from "./trackingReducer";
+import { typepackageReducer } from "./typepackageReducer";
 
 export const rootReducer = combineReducers({
   auth: autReducer,
@@ -20,5 +23,8 @@ export const rootReducer = combineReducers({
   locker: lokersReducer,
   modal_Locker_Customer: modal_Locker_Customer,
   packageLockers: packagelockerReducer,
+  services: serviceReducer,
+  tracking: trackingReducer,
+  typepackage: typepackageReducer,
 });
 

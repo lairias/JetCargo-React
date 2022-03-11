@@ -6,16 +6,32 @@ import {
   descripcion_CategoriPaquete,
 } from "../components/validations";
 
-export function GetAllCategoryPackage() {
+export function GetAllCategoryPackage(type= false) {
   return async function (dispatch) {
     const data = await fetchConToken("catpackage", {}, "GET");
     const json = await data.json();
-    if (json.ok) {
+    console.log(json);
+    if(type){
+      const DataArray = new Array();
+      json.catPackage.forEach(element => {
+        DataArray.push({
+          value:element.COD_CATPACKAGE ,
+          label:element.DES_CATPACKAGE +" - "+ element.NAM_CATPACKAGE ,
+        });
+      });
       dispatch(
         GetDataCategoryPackage({
-          categoryPackage: json.catPackage,
+          categoryPackage: DataArray,
         })
       );
+    }else{
+      if (json.ok) {
+        dispatch(
+          GetDataCategoryPackage({
+            categoryPackage: json.catPackage,
+          })
+        );
+      }
     }
   };
 }

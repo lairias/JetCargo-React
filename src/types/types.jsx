@@ -49,6 +49,21 @@ export const types = {
 //Seccion de los paquetes de un usuario y casillero
   GetAllPackageLockerUser: "[PackageUserLocker] Get All PackageUserLocker",
 
+//Seccion de las servicios de enviaremos
+  GetAllServices: "[Services] Get All Services",
+
+
+//seccion de tracking
+
+SearcTrackingService : "[Tracking] Search Tracking Service",
+StarSearcTrackingService : "[Tracking] Start Search Tracking Service",
+ShowCreateTracking : "[Tracking] Show Create Tracking",
+
+
+
+//Seciones de las typos de Paquetes
+GetAllTypePackage: "[TypePackage] Get All TypePackage",
+
 
 
 
