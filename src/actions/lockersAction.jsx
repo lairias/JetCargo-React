@@ -54,46 +54,44 @@ export function StarCodLockerRandom() {
 export function AddLokersCustomers(COD_CUSTOMER, COD_LOCKER) {
   return async function (dispatch, getState) {
     const FRISTNAME = getState().auth.name;
-    const  LASTNAME = getState().auth.lastname;
-    const  EMAIL = getState().auth.email;
+    const LASTNAME = getState().auth.lastname;
+    const EMAIL = getState().auth.email;
     const data = await fetchConToken(
       `locker/customer`,
-      { COD_CUSTOMER, COD_LOCKER,FRISTNAME,LASTNAME,EMAIL},
+      { COD_CUSTOMER, COD_LOCKER, FRISTNAME, LASTNAME, EMAIL },
       "POST"
     );
     const json = await data.json();
     if (json.ok) {
-      const dataFect = async ()=>{
-        const data1 = await fetchConToken(`locker/customer/${COD_CUSTOMER}`,
+      const dataFect = async () => {
+        const data1 = await fetchConToken(
+          `locker/customer/${COD_CUSTOMER}`,
           {},
           "GET"
         );
         return await data1.json();
-        
-      }
-      const callback =  dataFect()
-      callback.then(elemento => {
-        if(elemento.ok) { 
+      };
+      const callback = dataFect();
+      callback.then((elemento) => {
+        if (elemento.ok) {
           dispatch(
-                CasilleroUser({
-                  lockerUser: elemento.locker,
-                })
-              );
-              dispatch(
-                EndAddCasilleroUserCustomer({
-                  startloadingLoker: false,
-                })
-              );
-              dispatch(showModal(false));
-              toast
-              .promise(callback, {
-                loading: "Enviando",
-                success: "Email enviado",
-                error: "Error al enviar email",
-              })
-         }
-      })
-     
+            CasilleroUser({
+              lockerUser: elemento.locker,
+            })
+          );
+          dispatch(
+            EndAddCasilleroUserCustomer({
+              startloadingLoker: false,
+            })
+          );
+          dispatch(showModal(false));
+          toast.promise(callback, {
+            loading: "Enviando",
+            success: "Email enviado",
+            error: "Error al enviar email",
+          });
+        }
+      });
     }
   };
 }

@@ -15,7 +15,9 @@ export default function IndexHome() {
   /**********************************Variables Hooks */
   //importaciones de permisos
   const { permission, customer } = useSelector((state) => state.auth);
-  const { shoModalLockerCustomer } = useSelector((state) => state.modal_Locker_Customer);
+  const { shoModalLockerCustomer } = useSelector(
+    (state) => state.modal_Locker_Customer
+  );
   const { lockerUser, loadingLokersUser } = useSelector(
     (state) => state.locker
   );
@@ -31,7 +33,7 @@ export default function IndexHome() {
     set_shoModalconLokers(!shoModalconLokers);
   };
   const handleModalSinLokers = () => {
-    dispatch(showModal(!shoModalLockerCustomer))
+    dispatch(showModal(!shoModalLockerCustomer));
   };
   /***************************************************  */
   return (

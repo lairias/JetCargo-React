@@ -6,17 +6,17 @@ import {
   descripcion_CategoriPaquete,
 } from "../components/validations";
 
-export function GetAllCategoryPackage(type= false) {
+export function GetAllCategoryPackage(type = false) {
   return async function (dispatch) {
     const data = await fetchConToken("catpackage", {}, "GET");
     const json = await data.json();
     console.log(json);
-    if(type){
+    if (type) {
       const DataArray = new Array();
-      json.catPackage.forEach(element => {
+      json.catPackage.forEach((element) => {
         DataArray.push({
-          value:element.COD_CATPACKAGE ,
-          label:element.DES_CATPACKAGE +" - "+ element.NAM_CATPACKAGE ,
+          value: element.COD_CATPACKAGE,
+          label: element.DES_CATPACKAGE + " - " + element.NAM_CATPACKAGE,
         });
       });
       dispatch(
@@ -24,7 +24,7 @@ export function GetAllCategoryPackage(type= false) {
           categoryPackage: DataArray,
         })
       );
-    }else{
+    } else {
       if (json.ok) {
         dispatch(
           GetDataCategoryPackage({

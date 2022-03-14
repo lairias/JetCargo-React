@@ -9,11 +9,15 @@ import {
 import { InputText } from "primereact/inputtext";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { useForms } from "../../../hooks/useForms";
-import { InputTextarea } from 'primereact/inputtextarea';
+import { InputTextarea } from "primereact/inputtextarea";
 
 import Select from "react-select";
 import { GetAllservices } from "../../../actions/serviceAction";
-import { GetSeartTrackingService, statusTracking } from "../../../actions/trackingAction";
+import {
+  DataPostTrackingServiceCustomer,
+  GetSeartTrackingService,
+  statusTracking,
+} from "../../../actions/trackingAction";
 import { Toaster } from "react-hot-toast";
 import { GetAllTypePackage } from "../../../actions/typepackageAction";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
@@ -23,17 +27,17 @@ export default function ModalVeryTracking({
   setmodalCreatepackage,
 }) {
   /****************************************************Variables de State */
-  const [selectedServices, setSelectedServices] = useState(null);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [selectedType, setSelectedType] = useState(null);
+  const [selectedServices, setSelectedServices] = useState();
+  const [selectedCategory, setSelectedCategory] = useState();
+  const [selectedType, setSelectedType] = useState();
   /********************************************************************** */
   /****************************************************Variables de Hooks */
-  const [{ NUM_TRACKING, NAME_PACKAGE,DES_PACKAGE }, handleInputChange] = useForms({
-    NUM_TRACKING: "",
-    NAME_PACKAGE: "",
-    DES_PACKAGE: "",
-    
-  });
+  const [{ NUM_TRACKING, NAME_PACKAGE, DES_PACKAGE }, handleInputChange] =
+    useForms({
+      NUM_TRACKING: "",
+      NAME_PACKAGE: "",
+      DES_PACKAGE: "",
+    });
   const { StarSearcTrackingServiceStatus, StatusShowCreateTracking } =
     useSelector((state) => state.tracking);
   const { services, loadingServices } = useSelector((state) => state.services);
@@ -55,25 +59,32 @@ export default function ModalVeryTracking({
   // /****************************************************Variables de funciones */
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(GetSeartTrackingService(selectedServices.value, NUM_TRACKING));
+    dispatch(GetSeartTrackingService(selectedServices, NUM_TRACKING));
   };
 
   const handleSubmitForm = () => {
-    setIsOpen(false);
-    setmodalCreatepackage(true);
+    dispatch(
+      DataPostTrackingServiceCustomer(
+        selectedServices,
+        selectedCategory,
+        selectedType,
+        NUM_TRACKING,
+        NAME_PACKAGE,
+        DES_PACKAGE,
+        setIsOpen,
+        setmodalCreatepackage
+      )
+    );
   };
   const handleRegresar = (e) => {
-   dispatch(statusTracking(false))
+    dispatch(statusTracking(false));
   };
   /********************************************************************** */
   /********************************************************************** */
   return (
     <>
       <Toaster />
-      <div
-        id="popup"
-        className="fixed w-full flex justify-center inset-0"
-      >
+      <div id="popup" className="fixed w-full flex justify-center inset-0">
         <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog
@@ -113,13 +124,16 @@ export default function ModalVeryTracking({
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Tracking Paquete { StatusShowCreateTracking && (<button
-                      type="button"
-                      onClick={handleRegresar}
-                      className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-                    >
-                     Regresar
-                    </button>)}
+                    Tracking Paquete{" "}
+                    {StatusShowCreateTracking && (
+                      <button
+                        type="button"
+                        onClick={handleRegresar}
+                        className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
+                      >
+                        Regresar
+                      </button>
+                    )}
                   </Dialog.Title>
                   {StatusShowCreateTracking ? (
                     <div className="mt-2">
@@ -209,7 +223,7 @@ export default function ModalVeryTracking({
                               defaultValue={selectedServices}
                               onChange={setSelectedServices}
                               options={services}
-                              formatOptionLabel={(country) => (
+                              formatOptionLabel={(services) => (
                                 <div className="flex justify-between">
                                   <img
                                     style={{
@@ -218,10 +232,10 @@ export default function ModalVeryTracking({
                                       borderRadius: "15%",
                                       marginRight: "10px",
                                     }}
-                                    src={country.image}
-                                    alt="country-image"
+                                    src={services.image}
+                                    alt="services-image"
                                   />
-                                  <span>{country.label}</span>
+                                  <span>{services.label}</span>
                                 </div>
                               )}
                             />

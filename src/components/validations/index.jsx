@@ -127,3 +127,28 @@ export const descripcion_CategoriPaquete = yup.object().shape({
     .nullable()
     .required("El dato es descripción es necesario"),
 });
+
+//Validaciones de tracking-normal leading-4">
+export const tracking_normal = yup.object().shape({
+  tracking: yup
+    .string()
+    .nullable()
+    .required("El dato es tracking es necesario")
+    .max(20, "El dato tracking maxímo de caracteres permitidos 20")
+    .min(4, " El dato tracking minímo de caracteres permitidos 4 "),
+});
+export const service_normal = yup.object().shape({
+  service: yup.number().nullable().required("El dato es servicio es necesario"),
+});
+export const nombrePackage = yup.object().shape({
+  NAME_PACKAGE: yup
+    .string()
+    .nullable()
+    .required("El dato es nombre es necesario"),
+});
+export const desPackage = yup.object().shape({
+  DES_PACKAGE: yup
+    .string()
+    .nullable()
+    .required("El dato es descripción es necesario"),
+});

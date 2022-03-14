@@ -10,8 +10,7 @@ export const modal_Locker_Customer = (state = initialState, action) => {
       return {
         shoModalLockerCustomer: action.payload,
       };
-   
-    
+
     default:
       return state;
   }

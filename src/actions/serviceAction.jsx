@@ -5,22 +5,21 @@ export function GetAllservices(evento) {
   return async function (dispatch) {
     const data = await fetchConToken(`service`, {}, "GET");
     const json = await data.json();
-    
-    if(json.ok) {
+
+    if (json.ok) {
       const DataArray = new Array();
-      json.service.forEach(element => {
+      json.service.forEach((element) => {
         DataArray.push({
-          value:element.COD_SERVICE ,
-          label:element.SERVICE_NAME,
-          image: element.SERVICE_LOGO
+          value: element.COD_SERVICE,
+          label: element.SERVICE_NAME,
+          image: element.SERVICE_LOGO,
         });
       });
       dispatch(
-          DataServices({
+        DataServices({
           services: DataArray,
         })
       );
-
     }
   };
 }

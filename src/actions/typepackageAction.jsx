@@ -2,20 +2,17 @@ import toast from "react-hot-toast";
 import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
 
-export function GetAllTypePackage(type= false) {
-return async function (dispatch) {
-    const data = await fetchConToken(`typepackage/`,
-    {},
-    "GET"
-    );
+export function GetAllTypePackage(type = false) {
+  return async function (dispatch) {
+    const data = await fetchConToken(`typepackage/`, {}, "GET");
     const json = await data.json();
-    if(type){
+    if (type) {
       const DataArray = new Array();
-      json.typePackage.forEach(element => {
+      json.typePackage.forEach((element) => {
         DataArray.push({
-          value:element.COD_TYPEPACKAGE ,
-          label: element.NAM_TYPEPACKAGE ,
-          image: element.IMG_TYPEPACKAGE
+          value: element.COD_TYPEPACKAGE,
+          label: element.NAM_TYPEPACKAGE,
+          image: element.IMG_TYPEPACKAGE,
         });
       });
       dispatch(
@@ -23,18 +20,17 @@ return async function (dispatch) {
           TypePackage: DataArray,
         })
       );
-    }else{
+    } else {
       if (json.ok) {
-      dispatch(
+        dispatch(
           DataAllTypePackage({
-          TypePackage: json.typePackage,
+            TypePackage: json.typePackage,
           })
-      );
+        );
+      }
     }
+  };
 }
-};
-}
-
 
 const DataAllTypePackage = (search) => ({
   type: types.GetAllTypePackage,

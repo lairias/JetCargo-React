@@ -4,4 +4,3 @@ export const showModal = (stado) => ({
   type: types.ShowModalCreateLockerCustomer,
   payload: stado,
 });
-

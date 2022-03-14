@@ -27,4 +27,3 @@ export const rootReducer = combineReducers({
   tracking: trackingReducer,
   typepackage: typepackageReducer,
 });
-

@@ -16,7 +16,7 @@ export default function CardList({ item }) {
           </div>
         </div>
         <div className="w-56 h-9">
-          <Link 
+          <Link
             to={`/admin/locker/${item.NUM_LOCKER}/${item.COD_LOCKER}/packages/`}
             role="button"
             aria-label="message"

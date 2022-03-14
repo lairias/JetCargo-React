@@ -2,20 +2,35 @@ import { useEffect, useCallback } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { InputNumber } from 'primereact/inputnumber';
+import { InputNumber } from "primereact/inputnumber";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { useForms } from "../../../hooks/useForms";
-export default function ModalVeryTracking({ isOpen, setIsOpen,handleShoModal
-  ,handleShoModalNewPackage }) {
+import { InputText } from "primereact/inputtext";
+export default function ModalVeryTracking({
+  isOpen,
+  setIsOpen,
+  handleShoModal,
+  handleShoModalNewPackage,
+}) {
   /****************************************************Variables de State */
-  const [{ HEIGHT_PACKAGE,WIDTH_PACKAGE,LENGTH_PACKAGE,WEIGHT_PACKAGE,PRICE_PACKAGE,VOL_PACKAGE}, handleInputChange] = useForms(
-   { HEIGHT_PACKAGE : 0,
-   WIDTH_PACKAGE : 0,
-   LENGTH_PACKAGE : 0,
-   WEIGHT_PACKAGE : 0,
-   PRICE_PACKAGE : 0,
-   VOL_PACKAGE : 0}
-  );
+  const [
+    {
+      HEIGHT_PACKAGE,
+      WIDTH_PACKAGE,
+      LENGTH_PACKAGE,
+      WEIGHT_PACKAGE,
+      PRICE_PACKAGE,
+      VOL_PACKAGE,
+    },
+    handleInputChange,
+  ] = useForms({
+    HEIGHT_PACKAGE: 0,
+    WIDTH_PACKAGE: 0,
+    LENGTH_PACKAGE: 0,
+    WEIGHT_PACKAGE: 0,
+    PRICE_PACKAGE: 0,
+    VOL_PACKAGE: 0,
+  });
   /********************************************************************** */
   /****************************************************Variables de Hooks */
   // const dispatch = useDispatch();
@@ -27,8 +42,8 @@ export default function ModalVeryTracking({ isOpen, setIsOpen,handleShoModal
   // /****************************************************Variables de funciones */
   const handleSubmit = (e) => {};
   const handleRegresar = (e) => {
-    handleShoModal(true)
-  handleShoModalNewPackage(false)
+    handleShoModal(true);
+    handleShoModalNewPackage(false);
   };
 
   /********************************************************************** */
@@ -75,106 +90,125 @@ export default function ModalVeryTracking({ isOpen, setIsOpen,handleShoModal
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Datos de paquetes <button
+                    Datos de paquetes{" "}
+                    <button
                       type="button"
                       onClick={handleRegresar}
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     >
-                     Regresar
+                      Regresar
                     </button>
                   </Dialog.Title>
                   <div className="mt-2">
                     <form className="mt-11">
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
-                          Altura paquete <span className="text-bold">*Opcional</span> 
+                          Altura paquete{" "}
+                          <span className="text-bold">*Opcional</span>
                         </span>
-                        <InputNumber
-                          name="HEIGHT_PACKAGE"
-                          value={HEIGHT_PACKAGE}
-                          className="w-full"
-                          keyfilter="hex"
-                          inputId="mile"
-                          suffix=" -mt"
-                          placeholder="Número de Tracking"
-                          onChange={handleInputChange}
-                        />
+                        <div className="p-inputgroup">
+                          <span className="p-inputgroup-addon">mt.</span>
+                          <InputText
+                            placeholder="Username"
+                            name="HEIGHT_PACKAGE"
+                            value={HEIGHT_PACKAGE}
+                            onChange={handleInputChange}
+                            id="numbers"
+                            keyfilter="num"
+                          />
+                        </div>
                       </label>
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
-                        Ancho paquete <span className="text-bold">*Opcional</span> 
+                          Ancho paquete{" "}
+                          <span className="text-bold">*Opcional</span>
                         </span>
-                        <InputNumber
-                          className="w-full "
-                          keyfilter="hex"
-                          inputId="mile"
-                          suffix=" -mt"
-                          placeholder="Número de Tracking"
-                          name="WIDTH_PACKAGE"
-                          value={WIDTH_PACKAGE}
-                          onChange={handleInputChange}
-                        />
+                        <div className="p-inputgroup">
+                          <span className="p-inputgroup-addon">mt.</span>
+                          <InputText
+                            placeholder="Username"
+                            name="WIDTH_PACKAGE"
+                            value={WIDTH_PACKAGE}
+                            onChange={handleInputChange}
+                            id="numbers2"
+                            keyfilter="num"
+                          />
+                        </div>
                       </label>
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
-                          Cantidad de paquetes <span className="text-bold">*Opcional</span> 
+                          Cantidad de paquetes{" "}
+                          <span className="text-bold">*Opcional</span>
                         </span>
-                        <InputNumber
-                          className="w-full "
-                          inputId="mile"
-                          suffix=" -mt"
-                          placeholder="Número de Tracking"
-                          name="LENGTH_PACKAGE"
-                          onChange={handleInputChange}
-                          value={LENGTH_PACKAGE}
-                        />
+                        <div className="p-inputgroup">
+                          <span className="p-inputgroup-addon">mt.</span>
+                          <InputText
+                            placeholder="Username"
+                            name="LENGTH_PACKAGE"
+                            onChange={handleInputChange}
+                            value={LENGTH_PACKAGE}
+                            id="numbers2"
+                            keyfilter="num"
+                          />
+                        </div>
                       </label>
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
-                          Peso de paquete <span className="text-bold">*Opcional</span> 
+                          Peso de paquete{" "}
+                          <span className="text-bold">*Opcional</span>
                         </span>
-                        <InputNumber
-                          className="w-full "
-                          keyfilter="hex"
-                          inputId="mile"
-                          suffix=" -lb"
-                          placeholder="Número de Tracking"
-                          name="WEIGHT_PACKAGE"
-                          onChange={handleInputChange}
-                          value={WEIGHT_PACKAGE}
-                        />
-                       
+                        <div className="p-inputgroup">
+                          <span className="p-inputgroup-addon">mt.</span>
+                          <InputText
+                            placeholder="Username"
+                            name="WEIGHT_PACKAGE"
+                            onChange={handleInputChange}
+                            value={WEIGHT_PACKAGE}
+                            id="numbers2"
+                            keyfilter="num"
+                          />
+                        </div>
                       </label>
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
-                          Volumen de paquete <span className="text-bold">*Opcional</span> 
+                          Volumen de paquete{" "}
+                          <span className="text-bold">*Opcional</span>
                         </span>
-                        <InputNumber
-                          className="w-full "
-                          keyfilter="hex"
-                          inputId="mile"
-                          suffix=" -mt"
-                          placeholder="Número de Tracking"
-                          name="VOL_PACKAGE"
-                          onChange={handleInputChange}
-                          value={VOL_PACKAGE}
-                        />
+                        <div className="p-inputgroup">
+                          <span className="p-inputgroup-addon">mt.</span>
+                          <InputText
+                            placeholder="Username"
+                            name="VOL_PACKAGE"
+                            onChange={handleInputChange}
+                            value={VOL_PACKAGE}
+                            id="numbers2"
+                            keyfilter="num"
+                          />
+                        </div>
                       </label>
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
-                          Precio Tracking <span className="text-bold">*Opcional</span> 
+                          Precio Tracking{" "}
+                          <span className="text-bold">*Opcional</span>
                         </span>
-                        <InputNumber
-                          className="w-full"
-                          placeholder="Nombre de paquete"
-                          disabled={true}
-                          inputId="mile"
-                          suffix=" -lb"
-                          name="PRICE_PACKAGE"
-                          keyfilter={/^[^<>*!]+$/}
-                          value={PRICE_PACKAGE}
-                          onChange={handleInputChange}
-                        />
+
+                        <div className="grid">
+                          <div className="col-12">
+                            <div className="p-inputgroup">
+                              <span className="p-inputgroup-addon">Lps.</span>
+                              <InputText
+                                placeholder="Username"
+                                name="PRICE_PACKAGE"
+                                disabled={true}
+                                value={PRICE_PACKAGE}
+                                onChange={handleInputChange}
+                                id="numbers2"
+                                keyfilter="num"
+                              />
+                              <span className="p-inputgroup-addon">.00</span>
+                            </div>
+                          </div>
+                        </div>
                       </label>
                     </form>
                   </div>
@@ -184,6 +218,7 @@ export default function ModalVeryTracking({ isOpen, setIsOpen,handleShoModal
                       onClick={handleSubmit}
                       className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
                     >
+                      Si, Registrar
                       {/* {startloadingLoker ? <SpinnerButton /> : "Si, Registrar"} */}
                     </button>
                     <button

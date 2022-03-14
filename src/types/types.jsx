@@ -38,33 +38,27 @@ export const types = {
   EndAddCasillerosCustomers: "[Casilleros] Add Casilleros Customers",
   GetCasilleroUser: "[Casilleros] Get one Casillero",
 
-
-
   //secciones de mostar los ModalEditTypeUser
-  ShowModalCreateLockerCustomer : "[ModalLockerCustomers] Show Modal Create Locker Customer",
+  ShowModalCreateLockerCustomer:
+    "[ModalLockerCustomers] Show Modal Create Locker Customer",
 
-
-
-
-//Seccion de los paquetes de un usuario y casillero
+  //Seccion de los paquetes de un usuario y casillero
   GetAllPackageLockerUser: "[PackageUserLocker] Get All PackageUserLocker",
 
-//Seccion de las servicios de enviaremos
+  //Seccion de las servicios de enviaremos
   GetAllServices: "[Services] Get All Services",
 
+  //seccion de tracking
 
-//seccion de tracking
+  SearcTrackingService: "[Tracking] Search Tracking Service",
+  StarSearcTrackingService: "[Tracking] Start Search Tracking Service",
+  ShowCreateTracking: "[Tracking] Show Create Tracking",
+  StarPostTrackingServiceCustomer:
+    "[Tracking] Start Post Tracking Service Customer",
+  SaveDataTrackingServiceCustomer:
+    "[Tracking] Save Data Tracking Service Customer",
+  PostTrackingServiceCustomer: "[Tracking] Post Tracking Service Customer",
 
-SearcTrackingService : "[Tracking] Search Tracking Service",
-StarSearcTrackingService : "[Tracking] Start Search Tracking Service",
-ShowCreateTracking : "[Tracking] Show Create Tracking",
-
-
-
-//Seciones de las typos de Paquetes
-GetAllTypePackage: "[TypePackage] Get All TypePackage",
-
-
-
-
+  //Seciones de las typos de Paquetes
+  GetAllTypePackage: "[TypePackage] Get All TypePackage",
 };

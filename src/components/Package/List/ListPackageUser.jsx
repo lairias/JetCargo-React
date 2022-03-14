@@ -1,4 +1,3 @@
-
 export default function ListPackageUser({ showInvoice, setshoInvoice }) {
   const handleShowInvoice = () => {
     setshoInvoice(!showInvoice);
@@ -14,9 +13,7 @@ export default function ListPackageUser({ showInvoice, setshoInvoice }) {
                 className="flex items-center justify-between w-full  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
               >
                 {" "}
-                Factura{" "}
-                <span className="ml-2">
-                </span>
+                Factura <span className="ml-2"></span>
               </button>
             </div>
             <p className="text-sm lg:text-xl font-semibold leading-tight text-gray-800">
@@ -77,10 +74,8 @@ export default function ListPackageUser({ showInvoice, setshoInvoice }) {
               </tbody>
             </table>
           </div>
-       
         </div>
       </div>
-     
     </>
   );
 }
