@@ -51,6 +51,7 @@ export const types = {
   //seccion de tracking
 
   SearcTrackingService: "[Tracking] Search Tracking Service",
+  GetAlltracking: "[Tracking] Get All tracking",
   StarSearcTrackingService: "[Tracking] Start Search Tracking Service",
   ShowCreateTracking: "[Tracking] Show Create Tracking",
   StarPostTrackingServiceCustomer:

@@ -4,7 +4,7 @@ import moment from "moment";
 export const GetPackages = ({ items }) => {
   return (
     <>
-      <div className="flex flex-wrap items-center justify-center  gap-7  sm:px-6 ">
+   
         <div className="w-64 p-4  rounded border hover:shadow-lg bg-white">
           <div className="flex justify-center items-center flex-col ">
             <div>
@@ -45,7 +45,6 @@ export const GetPackages = ({ items }) => {
             </NavLink>
           </div>
         </div>
-      </div>
     </>
   );
 };

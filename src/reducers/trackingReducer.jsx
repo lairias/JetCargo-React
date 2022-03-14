@@ -37,6 +37,12 @@ export const trackingReducer = (state = initialState, action) => {
         ...state,
         ...action.payload,
       };
+    case types.GetAlltracking:
+      return {
+        ...state,
+        ...action.payload,
+        AllTracking: action.payload,
+      };
     default:
       return state;
   }

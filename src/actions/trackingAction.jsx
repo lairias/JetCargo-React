@@ -9,6 +9,25 @@ import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
 import { StartGetAllPackageLocker } from "./packageLockersAction";
 
+export function GetTrackingAll(){
+  return async function (dispatch) {
+    const data = await fetchConToken(
+      `tracking`,
+      {},
+      "GET"
+    );
+    const json = await data.json();
+    if(json.ok){
+      debugger
+      dispatch(
+        DataAllTrackingNotOrden({
+        AllTracking : json.tracking})
+      );
+      debugger
+    }
+  }
+}
+
 export function GetSeartTrackingService(COD_SERVICE = false, NUM_TRACKING) {
   return async function (dispatch) {
     const DataTracking = await tracking_normal
@@ -30,7 +49,6 @@ export function GetSeartTrackingService(COD_SERVICE = false, NUM_TRACKING) {
         "GET"
       );
       const json = await data.json();
-      console.log(json);
       if (json.ok) {
         toast.error(`Número de tracking "${NUM_TRACKING}" no disponible`, {
           duration: 3000,
@@ -129,39 +147,56 @@ export function DataPostTrackingServiceCustomer(
   };
 }
 
-// jetcargo`@`%` PROCEDURE `INS_TRACKIN_ORDEN`(IN `COD_CATPACKAGE` BIGINT, IN `COD_SERVICE` BIGINT, IN `COD_TYPEPACKAGE` BIGINT, IN `NOM_PACKAGE` VARCHAR(120), IN `NUM_PACKAGE` VARCHAR(120), IN `DES_TRACKING` VARCHAR(255), IN `NUM_TRACKING` VARCHAR(255)
-
-export function PostTrackingServiceCustomer(COD_SERVICE,COD_CATEGORY,COD_TYPE,NUM_TRACKING,NAME_PACKAGE,DES_PACKAGE,COD_LOCKER
-  ,COD_CUSTOMER,setIsOpen) {
+export function PostTrackingServiceCustomer(
+  COD_SERVICE,
+  COD_CATEGORY,
+  COD_TYPE,
+  NUM_TRACKING,
+  NAME_PACKAGE,
+  DES_PACKAGE,
+  COD_LOCKER,
+  COD_CUSTOMER,
+  setIsOpen
+) {
   return async function (dispatch) {
-    const dataPost = await fetchConToken(`tracking`, {
-      COD_SERVICE,
-      COD_CATPACKAGE: COD_CATEGORY,
-      COD_TYPEPACKAGE : COD_TYPE,
-      NOM_PACKAGE : NAME_PACKAGE,
-      DES_TRACKING: DES_PACKAGE,
-      NUM_TRACKING,
-      COD_LOCKER
-      ,COD_CUSTOMER
-    }, "POST");
+    const dataPost = await fetchConToken(
+      `tracking`,
+      {
+        COD_SERVICE,
+        COD_CATPACKAGE: COD_CATEGORY,
+        COD_TYPEPACKAGE: COD_TYPE,
+        NOM_PACKAGE: NAME_PACKAGE,
+        DES_TRACKING: DES_PACKAGE,
+        NUM_TRACKING,
+        COD_LOCKER,
+        COD_CUSTOMER,
+      },
+      "POST"
+    );
     const json = await dataPost.json();
     console.log(json);
     if (json.ok) {
       toast.success(`Tracking creado con éxito`, { duration: 3000 });
       dispatch(StartGetAllPackageLocker(COD_CUSTOMER, COD_LOCKER));
       dispatch(EventoShowCreateTracking(false));
-      dispatch(
-        DataPostnewTracking({})
-      );
+      dispatch(DataPostnewTracking({}));
       setIsOpen(false);
     } else {
       toast.error(`Error al crear el tracking`, { duration: 3000 });
     }
   };
 }
+
+
+
+
 const DataSearcTrackingService = (search) => ({
   type: types.SearcTrackingService,
   payload: search,
+});
+const DataAllTrackingNotOrden = (data) => ({
+  type: types.GetAlltracking,
+  payload: data,
 });
 const DataPostnewTracking = (search) => ({
   type: types.SearcTrackingService,
@@ -175,7 +210,5 @@ const EventoShowCreateTracking = (status) => ({
   type: types.ShowCreateTracking,
   payload: status,
 });
-const StatusStartPostTrackingServiceCustomers = (status) => ({
-  type: types.StarPostTrackingServiceCustomer,
-  payload: status,
-});
+
+

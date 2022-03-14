@@ -1,4 +1,3 @@
-import toast from "react-hot-toast";
 import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
 

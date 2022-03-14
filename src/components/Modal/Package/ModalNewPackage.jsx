@@ -5,6 +5,7 @@ import SpinnerButton from "../../Spinners/SpinnerButton";
 import { useForms } from "../../../hooks/useForms";
 import { InputText } from "primereact/inputtext";
 import { PostTrackingServiceCustomer } from "../../../actions/trackingAction";
+import { Toaster } from "react-hot-toast";
 export default function ModalVeryTracking({
   isOpen,
   setIsOpen,
@@ -57,6 +58,7 @@ COD_CUSTOMER
   /********************************************************************** */
   return (
     <>
+    <Toaster />
       <div id="popup" className="z-10 fixed w-full flex justify-center inset-0">
         <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
         <Transition appear show={isOpen} as={Fragment}>

@@ -72,6 +72,7 @@ export const ShowPackages = () => {
           )}
         </div>
         {/* Insertar contenido de las paginas **/}
+        <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8">
         {loadingPackagesLocker ? (
           loadingPackagesLocker &&
           (packagesLocker ? (
@@ -79,20 +80,21 @@ export const ShowPackages = () => {
               (packageLockers) =>
                 packageLockers.IND_LOCKER &&
                 packageLockers.IND_PACKAGE && (
-                  <GetPackages
-                    key={packageLockers.COD_PACKAGE}
-                    items={packageLockers}
-                  />
+                    <GetPackages
+                      key={packageLockers.COD_PACKAGE}
+                      items={packageLockers}
+                    />
                 )
             )
-          ) : (
-            <h2 className="my-6 text-2xl text-center font-semibold text-gray-700">
+            ) : (
+              <h2 className="my-6 text-2xl text-center font-semibold text-gray-700">
               No cuenta con paquetes
             </h2>
           ))
-        ) : (
-          <SpinerLoader />
-        )}
+          ) : (
+            <SpinerLoader />
+            )}
+            </div>
       </div>
     </>
   );
