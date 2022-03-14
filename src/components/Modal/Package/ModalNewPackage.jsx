@@ -1,16 +1,17 @@
-import { useEffect, useCallback } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { InputNumber } from "primereact/inputnumber";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { useForms } from "../../../hooks/useForms";
 import { InputText } from "primereact/inputtext";
+import { PostTrackingServiceCustomer } from "../../../actions/trackingAction";
 export default function ModalVeryTracking({
   isOpen,
   setIsOpen,
   handleShoModal,
   handleShoModalNewPackage,
+  COD_LOCKER,
+COD_CUSTOMER
 }) {
   /****************************************************Variables de State */
   const [
@@ -33,14 +34,20 @@ export default function ModalVeryTracking({
   });
   /********************************************************************** */
   /****************************************************Variables de Hooks */
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const {COD_SERVICE,COD_CATEGORY,COD_TYPE,NUM_TRACKING,NAME_PACKAGE,DES_PACKAGE} = useSelector((state) => state.tracking);
   // const { startloadingLoker, getloadingLoker, LockerCodRandom } = useSelector(
   //   (state) => state.locker
   // );
   // const { name, lastname, customer } = useSelector((state) => state.auth);
   // /********************************************************************** */
   // /****************************************************Variables de funciones */
-  const handleSubmit = (e) => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    dispatch(PostTrackingServiceCustomer(COD_SERVICE,COD_CATEGORY,COD_TYPE,NUM_TRACKING,NAME_PACKAGE,DES_PACKAGE,COD_LOCKER
+      ,COD_CUSTOMER,setIsOpen))
+  };
   const handleRegresar = (e) => {
     handleShoModal(true);
     handleShoModalNewPackage(false);

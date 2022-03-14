@@ -62,6 +62,8 @@ export const ShowPackages = () => {
           )}
           {modalCreatepackage && (
             <ModalNewPackage
+            COD_LOCKER={COD_LOCKER}
+            COD_CUSTOMER = {customer.COD_CUSTOMER}
               isOpen={modalCreatepackage}
               setIsOpen={handleShoModalNewPackage}
               handleShoModal={handleShoModal}

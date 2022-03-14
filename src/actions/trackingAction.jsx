@@ -7,6 +7,7 @@ import {
 } from "../components/validations";
 import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
+import { StartGetAllPackageLocker } from "./packageLockersAction";
 
 export function GetSeartTrackingService(COD_SERVICE = false, NUM_TRACKING) {
   return async function (dispatch) {
@@ -128,32 +129,36 @@ export function DataPostTrackingServiceCustomer(
   };
 }
 
-export function PostTrackingServiceCustomer() {
+// jetcargo`@`%` PROCEDURE `INS_TRACKIN_ORDEN`(IN `COD_CATPACKAGE` BIGINT, IN `COD_SERVICE` BIGINT, IN `COD_TYPEPACKAGE` BIGINT, IN `NOM_PACKAGE` VARCHAR(120), IN `NUM_PACKAGE` VARCHAR(120), IN `DES_TRACKING` VARCHAR(255), IN `NUM_TRACKING` VARCHAR(255)
+
+export function PostTrackingServiceCustomer(COD_SERVICE,COD_CATEGORY,COD_TYPE,NUM_TRACKING,NAME_PACKAGE,DES_PACKAGE,COD_LOCKER
+  ,COD_CUSTOMER,setIsOpen) {
   return async function (dispatch) {
-    dispatch(StartPostTrackingServiceCustomer(true));
-    const dataPost = await fetchConToken(`tracking/create`, {}, "POST");
+    const dataPost = await fetchConToken(`tracking`, {
+      COD_SERVICE,
+      COD_CATPACKAGE: COD_CATEGORY,
+      COD_TYPEPACKAGE : COD_TYPE,
+      NOM_PACKAGE : NAME_PACKAGE,
+      DES_TRACKING: DES_PACKAGE,
+      NUM_TRACKING,
+      COD_LOCKER
+      ,COD_CUSTOMER
+    }, "POST");
     const json = await dataPost.json();
     console.log(json);
     if (json.ok) {
       toast.success(`Tracking creado con éxito`, { duration: 3000 });
-      dispatch(
-        DataPostTrackingServiceCustomer({
-          StatusPostCreateTracking: true,
-        })
-      );
+      dispatch(StartGetAllPackageLocker(COD_CUSTOMER, COD_LOCKER));
       dispatch(EventoShowCreateTracking(false));
+      dispatch(
+        DataPostnewTracking({})
+      );
+      setIsOpen(false);
     } else {
       toast.error(`Error al crear el tracking`, { duration: 3000 });
-      dispatch(
-        DataPostTrackingServiceCustomer({
-          StatusPostCreateTracking: false,
-        })
-      );
-      dispatch(EventoShowCreateTracking(false));
     }
   };
 }
-
 const DataSearcTrackingService = (search) => ({
   type: types.SearcTrackingService,
   payload: search,
