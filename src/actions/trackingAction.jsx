@@ -9,7 +9,7 @@ import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
 import { StartGetAllPackageLocker } from "./packageLockersAction";
 
-export function GetTrackingAll(){
+export function GetTrackingAll(set_dataTracking,setLoading){
   return async function (dispatch) {
     const data = await fetchConToken(
       `tracking`,
@@ -18,12 +18,8 @@ export function GetTrackingAll(){
     );
     const json = await data.json();
     if(json.ok){
-      debugger
-      dispatch(
-        DataAllTrackingNotOrden({
-        AllTracking : json.tracking})
-      );
-      debugger
+      set_dataTracking(json.tracking);
+      setLoading(false);
     }
   }
 }
@@ -188,16 +184,25 @@ export function PostTrackingServiceCustomer(
 }
 
 
-
+export function GetTrackindnewOrden(id){
+  return async function (dispatch){
+    const data = await fetchConToken(
+      `tracking/orden/${id}`,
+      {},
+      "GET"
+    );
+    const json = await data.json();
+    if(json.ok){
+      dispatch(DataTrackingOrden(json.tracking));
+    }
+  }
+}
 
 const DataSearcTrackingService = (search) => ({
   type: types.SearcTrackingService,
   payload: search,
 });
-const DataAllTrackingNotOrden = (data) => ({
-  type: types.GetAlltracking,
-  payload: data,
-});
+
 const DataPostnewTracking = (search) => ({
   type: types.SearcTrackingService,
   payload: search,

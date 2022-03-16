@@ -4,6 +4,8 @@ import { GetReceptionCountry } from "./GetReceptionCountry";
 import { useParams } from "react-router-dom";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import { useDispatch } from "react-redux";
+
+
 export const IndexReceptionCountry = () => {
   //****************************Variables state */
   const [shoModal, set_shoModal] = useState(false);
@@ -37,6 +39,7 @@ export const IndexReceptionCountry = () => {
       </div>
       {/* Insertar contenido de las paginas **/}
       <GetReceptionCountry />
+      
     </>
   );
 };

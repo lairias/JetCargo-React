@@ -2,10 +2,24 @@ import { NavLink } from "react-router-dom";
 import box from "../../img/box-1299001_1280.png";
 import moment from "moment";
 export const GetPackages = ({ items }) => {
+  console.log(items)
   return (
     <>
-   
         <div className="w-64 p-4  rounded border hover:shadow-lg bg-white">
+          <div className="flex justify-end">
+            {items.RECEIVED_TRACKING === "PENDING" ? (
+               <div className="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-red-500 w-24 sm:w-auto">Pendiente</div>
+            ): items.RECEIVED_TRACKING === "RECEIVED" ? (
+              <div className="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-yellow-500 w-24 sm:w-auto">Recibido</div>
+            ) : items.RECEIVED_TRACKING === "IN_PROGRESS" ? (
+              <div className="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-sky-500 w-24 sm:w-auto">En progreso</div>
+            ) : items.RECEIVED_TRACKING === "DELIVERED" (
+              <div className="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-green-500 w-24 sm:w-auto">Entregado</div>
+            )
+
+          }
+         
+          </div>
           <div className="flex justify-center items-center flex-col ">
             <div>
               <img height="150" width="150" src={box} alt="avatar-3" />
@@ -33,7 +47,22 @@ export const GetPackages = ({ items }) => {
             #{items.NUM_PACKAGE}
           </p>
           <div className="w-56 h-9">
-            <NavLink
+          {items.RECEIVED_TRACKING === "PENDING" ? (
+               ""
+            ): items.RECEIVED_TRACKING === "RECEIVED" ? (
+              <NavLink
+              to={`/admin/locker/${items.NUM_LOCKER}/${items.COD_LOCKER}/packages/${items.COD_PACKAGE}`}
+              role="button"
+              aria-label="message"
+              className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 hover:bg-gray-100 flex items-center justify-center flex-1 h-full py-3 px-20 bg-gray-50 border rounded border-gray-200"
+            >
+              <p className="text-sm font-medium leading-none text-gray-600">
+                Pago 
+              </p>
+            </NavLink>
+             
+            ) : items.RECEIVED_TRACKING === "IN_PROGRESS" ? (
+              <NavLink
               to={`/admin/locker/${items.NUM_LOCKER}/${items.COD_LOCKER}/packages/${items.COD_PACKAGE}`}
               role="button"
               aria-label="message"
@@ -43,6 +72,15 @@ export const GetPackages = ({ items }) => {
                 Seguimiento
               </p>
             </NavLink>
+            ) : items.RECEIVED_TRACKING === "DELIVERED" (
+          
+              <p className="text-sm font-medium leading-none text-gray-600">
+                Entregado
+              </p>
+            )
+
+          }
+            
           </div>
         </div>
     </>
