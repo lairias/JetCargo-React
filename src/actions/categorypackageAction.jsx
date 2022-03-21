@@ -10,7 +10,6 @@ export function GetAllCategoryPackage(type = false) {
   return async function (dispatch) {
     const data = await fetchConToken("catpackage", {}, "GET");
     const json = await data.json();
-    console.log(json);
     if (type) {
       const DataArray = new Array();
       json.catPackage.forEach((element) => {

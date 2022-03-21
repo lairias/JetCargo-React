@@ -7,6 +7,9 @@ import { SpinerLoader } from "../Spinners/Loader";
 import { showModal } from "../../actions/modal_Locker_Customer";
 import ModalVeryTracking from "../Modal/Package/ModalVeryTracking";
 import ModalNewPackage from "../Modal/Package/ModalNewPackage";
+import { useFetchToken } from "../../hooks/useFetch";
+import { NotFound } from "../Error/NotFound";
+
 export const ShowPackages = () => {
   //*******************************************Variables de state */
   const [modalCreatepackage, setmodalCreatepackage] = useState(false);
@@ -20,6 +23,15 @@ export const ShowPackages = () => {
   const { shoModalLockerCustomer } = useSelector(
     (state) => state.modal_Locker_Customer
   );
+
+
+  
+  const [DataLocker, StatusLocker] = useFetchToken(`locker/${COD_LOCKER}`);
+
+
+
+
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(StartGetAllPackageLocker(customer.COD_CUSTOMER, COD_LOCKER));
@@ -36,6 +48,10 @@ export const ShowPackages = () => {
   //*******************************************Variables de consola */
   //************************************************************* */
 
+  // if (Boolean(DataLocker) ) {
+  //   return <NotFound />;
+  // }
+  
   return (
     <>
       <div className="container  mx-auto grid">
@@ -45,13 +61,14 @@ export const ShowPackages = () => {
             Seguimiento de paquetes {NUM_LOCKER}
           </h2>
           <div className="px-6 my-6">
-            <button
+            {DataLocker.IND_LOCKER && (<button
               onClick={handleShoModal}
               className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
               {" "}
               Nuevo paquete <span className="ml-2">+</span>
-            </button>
+            </button>)}
+            
           </div>
           {shoModalLockerCustomer && (
             <ModalVeryTracking

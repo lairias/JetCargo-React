@@ -1,58 +1,55 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
-import Barcode from "../../../util/Barcode";
 import { Accordion, AccordionTab } from "primereact/accordion";
-import {
-  StarCodLockerRandom,
-  AddLokersCustomers,
-} from "../../../actions/lockersAction";
-import { InputText } from "primereact/inputtext";
 import { useForms } from "../../../hooks/useForms";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import { GetAllservices } from "../../../actions/serviceAction";
 import SpinnerButton from "../../Spinners/SpinnerButton";
-import { GetSeguridadID } from "../../../actions/serguridadAction";
+import { useFetchToken } from "../../../hooks/useFetch";
+import { GetAllTypePackage } from "../../../actions/typepackageAction";
+import { StartTrackingRecived } from "../../../actions/trackingAction";
+import { InputSwitch } from "primereact/inputswitch";
+
 export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
   /****************************************************Variables de State */
   /********************************************************************** */
-  const [seguridadDolar, set_seguridadDolar] = useState();
+  const [isCalculo, setIsCalculo] = useState(0);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetAllCategoryPackage());
     dispatch(GetAllservices());
-    dispatch(GetSeguridadID(7,set_seguridadDolar));
+    dispatch(GetAllTypePackage());
   }, [dispatch]);
-
   const { categoryPackage, loading } = useSelector(
     (state) => state.categorypackage
   );
   const { services, loadingServices } = useSelector((state) => state.services);
-  console.log(seguridadDolar);
-
+  const { TypePackage, loadingTypePackage } = useSelector(
+    (state) => state.typepackage
+  );
   /****************************************************Variables de Hooks */
   const [
     {
       HEIGHT_PACKAGE,
       WIDTH_PACKAGE,
-      LENGTH_PACKAGE,
       WEIGHT_PACKAGE,
-      PRICE_PACKAGE,
       VOL_PACKAGE,
       SERVICE_NAME,
       NOM_PACKAGE,
       COD_CATPACKAGE,
       NUM_TRACKING,
+      COD_SERVICE,
       RECEIVED_TRACKING,
       DES_TRACKING,
+      COD_TYPEPACKAGE,
+      COD_TRACKING,
     },
     handleInputChange,
   ] = useForms({
     HEIGHT_PACKAGE: dataNewModal.HEIGHT_PACKAGE,
     WIDTH_PACKAGE: dataNewModal.WIDTH_PACKAGE,
     WEIGHT_PACKAGE: dataNewModal.WEIGHT_PACKAGE,
-    PRICE_PACKAGE: 0,
+    COD_TYPEPACKAGE: dataNewModal.COD_TYPEPACKAGE,
     VOL_PACKAGE: dataNewModal.VOL_PACKAGE,
     NOM_PACKAGE: dataNewModal.NOM_PACKAGE,
     COD_CATPACKAGE: dataNewModal.COD_CATPACKAGE,
@@ -61,12 +58,38 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
     RECEIVED_TRACKING: dataNewModal.RECEIVED_TRACKING,
     NUM_TRACKING: dataNewModal.NUM_TRACKING,
     DES_TRACKING: dataNewModal.DES_TRACKING,
+    COD_TRACKING: dataNewModal.COD_TRACKING,
   });
+  const [checbox, set_checbox] = useState(Boolean(dataNewModal.IND_TRACKING));
+  const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
+  const [Precio, statusServicio] = useFetchToken(
+    `typepackage/${COD_TYPEPACKAGE}`
+  );
   //   /********************************************************************** */
+  console.log(!parseFloat(dataNewModal.PRICE_PACKAGE));
   //   /****************************************************Variables de funciones */
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(StarCodLockerRandom());
+    dispatch(
+      StartTrackingRecived(
+        HEIGHT_PACKAGE,
+        WIDTH_PACKAGE,
+        WEIGHT_PACKAGE,
+        COD_TYPEPACKAGE,
+        VOL_PACKAGE,
+        NOM_PACKAGE,
+        COD_CATPACKAGE,
+        SERVICE_NAME,
+        COD_SERVICE,
+        RECEIVED_TRACKING,
+        NUM_TRACKING,
+        DES_TRACKING,
+        COD_TRACKING,
+        dataNewModal.COD_PACKAGE,
+        checbox,
+        set_isOpen
+      )
+    );
   };
   const selectStatusTracking = [
     { value: "PENDING" },
@@ -75,8 +98,12 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
     { value: "CANCELED" },
     { value: "IN_PROGRESS" },
   ];
-  //   /********************************************************************** */
 
+  const handleCostoPeso = (e) => {
+    setIsCalculo(Precio.PREC_TYPEPACKAGE * e.target.value);
+  };
+
+  //   /********************************************************************** */
   //   /********************************************************************** */
   return (
     <>
@@ -97,7 +124,7 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                 <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
                   <label className="block mt-4 text-sm w-full md:px-2">
                     <span className="text-gray-700 dark:text-gray-900">
-                      Estado tracking
+                      Proceso tracking
                     </span>
                     <select
                       className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -109,14 +136,43 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                       {selectStatusTracking.map((item) => (
                         <option
                           key={item.value}
-                          value={item.value}
-                          selected={RECEIVED_TRACKING === item.value}
+                          defaultValue={RECEIVED_TRACKING === item.value}
                         >
                           {" "}
                           {item.value}{" "}
                         </option>
                       ))}
                     </select>
+                  </label>
+                  <label className="block mt-4 text-sm w-full md:px-2">
+                    <span className="text-gray-700 dark:text-gray-900">
+                      Tipo de envio
+                    </span>
+                    {loadingTypePackage ? (
+                      <select
+                        className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Numero de tracking"
+                        value={COD_TYPEPACKAGE}
+                        name="COD_TYPEPACKAGE"
+                        onChange={handleInputChange}
+                      >
+                        {TypePackage.map((item) => (
+                          <option
+                            key={item.COD_TYPEPACKAGE}
+                            value={item.COD_TYPEPACKAGE}
+                            defaultValue={
+                              dataNewModal.COD_TYPEPACKAGE ===
+                              item.COD_TYPEPACKAGE
+                            }
+                          >
+                            {" "}
+                            {item.NAM_TYPEPACKAGE}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <SpinnerButton />
+                    )}
                   </label>
                   <label className="block mt-4 text-sm w-full md:px-2">
                     <span className="text-gray-700 dark:text-gray-900">
@@ -131,15 +187,156 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                     />
                   </label>
                 </div>
-
+                <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+                  <label className="block mt-4 text-sm w-full md:px-2">
+                    <span className="text-gray-700 dark:text-gray-900">
+                      Proceso tracking
+                    </span>
+                    <select
+                      className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      placeholder="Numero de tracking"
+                      value={RECEIVED_TRACKING}
+                      name="RECEIVED_TRACKING"
+                      onChange={handleInputChange}
+                    >
+                      {selectStatusTracking.map((item) => (
+                        <option
+                          key={item.value}
+                          defaultValue={RECEIVED_TRACKING === item.value}
+                        >
+                          {" "}
+                          {item.value}{" "}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block mt-4 text-sm w-full md:px-2">
+                    <span className="text-gray-700 dark:text-gray-900">
+                      Tipo de envio
+                    </span>
+                    {loadingTypePackage ? (
+                      <select
+                        className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                        placeholder="Numero de tracking"
+                        value={COD_TYPEPACKAGE}
+                        name="COD_TYPEPACKAGE"
+                        onChange={handleInputChange}
+                      >
+                        {TypePackage.map((item) => (
+                          <option
+                            key={item.COD_TYPEPACKAGE}
+                            value={item.COD_TYPEPACKAGE}
+                            defaultValue={
+                              dataNewModal.COD_TYPEPACKAGE ===
+                              item.COD_TYPEPACKAGE
+                            }
+                          >
+                            {" "}
+                            {item.NAM_TYPEPACKAGE}{" "}
+                          </option>
+                        ))}
+                      </select>
+                    ) : (
+                      <SpinnerButton />
+                    )}
+                  </label>
+                  <label className="block mt-4 text-sm w-full md:px-2">
+                    <span className="text-gray-700 dark:text-gray-900">
+                      Número de Tracking
+                    </span>
+                    <input
+                      className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                      placeholder="Numero de tracking"
+                      value={NUM_TRACKING}
+                      name="NUM_TRACKING"
+                      onChange={handleInputChange}
+                    />
+                  </label>
+                </div>
                 <Accordion className="accordion-custom " activeIndex={0}>
-                  <AccordionTab className="p-2" header="Dimensiones de tracking">
+                  <AccordionTab
+                    className="p-2"
+                    header="Dimensiones de tracking"
+                  >
                     <form>
                       <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
-                      
                         <label className="block mt-4 text-sm w-full md:px-2">
                           <span className="text-gray-700 dark:text-gray-900">
-                          Altura paquete *
+                            Cambio de dolar
+                          </span>
+                          {statusSeguridad ? (
+                            <input
+                              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                              placeholder="Numero de tracking"
+                              disabled={true}
+                              value={Dataseguridad.DATO_SEGURIDAD}
+                            />
+                          ) : (
+                            <SpinnerButton />
+                          )}
+                        </label>
+                        <label className="block mt-4 text-sm w-full md:px-2">
+                          <span className="text-gray-700 dark:text-gray-900">
+                            Costo de servico
+                          </span>
+                          {statusServicio ? (
+                            <input
+                              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                              placeholder="Numero de tracking"
+                              disabled={true}
+                              value={Precio.PREC_TYPEPACKAGE}
+                            />
+                          ) : (
+                            <SpinnerButton />
+                          )}
+                        </label>
+                        <label className="block mt-4 text-sm w-full md:px-2">
+                          <span className="text-gray-700 dark:text-gray-900">
+                            Peso paquete *
+                          </span>
+                          <input
+                            className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            placeholder="Numero de tracking"
+                            value={WEIGHT_PACKAGE}
+                            name="WEIGHT_PACKAGE"
+                            onChange={(e) => {
+                              handleCostoPeso(e);
+                              handleInputChange(e);
+                            }}
+                          />
+                        </label>
+                      </div>
+
+                      <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+                        <label className="block mt-4 text-sm w-full md:px-2">
+                          <span className="text-gray-700 dark:text-gray-900">
+                            Calculo *
+                          </span>
+                          <input
+                            className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            placeholder="Numero de tracking"
+                            value={
+                              !parseFloat(dataNewModal.PRICE_PACKAGE)
+                                ? isCalculo
+                                : dataNewModal.PRICE_PACKAGE
+                            }
+                          />
+                        </label>
+                        <label className="block mt-4 text-sm w-full md:px-2">
+                          <span className="text-gray-700 dark:text-gray-900">
+                            Ancho paquete *
+                          </span>
+                          <input
+                            className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                            placeholder="Numero de tracking"
+                            value={WIDTH_PACKAGE}
+                            name="WIDTH_PACKAGE"
+                            onChange={handleInputChange}
+                          />
+                        </label>
+                        <label className="block mt-4 text-sm w-full md:px-2">
+                          <span className="text-gray-700 dark:text-gray-900">
+                            Altura paquete *
                           </span>
                           <input
                             className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -151,37 +348,7 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                         </label>
                         <label className="block mt-4 text-sm w-full md:px-2">
                           <span className="text-gray-700 dark:text-gray-900">
-                          Ancho  paquete *
-                          </span>
-                          <input
-                            className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            placeholder="Numero de tracking"
-                            value={WIDTH_PACKAGE}
-                            name="WIDTH_PACKAGE"
-                            onChange={handleInputChange}
-                          />
-                        </label>
-                        
-                      </div>
-
-                     
-
-                      <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
-                      <label className="block mt-4 text-sm w-full md:px-2">
-                          <span className="text-gray-700 dark:text-gray-900">
-                          Peso  paquete *
-                          </span>
-                          <input
-                            className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            placeholder="Numero de tracking"
-                            value={WEIGHT_PACKAGE}
-                            name="WEIGHT_PACKAGE"
-                            onChange={handleInputChange}
-                          />
-                        </label>
-                        <label className="block mt-4 text-sm w-full md:px-2">
-                          <span className="text-gray-700 dark:text-gray-900">
-                          Volumen   paquete *
+                            Volumen paquete *
                           </span>
                           <input
                             className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -191,10 +358,7 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                             onChange={handleInputChange}
                           />
                         </label>
-                        </div>
-
-
-
+                      </div>
                     </form>
                   </AccordionTab>
                   <AccordionTab className="p-2" header="Datos de tracking">
@@ -215,8 +379,7 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                               {services.map((item) => (
                                 <option
                                   key={item.value}
-                                  value={item.value}
-                                  selected={SERVICE_NAME === item.value}
+                                  defaultValue={SERVICE_NAME === item.value}
                                 >
                                   {item.label}{" "}
                                 </option>
@@ -241,8 +404,7 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                               {categoryPackage.map((item) => (
                                 <option
                                   key={item.COD_CATPACKAGE}
-                                  value={item.COD_CATPACKAGE}
-                                  selected={
+                                  defaultValue={
                                     COD_CATPACKAGE === item.COD_CATPACKAGE
                                   }
                                 >
@@ -275,37 +437,43 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                           className="p-3 m-3 overflow-y-auto h-16 border rounded w-full border-gray-200 resize-none focus:outline-none"
                           name="DES_TRACKING"
                           onChange={handleInputChange}
-                        >
-                          {DES_TRACKING}
-                        </textarea>
+                          defaultValue={DES_TRACKING}
+                        />
                         <textarea
                           placeholder="Description"
                           className="p-3 m-3 overflow-y-auto h-16 border rounded w-full border-gray-200  resize-none focus:outline-none"
                           name="NOM_PACKAGE"
+                          defaultValue={NOM_PACKAGE}
                           onChange={handleInputChange}
-                        >
-                          {NOM_PACKAGE}
-                        </textarea>
-                      </div>
-
-                      <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
-                        <div className="mt-8">
-                          <Barcode codigo={dataNewModal.NUM_PACKAGE} />
-                        </div>
+                        ></textarea>
                       </div>
                     </form>
                   </AccordionTab>
                 </Accordion>
+                <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+                  <label className="block mt-4 text-sm w-full md:px-2">
+                    <span className="text-gray-700 dark:text-gray-900 items-center">
+                      Estado tracking
+                    </span>
+                    <InputSwitch
+                      checked={checbox}
+                      onChange={(e) => set_checbox(!checbox)}
+                    />
+                  </label>
+                </div>
 
                 <div className="flex items-center justify-between mt-9">
                   <button
                     onClick={set_isOpen}
                     className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
                   >
-                    Cancel
+                    Cancelar
                   </button>
-                  <button className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white">
-                    Add User
+                  <button
+                    onClick={handleSubmit}
+                    className="px-6 py-3 bg-indigo-700 hover:bg-opacity-80 shadow rounded text-sm text-white"
+                  >
+                    Crear Porceso de pago
                   </button>
                 </div>
               </div>
@@ -316,83 +484,3 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
     </>
   );
 }
-
-//  <div id="popup" className="z-10 fixed w-full flex justify-center inset-0">
-//     <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
-//  <Transition appear show={isOpen} as={Fragment}>
-//     <Dialog
-//       as="div"
-//       className="fixed inset-0 z-10 overflow-y-auto"
-//       onClose={set_isOpen}
-//     >
-//       <div className="min-h-screen px-4 text-center">
-//         <Transition.Child
-//           as={Fragment}
-//           enter="ease-out duration-300"
-//           enterFrom="opacity-0"
-//           enterTo="opacity-100"
-//           leave="ease-in duration-200"
-//           leaveFrom="opacity-100"
-//           leaveTo="opacity-0"
-//         >
-//           <Dialog.Overlay className="fixed inset-0" />
-//         </Transition.Child>
-
-//         {/* This element is to trick the browser into centering the modal contents. */}
-//         <span
-//           className="inline-block h-screen align-middle"
-//           aria-hidden="true"
-//         >
-//           &#8203;
-//         </span>
-//         <Transition.Child
-//           as={Fragment}
-//           enter="ease-out duration-300"
-//           enterFrom="opacity-0 scale-95"
-//           enterTo="opacity-100 scale-100"
-//           leave="ease-in duration-200"
-//           leaveFrom="opacity-100 scale-100"
-//           leaveTo="opacity-0 scale-95"
-//         >
-//           <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
-//             <Dialog.Title
-//               as="h3"
-//               className="text-lg font-medium leading-6 text-gray-900 text-center"
-//             >
-//               {dataNewModal.NUM_TRACKING}
-
-//             </Dialog.Title>
-//             <form action="">
-//             <label className="block mt-4 text-sm w-full md:px-2">
-//                       <span className="text-gray-700 dark:text-gray-900">
-//                         Nombre Paquete
-//                       </span>
-//                       <InputText
-//                         className="w-full"
-//                         placeholder="Nombre de paquete"
-//                         name="NAME_PACKAGE"
-//                         keyfilter={/^[^<>*!]+$/}
-//                       />
-//                     </label>
-//             </form>
-//             <div className="mt-2">
-//               <p className="text-sm text-gray-500">
-//                <Barcode codigo={dataNewModal.NUM_PACKAGE} />
-//               </p>
-//             </div>
-
-//             <div className="mt-4">
-//               <button
-//                 type="button"
-//                 className="inline-flex justify-center px-4 py-2 text-sm font-medium text-blue-900 bg-blue-100 border border-transparent rounded-md hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-500"
-//                 onClick={set_isOpen}
-//               >
-//                 Got it, thanks!
-//               </button>
-//             </div>
-//           </div>
-//         </Transition.Child>
-//       </div>
-//     </Dialog>
-//   </Transition>
-//   </div>

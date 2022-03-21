@@ -42,12 +42,13 @@ import GetTypeUser from "../components/Admin/TypeUsers/GetTypeUser";
 import { startCheckingLogin } from "../actions/authAction";
 import IndexCatPackage from "../components/Admin/CategoryPakage/IndexCatPackage";
 import IndexHome from "../components/Admin/Home/IndexHome";
+import { PayPackage } from "../components/Package/PayPackage";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
   useEffect(() => {
     distance(startCheckingLogin());
-  }, [distance]);
+  }, [distance,id]);
 
   if (checking) {
     return <Loaddin />;
@@ -55,7 +56,7 @@ function JetCargoRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<PublicRoute isAuthenticated={!!id} />}>
+        <Route path="/" element={<PublicRoute isAuthenticated={Boolean(id)} />}>
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route
@@ -73,7 +74,7 @@ function JetCargoRoutes() {
           />
         </Route>
 
-        <Route path="/" element={<PrivateRoute isAuthenticated={!!id} />}>
+        <Route path="/" element={<PrivateRoute isAuthenticated={Boolean(id)} />}>
           <Route
             path="admin"
             element={
@@ -116,16 +117,7 @@ function JetCargoRoutes() {
               </>
             }
           />
-          <Route
-            path="/admin/packages/new"
-            element={
-              <>
-                <Admin>
-                  <Fooder />
-                </Admin>
-              </>
-            }
-          />
+         
           <Route
             path="/admin/locker/:NUM_LOCKER/:COD_LOCKER/packages/"
             element={
@@ -142,6 +134,16 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <GetPackage /> <Fooder />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/locker/:NUM_LOCKER/:COD_LOCKER/packages/pay/:COD_PACKAGE/:COD_TRACKING"
+            element={
+              <>
+                <Admin>
+                  <PayPackage /> <Fooder />
                 </Admin>
               </>
             }

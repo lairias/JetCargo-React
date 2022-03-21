@@ -62,4 +62,9 @@ export const types = {
 
   //Seciones de las typos de Paquetes
   GetAllTypePackage: "[TypePackage] Get All TypePackage",
+
+
+  //Secciones de las seguridad
+  GetAllSeguridad: "[Seguridad] Get All Seguridad",
+  
 };

@@ -51,7 +51,7 @@ export const GetPackages = ({ items }) => {
                ""
             ): items.RECEIVED_TRACKING === "RECEIVED" ? (
               <NavLink
-              to={`/admin/locker/${items.NUM_LOCKER}/${items.COD_LOCKER}/packages/${items.COD_PACKAGE}`}
+              to={`/admin/locker/${items.NUM_LOCKER}/${items.COD_LOCKER}/packages/pay/${items.COD_PACKAGE}/${items.COD_TRACKING}`}
               role="button"
               aria-label="message"
               className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 hover:bg-gray-100 flex items-center justify-center flex-1 h-full py-3 px-20 bg-gray-50 border rounded border-gray-200"

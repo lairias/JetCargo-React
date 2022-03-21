@@ -12,7 +12,7 @@ import { StartGetAllPackageLocker } from "./packageLockersAction";
 export function GetTrackingAll(set_dataTracking,setLoading){
   return async function (dispatch) {
     const data = await fetchConToken(
-      `tracking`,
+      `tracking/`,
       {},
       "GET"
     );
@@ -23,6 +23,47 @@ export function GetTrackingAll(set_dataTracking,setLoading){
     }
   }
 }
+
+export function StartTrackingRecived (HEIGHT_PACKAGE,
+  WIDTH_PACKAGE,
+  WEIGHT_PACKAGE,
+  COD_TYPEPACKAGE,
+  VOL_PACKAGE,
+  NOM_PACKAGE,
+  COD_CATPACKAGE,
+  SERVICE_NAME,
+  COD_SERVICE,
+  RECEIVED_TRACKING,
+  NUM_TRACKING,
+  DES_TRACKING,
+  COD_TRACKING,
+  COD_PACKAGE,
+  checbox,
+  set_isOpen){
+  return async function (dispatch) {
+    const data = await fetchConToken(
+      `tracking/${COD_TRACKING}`,
+      {HEIGHT_PACKAGE,
+        WIDTH_PACKAGE,
+        WEIGHT_PACKAGE,
+        COD_TYPEPACKAGE,
+        VOL_PACKAGE,
+        NOM_PACKAGE,
+        COD_CATPACKAGE,
+        SERVICE_NAME,
+        COD_SERVICE,
+        RECEIVED_TRACKING,
+        NUM_TRACKING,
+        DES_TRACKING,
+        COD_PACKAGE,
+        checbox,},
+      "PUT"
+    );
+    
+  }
+}
+
+
 
 export function GetSeartTrackingService(COD_SERVICE = false, NUM_TRACKING) {
   return async function (dispatch) {
@@ -170,7 +211,6 @@ export function PostTrackingServiceCustomer(
       "POST"
     );
     const json = await dataPost.json();
-    console.log(json);
     if (json.ok) {
       toast.success(`Tracking creado con éxito`, { duration: 3000 });
       dispatch(StartGetAllPackageLocker(COD_CUSTOMER, COD_LOCKER));
@@ -182,8 +222,6 @@ export function PostTrackingServiceCustomer(
     }
   };
 }
-
-
 export function GetTrackindnewOrden(id){
   return async function (dispatch){
     const data = await fetchConToken(
