@@ -18,7 +18,7 @@ export const PayPackage = () => {
   const { NUM_LOCKER, COD_TRACKING, COD_PACKAGE } = useParams();
   const { customer } = useSelector((state) => state.auth);
   const [DataTrackinNotOrden, NotOrdenLoading]= useFetchToken(`tracking/${COD_TRACKING}/${COD_PACKAGE}/${NUM_LOCKER}/${customer.COD_CUSTOMER}`);
-  console.log(DataTrackinNotOrden)
+ 
   //*************************************************** */
   //*********************************Variables de Funciones */
   const  handleShoModal=()=>{

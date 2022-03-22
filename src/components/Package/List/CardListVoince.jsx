@@ -1,11 +1,14 @@
 import React from "react";
 import { useFetchToken } from "../../../hooks/useFetch";
 import SpinnerButton from "../../Spinners/SpinnerButton";
-
 export const CardListVoince = ({ DataTrackinNotOrden }) => {
   //-----------------------------------------------------------
   const [DataService, ServiceLoading] = useFetchToken(
     `typepackage/${DataTrackinNotOrden[0].COD_TYPEPACKAGE}`
+  );
+  const [DataSeguridad, SeguridadLoading]= useFetchToken(`seguridad/9`);
+  const [DataCreateOrden, CreateOrdenLoading] = useFetchToken(
+    `payment/create-orden`,{DataTrackinNotOrden}, "POST"
   );
   //-----------------------------------------------------------
   return (
@@ -16,12 +19,17 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
         </p>
         <div className="flex justify-between my-2">
           <p className="text-sm text-bold text-gray-800 font-semibold mb-2">
+
             Tracking
           </p>
-          <button className="flex items-center justify-between   px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-              Pagar
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </button>
+          {CreateOrdenLoading ? (<a
+          
+          href={DataCreateOrden.links[1].href}
+          className="flex items-center justify-between   px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            <>Pagar
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></>              
+            </a>): (<SpinnerButton/>)}
+          
         </div>
         <p className="text-sm  font-semibold leading-tight text-gray-800 pb-3"></p>
         <div className="w-full overflow-x-auto">
@@ -53,14 +61,28 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
                   )}
                 </td>
               </tr>
+              <tr className="text-xl leading-3 text-gray-800 text-left border-b border-gray-200">
+                <td className="py-4">{DataSeguridad.DES_SEGURIDAD} </td>
+                <td className="py-4"></td>
+                <td className="py-4 text-right">
+                 L.{DataSeguridad.DATO_SEGURIDAD}
+                </td>
+              </tr>
+              <tr className="text-xl leading-3 text-gray-800 text-left border-b border-gray-200">
+                <td className="py-4">Facturado a lempiras</td>
+                <td className="py-4"></td>
+                <td className="py-4 text-right">
+                 L.{ parseFloat(DataSeguridad.DATO_SEGURIDAD)* parseFloat(DataTrackinNotOrden[0].PRICE_PACKAGE) }
+                </td>
+              </tr>
 
               <tr className="text-xl leading-3 text-gray-800 text-left">
                 <td className="py-4 font-bold">
-                  Deuda Total: L {DataTrackinNotOrden[0].PRICE_PACKAGE}{" "}
+                  Facturado total en dolares: $.{DataTrackinNotOrden[0].PRICE_PACKAGE}{" USD"}
                 </td>
                 <td className="py-4" />
                 <td className="text-indigo-400 py-4 text-right">
-                  $ {DataTrackinNotOrden[0].PRICE_PACKAGE}{" "}
+                  $.{DataTrackinNotOrden[0].PRICE_PACKAGE}{" USD"}
                 </td>
               </tr>
             </tbody>
