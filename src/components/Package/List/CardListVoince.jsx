@@ -7,8 +7,10 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
     `typepackage/${DataTrackinNotOrden[0].COD_TYPEPACKAGE}`
   );
   const [DataSeguridad, SeguridadLoading]= useFetchToken(`seguridad/9`);
+  const mensaje = `Tracking-N°:${DataTrackinNotOrden[0].NUM_TRACKING} Loker-N°:${DataTrackinNotOrden[0].NUM_LOCKER} Paquete-N°:${DataTrackinNotOrden[0].NUM_PACKAGE} 
+  Descripción:${DataTrackinNotOrden[0].NOM_PACKAGE} - ${DataTrackinNotOrden[0].DES_TRACKING}`;
   const [DataCreateOrden, CreateOrdenLoading] = useFetchToken(
-    `payment/create-orden`,{DataTrackinNotOrden}, "POST"
+    `payment/create-orden`,{mensaje,DataTrackinNotOrden}, "POST"
   );
   //-----------------------------------------------------------
   return (
@@ -62,10 +64,11 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
                 </td>
               </tr>
               <tr className="text-xl leading-3 text-gray-800 text-left border-b border-gray-200">
-                <td className="py-4">{DataSeguridad.DES_SEGURIDAD} </td>
+                
+                <td className="py-4"> {SeguridadLoading ? (DataSeguridad.DES_SEGURIDAD):(<SpinnerButton />)}   </td>
                 <td className="py-4"></td>
                 <td className="py-4 text-right">
-                 L.{DataSeguridad.DATO_SEGURIDAD}
+                 L. {SeguridadLoading ? (DataSeguridad.DATO_SEGURIDAD):(<SpinnerButton />)}
                 </td>
               </tr>
               <tr className="text-xl leading-3 text-gray-800 text-left border-b border-gray-200">

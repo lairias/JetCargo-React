@@ -43,6 +43,7 @@ import { startCheckingLogin } from "../actions/authAction";
 import IndexCatPackage from "../components/Admin/CategoryPakage/IndexCatPackage";
 import IndexHome from "../components/Admin/Home/IndexHome";
 import { PayPackage } from "../components/Package/PayPackage";
+import OrdenCaptureSucces from "../components/Error/OrdenCapture";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
@@ -68,13 +69,19 @@ function JetCargoRoutes() {
             path="reset-password"
             element={
               <>
-                <ResetPassword /> <Fooder />
+                <ResetPassword /> 
               </>
             }
           />
         </Route>
 
         <Route path="/" element={<PrivateRoute isAuthenticated={Boolean(id)} />}>
+          <Route
+            path="admin/locker/:NUM_TRACKING"
+            element={
+              <OrdenCaptureSucces/>
+            }
+          />
           <Route
             path="admin"
             element={
@@ -112,7 +119,7 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <EditProfile />
-                  <Fooder />
+                  
                 </Admin>
               </>
             }
@@ -123,7 +130,7 @@ function JetCargoRoutes() {
             element={
               <>
                 <Admin>
-                  <ShowPackages /> <Fooder />
+                  <ShowPackages /> 
                 </Admin>
               </>
             }
@@ -133,7 +140,7 @@ function JetCargoRoutes() {
             element={
               <>
                 <Admin>
-                  <GetPackage /> <Fooder />
+                  <GetPackage /> 
                 </Admin>
               </>
             }
@@ -143,7 +150,7 @@ function JetCargoRoutes() {
             element={
               <>
                 <Admin>
-                  <PayPackage /> <Fooder />
+                  <PayPackage /> 
                 </Admin>
               </>
             }

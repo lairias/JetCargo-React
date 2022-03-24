@@ -9,10 +9,10 @@ import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
 import { StartGetAllPackageLocker } from "./packageLockersAction";
 
-export function GetTrackingAll(set_dataTracking,setLoading){
-  return async function (dispatch) {
+export function GetTrackingAll(set_dataTracking,setLoading,url) {
+  return async function () {
     const data = await fetchConToken(
-      `tracking/`,
+      url,
       {},
       "GET"
     );
@@ -39,8 +39,8 @@ export function StartTrackingRecived (HEIGHT_PACKAGE,
   COD_TRACKING,
   COD_PACKAGE,
   checbox,
-  set_isOpen){
-  return async function (dispatch) {
+  setIsOpen){
+  return async function () {
     const data = await fetchConToken(
       `tracking/${COD_TRACKING}`,
       {HEIGHT_PACKAGE,
@@ -59,6 +59,7 @@ export function StartTrackingRecived (HEIGHT_PACKAGE,
         checbox,},
       "PUT"
     );
+    setIsOpen(false)
     
   }
 }

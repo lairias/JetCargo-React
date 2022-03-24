@@ -26,7 +26,7 @@ export const ShowPackages = () => {
 
 
   
-  const [DataLocker, StatusLocker] = useFetchToken(`locker/${COD_LOCKER}`);
+  const [DataLocker] = useFetchToken(`locker/${COD_LOCKER}`);
 
 
 
@@ -54,7 +54,7 @@ export const ShowPackages = () => {
   
   return (
     <>
-      <div className="container  mx-auto grid">
+      <div className="container  mx-auto grid  ">
         <div className="flex justify-between">
           <h2 className="my-6 text-2xl font-semibold text-gray-700">
             {" "}
@@ -89,7 +89,7 @@ export const ShowPackages = () => {
           )}
         </div>
         {/* Insertar contenido de las paginas **/}
-        <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8">
+        <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8  pb-20">
         {loadingPackagesLocker ? (
           loadingPackagesLocker &&
           (packagesLocker ? (

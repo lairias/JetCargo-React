@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import PaginationTable from "./PaginationTable";
 import { NavLink } from "react-router-dom";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import TrTable from "./components/TrTable";
@@ -124,7 +123,6 @@ export const GetCategoryPackage = () => {
                 </tbody>
               </table>
             </div>
-            {/* <PaginationTable /> */}
           </div>
         </div>
       </div>

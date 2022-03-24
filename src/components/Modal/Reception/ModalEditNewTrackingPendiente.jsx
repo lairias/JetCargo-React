@@ -1,16 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Accordion, AccordionTab } from "primereact/accordion";
+import { TabView, TabPanel } from 'primereact/tabview';
 import { useForms } from "../../../hooks/useForms";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import { GetAllservices } from "../../../actions/serviceAction";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { useFetchToken } from "../../../hooks/useFetch";
 import { GetAllTypePackage } from "../../../actions/typepackageAction";
-import { StartTrackingRecived } from "../../../actions/trackingAction";
+import { GetTrackingAll, StartTrackingRecived } from "../../../actions/trackingAction";
 import { InputSwitch } from "primereact/inputswitch";
 
-export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
+export default function ModalEditNewTrackingPendiente({setIsOpen,dataNewModal, COD_TYPEPACKAGE_data, RECEIVED_TRACKING_data,setLoading,set_dataTracking}) {
   /****************************************************Variables de State */
   /********************************************************************** */
   const [isCalculo, setIsCalculo] = useState(0);
@@ -66,7 +67,6 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
     `typepackage/${COD_TYPEPACKAGE}`
   );
   //   /********************************************************************** */
-  console.log(!parseFloat(dataNewModal.PRICE_PACKAGE));
   //   /****************************************************Variables de funciones */
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -87,9 +87,10 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
         COD_TRACKING,
         dataNewModal.COD_PACKAGE,
         checbox,
-        set_isOpen
+        setIsOpen
       )
     );
+      dispatch(GetTrackingAll(set_dataTracking,setLoading,`tracking/${COD_TYPEPACKAGE_data}/${RECEIVED_TRACKING_data}`))
   };
   const selectStatusTracking = [
     { value: "PENDING" },
@@ -116,12 +117,15 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                 <p className="text-base font-semibold">
                   Tracking {dataNewModal.NUM_TRACKING}{" "}
                 </p>
-                <button onClick={set_isOpen} className="focus:outline-none">
+                <button onClick={setIsOpen} className="focus:outline-none">
                   X
                 </button>
               </div>
               <div className="px-4  md:px-10  md:pb-4 pb-7 ">
-                <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+
+              <TabView>
+                    <TabPanel header="Estado">
+                    <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
                   <label className="block mt-4 text-sm w-full md:px-2">
                     <span className="text-gray-700 dark:text-gray-900">
                       Proceso tracking
@@ -187,12 +191,20 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                     />
                   </label>
                 </div>
-                
-                <Accordion className="accordion-custom " activeIndex={0}>
-                  <AccordionTab
-                    className="p-2"
-                    header="Dimensiones de tracking"
-                  >
+
+                <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+                  <label className="block mt-4 text-sm w-full md:px-2">
+                    <span className="text-gray-700 dark:text-gray-900 items-center">
+                      Estado tracking
+                    </span>
+                    <InputSwitch
+                      checked={checbox}
+                      onChange={(e) => set_checbox(!checbox)}
+                    />
+                  </label>
+                </div>
+                    </TabPanel>
+                    <TabPanel header="Dimensiones tracking">
                     <form>
                       <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
                         <label className="block mt-4 text-sm w-full md:px-2">
@@ -295,8 +307,8 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                         </label>
                       </div>
                     </form>
-                  </AccordionTab>
-                  <AccordionTab className="p-2" header="Datos de tracking">
+                    </TabPanel>
+                    <TabPanel header="Datos tracking">
                     <form>
                       <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
                         <label className="block mt-4 text-sm w-full md:px-2">
@@ -383,23 +395,21 @@ export default function ModalEditNewTracking({ set_isOpen, dataNewModal }) {
                         ></textarea>
                       </div>
                     </form>
-                  </AccordionTab>
-                </Accordion>
-                <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
-                  <label className="block mt-4 text-sm w-full md:px-2">
-                    <span className="text-gray-700 dark:text-gray-900 items-center">
-                      Estado tracking
-                    </span>
-                    <InputSwitch
-                      checked={checbox}
-                      onChange={(e) => set_checbox(!checbox)}
-                    />
-                  </label>
-                </div>
+                    </TabPanel>
+                </TabView>
+
+                
+                
+               
+
+
+
+
+                
 
                 <div className="flex items-center justify-between mt-9">
                   <button
-                    onClick={set_isOpen}
+                    onClick={setIsOpen}
                     className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white"
                   >
                     Cancelar

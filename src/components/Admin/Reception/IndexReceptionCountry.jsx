@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { ModalNewPackage } from "../../Modal/Package/admin/ModalNewPackage";
 import { GetReceptionCountry } from "./GetReceptionCountry";
-import { useParams } from "react-router-dom";
+import { TabView, TabPanel } from 'primereact/tabview';
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import { useDispatch } from "react-redux";
-
+import { Accordion, AccordionTab } from 'primereact/accordion';
 
 export const IndexReceptionCountry = () => {
   //****************************Variables state */
@@ -37,8 +37,68 @@ export const IndexReceptionCountry = () => {
         </div>
         {shoModal ? <ModalNewPackage handleShoModal={handleShoModal} /> : ""}
       </div>
-      {/* Insertar contenido de las paginas **/}
-      <GetReceptionCountry />
+
+      <TabView>
+                    <TabPanel header=" Express">
+                    <Accordion className="accordion-custom" activeIndex={0}>
+                    <AccordionTab header={<><i className="pi pi-calendar"></i><span>Pendiente</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={3} RECEIVED_TRACKING="PENDING" />
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-calendar"></i><span>Proceso</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={3} RECEIVED_TRACKING="IN_PROGRESS" />
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-user"></i><span>Residido</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={3} RECEIVED_TRACKING="RECEIVED"/>
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-search"></i><span>Entregados</span><i className="pi pi-cog"></i></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={3} RECEIVED_TRACKING="DELIVERED"/>
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-search"></i><span>Cancelados</span><i className="pi pi-cog"></i></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={3} RECEIVED_TRACKING="CANCELED"/>
+                    </AccordionTab>
+                </Accordion>
+                   
+                    </TabPanel>
+                    <TabPanel header=" Aéreo">
+                    <Accordion className="accordion-custom" activeIndex={0}>
+                    <AccordionTab header={<><i className="pi pi-calendar"></i><span>Pendiente</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={2} RECEIVED_TRACKING="PENDING" />
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-calendar"></i><span>Proceso</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={2} RECEIVED_TRACKING="IN_PROGRESS"/>
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-user"></i><span>Residido</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={2} RECEIVED_TRACKING="RECEIVED"/>
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-search"></i><span>Entregados</span><i className="pi pi-cog"></i></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={2} RECEIVED_TRACKING="DELIVERED"/>
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-search"></i><span>Cancelados</span><i className="pi pi-cog"></i></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={2} RECEIVED_TRACKING="CANCELED"/>
+                    </AccordionTab>
+                </Accordion>
+                    </TabPanel>
+                    <TabPanel header=" Marítimo">
+                    <Accordion className="accordion-custom" activeIndex={0}>
+                    <AccordionTab header={<><i className="pi pi-calendar"></i><span>Pendiente</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={1} RECEIVED_TRACKING="PENDING" />
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-calendar"></i><span>Proceso</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={1} RECEIVED_TRACKING="IN_PROGRESS" />
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-user"></i><span>Residido</span></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={1} RECEIVED_TRACKING="RECEIVED"/>
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-search"></i><span>Entregados</span><i className="pi pi-cog"></i></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={1} RECEIVED_TRACKING="DELIVERED"/>
+                    </AccordionTab>
+                    <AccordionTab header={<><i className="pi pi-search"></i><span>Cancelados</span><i className="pi pi-cog"></i></>}>
+                    <GetReceptionCountry COD_TYPEPACKAGE={1} RECEIVED_TRACKING="CANCELED"/>
+                    </AccordionTab>
+                </Accordion>
+                    </TabPanel>
+                </TabView>
+      
       
     </>
   );
