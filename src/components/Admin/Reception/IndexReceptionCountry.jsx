@@ -42,6 +42,7 @@ export const IndexReceptionCountry = () => {
                     <TabPanel header=" Express">
                     <Accordion className="accordion-custom" activeIndex={0}>
                     <AccordionTab header={<><i className="pi pi-calendar"></i><span>Pendiente</span></>}>
+                      
                     <GetReceptionCountry COD_TYPEPACKAGE={3} RECEIVED_TRACKING="PENDING" />
                     </AccordionTab>
                     <AccordionTab header={<><i className="pi pi-calendar"></i><span>Proceso</span></>}>

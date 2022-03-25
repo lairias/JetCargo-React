@@ -30,10 +30,11 @@ export const GetReceptionCountry = ({ COD_TYPEPACKAGE, RECEIVED_TRACKING }) => {
     );
   }, [dispatch]);
 
-  const ShowModal = (data) => {
+  const ShowModalPendiente = (data) => {
     set_dataNewModal(dataTracking[data.rowIndex]);
     setIsOpen(!isOpen);
   };
+
   const columns = [
     {
       name: "NUM_TRACKING",
@@ -111,7 +112,7 @@ export const GetReceptionCountry = ({ COD_TYPEPACKAGE, RECEIVED_TRACKING }) => {
       />
       {isOpen && (
         <ModalEditNewTrackingPendiente
-          setIsOpen={ShowModal}
+          setIsOpen={ShowModalPendiente}
           dataNewModal={dataNewModal}
           COD_TYPEPACKAGE_data={COD_TYPEPACKAGE}
           RECEIVED_TRACKING_data={RECEIVED_TRACKING}
