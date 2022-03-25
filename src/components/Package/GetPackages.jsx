@@ -12,7 +12,7 @@ export const GetPackages = ({ items }) => {
               <div className="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-yellow-500 w-24 sm:w-auto">Recibido</div>
             ) : items.RECEIVED_TRACKING === "IN_PROGRESS" ? (
               <div className="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-sky-500 w-24 sm:w-auto">En progreso</div>
-            ) : items.RECEIVED_TRACKING === "DELIVERED" (
+            ) : items.RECEIVED_TRACKING === "DELIVERED" && (
               <div className="py-2.5 px-5 bg-red-100 rounded-full text-xs leading-3 text-green-500 w-24 sm:w-auto">Entregado</div>
             )
 
@@ -71,7 +71,7 @@ export const GetPackages = ({ items }) => {
                 Seguimiento
               </p>
             </NavLink>
-            ) : items.RECEIVED_TRACKING === "DELIVERED" (
+            ) : items.RECEIVED_TRACKING === "DELIVERED" && (
           
               <p className="text-sm font-medium leading-none text-gray-600">
                 Entregado

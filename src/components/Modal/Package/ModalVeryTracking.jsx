@@ -79,6 +79,7 @@ export default function ModalVeryTracking({
   const handleRegresar = (e) => {
     dispatch(statusTracking(false));
   };
+  
   /********************************************************************** */
   /********************************************************************** */
   return (
@@ -92,7 +93,7 @@ export default function ModalVeryTracking({
             className="fixed inset-0 w-full z-0 overflow-y-auto"
             onClose={setIsOpen}
           >
-            <div className="min-h-screen px-4 text-center">
+            <div className="min-h-screen px-4  text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -122,7 +123,7 @@ export default function ModalVeryTracking({
                 <div className="inline-block w-full max-w-md p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white shadow-xl rounded-2xl">
                   <Dialog.Title
                     as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
+                    className="text-lg font-medium leading-6 text-gray-900 pb- "
                   >
                     Tracking Paquete{" "}
                     {StatusShowCreateTracking && (
@@ -138,13 +139,13 @@ export default function ModalVeryTracking({
                   {StatusShowCreateTracking ? (
                     <div className="mt-2">
                       <div className="  w-full ">
-                        <label className="block mt-4 text-sm w-full md:px-2">
+                        <label className="block mt-4 text-sm w-full md:px-2  ">
                           <span className="text-gray-700 dark:text-gray-900">
                             Categoria del paquete
                           </span>
                           {loading ? (
                             <Select
-                              className="w-full"
+                           
                               defaultValue={selectedCategory}
                               onChange={setSelectedCategory}
                               options={categoryPackage}
@@ -165,15 +166,10 @@ export default function ModalVeryTracking({
                               options={TypePackage}
                               formatOptionLabel={(country) => (
                                 <div className="flex justify-between items-center">
-                                  <img
-                                    style={{
-                                      height: "30px",
-                                      width: "30px",
-                                      borderRadius: "10%",
-                                    }}
-                                    src={country.image}
-                                    alt="country-image"
-                                  />
+                                  <div className="flex justify-center items-center " >
+                                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span className="ml-2">{country.prece}</span>
+                                  </div>
                                   <span>{country.label}</span>
                                 </div>
                               )}
@@ -213,13 +209,13 @@ export default function ModalVeryTracking({
                   ) : (
                     <div className="mt-2">
                       <div className="  w-full ">
-                        <label className="block mt-4 text-sm w-full md:px-2">
+                        <label className="block mt-4 text-sm w-full md:px-2 pb-14">
                           <span className="text-gray-700 dark:text-gray-900">
                             Tipo de servico
                           </span>
                           {loadingServices ? (
                             <Select
-                              className="w-full"
+                            menuPlacement="auto"
                               defaultValue={selectedServices}
                               onChange={setSelectedServices}
                               options={services}
@@ -243,7 +239,7 @@ export default function ModalVeryTracking({
                             <SpinnerButton />
                           )}
                         </label>
-                        <label className="block mt-4 text-sm w-full md:px-2">
+                        <label className="block mt-4 text-sm w-full md:px-2 pb-14">
                           <span className="text-gray-700 dark:text-gray-900">
                             Nombre Paquete
                           </span>
@@ -259,7 +255,7 @@ export default function ModalVeryTracking({
                       </div>
                     </div>
                   )}
-                  <div className="mt-4 flex justify-between">
+                  <div className="mt-4 flex justify-between pb-10">
                     <button
                       type="button"
                       onClick={

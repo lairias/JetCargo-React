@@ -110,57 +110,7 @@ COD_CUSTOMER
                   </Dialog.Title>
                   <div className="mt-2">
                     <form className="mt-11">
-                      <label className="block mt-4 text-sm w-full md:px-2">
-                        <span className="text-gray-700 dark:text-gray-900">
-                          Altura paquete{" "}
-                          <span className="text-bold">*Opcional</span>
-                        </span>
-                        <div className="p-inputgroup">
-                          <span className="p-inputgroup-addon">mt.</span>
-                          <InputText
-                            placeholder="Username"
-                            name="HEIGHT_PACKAGE"
-                            value={HEIGHT_PACKAGE}
-                            onChange={handleInputChange}
-                            id="numbers"
-                            keyfilter="num"
-                          />
-                        </div>
-                      </label>
-                      <label className="block mt-4 text-sm w-full md:px-2">
-                        <span className="text-gray-700 dark:text-gray-900">
-                          Ancho paquete{" "}
-                          <span className="text-bold">*Opcional</span>
-                        </span>
-                        <div className="p-inputgroup">
-                          <span className="p-inputgroup-addon">mt.</span>
-                          <InputText
-                            placeholder="Username"
-                            name="WIDTH_PACKAGE"
-                            value={WIDTH_PACKAGE}
-                            onChange={handleInputChange}
-                            id="numbers2"
-                            keyfilter="num"
-                          />
-                        </div>
-                      </label>
-                      <label className="block mt-4 text-sm w-full md:px-2">
-                        <span className="text-gray-700 dark:text-gray-900">
-                          Cantidad de paquetes{" "}
-                          <span className="text-bold">*Opcional</span>
-                        </span>
-                        <div className="p-inputgroup">
-                          <span className="p-inputgroup-addon">mt.</span>
-                          <InputText
-                            placeholder="Username"
-                            name="LENGTH_PACKAGE"
-                            onChange={handleInputChange}
-                            value={LENGTH_PACKAGE}
-                            id="numbers2"
-                            keyfilter="num"
-                          />
-                        </div>
-                      </label>
+                     
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
                           Peso de paquete{" "}
@@ -178,23 +128,7 @@ COD_CUSTOMER
                           />
                         </div>
                       </label>
-                      <label className="block mt-4 text-sm w-full md:px-2">
-                        <span className="text-gray-700 dark:text-gray-900">
-                          Volumen de paquete{" "}
-                          <span className="text-bold">*Opcional</span>
-                        </span>
-                        <div className="p-inputgroup">
-                          <span className="p-inputgroup-addon">mt.</span>
-                          <InputText
-                            placeholder="Username"
-                            name="VOL_PACKAGE"
-                            onChange={handleInputChange}
-                            value={VOL_PACKAGE}
-                            id="numbers2"
-                            keyfilter="num"
-                          />
-                        </div>
-                      </label>
+                      
                       <label className="block mt-4 text-sm w-full md:px-2">
                         <span className="text-gray-700 dark:text-gray-900">
                           Precio Tracking{" "}

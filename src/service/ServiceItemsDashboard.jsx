@@ -2,6 +2,7 @@ export const SidebarData = [
   {
     title: "Inicio",
     icon: "",
+    cant: "dasboard.inicio",
     iconClosed: "",
     iconOpened: "",
     subNav: [
@@ -9,31 +10,13 @@ export const SidebarData = [
         title: "Casilleros",
         path: "/admin/",
         icon: "",
+        cant: "",
       },
     ],
   },
-  // {
-  //   title: "Seguimiento",
-  //   icon: "",
-  //   iconClosed: "",
-  //   iconOpened: "",
-  //   subNav: [
-  //     {
-  //       title: "Paketes",
-  //       path: "/admin/packages",
-  //       icon: "",
-  //     },
-  //     {
-  //       title: "Nuevo Paquete",
-  //       path: "/admin/packages/new",
-  //       accion: "create",
-  //       icon: "",
-  //     },
-  //   ],
-  // },
   {
     title: "Recepción de paquetes",
-    path: "/admin",
+    cant: "dasboard.seguimiento",
     icon: "",
     iconClosed: "",
     iconOpened: "",
@@ -52,7 +35,7 @@ export const SidebarData = [
   },
   {
     title: "Roles",
-    path: "/overview",
+    cant: "dasboard.roles",
     icon: "",
     iconClosed: "",
     iconOpened: "",
@@ -67,7 +50,7 @@ export const SidebarData = [
   },
   {
     title: "Categorias de paquetes",
-    path: "/admin/category/package",
+    cant: "dasboard.categorias",
     icon: "",
     iconClosed: "",
     iconOpened: "",
@@ -81,9 +64,85 @@ export const SidebarData = [
     ],
   },
   {
-    title: "Overview",
-    path: "/overview",
-    icon: "fa-solid fa-users",
+    title: "Seguridad",
+    cant: "dasboard.seguridad",
+    icon: "",
+    iconClosed: "",
+    iconOpened: "",
+
+    subNav: [
+      {
+        title: "Users",
+        path: "/overview/users",
+        icon: "fa-solid fa-user-group-crown",
+      },
+      {
+        title: "Revenue",
+        path: "/overview/revenue",
+        icon: "fa-solid fa-user-robot",
+      },
+    ],
+  },
+  {
+    title: "Paypal",
+    cant: "home.view",
+    icon: "",
+    iconClosed: "",
+    iconOpened: "",
+
+    subNav: [
+      {
+        title: "Users",
+        path: "/overview/users",
+        icon: "fa-solid fa-user-group-crown",
+      },
+      
+    ],
+  },
+  {
+    title: "Usuarios",
+    cant: "dasboard.usurario",
+    icon: "",
+    iconClosed: "",
+    iconOpened: "",
+
+    subNav: [
+      {
+        title: "Clientes",
+        path: "/overview/users",
+        icon: "fa-solid fa-user-group-crown",
+      },
+      {
+        title: "personas",
+        path: "/overview/revenue",
+        icon: "fa-solid fa-user-robot",
+      },
+    ],
+  },
+  {
+    title: "Casilleros",
+    cant: "dasboard.lockers",
+    icon: "",
+    iconClosed: "",
+    iconOpened: "",
+
+    subNav: [
+      {
+        title: "Users",
+        path: "/overview/users",
+        icon: "fa-solid fa-user-group-crown",
+      },
+      {
+        title: "Revenue",
+        path: "/overview/revenue",
+        icon: "fa-solid fa-user-robot",
+      },
+    ],
+  },
+  {
+    title: "Paquetes",
+    cant: "dasboard.packages",
+    icon: "",
     iconClosed: "",
     iconOpened: "",
 

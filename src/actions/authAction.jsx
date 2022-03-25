@@ -27,6 +27,10 @@ export function StarLogin(correo, password) {
         PAS_USER: password,
       });
       if (data.token) {
+        const PermisosAray = new Array();
+        data.PermissionUser.forEach((element) => {
+          PermisosAray.push(element.NAM_PERMISOS);
+      });
         localStorage.setItem("Jet-Cargo_jwt_login", data.token);
         localStorage.setItem(
           "Jet-Cargo_jwt_login_expiration_time",
@@ -39,7 +43,7 @@ export function StarLogin(correo, password) {
             lastname: data.LASTNAME,
             email: data.EMAIL,
             img_perfil: data.IMG_FHOTO,
-            permission: data.PermissionUser,
+            permission: PermisosAray,
             customer: data.CustomerUser,
           })
         );
@@ -66,6 +70,13 @@ export function startCheckingLogin() {
   return async function (dispatch) {
     const data = await RenewTokenService();
     if (data.ok) {
+      const PermisosAray = new Array();
+      data.PermissionUser.forEach((element) => {
+        PermisosAray.push(element.NAM_PERMISOS);
+    });
+
+
+
       localStorage.setItem("Jet-Cargo_jwt_login", data.token);
       localStorage.setItem(
         "Jet-Cargo_jwt_login_expiration_time",
@@ -78,7 +89,7 @@ export function startCheckingLogin() {
           lastname: data.LASTNAME,
           email: data.EMAIL,
           img_perfil: data.IMG_FHOTO,
-          permission: data.PermissionUser,
+          permission: PermisosAray,
           customer: data.CustomerUser,
         })
       );

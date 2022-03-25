@@ -41,7 +41,7 @@ export function StartTrackingRecived (HEIGHT_PACKAGE,
   checbox,
   setIsOpen){
   return async function () {
-    const data = await fetchConToken(
+     await fetchConToken(
       `tracking/${COD_TRACKING}`,
       {HEIGHT_PACKAGE,
         WIDTH_PACKAGE,

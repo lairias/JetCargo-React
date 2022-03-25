@@ -3,7 +3,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { GetCasilleroUser } from "../../../actions/lockersAction";
 import { showModal } from "../../../actions/modal_Locker_Customer";
-import { useVeryPermisso } from "../../../hooks/useVeryPermission";
 import ModalAddLockerCustomers from "../../Modal/Lockers/ModalAddLockerCustomers";
 import CardList from "./components/CardList";
 
@@ -21,7 +20,6 @@ export default function IndexHome() {
   const { lockerUser, loadingLokersUser } = useSelector(
     (state) => state.locker
   );
-  const [Crear_ad] = useVeryPermisso(permission, "admin.crear");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(GetCasilleroUser(customer.COD_CUSTOMER));
@@ -42,7 +40,7 @@ export default function IndexHome() {
       <div className="flex justify-between">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">Inicio</h2>
         <div className=" my-6">
-          {Crear_ad && loadingLokersUser && lockerUser ? (""): (
+          {permission.includes("admin.crear") && loadingLokersUser && lockerUser ? (""): (
             <button
               onClick={lockerUser ? handleModalConLokers : handleModalSinLokers}
               className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
@@ -68,7 +66,7 @@ export default function IndexHome() {
           "Cargando"
         )}
       </div>
-      {shoModalLockerCustomer && (
+      {permission.includes("admin.crear") && shoModalLockerCustomer && (
         <ModalAddLockerCustomers
           isOpen={shoModalLockerCustomer}
           setIsOpen={handleModalSinLokers}

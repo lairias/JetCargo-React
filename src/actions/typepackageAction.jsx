@@ -12,7 +12,7 @@ export function GetAllTypePackage(type = false) {
         DataArray.push({
           value: element.COD_TYPEPACKAGE,
           label: element.NAM_TYPEPACKAGE,
-          image: element.IMG_TYPEPACKAGE,
+          prece: element.PREC_TYPEPACKAGE,
         });
       });
       dispatch(

@@ -2,7 +2,6 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 export const SubItems = ({ item }) => {
   const [subnav, setSubnav] = useState(false);
-
   const showSubnav = () => setSubnav(!subnav);
   return (
     <>
@@ -26,7 +25,7 @@ export const SubItems = ({ item }) => {
           showSubnav ? "flex" : "hidden"
         } justify-start  flex-col w-full md:w-auto items-start pb-1 `}
       >
-        {subnav &&
+        { subnav &&
           item.subNav.map((item, index) => (
             <NavLink
               to={item.path}
@@ -38,6 +37,7 @@ export const SubItems = ({ item }) => {
             </NavLink>
           ))}
       </div>
+      
     </>
   );
 };

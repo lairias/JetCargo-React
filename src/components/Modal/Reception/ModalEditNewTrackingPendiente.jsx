@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Accordion, AccordionTab } from "primereact/accordion";
 import { TabView, TabPanel } from 'primereact/tabview';
 import { useForms } from "../../../hooks/useForms";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
@@ -28,6 +27,7 @@ export default function ModalEditNewTrackingPendiente({setIsOpen,dataNewModal, C
   const { TypePackage, loadingTypePackage } = useSelector(
     (state) => state.typepackage
   );
+
   /****************************************************Variables de Hooks */
   const [
     {
@@ -91,6 +91,7 @@ export default function ModalEditNewTrackingPendiente({setIsOpen,dataNewModal, C
       )
     );
       dispatch(GetTrackingAll(set_dataTracking,setLoading,`tracking/${COD_TYPEPACKAGE_data}/${RECEIVED_TRACKING_data}`))
+      setIsOpen(false)
   };
   const selectStatusTracking = [
     { value: "PENDING" },
@@ -108,7 +109,7 @@ export default function ModalEditNewTrackingPendiente({setIsOpen,dataNewModal, C
   //   /********************************************************************** */
   return (
     <>
-      <div id="popup" className="z-50 fixed w-full flex justify-center inset-0">
+      <div  className="z-50 fixed w-full flex justify-center inset-0">
         <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
         <div className="mx-auto container">
           <div className="flex items-center justify-center h-full w-full">
