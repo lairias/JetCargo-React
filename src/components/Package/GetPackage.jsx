@@ -7,7 +7,6 @@ export const GetPackage = () => {
   const [showInvoice, setshoInvoice] = useState(false);
   //*************************************************** */
   //*********************************Variables de Hooks*/
-  const { NUM_LOCKER, COD_LOCKER, COD_PACKAGE } = useParams();
   //*************************************************** */
   //*********************************Variables de Funciones */
   //*************************************************** */

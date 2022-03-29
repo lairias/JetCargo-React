@@ -21,8 +21,7 @@ export const DirectionInformation = ({
   const [Pais, set_pais] = useState();
   const [State, set_state] = useState();
   const [City, set_city] = useState();
-  ///*********************UseEfect********************** */
-
+  ///*********************UseEfect***********************/
   useEffect(() => {
     CountryService().then((element) => {
       set_ApiCountry(element.data);
@@ -41,6 +40,23 @@ export const DirectionInformation = ({
         {title}
       </h1>
       <div className=" md:justify-between md:flex  ">
+        <label className="block mt-4 text-sm">
+          <span className="text-gray-700 dark:text-gray-800">Área</span>
+          <select
+          
+            onChange={(e) =>
+              set_Datoslocalizacion({
+                ...Datoslocalizacion,
+                area: e.target.value,
+              })
+            }
+            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            value={Datoslocalizacion.area}
+          >
+            <option value="">-- Seleccione --</option>
+            <SelectArea ApiCountry={ApiCountry} />
+          </select>
+        </label>
         <label className="block mt-4 text-sm mx-1">
           <span className="text-gray-700 dark:text-gray-800">
             Número teléfonico
@@ -58,22 +74,6 @@ export const DirectionInformation = ({
             value={Datoslocalizacion.telefono}
           />
         </label>
-        <label className="block mt-4 text-sm">
-          <span className="text-gray-700 dark:text-gray-800">Área</span>
-          <select
-            onChange={(e) =>
-              set_Datoslocalizacion({
-                ...Datoslocalizacion,
-                area: e.target.value,
-              })
-            }
-            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            value={Datoslocalizacion.area}
-          >
-            <option value="">-- Seleccione --</option>
-            <SelectArea ApiCountry={ApiCountry} />
-          </select>
-        </label>
       </div>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-800">Dirección</span>
@@ -89,13 +89,13 @@ export const DirectionInformation = ({
           className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
           value={Datoslocalizacion.direccion}
         >
-          {" "}
         </textarea>
       </label>
       <div className=" md:justify-between md:flex  ">
         <label className="block mt-4 text-sm mx-1">
           <span className="text-gray-700 dark:text-gray-800">País</span>
           <select
+          disabled={Datoslocalizacion.area ? false : true}
             onChange={(e) => {
               set_pais(e.target.value);
               set_Datoslocalizacion({

@@ -8,7 +8,6 @@ import { showModal } from "../../actions/modal_Locker_Customer";
 import ModalVeryTracking from "../Modal/Package/ModalVeryTracking";
 import ModalNewPackage from "../Modal/Package/ModalNewPackage";
 import { useFetchToken } from "../../hooks/useFetch";
-import { NotFound } from "../Error/NotFound";
 
 export const ShowPackages = () => {
   //*******************************************Variables de state */
@@ -16,7 +15,7 @@ export const ShowPackages = () => {
   const { NUM_LOCKER, COD_LOCKER } = useParams();
   //************************************************************* */
   //*******************************************Variables de Hooks */
-  const { customer } = useSelector((state) => state.auth);
+  const { permission,customer } = useSelector((state) => state.auth);
   const { loadingPackagesLocker, packagesLocker } = useSelector(
     (state) => state.packageLockers
   );
@@ -24,13 +23,7 @@ export const ShowPackages = () => {
     (state) => state.modal_Locker_Customer
   );
 
-
-  
   const [DataLocker] = useFetchToken(`locker/${COD_LOCKER}`);
-
-
-
-
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -47,40 +40,34 @@ export const ShowPackages = () => {
   //************************************************************* */
   //*******************************************Variables de consola */
   //************************************************************* */
-
-  // if (Boolean(DataLocker) ) {
-  //   return <NotFound />;
-  // }
-  
   return (
     <>
       <div className="container  mx-auto grid  ">
         <div className="flex justify-between">
           <h2 className="my-6 text-2xl font-semibold text-gray-700">
-            {" "}
             Seguimiento de paquetes {NUM_LOCKER}
           </h2>
           <div className="px-6 my-6">
-            {DataLocker.IND_LOCKER && (<button
-              onClick={handleShoModal}
-              className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-            >
-              {" "}
-              Nuevo paquete <span className="ml-2">+</span>
-            </button>)}
-            
+            { permission.includes("package.crear") && DataLocker.IND_LOCKER && (
+              <button
+                onClick={handleShoModal}
+                className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              >
+                Nuevo paquete <span className="ml-2">+</span>
+              </button>
+            )}
           </div>
-          {shoModalLockerCustomer && (
+          { permission.includes("package.crear") && shoModalLockerCustomer && (
             <ModalVeryTracking
               setmodalCreatepackage={setmodalCreatepackage}
               isOpen={shoModalLockerCustomer}
               setIsOpen={handleShoModal}
             />
           )}
-          {modalCreatepackage && (
+          { permission.includes("package.crear") && modalCreatepackage && (
             <ModalNewPackage
-            COD_LOCKER={COD_LOCKER}
-            COD_CUSTOMER = {customer.COD_CUSTOMER}
+              COD_LOCKER={COD_LOCKER}
+              COD_CUSTOMER={customer.COD_CUSTOMER}
               isOpen={modalCreatepackage}
               setIsOpen={handleShoModalNewPackage}
               handleShoModal={handleShoModal}
@@ -89,29 +76,29 @@ export const ShowPackages = () => {
           )}
         </div>
         {/* Insertar contenido de las paginas **/}
-        <div className=" grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8  pb-20">
-        {loadingPackagesLocker ? (
-          loadingPackagesLocker &&
-          (packagesLocker ? (
-            packagesLocker.map(
-              (packageLockers) =>
-                packageLockers.IND_LOCKER &&
-                packageLockers.IND_PACKAGE && (
+        <div className=" grid sm:grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 pt-6 gap-8  pb-20">
+          {loadingPackagesLocker ? (
+            loadingPackagesLocker &&
+            (packagesLocker ? (
+              packagesLocker.map(
+                (packageLockers) =>
+                  packageLockers.IND_LOCKER &&
+                  packageLockers.IND_PACKAGE && (
                     <GetPackages
                       key={packageLockers.COD_PACKAGE}
                       items={packageLockers}
                     />
-                )
-            )
+                  )
+              )
             ) : (
               <h2 className="my-6 text-2xl text-center font-semibold text-gray-700">
-              No cuenta con paquetes
-            </h2>
-          ))
+                No cuenta con paquetes
+              </h2>
+            ))
           ) : (
             <SpinerLoader />
-            )}
-            </div>
+          )}
+        </div>
       </div>
     </>
   );

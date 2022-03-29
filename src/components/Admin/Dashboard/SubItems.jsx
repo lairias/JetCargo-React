@@ -25,7 +25,7 @@ export const SubItems = ({ item }) => {
           showSubnav ? "flex" : "hidden"
         } justify-start  flex-col w-full md:w-auto items-start pb-1 `}
       >
-        { subnav &&
+        {subnav &&
           item.subNav.map((item, index) => (
             <NavLink
               to={item.path}
@@ -37,7 +37,6 @@ export const SubItems = ({ item }) => {
             </NavLink>
           ))}
       </div>
-      
     </>
   );
 };

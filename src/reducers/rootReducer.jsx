@@ -13,6 +13,7 @@ import { serviceReducer } from "./serviceReducer";
 import { trackingReducer } from "./trackingReducer";
 import { typepackageReducer } from "./typepackageReducer";
 import { seguridadReducer } from "./seguridadReducer";
+import { receptionReducer } from "./receptionReducer";
 
 export const rootReducer = combineReducers({
   auth: autReducer,
@@ -28,4 +29,5 @@ export const rootReducer = combineReducers({
   tracking: trackingReducer,
   typepackage: typepackageReducer,
   seguridad: seguridadReducer,
+  reception: receptionReducer,
 });

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { fetchConToken } from "../util/fetch";
-export const useFetchToken = (ruta, data2= {}, metod= "GET" ) => {
+export const useFetchToken = (ruta, data2 = {}, metod = "GET") => {
   const [typeUsesState, settypeUsesState] = useState([]);
   const [loading, setloding] = useState(false);
 
@@ -12,6 +12,5 @@ export const useFetchToken = (ruta, data2= {}, metod= "GET" ) => {
       setloding(true);
     })();
   }, [ruta]);
-  return [typeUsesState,
-    loading];
+  return [typeUsesState, loading];
 };

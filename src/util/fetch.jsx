@@ -1,6 +1,5 @@
 const baseUrl = "http://localhost:4000/api";
 
-
 export const fetchSinToken = (endpoint, data, method = "GET") => {
   const url = `${baseUrl}/${endpoint}`;
 

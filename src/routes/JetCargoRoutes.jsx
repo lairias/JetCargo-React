@@ -44,12 +44,13 @@ import IndexCatPackage from "../components/Admin/CategoryPakage/IndexCatPackage"
 import IndexHome from "../components/Admin/Home/IndexHome";
 import { PayPackage } from "../components/Package/PayPackage";
 import OrdenCaptureSucces from "../components/Error/OrdenCapture";
+import EmailVery from "../components/Error/EmailVery";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
   useEffect(() => {
     distance(startCheckingLogin());
-  }, [distance,id]);
+  }, [distance, id]);
 
   if (checking) {
     return <Loaddin />;
@@ -59,9 +60,10 @@ function JetCargoRoutes() {
       <Routes>
         <Route path="/" element={<PublicRoute isAuthenticated={Boolean(id)} />}>
           <Route path="login" element={<Login />} />
+          <Route path="very/email/" element={<EmailVery />} />
           <Route path="register" element={<Register />} />
           <Route
-            path="forget-password/:token/:correo"
+            path="forget-password/:token/:correo/"
             element={<ForgotPassword />}
           />
           <Route path="home" element={<Header />} />
@@ -69,18 +71,19 @@ function JetCargoRoutes() {
             path="reset-password"
             element={
               <>
-                <ResetPassword /> 
+                <ResetPassword />
               </>
             }
           />
         </Route>
 
-        <Route path="/" element={<PrivateRoute isAuthenticated={Boolean(id)} />}>
+        <Route
+          path="/"
+          element={<PrivateRoute isAuthenticated={Boolean(id)} />}
+        >
           <Route
             path="admin/locker/:NUM_TRACKING"
-            element={
-              <OrdenCaptureSucces/>
-            }
+            element={<OrdenCaptureSucces />}
           />
           <Route
             path="admin"
@@ -119,18 +122,17 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <EditProfile />
-                  
                 </Admin>
               </>
             }
           />
-         
+
           <Route
             path="/admin/locker/:NUM_LOCKER/:COD_LOCKER/packages/"
             element={
               <>
                 <Admin>
-                  <ShowPackages /> 
+                  <ShowPackages />
                 </Admin>
               </>
             }
@@ -140,7 +142,7 @@ function JetCargoRoutes() {
             element={
               <>
                 <Admin>
-                  <GetPackage /> 
+                  <GetPackage />
                 </Admin>
               </>
             }
@@ -150,7 +152,7 @@ function JetCargoRoutes() {
             element={
               <>
                 <Admin>
-                  <PayPackage /> 
+                  <PayPackage />
                 </Admin>
               </>
             }

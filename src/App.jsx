@@ -8,7 +8,7 @@ function App() {
   return (
     <Provider store={store}>
       <PayPalScriptProvider options={{ "client-id": "test" }}>
-      <JetCargoRoutes />
+        <JetCargoRoutes />
       </PayPalScriptProvider>
     </Provider>
   );

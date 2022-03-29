@@ -102,7 +102,7 @@ export const Register_Descripcion = yup.object().shape({
     .string()
     .required("El dato Dirección es necesario")
     .max(100, "El dato Dirección maxímo de caracteres permitidos 100")
-    .min(15, " El dato Dirección minímo de caracteres permitidos 20 "),
+    .min(5, " El dato Dirección minímo de caracteres permitidos 5"),
 });
 export const Register_Pais = yup.object().shape({
   pais: yup.string().nullable().required("El dato país es necesario"),
@@ -144,11 +144,11 @@ export const nombrePackage = yup.object().shape({
   NAME_PACKAGE: yup
     .string()
     .nullable()
-    .required("El dato es nombre es necesario"),
+    .required("El dato es nombre de paquete  es necesario"),
 });
 export const desPackage = yup.object().shape({
   DES_PACKAGE: yup
     .string()
     .nullable()
-    .required("El dato es descripción es necesario"),
+    .required("El dato es descripción paquete es necesario"),
 });

@@ -57,6 +57,12 @@ export const Formulario = () => {
           <button className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple">
             Siguiente
           </button>
+            <NavLink
+              className="block w-full px-4 py-2 mt-4 text-sm font-medium leading-5 text-center text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-lg active:bg-sky-600 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple"
+              to="/register"
+            >
+              Crear cuenta
+            </NavLink>
           <p className="mt-4">
             <NavLink
               className="text-sm font-medium text-sky-400 dark:text-sky-400 hover:underline"
@@ -65,14 +71,7 @@ export const Formulario = () => {
               ¿Has olvidado tu correo electrónico?
             </NavLink>
           </p>
-          <p className="mt-1">
-            <NavLink
-              className="text-sm font-medium text-sky-400 dark:text-sky-400 hover:underline"
-              to="/register"
-            >
-              Crear cuenta
-            </NavLink>
-          </p>
+          
         </div>
       </form>
     </>

@@ -40,20 +40,24 @@ export default function IndexHome() {
       <div className="flex justify-between">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">Inicio</h2>
         <div className=" my-6">
-          {permission.includes("admin.crear") && loadingLokersUser && lockerUser ? (""): (
+          {permission.includes("admin.crear") &&
+          loadingLokersUser &&
+          lockerUser ? (
+            ""
+          ) : (
             <button
               onClick={lockerUser ? handleModalConLokers : handleModalSinLokers}
               className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-            >Crea tu casillero
+            >
+              Crea tu casillero
               <span className="ml-2"> + </span>
             </button>
           )}
         </div>
       </div>
       <div className="flex flex-wrap items-center justify-center  gap-7  sm:px-6 ">
-        {loadingLokersUser ? (
+        {  loadingLokersUser ? (
           lockerUser ? (
-            
             lockerUser.map((item) => (
               <CardList key={item.COD_LOCKER} item={item} />
             ))

@@ -1,5 +1,5 @@
-import Barras from "react-barcode"
+import Barras from "react-barcode";
 
-export default function Barcode ({codigo}){
- return   <Barras value = {codigo} />
+export default function Barcode({ codigo }) {
+  return <Barras value={codigo} />;
 }

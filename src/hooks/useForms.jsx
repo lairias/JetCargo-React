@@ -11,15 +11,3 @@ export const useForms = (initialState = {}) => {
   };
   return [value, handleInputChange, reset];
 };
-
-// import {useState} from  "react";
-
-// export const useForms = ({type} )=>{
-// const [value, setValue] = useState("");
-
-// const onChange = ({target:value}) =>{
-//     setValue(value);
-// }
-
-// return{type, value ,onChange}
-// }

@@ -96,7 +96,6 @@ export const SidebarData = [
         path: "/overview/users",
         icon: "fa-solid fa-user-group-crown",
       },
-      
     ],
   },
   {

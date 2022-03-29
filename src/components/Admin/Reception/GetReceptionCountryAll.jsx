@@ -1,45 +1,62 @@
 import { useEffect, useState } from "react";
-import { FilterMatchMode, FilterOperator } from "primereact/api";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
-import { InputText } from "primereact/inputtext";
-import { Button } from "primereact/button";
 import { AiFillSetting } from "react-icons/Ai";
 import ModalEditNewTrackingPendiente from "../../Modal/Reception/ModalEditNewTrackingPendiente";
-import { useFetchToken } from "../../../hooks/useFetch";
 import MUIDataTable from "mui-datatables";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { GetTrackingAll } from "../../../actions/trackingAction";
 import { Fab } from "@mui/material";
+import moment from "moment";
+import SpinnerButton from "../../Spinners/SpinnerButton";
+import { GetCustomerReception } from "../../../actions/receptionAction";
 
-export const GetReceptionCountry = ({ COD_TYPEPACKAGE, RECEIVED_TRACKING }) => {
+export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) => {
   const dispatch = useDispatch();
+  
   let [isOpen, setIsOpen] = useState(false);
-  const [dataNewModal, set_dataNewModal] = useState();
-  const [selectedCustomers, setSelectedCustomers] = useState(null);
   const [dataTracking, set_dataTracking] = useState([]);
   const [Loading, setLoading] = useState(false);
+  const { permission } = useSelector((state) => state.auth);
 
   useEffect(() => {
     dispatch(
       GetTrackingAll(
         set_dataTracking,
         setLoading,
-        `tracking/type/${COD_TYPEPACKAGE}/${RECEIVED_TRACKING}`
+        `tracking/received/${RECEIVED_TRACKING}`
       )
     );
   }, [dispatch]);
 
   const ShowModalPendiente = (data) => {
-    set_dataNewModal(dataTracking[data.rowIndex]);
+    dispatch(GetCustomerReception(
+     dataTracking[data]));
     setIsOpen(!isOpen);
+  };
+  const ShowModalProgreso = (data) => {
+    // set_dataNewModal(dataTracking[data.rowIndex]);
+    // setIsOpen(!isOpen);
+    alert("En proceso");
+  };
+  const ShowModalRecibido = (data) => {
+    // set_dataNewModal(dataTracking[data.rowIndex]);
+    // setIsOpen(!isOpen);
+    alert("Recibido");
+  };
+  const ShowModalEntregado = (data) => {
+    // set_dataNewModal(dataTracking[data.rowIndex]);
+    // setIsOpen(!isOpen);
+    alert("Entregado");
+  };
+  const ShowModalCancelado = (data) => {
+    // set_dataNewModal(dataTracking[data.rowIndex]);
+    // setIsOpen(!isOpen);
+    alert("Cancelado");
   };
 
   const columns = [
     {
       name: "NUM_TRACKING",
-      label: "Name",
-
+      label: "Números de Tracking",
       options: {
         filter: true,
         sort: true,
@@ -47,26 +64,31 @@ export const GetReceptionCountry = ({ COD_TYPEPACKAGE, RECEIVED_TRACKING }) => {
     },
     {
       name: "SERVICE_CODE",
-      label: "Company",
+      label: "Compania servicio",
       options: {
         filter: true,
-        sort: false,
+        sort: true,
       },
     },
     {
       name: "DAT_ADD_TRACKING",
-      label: "Acciones",
+      label: "Fecha de registro",
       options: {
         filter: true,
-        sort: false,
+        sort: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+                    moment(value).format('L') 
+            );
+        }
       },
     },
     {
-      name: "RECEIVED_TRACKING",
-      label: "State",
+      name: "NAM_TYPEPACKAGE",
+      label: "Entrega",
       options: {
         filter: true,
-        sort: false,
+        sort: true,
       },
     },
     {
@@ -81,7 +103,7 @@ export const GetReceptionCountry = ({ COD_TYPEPACKAGE, RECEIVED_TRACKING }) => {
             <div>
               <Fab
                 onClick={(_) => {
-                  ShowModalPendiente(dataIndex);
+                  ShowModalPendiente(dataIndex.rowIndex);
                 }}
                 color="primary"
                 size="small"
@@ -98,20 +120,25 @@ export const GetReceptionCountry = ({ COD_TYPEPACKAGE, RECEIVED_TRACKING }) => {
   const options = {
     filterType: "checkbox",
     fixedHeader: false,
+    textLabels: {
+      body: {
+        noMatch: Loading ?(<SpinnerButton />): 'Datos no encontrados',
+      }
+    }
   };
 
   return (
     <>
       <MUIDataTable
-        title={"Employee List"}
+        title={"Lista de Trackings"}
         data={dataTracking}
         columns={columns}
         options={options}
+        
       />
       {isOpen && (
         <ModalEditNewTrackingPendiente
           setIsOpen={ShowModalPendiente}
-          dataNewModal={dataNewModal}
           COD_TYPEPACKAGE_data={COD_TYPEPACKAGE}
           RECEIVED_TRACKING_data={RECEIVED_TRACKING}
           setLoading={setLoading}

@@ -13,8 +13,11 @@ export const Items = () => {
           />
         </div>
         <div className="flex flex-col justify-start items-center border-b border-gray-600 w-full  ">
-          {SidebarData.map((element, Dindex) => 
-          permission.includes(element.cant) && (<SubItems item={element} key={Dindex} />)
+          {SidebarData.map(
+            (element, Dindex) =>
+              permission.includes(element.cant) && (
+                <SubItems item={element} key={Dindex} />
+              )
           )}
         </div>
       </div>

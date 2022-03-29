@@ -1,20 +1,13 @@
 import "../../css/OrdenCaptureSucces.css";
-import { useNavigate, useParams } from "react-router-dom";
-import { useFetchToken } from "../../hooks/useFetch";
-import { useCallback, useEffect } from "react";
-export default function OrdenCaptureSucces() {
-  const { NUM_TRACKING } = useParams();
-  const [DataNumberTracking, NumberTrackingLoadder] = useFetchToken(
-    `tracking/search/${NUM_TRACKING}`
-  );
+import { useNavigate } from "react-router-dom";
+import {  useEffect } from "react";
+export default function EmailVery() {
   const history = useNavigate();
   useEffect(() => {
-    if (NumberTrackingLoadder) {
       setTimeout(() => {
         history("/admin/");
       }, 5000);
-    }
-  }, [NumberTrackingLoadder]);
+  }, []);
   return (
     <>
       <div className="container mx-auto">
@@ -22,8 +15,6 @@ export default function OrdenCaptureSucces() {
           <div className="w-full max-w-sm">
             <div className="bg-gray-100 shadow-sm hover:shadow-2xl rounded px-8 pt-6 pb-8 mb-4">
               <div className="flex flex-col items-center justify-center">
-                {NumberTrackingLoadder ? (
-                  <>
                     <div className="flex items-center justify-center">
                       <svg
                         className="w-12 h-12 text-green-500"
@@ -42,19 +33,15 @@ export default function OrdenCaptureSucces() {
                     </div>
                     <div className="text-center mt-4">
                       <h1 className="text-lg font-semibold">
-                        Orden creada con exito
+                        ¡Tu cuenta ha sido verificada!
+                        
                       </h1>
+
                       <p className="text-gray-600 text-base">
-                        Tu orden ha sido creada con exito, en breve recibiras un
-                        correo con los detalles de tu orden
+                        Tu cuenta ha sido verifiada exitosamente, ahora puedes
+                        iniciar sesión.
                       </p>
                     </div>
-                  </>
-                ) : (
-                  <div className="circle-loader">
-                    <div className="checkmark draw"></div>
-                  </div>
-                )}
               </div>
             </div>
           </div>

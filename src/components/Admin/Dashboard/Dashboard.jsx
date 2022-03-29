@@ -9,8 +9,7 @@ export const Dashboard = ({ children }) => {
   const [show, setShow] = useState(false);
   const [profile, setProfile] = useState(false);
   const [notification, set_notification] = useState(false);
-
-  const { name, lastname, img_fhoto, id } = useSelector((state) => state.auth);
+  const { name, lastname, img_perfil, id } = useSelector((state) => state.auth);
   return (
     <>
       <div className="w-full h-full bg-gray-200 relative">
@@ -61,15 +60,17 @@ export const Dashboard = ({ children }) => {
                 <div className="w-full flex items-center justify-around px-6 pt-1">
                   <Link to={`/admin/user/profile/${id}`}>
                     <div className="flex items-center">
-                      <img
-                        alt="profile-pic"
-                        src={
-                          !!img_fhoto
-                            ? `${img_fhoto}`
-                            : "https://cdn.icon-icons.com/icons2/2406/PNG/512/user_account_icon_145918.png"
-                        }
-                        className="w-8 h-8 rounded-md"
-                      />
+                    {img_perfil ? <img
+                    className="rounded-full h-10 w-10 object-cover"
+                    src={img_perfil}
+                    alt="avatar"
+                    />
+                    :<img
+                    className="rounded-full h-10 w-10 object-cover"
+                    src="https://cdn.icon-icons.com/icons2/2406/PNG/512/user_account_icon_145918.png"
+                    alt="avatar"
+                  />
+                    }
                       <p className="md:text-xl text-gray-800 text-base leading-4 ml-2">
                         {name} {lastname}
                       </p>

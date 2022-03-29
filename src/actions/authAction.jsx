@@ -30,7 +30,7 @@ export function StarLogin(correo, password) {
         const PermisosAray = new Array();
         data.PermissionUser.forEach((element) => {
           PermisosAray.push(element.NAM_PERMISOS);
-      });
+        });
         localStorage.setItem("Jet-Cargo_jwt_login", data.token);
         localStorage.setItem(
           "Jet-Cargo_jwt_login_expiration_time",
@@ -73,9 +73,7 @@ export function startCheckingLogin() {
       const PermisosAray = new Array();
       data.PermissionUser.forEach((element) => {
         PermisosAray.push(element.NAM_PERMISOS);
-    });
-
-
+      });
 
       localStorage.setItem("Jet-Cargo_jwt_login", data.token);
       localStorage.setItem(

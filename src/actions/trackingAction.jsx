@@ -9,22 +9,19 @@ import { types } from "../types/types";
 import { fetchConToken } from "../util/fetch";
 import { StartGetAllPackageLocker } from "./packageLockersAction";
 
-export function GetTrackingAll(set_dataTracking,setLoading,url) {
+export function GetTrackingAll(set_dataTracking, setLoading, url) {
   return async function () {
-    const data = await fetchConToken(
-      url,
-      {},
-      "GET"
-    );
+    const data = await fetchConToken(url, {}, "GET");
     const json = await data.json();
-    if(json.ok){
+    if (json.ok) {
       set_dataTracking(json.tracking);
       setLoading(false);
     }
-  }
+  };
 }
 
-export function StartTrackingRecived (HEIGHT_PACKAGE,
+export function StartTrackingRecived(
+  HEIGHT_PACKAGE,
   WIDTH_PACKAGE,
   WEIGHT_PACKAGE,
   COD_TYPEPACKAGE,
@@ -37,35 +34,46 @@ export function StartTrackingRecived (HEIGHT_PACKAGE,
   NUM_TRACKING,
   DES_TRACKING,
   COD_TRACKING,
+  id,
   COD_PACKAGE,
   checbox,
-  setIsOpen){
-  return async function () {
-     await fetchConToken(
-      `tracking/${COD_TRACKING}`,
-      {HEIGHT_PACKAGE,
-        WIDTH_PACKAGE,
-        WEIGHT_PACKAGE,
-        COD_TYPEPACKAGE,
-        VOL_PACKAGE,
-        NOM_PACKAGE,
-        COD_CATPACKAGE,
-        SERVICE_NAME,
-        COD_SERVICE,
-        RECEIVED_TRACKING,
-        NUM_TRACKING,
-        DES_TRACKING,
-        COD_PACKAGE,
-        checbox,},
-      "PUT"
-    );
-    setIsOpen(false)
+  setIsOpen,
+) {
+  return async function (dispatch) {
     
-  }
+      await fetchConToken(
+        `tracking/${COD_TRACKING}`,
+        {
+          HEIGHT_PACKAGE,
+          WIDTH_PACKAGE,
+          WEIGHT_PACKAGE,
+          COD_TYPEPACKAGE,
+          VOL_PACKAGE,
+          NOM_PACKAGE,
+          COD_CATPACKAGE,
+          SERVICE_NAME,
+          COD_SERVICE,
+          RECEIVED_TRACKING,
+          NUM_TRACKING,
+          DES_TRACKING,
+          COD_PACKAGE,
+          COD_USER: id,
+          checbox,
+        },
+        "PUT"
+      );
+      setIsOpen(false);
+    
+
+    
+  };
 }
 
-
-
+export function EndAddStatus(status) {
+  return async function (dispatch) {
+    dispatch(EndAddTrackinRecived(status));
+  };
+}
 export function GetSeartTrackingService(COD_SERVICE = false, NUM_TRACKING) {
   return async function (dispatch) {
     const DataTracking = await tracking_normal
@@ -118,6 +126,7 @@ export function statusTracking(valor) {
     dispatch(StartSearcTrackingService(valor));
   };
 }
+
 
 export function DataPostTrackingServiceCustomer(
   COD_SERVICE = false,
@@ -194,9 +203,12 @@ export function PostTrackingServiceCustomer(
   DES_PACKAGE,
   COD_LOCKER,
   COD_CUSTOMER,
-  setIsOpen
+  setIsOpen,
+  setStatusSend
 ) {
   return async function (dispatch) {
+    setStatusSend(true);
+
     const dataPost = await fetchConToken(
       `tracking`,
       {
@@ -218,23 +230,20 @@ export function PostTrackingServiceCustomer(
       dispatch(EventoShowCreateTracking(false));
       dispatch(DataPostnewTracking({}));
       setIsOpen(false);
+      setStatusSend(false);
     } else {
       toast.error(`Error al crear el tracking`, { duration: 3000 });
     }
   };
 }
-export function GetTrackindnewOrden(id){
-  return async function (dispatch){
-    const data = await fetchConToken(
-      `tracking/orden/${id}`,
-      {},
-      "GET"
-    );
+export function GetTrackindnewOrden(id) {
+  return async function (dispatch) {
+    const data = await fetchConToken(`tracking/orden/${id}`, {}, "GET");
     const json = await data.json();
-    if(json.ok){
+    if (json.ok) {
       dispatch(DataTrackingOrden(json.tracking));
     }
-  }
+  };
 }
 
 const DataSearcTrackingService = (search) => ({
@@ -254,5 +263,8 @@ const EventoShowCreateTracking = (status) => ({
   type: types.ShowCreateTracking,
   payload: status,
 });
-
+const EndAddTrackinRecived = (status) => ({
+  type: types.EndAddTrackinRecived,
+  payload: status,
+});
 

@@ -65,7 +65,7 @@ export const PeopleInformation = ({
         </label>
       </div>
       <label className="block mt-4 text-sm">
-        <span className="text-gray-700 dark:text-gray-800">Nombre</span>
+        <span className="text-gray-700 dark:text-gray-800">Primer Nombre</span>
         <input
           onChange={(e) => {
             set_DatosPersonales({ ...DatosPersonales, nombre: e.target.value });
@@ -90,7 +90,7 @@ export const PeopleInformation = ({
         />
       </label>
       <label className="block mt-4 text-sm">
-        <span className="text-gray-700 dark:text-gray-800">Apellido</span>
+        <span className="text-gray-700 dark:text-gray-800">Apellidos</span>
         <input
           onChange={(e) => {
             set_DatosPersonales({
