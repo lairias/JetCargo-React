@@ -14,13 +14,7 @@ import {
 import { InputSwitch } from "primereact/inputswitch";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function ModalEditNewTrackingPendiente({
-  setIsOpen,
-  COD_TYPEPACKAGE_data,
-  RECEIVED_TRACKING_data,
-  setLoading,
-  set_dataTracking,
-}) {
+export default function EditNewTrackingPendiente() {
   /****************************************************Variables de State */
   /********************************************************************** */
   
@@ -143,7 +137,8 @@ export default function ModalEditNewTrackingPendiente({
   return (
     <>
       <Toaster />
-      <div className="z-50 fixed w-full flex justify-center inset-0">
+      <h1>Hola</h1>
+      {/* <div className="z-50 fixed w-full flex justify-center inset-0">
         <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
         <div className="mx-auto container">
           <div className="flex items-center justify-center h-full w-full">
@@ -450,7 +445,7 @@ export default function ModalEditNewTrackingPendiente({
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

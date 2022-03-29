@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ModalNewPackage } from "../../Modal/Package/admin/ModalNewPackage";
-import { GetReceptionCountry } from "./GetReceptionCountry";
 import { GetReceptionCountryAll } from "./GetReceptionCountryAll";
 import { TabView, TabPanel } from "primereact/tabview";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
