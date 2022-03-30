@@ -30,7 +30,7 @@ import { GetProfile } from "../components/Admin/users/GetProfile";
 import { EditProfile } from "../components/Admin/users/EditProfile";
 
 //Componentes de Usuario de administrativo
-
+import EditNewTrackingPendiente from "../components/Admin/Reception/EditNewTrackingPendiente";
 //Componentes params
 import { ForgotPassword } from "../pages/ForgotPassword";
 //Contexto
@@ -163,6 +163,16 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <IndexReceptionCountry />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/reception/country/:COD_COUNTRY/edit/:COD_CUSTOMER/:RECEIVED_TRACKING"
+            element={
+              <>
+                <Admin>
+                  <EditNewTrackingPendiente />
                 </Admin>
               </>
             }

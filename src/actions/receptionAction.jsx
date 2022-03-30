@@ -4,7 +4,6 @@ import { types } from "../types/types";
 export function GetCustomerReception(DataCustomter) {
   return async function (dispatch) {
     //-----------Validaciones del input de formulario
-    console.log(DataCustomter)
     dispatch(checkingFinish({ modalOrdenPendiente:DataCustomter}));
   };
 }

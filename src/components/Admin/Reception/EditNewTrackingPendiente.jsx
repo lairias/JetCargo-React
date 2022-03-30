@@ -18,65 +18,64 @@ export default function EditNewTrackingPendiente() {
   /****************************************************Variables de State */
   /********************************************************************** */
   
-  const [isCalculo, setIsCalculo] = useState(0);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(GetAllCategoryPackage());
-    dispatch(GetAllservices());
-    dispatch(GetAllTypePackage());
-  }, [dispatch]);
-  const { categoryPackage, loading } = useSelector(
-    (state) => state.categorypackage
-  );
-  const { modalOrdenPendiente,startUploadReceptionPendiente } = useSelector(
-    (state) => state.reception
-  );
-  const { id } = useSelector((state) => state.auth);
-  const { services, loadingServices } = useSelector((state) => state.services);
-  const { TypePackage, loadingTypePackage } = useSelector(
-    (state) => state.typepackage
-  );
-  console.log( modalOrdenPendiente)
-  /****************************************************Variables de Hooks */
-  const [
-    {
-      HEIGHT_PACKAGE,
-      WIDTH_PACKAGE,
-      WEIGHT_PACKAGE,
-      VOL_PACKAGE,
-      SERVICE_NAME,
-      NOM_PACKAGE,
-      COD_CATPACKAGE,
-      NUM_TRACKING,
-      COD_SERVICE,
-      RECEIVED_TRACKING,
-      DES_TRACKING,
-      COD_TYPEPACKAGE,
-      COD_TRACKING,
-      PRICE_PACKAGE,
-    },
-    handleInputChange,
-  ] = useForms({
-    PRICE_PACKAGE: modalOrdenPendiente.PRICE_PACKAGE === null ? 0 : modalOrdenPendiente.PRICE_PACKAGE,
-    HEIGHT_PACKAGE: modalOrdenPendiente.HEIGHT_PACKAGE === null ? 0 : modalOrdenPendiente.HEIGHT_PACKAGE,
-    WIDTH_PACKAGE: modalOrdenPendiente.WIDTH_PACKAGE,
-    WEIGHT_PACKAGE: modalOrdenPendiente.WEIGHT_PACKAGE ,
-    COD_TYPEPACKAGE: modalOrdenPendiente.COD_TYPEPACKAGE,
-    VOL_PACKAGE: modalOrdenPendiente.VOL_PACKAGE,
-    NOM_PACKAGE: modalOrdenPendiente.NOM_PACKAGE,
-    COD_CATPACKAGE: modalOrdenPendiente.COD_CATPACKAGE,
-    SERVICE_NAME: modalOrdenPendiente.SERVICE_NAME,
-    COD_SERVICE: modalOrdenPendiente.COD_SERVICE,
-    RECEIVED_TRACKING: modalOrdenPendiente.RECEIVED_TRACKING,
-    NUM_TRACKING: modalOrdenPendiente.NUM_TRACKING,
-    DES_TRACKING: modalOrdenPendiente.DES_TRACKING,
-    COD_TRACKING: modalOrdenPendiente.COD_TRACKING,
-  });
-  const [checbox, set_checbox] = useState(Boolean(modalOrdenPendiente.IND_TRACKING));
-  const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
-  const [Precio, statusServicio] = useFetchToken(
-    `typepackage/${COD_TYPEPACKAGE}`
-  );
+  // const [isCalculo, setIsCalculo] = useState(0);
+  // const dispatch = useDispatch();
+     const [modalOrdenPendiente, loaddinModalPendiente] = useFetchToken(`tracking/received/:RECEIVED_TRACKING/:COD_CUSTOMER/:NUM_TRACKING`);
+  // useEffect(() => {
+  //   dispatch(GetAllCategoryPackage());
+  //   dispatch(GetAllservices());
+  //   dispatch(GetAllTypePackage());
+  // }, [dispatch]);
+  // const { categoryPackage, loading } = useSelector(
+  //   (state) => state.categorypackage
+  // );
+  
+  // const { id } = useSelector((state) => state.auth);
+  // const { services, loadingServices } = useSelector((state) => state.services);
+  // const { TypePackage, loadingTypePackage } = useSelector(
+  //   (state) => state.typepackage
+  // );
+  // console.log( modalOrdenPendiente)
+  // /****************************************************Variables de Hooks */
+  // const [
+  //   {
+  //     HEIGHT_PACKAGE,
+  //     WIDTH_PACKAGE,
+  //     WEIGHT_PACKAGE,
+  //     VOL_PACKAGE,
+  //     SERVICE_NAME,
+  //     NOM_PACKAGE,
+  //     COD_CATPACKAGE,
+  //     NUM_TRACKING,
+  //     COD_SERVICE,
+  //     RECEIVED_TRACKING,
+  //     DES_TRACKING,
+  //     COD_TYPEPACKAGE,
+  //     COD_TRACKING,
+  //     PRICE_PACKAGE,
+  //   },
+  //   handleInputChange,
+  // ] = useForms({
+  //   PRICE_PACKAGE: modalOrdenPendiente.PRICE_PACKAGE === null ? 0 : modalOrdenPendiente.PRICE_PACKAGE,
+  //   HEIGHT_PACKAGE: modalOrdenPendiente.HEIGHT_PACKAGE === null ? 0 : modalOrdenPendiente.HEIGHT_PACKAGE,
+  //   WIDTH_PACKAGE: modalOrdenPendiente.WIDTH_PACKAGE,
+  //   WEIGHT_PACKAGE: modalOrdenPendiente.WEIGHT_PACKAGE ,
+  //   COD_TYPEPACKAGE: modalOrdenPendiente.COD_TYPEPACKAGE,
+  //   VOL_PACKAGE: modalOrdenPendiente.VOL_PACKAGE,
+  //   NOM_PACKAGE: modalOrdenPendiente.NOM_PACKAGE,
+  //   COD_CATPACKAGE: modalOrdenPendiente.COD_CATPACKAGE,
+  //   SERVICE_NAME: modalOrdenPendiente.SERVICE_NAME,
+  //   COD_SERVICE: modalOrdenPendiente.COD_SERVICE,
+  //   RECEIVED_TRACKING: modalOrdenPendiente.RECEIVED_TRACKING,
+  //   NUM_TRACKING: modalOrdenPendiente.NUM_TRACKING,
+  //   DES_TRACKING: modalOrdenPendiente.DES_TRACKING,
+  //   COD_TRACKING: modalOrdenPendiente.COD_TRACKING,
+  // });
+  // const [checbox, set_checbox] = useState(Boolean(modalOrdenPendiente.IND_TRACKING));
+  // const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
+  // const [Precio, statusServicio] = useFetchToken(
+  //   `typepackage/${COD_TYPEPACKAGE}`
+  // );
   //   /********************************************************************** */
   //   /****************************************************Variables de funciones */
   const handleSubmit = (e) => {
@@ -120,18 +119,18 @@ export default function EditNewTrackingPendiente() {
     // }
     
   };
-  const selectStatusTracking = [
-    { value: "PENDING" },
-    { value: "RECEIVED" },
-    { value: "DELIVERED" },
-    { value: "CANCELED" },
-    { value: "IN_PROGRESS" },
-  ];
-  const handleCostoPeso = (e) => {
-    setIsCalculo(
-      parseFloat(Precio.PREC_TYPEPACKAGE) * parseFloat(e.target.value)
-    );
-  };
+  // const selectStatusTracking = [
+  //   { value: "PENDING" },
+  //   { value: "RECEIVED" },
+  //   { value: "DELIVERED" },
+  //   { value: "CANCELED" },
+  //   { value: "IN_PROGRESS" },
+  // ];
+  // const handleCostoPeso = (e) => {
+  //   setIsCalculo(
+  //     parseFloat(Precio.PREC_TYPEPACKAGE) * parseFloat(e.target.value)
+  //   );
+  // };
     /********************************************************************** */
     /********************************************************************** */
   return (

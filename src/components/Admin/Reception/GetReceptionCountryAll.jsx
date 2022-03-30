@@ -8,10 +8,11 @@ import moment from "moment";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { GetCustomerReception } from "../../../actions/receptionAction";
 import { NavLink } from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) => {
   const dispatch = useDispatch();
-  
+  // const {COD_COUNTRY,COD_CUSTOMER,RECEIVED_TRACKING}  = useParams();
   let [isOpen, setIsOpen] = useState(false);
   const [dataTracking, set_dataTracking] = useState([]);
   const [Loading, setLoading] = useState(false);
@@ -27,7 +28,6 @@ export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) =
     );
   }, [dispatch]);
 
-  console.log(dataTracking[0])
   const ShowModalPendiente = (data) => {
     dispatch(GetCustomerReception(
      dataTracking[data]));
@@ -58,11 +58,20 @@ export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) =
     
     {
       name: "COD_CUSTOMER",
-      label: "Números de Tracking",
+      label: "Números de cliente",
       options: {
         filter: true,
         sort: true,
         display: false,
+        empty: true,
+      },
+    },
+    {
+      name: "NUM_TRACKING",
+      label: "Números de Tracking",
+      options: {
+        filter: true,
+        sort: true,
         empty: true,
       },
     },
@@ -81,6 +90,7 @@ export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) =
       options: {
         filter: true,
         sort: true,
+        empty: true,
         customBodyRender: (value, tableMeta, updateValue) => {
             return (
                     moment(value).format('L') 
@@ -103,22 +113,21 @@ export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) =
       options: {
         filter: true,
         sort: false,
-
+        empty: true,
         customBodyRender: (data, tableMeta, rowIndex) => {
           return (
-            console.log(tableMeta)
+            console.log(dataTracking),
             
-            // <NavLink to={`edit/pendiente//${dataTracking[dataIndex].COD_CUSTOMER}`}>
-            //   <Fab
-            //     onClick={(_) => {
-            //       ShowModalPendiente(dataIndex.rowIndex);
-            //     }}
-            //     color="primary"
-            //     size="small"
-            //   >
-            //     <AiFillSetting />
-            //   </Fab>
-            // </NavLink>
+            <NavLink to={`edit/${tableMeta.rowData[0]}/${RECEIVED_TRACKING}`}>
+              <Fab
+                
+                color="primary"
+                size="small"
+              >
+                <AiFillSetting />
+                "Hola"
+              </Fab>
+            </NavLink>
           );
         },
       },
