@@ -47,31 +47,26 @@ export const IndexReceptionCountry = () => {
   <TabView>
         <TabPanel header="Pendiente">
               <GetReceptionCountryAll
-                COD_TYPEPACKAGE={3}
                 RECEIVED_TRACKING="PENDING"
               />
         </TabPanel>
         <TabPanel header="Progreso">
               <GetReceptionCountryAll
-                COD_TYPEPACKAGE={3}
                 RECEIVED_TRACKING="IN_PROGRESS"
               />
         </TabPanel>
         <TabPanel header="Recibido">
               <GetReceptionCountryAll
-                COD_TYPEPACKAGE={3}
                 RECEIVED_TRACKING="RECEIVED"
               />
         </TabPanel>
         <TabPanel header=" Entregado">
               <GetReceptionCountryAll
-                COD_TYPEPACKAGE={3}
                 RECEIVED_TRACKING="DELIVERED"
               />
         </TabPanel>
         <TabPanel header="Cancelado">
               <GetReceptionCountryAll
-                COD_TYPEPACKAGE={3}
                 RECEIVED_TRACKING="CANCELED"
               />
         </TabPanel>

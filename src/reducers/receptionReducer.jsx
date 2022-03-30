@@ -3,6 +3,7 @@ import { types } from "../types/types";
 
  const initialState = {
   startUploadReceptionPendiente: false,
+  loaddinPendiente: false,
 };
 export const receptionReducer = (state = initialState, action) => {
   //acciones con un switch
@@ -11,6 +12,7 @@ export const receptionReducer = (state = initialState, action) => {
       return {
         ...state,
         ...action.payload,
+        loaddinPendiente:true
       };
     case types.EndAddTrackinRecived:
       return {

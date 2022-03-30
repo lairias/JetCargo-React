@@ -20,49 +20,36 @@ export function GetTrackingAll(set_dataTracking, setLoading, url) {
   };
 }
 
-export function StartTrackingRecived(
-  HEIGHT_PACKAGE,
-  WIDTH_PACKAGE,
-  WEIGHT_PACKAGE,
-  COD_TYPEPACKAGE,
-  VOL_PACKAGE,
-  NOM_PACKAGE,
-  COD_CATPACKAGE,
-  SERVICE_NAME,
-  COD_SERVICE,
-  RECEIVED_TRACKING,
-  NUM_TRACKING,
-  DES_TRACKING,
-  COD_TRACKING,
-  id,
-  COD_PACKAGE,
-  checbox,
-  setIsOpen,
-) {
+export function StartTrackingRecived(task,COD_CUSTOMER,setsednDatos) {
   return async function (dispatch) {
-    
+    setsednDatos(true)
+    if(task.NUM_TRACKING_ === "" || task.NUM_TRACKING_ === " " || task.DES_TRACKING === "" || task.DES_TRACKING === " " || task.NOM_PACKAGE === "" || task.NOM_PACKAGE === " "){
+      toast.error('Todos los datos son necesarios');
+      setsednDatos(false)
+    }else{
+      setsednDatos(false)
       await fetchConToken(
-        `tracking/${COD_TRACKING}`,
+        `tracking/${task.COD_TRACKING}`,
         {
-          HEIGHT_PACKAGE,
-          WIDTH_PACKAGE,
-          WEIGHT_PACKAGE,
-          COD_TYPEPACKAGE,
-          VOL_PACKAGE,
-          NOM_PACKAGE,
-          COD_CATPACKAGE,
-          SERVICE_NAME,
-          COD_SERVICE,
-          RECEIVED_TRACKING,
-          NUM_TRACKING,
-          DES_TRACKING,
-          COD_PACKAGE,
-          COD_USER: id,
-          checbox,
+          HEIGHT_PACKAGE:task.HEIGHT_PACKAGE,
+          WIDTH_PACKAGE:task.WIDTH_PACKAGE,
+          WEIGHT_PACKAGE:task.WEIGHT_PACKAGE,
+          COD_TYPEPACKAGE:task.COD_TYPEPACKAGE,
+          VOL_PACKAGE:task.VOL_PACKAGE,
+          NOM_PACKAGE:task.NOM_PACKAGE,
+          COD_CATPACKAGE:task.COD_CATPACKAGE,
+          SERVICE_NAME:task.SERVICE_NAME,
+          COD_SERVICE:task.COD_SERVICE,
+          RECEIVED_TRACKING:task.RECEIVED_TRACKING_,
+          NUM_TRACKING:task.NUM_TRACKING_,
+          DES_TRACKING:task.DES_TRACKING,
+          COD_PACKAGE:task.COD_PACKAGE,
+          COD_CUSTOMER,
         },
         "PUT"
       );
-      setIsOpen(false);
+      
+    }
     
 
     

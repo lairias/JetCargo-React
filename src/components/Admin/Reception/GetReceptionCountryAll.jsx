@@ -10,9 +10,8 @@ import { GetCustomerReception } from "../../../actions/receptionAction";
 import { NavLink } from "react-router-dom";
 import {useParams} from "react-router-dom";
 
-export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) => {
+export const GetReceptionCountryAll = ({  RECEIVED_TRACKING }) => {
   const dispatch = useDispatch();
-  // const {COD_COUNTRY,COD_CUSTOMER,RECEIVED_TRACKING}  = useParams();
   let [isOpen, setIsOpen] = useState(false);
   const [dataTracking, set_dataTracking] = useState([]);
   const [Loading, setLoading] = useState(false);
@@ -116,9 +115,7 @@ export const GetReceptionCountryAll = ({COD_TYPEPACKAGE,  RECEIVED_TRACKING }) =
         empty: true,
         customBodyRender: (data, tableMeta, rowIndex) => {
           return (
-            console.log(dataTracking),
-            
-            <NavLink to={`edit/${tableMeta.rowData[0]}/${RECEIVED_TRACKING}`}>
+            <NavLink to={`edit/${tableMeta.rowData[0]}/${RECEIVED_TRACKING}/${tableMeta.rowData[1]}`}>
               <Fab
                 
                 color="primary"

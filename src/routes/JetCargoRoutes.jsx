@@ -168,7 +168,7 @@ function JetCargoRoutes() {
             }
           />
           <Route
-            path="/admin/reception/country/:COD_COUNTRY/edit/:COD_CUSTOMER/:RECEIVED_TRACKING"
+            path="/admin/reception/country/:COD_COUNTRY/edit/:COD_CUSTOMER/:RECEIVED_TRACKING/:NUM_TRACKING"
             element={
               <>
                 <Admin>
