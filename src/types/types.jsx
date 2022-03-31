@@ -71,4 +71,8 @@ export const types = {
   //seciones de ordenes de envio
   GetOneOrdenByUser: "[Orden] Get All Orden",
   EndAddTrackinRecived: "[Orden] Status Orden By User",
+
+  //seccion de informacion de ubicacion de tracking
+  GetAllUbicationTracking: "[UbicationTracking] Get All UbicationTracking",
+  GetAllUbicationTrackingByTracking: "[UbicationTracking] Get All UbicationTracking",
 };

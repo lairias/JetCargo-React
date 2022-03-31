@@ -50,14 +50,14 @@ export const IndexReceptionCountry = () => {
                 RECEIVED_TRACKING="PENDING"
               />
         </TabPanel>
-        <TabPanel header="Progreso">
-              <GetReceptionCountryAll
-                RECEIVED_TRACKING="IN_PROGRESS"
-              />
-        </TabPanel>
         <TabPanel header="Recibido">
               <GetReceptionCountryAll
                 RECEIVED_TRACKING="RECEIVED"
+              />
+        </TabPanel>
+        <TabPanel header="Progreso">
+              <GetReceptionCountryAll
+                RECEIVED_TRACKING="IN_PROGRESS"
               />
         </TabPanel>
         <TabPanel header=" Entregado">
