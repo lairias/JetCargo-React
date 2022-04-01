@@ -21,7 +21,7 @@ import { SelectCountry } from "../../Register/Select/SelectCountry";
 import { SelectState } from "../../Register/Select/SelectState";
 import { SelectCity } from "../../Register/Select/SelectCity";
 import { Divider } from "@mui/material";
-import { GetTrackingByInformation } from "../../../actions/TrackingInformationAction";
+import { GetTrackingByInformation, SendTrackingInformation } from "../../../actions/TrackingInformationAction";
 export default function Progreso({
   COD_COUNTRY,
   COD_CUSTOMER,
@@ -38,7 +38,7 @@ export default function Progreso({
   const { TypePackage, loadingTypePackage } = useSelector((state) => state.typepackage
   );
   const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
-  const [OrdenTrankings, loaddin_DataOrdenTracking] = useFetchToken(`orden/${COD_TRACKING}`);
+  const [DataOrdenTrankings, loaddin_DataOrdenTracking] = useFetchToken(`orden/${COD_TRACKING}`);
   const selectStatusTracking = [
     { value: "PENDING" },
     { value: "RECEIVED" },
@@ -84,10 +84,12 @@ export default function Progreso({
     `typepackage/${task.COD_TYPEPACKAGE}`
   );
 
-  console.log(task);
   const [ApiCities, set_ApiCities] = useState([]);
   const [ApiCountryOrigin, set_ApiCountryOrigin] = useState([]);
   const [ApiStateOrigin, set_ApiStateOrigin] = useState([]);
+  const [ApiCitiesDestino, set_ApiCitiesDestino] = useState([]);
+  const [ApiCountryDestino, set_ApiCountryDestino] = useState([]);
+  const [ApiStateDestino, set_ApiStateDestino] = useState([]);
   const [PaisOrigin, set_paisOrigin] = useState();
   const [PaisDestino, set_paisDestino] = useState();
   const [StateOrigin, set_stateOrigin] = useState();
@@ -109,6 +111,21 @@ export default function Progreso({
         CityService(StateOrigin).then((element) => {
           set_ApiCities(element.data);
         });
+        if(CityOrigin){
+          CountryService().then((element) => {
+            set_ApiCountryDestino(element.data);
+          });
+          if(PaisDestino){
+            StateService(PaisDestino).then((element) => {
+              set_ApiStateDestino(element.data)
+            });
+            if(StateDestino){
+              CityService(StateDestino).then((element) => {
+                set_ApiCitiesDestino(element.data)
+              });
+            }
+          }
+        }
       }
     }
     dispatch(
@@ -120,8 +137,8 @@ export default function Progreso({
     dispatch(GetAllCategoryPackage());
     dispatch(GetAllservices());
     dispatch(GetAllTypePackage());
-    dispatch(GetTrackingByInformation());
-  }, [dispatch, PaisOrigin, StateOrigin]);
+    dispatch(GetTrackingByInformation(DataOrdenTrankings.COD_ORDEN));
+  }, [dispatch, PaisOrigin, StateOrigin,PaisDestino,StateDestino,CityOrigin,CityDestino]);
 
   const handleChange = (e) =>
     setTask({ ...task, [e.target.name]: e.target.value });
@@ -141,13 +158,20 @@ export default function Progreso({
     if (
       task.WEIGHT_PACKAGE === " " ||
       task.WEIGHT_PACKAGE === 0 ||
-      task.WEIGHT_PACKAGE <= 0
+      task.WEIGHT_PACKAGE <= 0 ||
+      Direcciones.COD_COUNTRY_ORIGIN === "" ||
+      Direcciones.COD_COUNTRY_DESTINO === "" ||
+      Direcciones.COD_STATE_ORIGIN === "" ||
+      Direcciones.COD_STATE_DESTINO === "" ||
+      Direcciones.COD_CITY_ORIGIN === "" ||
+      Direcciones.COD_CITY_DESTINO === "" 
     ) {
       toast.error(`Todos los datos son necesario`);
     } else {
       dispatch(StartTrackingRecived(task, COD_CUSTOMER, setsednDatos));
+      dispatch(SendTrackingInformation(task, Direcciones, COD_CUSTOMER,DataOrdenTrankings));
 
-      history(`/admin/reception/country/${COD_COUNTRY}/`);
+      // history(`/admin/reception/country/${COD_COUNTRY}/`);
     }
   };
   return (
@@ -239,7 +263,7 @@ export default function Progreso({
                 value={Direcciones.COD_COUNTRY_DESTINO}
               >
                 <option value="">-- Seleccione --</option>
-                <SelectCountry ApiCountry={ApiCountryOrigin} />
+                <SelectCountry ApiCountry={ApiCountryDestino} />
               </select>
             </label>
             <label className="block mt-4 text-sm w-full md:px-2">
@@ -259,7 +283,7 @@ export default function Progreso({
                 value={Direcciones.COD_CITY_DESTINO}
               >
                 <option value="">-- Seleccione --</option>
-                <SelectState ApiState={ApiStateOrigin} />
+                <SelectState ApiState={ApiStateDestino} />
               </select>
             </label>
             <label className="block mt-4 text-sm w-full md:px-2">
@@ -277,7 +301,7 @@ export default function Progreso({
                 value={Direcciones.COD_STATE_DESTINO}
               >
                 <option value="">-- Seleccione --</option>
-                <SelectCity ApiCities={ApiCities} />
+                <SelectCity ApiCities={ApiCitiesDestino} />
               </select>
             </label>
           </div>
@@ -516,7 +540,7 @@ export default function Progreso({
 
       {loaddin_DataOrdenTracking ? (<>
       
-      {OrdenTrankings.ok ? (<><div className="flex justify-between mt-10">
+      {DataOrdenTrankings.ok ? (<><div className="flex justify-between mt-10">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">
           Informacion Ubucacion - {task.NUM_TRACKING_}
         </h2>
