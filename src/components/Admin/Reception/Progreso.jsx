@@ -27,7 +27,8 @@ export default function Progreso({
   COD_CUSTOMER,
   RECEIVED_TRACKING,
   NUM_TRACKING,
-  COD_TRACKING
+  COD_TRACKING,
+  COD_ORDEN
 }) {
   const history = useNavigate();
   const dispatch = useDispatch();
@@ -38,7 +39,7 @@ export default function Progreso({
   const { TypePackage, loadingTypePackage } = useSelector((state) => state.typepackage
   );
   const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
-  const [DataOrdenTrankings, loaddin_DataOrdenTracking] = useFetchToken(`orden/${COD_TRACKING}`);
+  const [DataOrdenTrankings, loaddin_DataOrdenTracking] = useFetchToken(`orden/tracking_cod/${COD_TRACKING}`);
   const selectStatusTracking = [
     { value: "PENDING" },
     { value: "RECEIVED" },
@@ -137,7 +138,7 @@ export default function Progreso({
     dispatch(GetAllCategoryPackage());
     dispatch(GetAllservices());
     dispatch(GetAllTypePackage());
-    dispatch(GetTrackingByInformation(DataOrdenTrankings.COD_ORDEN));
+    dispatch(GetTrackingByInformation(COD_ORDEN));
   }, [dispatch, PaisOrigin, StateOrigin,PaisDestino,StateDestino,CityOrigin,CityDestino]);
 
   const handleChange = (e) =>
@@ -170,7 +171,6 @@ export default function Progreso({
     } else {
       dispatch(StartTrackingRecived(task, COD_CUSTOMER, setsednDatos));
       dispatch(SendTrackingInformation(task, Direcciones, COD_CUSTOMER,DataOrdenTrankings));
-
       // history(`/admin/reception/country/${COD_COUNTRY}/`);
     }
   };

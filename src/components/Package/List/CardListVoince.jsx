@@ -18,17 +18,17 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
   return (
     <>
       <div className="w-full  mb-4 my-6 h-96 shadow sm:px-10 px-4 py-6 bg-white  rounded-md">
-        <p className="text-xl text-gray-800 font-semibold mb-4">
+        <p className="text-normal text-gray-800 font-semibold mb-4">
           {DataTrackinNotOrden[0].NUM_TRACKING}
         </p>
         <div className="flex justify-between my-2">
-          <p className="text-sm text-bold text-gray-800 font-semibold mb-2">
+          <p className="text-normal text-bold text-gray-800 font-semibold mb-2">
             Tracking
           </p>
           {CreateOrdenLoading ? (
             <a
               href={DataCreateOrden.links[1].href}
-              className="flex items-center justify-between   px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
+              className="flex items-center justify-between   px-4 py-2 text-normal font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
               <>
                 Pagar
@@ -52,20 +52,19 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
             <SpinnerButton />
           )}
         </div>
-        <p className="text-sm  font-semibold leading-tight text-gray-800 pb-3"></p>
+        <p className="text-normal  font-semibold leading-tight text-gray-800 pb-3"></p>
         <div className="w-full overflow-x-auto">
           <table className="w-full">
             <tbody>
-              <tr className="text-xl leading-3 text-gray-800 text-left border-b border-gray-200">
+              <tr className="text-normal leading-3 text-gray-800 text-left border-b border-gray-200">
                 <td className="py-4">Libras</td>
                 <td className="py-4"></td>
                 <td className="py-4 text-right">
                   {DataTrackinNotOrden[0].WEIGHT_PACKAGE}
                 </td>
               </tr>
-              <tr className="text-xl leading-3 text-gray-800 text-left">
+              <tr className="text-normal leading-3 text-gray-800 text-left">
                 <td className="py-4 border-b border-gray-200">
-                  Envio{" "}
                   {ServiceLoading ? (
                     DataService.NAM_TYPEPACKAGE
                   ) : (
@@ -82,7 +81,7 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
                   )}
                 </td>
               </tr>
-              <tr className="text-xl leading-3 text-gray-800 text-left border-b border-gray-200">
+              <tr className="text-normal leading-3 text-gray-800 text-left border-b border-gray-200">
                 <td className="py-4">
                   {" "}
                   {SeguridadLoading ? (
@@ -101,7 +100,7 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
                   )}
                 </td>
               </tr>
-              <tr className="text-xl leading-3 text-gray-800 text-left border-b border-gray-200">
+              <tr className="text-normal leading-3 text-gray-800 text-left border-b border-gray-200">
                 <td className="py-4">Facturado a lempiras</td>
                 <td className="py-4"></td>
                 <td className="py-4 text-right">
@@ -111,14 +110,12 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
                 </td>
               </tr>
 
-              <tr className="text-xl leading-3 text-gray-800 text-left">
+              <tr className="text-normal leading-3 text-gray-800 text-left">
                 <td className="py-4 font-bold">
-                  Facturado total en dolares: $.
-                  {DataTrackinNotOrden[0].PRICE_PACKAGE}
-                  {" USD"}
+                  Facturado total en dolares:
                 </td>
                 <td className="py-4" />
-                <td className="text-indigo-400 py-4 text-right">
+                <td className="text-indigo-400 text-xl py-4 text-right">
                   $.{DataTrackinNotOrden[0].PRICE_PACKAGE}
                   {" USD"}
                 </td>

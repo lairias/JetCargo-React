@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import box from "../../img/box-1299001_1280.png";
 import moment from "moment";
 export const GetPackages = ({ items }) => {
+  console.log(items);
   return (
     <>
       <div className="w-64 p-4  rounded border hover:shadow-lg bg-white">
@@ -68,7 +69,7 @@ export const GetPackages = ({ items }) => {
             </NavLink>
           ) : items.RECEIVED_TRACKING === "IN_PROGRESS" ? (
             <NavLink
-              to={`/admin/locker/${items.NUM_LOCKER}/${items.COD_LOCKER}/packages/${items.COD_PACKAGE}`}
+              to={`/admin/locker/${items.NUM_LOCKER}/${items.COD_LOCKER}/packages/${items.COD_PACKAGE}/${items.COD_TRACKING}`}
               role="button"
               aria-label="message"
               className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 hover:bg-gray-100 flex items-center justify-center flex-1 h-full py-3 px-20 bg-gray-50 border rounded border-gray-200"
