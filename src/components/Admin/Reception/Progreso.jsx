@@ -39,7 +39,8 @@ export default function Progreso({
   const { TypePackage, loadingTypePackage } = useSelector((state) => state.typepackage
   );
   const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
-  const [DataOrdenTrankings, loaddin_DataOrdenTracking] = useFetchToken(`orden/tracking_cod/${COD_TRACKING}`);
+  const [DataOrigenDestino, loadding_OrigenDestino] =useFetchToken(`trackingInformation/origenDestinoAdministrador/${COD_ORDEN}`);
+  const {OrigenDestino,ok} =DataOrigenDestino;
   const selectStatusTracking = [
     { value: "PENDING" },
     { value: "RECEIVED" },
@@ -538,17 +539,18 @@ export default function Progreso({
         </TabPanel>
       </TabView>
 
-      {loaddin_DataOrdenTracking ? (<>
+      {loadding_OrigenDestino ? (<>
       
-      {DataOrdenTrankings.ok ? (<><div className="flex justify-between mt-10">
+      {ok ? (<><div className="flex justify-between mt-10">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">
-          Informacion Ubucacion - {task.NUM_TRACKING_}
+          Información Ubicación - {task.NUM_TRACKING_}
         </h2>
       </div>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-20 shadow-xl rounded-lg ">
       <div className="px-3 pt-6 pb-6">
             <table className="w-full overflow-x-auto ">
               <tbody>
+                {OrigenDestino.map((item, index) => (
                 <tr>
                   <td>
                     <div className="flex items-center">
@@ -592,6 +594,8 @@ export default function Progreso({
                     </div>
                   </td>
                 </tr>
+
+                ))}
               </tbody>
             </table>
           </div>
