@@ -36,12 +36,14 @@ export default function CardList({ item }) {
             <img src={Logo} alt="avatar-3" />
           </div>
           <div className="flex justify-center items-center flex-col my-3">
-            <p className="text-sm font-medium leading-none text-gray-800">
-              JetCargo/
+            <div className="flex justify-between">
+            <p className="text-sm font-medium text-gray-800">JetCargo/
             </p>
-            <p className="text-sm font-bold leading-none text-gray-800">
+            <p className="text-sm font-bold  text-gray-800">
               {item.NUM_LOCKER}
             </p>
+            </div>
+            
             <p className="text-sm font-medium leading-none text-gray-800">
               {item.TYP_LOCKER}
             </p>

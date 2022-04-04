@@ -22,7 +22,7 @@ export const GetPackage = () => {
         <div className="flex justify-between">
           <h2 className="my-6 text-2xl font-semibold text-gray-700">
             {" "}
-            Últimos movimientos del paquete{" "}
+            Últimos movimientos del paquete
           </h2>
         </div>
         {/* Insertar contenido de las paginas **/}

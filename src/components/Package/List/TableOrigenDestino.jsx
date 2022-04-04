@@ -10,8 +10,6 @@ export default function TableOrigenDestino({ COD_ORDEN }) {
     `trackingInformation/origenDestinoAll/${COD_ORDEN}`
   );
 
-  console.log(DataOrigen)
-  const [Infodato, set_Infodatos]=useState({});
   const handleShowInvoice = () => {
     setshoInvoice(!showInvoice);
   };

@@ -4,7 +4,6 @@ import { GetReceptionCountryAll } from "./GetReceptionCountryAll";
 import { TabView, TabPanel } from "primereact/tabview";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import { useDispatch, useSelector } from "react-redux";
-import { Accordion, AccordionTab } from "primereact/accordion";
 
 export const IndexReceptionCountry = () => {
   //****************************Variables state */

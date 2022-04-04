@@ -45,6 +45,7 @@ import IndexHome from "../components/Admin/Home/IndexHome";
 import { PayPackage } from "../components/Package/PayPackage";
 import OrdenCaptureSucces from "../components/Error/OrdenCapture";
 import EmailVery from "../components/Error/EmailVery";
+import UpdateInformationTrackin from "../components/Admin/Reception/UpdateInformationTrackin";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
@@ -173,6 +174,16 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <EditNewTrackingPendiente />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/reception/country/:COD_COUNTRY/edit/information/ubication/:COD_ORDEN/:COD_ORIGEN/:COD_DESTINO"
+            element={
+              <>
+                <Admin>
+                  <UpdateInformationTrackin/>
                 </Admin>
               </>
             }
