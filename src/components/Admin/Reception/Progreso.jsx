@@ -190,7 +190,7 @@ export default function Progreso({
           task,
           Direcciones,
           COD_CUSTOMER,
-          DataOrdenTrankings
+          COD_ORDEN
         )
       );
       // history(`/admin/reception/country/${COD_COUNTRY}/`);
