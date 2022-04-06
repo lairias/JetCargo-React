@@ -63,7 +63,37 @@ export function SendTrackingInformation(task, Direcciones, COD_CUSTOMER,COD_ORDE
       {task, Direcciones, COD_CUSTOMER,COD_ORDEN},
       "POST",
     );
+  };
+}
+export function PutTrackingOrigenDestino(
+  PaisOrigin,
+  PaisDestino,
+  StateOrigin,
+  StateDestino,
+  CityOrigin,
+  CityDestino,
+  COD_ORDEN,
+  STATUS_ORIGIN,
+STATUS_DESTINO,
+set_SenData) {
+  return async function (dispatch) {
+    const data = await fetchConToken(
+      `trackingInformation`,
+      {PaisOrigin,
+        PaisDestino,
+        StateOrigin,
+        StateDestino,
+        CityOrigin,
+        CityDestino,
+        COD_ORDEN,
+        STATUS_ORIGIN,
+        STATUS_DESTINO},
+      "PUT",
+    );
     const json = await data.json();
+    if(json.ok){
+      set_SenData(true);
+    }
   };
 }
 

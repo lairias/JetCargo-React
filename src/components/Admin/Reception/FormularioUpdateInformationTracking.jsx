@@ -5,18 +5,17 @@ import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import { GetAllservices } from "../../../actions/serviceAction";
 import { GetAllTypePackage } from "../../../actions/typepackageAction";
 import SpinnerButton from "../../Spinners/SpinnerButton";
-import toast,{Toaster} from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Select from "react-select";
 import { SpinerLoader } from "../../Spinners/Loader";
+
 import {
   CityService,
   CountryService,
   StateService,
 } from "../../../service/ServiceDireciont";
-import { SelectCountry } from "../../Register/Select/SelectCountry";
-import { SelectState } from "../../Register/Select/SelectState";
-import { SelectCity } from "../../Register/Select/SelectCity";
 import { Divider } from "@mui/material";
+import { PutTrackingOrigenDestino } from "../../../actions/TrackingInformationAction";
 export default function FormularioUpdateInformationTracking({
   COD_COUNTRY,
   COD_ORDEN,
@@ -33,8 +32,7 @@ export default function FormularioUpdateInformationTracking({
     { value: "DELIVERED" },
     { value: "FAILED" },
   ];
-const[SenData, set_SenData]=useState(false);
-
+  const [SenData, set_SenData] = useState(false);
   const [ApiCities, set_ApiCities] = useState([]);
   const [ApiCountryOrigin, set_ApiCountryOrigin] = useState([]);
   const [ApiStateOrigin, set_ApiStateOrigin] = useState([]);
@@ -47,7 +45,6 @@ const[SenData, set_SenData]=useState(false);
   const [StateDestino, set_stateDestino] = useState(DataCargada.COD_DESTINATION_STATE);
   const [CityOrigin, set_cityOrigin] = useState(DataCargada.COD_ORIGIN_CITY);
   const [CityDestino, set_cityDestino] = useState(DataCargada.COD_DESTINATION_CITY);
-
   ///*********************UseEfect***********************/
   useEffect(() => {
     CountryService().then((element) => {
@@ -86,24 +83,22 @@ const[SenData, set_SenData]=useState(false);
       CityService(DataCargada.COD_ORIGIN_STATE).then((element) => {
         set_ApiCities(element.data);
       });
-     
     }
-    if(DataCargada.COD_DESTINATION_STATE){
-        CityService(DataCargada.COD_DESTINATION_STATE).then((element) => {
-            set_ApiCitiesDestino(element.data);
-           
-        });
+    if (DataCargada.COD_DESTINATION_STATE) {
+      CityService(DataCargada.COD_DESTINATION_STATE).then((element) => {
+        set_ApiCitiesDestino(element.data);
+      });
     }
     if (DataCargada.COD_DESTINATION_COUNTRY) {
       CountryService().then((element) => {
         set_ApiCountryDestino(element.data);
       });
     }
-    if(DataCargada.COD_DESTINATION_COUNTRY){
-        StateService(DataCargada.COD_DESTINATION_COUNTRY).then((element) => {
-            set_ApiStateDestino(element.data);
-            console.log(element.data);
-          });
+    if (DataCargada.COD_DESTINATION_COUNTRY) {
+      StateService(DataCargada.COD_DESTINATION_COUNTRY).then((element) => {
+        set_ApiStateDestino(element.data);
+        console.log(element.data);
+      });
     }
 
     dispatch(GetAllCategoryPackage());
@@ -123,32 +118,44 @@ const[SenData, set_SenData]=useState(false);
     setDataCargada({ ...DataCargada, [e.target.name]: e.target.value });
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     if (
-        PaisOrigin === "" ||
-        PaisDestino=== "" ||
-        StateOrigin=== "" ||
-        StateDestino=== "" ||
-        CityOrigin=== "" ||
-        CityDestino=== "" 
+      PaisOrigin === "" ||
+      PaisDestino === "" ||
+      StateOrigin === "" ||
+      StateDestino === "" ||
+      CityOrigin === "" ||
+      CityDestino === ""
     ) {
       toast.error(`Todos los datos son necesario`);
     } else {
-        set_SenData(true);
+      set_SenData(true);
+      dispatch(PutTrackingOrigenDestino(
+          PaisOrigin,
+        PaisDestino,
+        StateOrigin,
+        StateDestino,
+        CityOrigin,
+        CityDestino,
+        COD_ORDEN,
+        DataCargada.CHECKPOINT_DELIVERY_STATUS_ORIGIN,
+        DataCargada.CHECKPOINT_DELIVERY_STATUS_DESTINO,
+        set_SenData
+        ))
+        
       // history(`/admin/reception/country/${COD_COUNTRY}/`);
     }
   };
 
   return (
     <>
-    <Toaster/>
-    <div className="flex justify-between">
+      <Toaster />
+      <div className="flex justify-between">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">
-        Editar proceso de envio.
+          Editar proceso de envio.
         </h2>
       </div>
       <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-20 shadow-xl rounded-lg mt-10 pt-5 pb-10">
-        
         <Divider align="center" type="dashed">
           <b>Paquete de origen</b>
         </Divider>
@@ -162,7 +169,7 @@ const[SenData, set_SenData]=useState(false);
               onChange={(e) => {
                 handleChange(e);
                 set_paisOrigin(e.target.value);
-                
+                set_stateOrigin("");
               }}
               value={DataCargada.COD_ORIGIN_COUNTRY}
             >
@@ -189,6 +196,7 @@ const[SenData, set_SenData]=useState(false);
               onChange={(e) => {
                 handleChange(e);
                 set_stateOrigin(e.target.value);
+                set_cityOrigin("");
               }}
               value={DataCargada.COD_ORIGIN_STATE}
               className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -262,9 +270,10 @@ const[SenData, set_SenData]=useState(false);
           <label className="block mt-4 text-sm w-full px-2">
             <span className="text-gray-700 dark:text-gray-800">País</span>
             <select
-            name="COD_DESTINATION_COUNTRY"
+              name="COD_DESTINATION_COUNTRY"
               onChange={(e) => {
                 set_paisDestino(e.target.value);
+                set_stateDestino("");
                 handleChange(e);
               }}
               className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -292,14 +301,21 @@ const[SenData, set_SenData]=useState(false);
               name="COD_DESTINATION_STATE"
               onChange={(e) => {
                 set_stateDestino(e.target.value);
-                handleChange(e)}}
-               value={DataCargada.COD_DESTINATION_STATE}
-              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none">
+                set_cityDestino("");
+                handleChange(e);
+              }}
+              value={DataCargada.COD_DESTINATION_STATE}
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            >
               <option value="">-- Seleccione --</option>
-              {ApiStateDestino.map((items,index) => (
-                  <option key={items.COD_STATE} 
-                  value={items.COD_STATE} 
-                  defaultValue={items.COD_STATE === DataCargada.COD_DESTINATION_STATE}>
+              {ApiStateDestino.map((items, index) => (
+                <option
+                  key={items.COD_STATE}
+                  value={items.COD_STATE}
+                  defaultValue={
+                    items.COD_STATE === DataCargada.COD_DESTINATION_STATE
+                  }
+                >
                   {items.NAM_STATE}
                 </option>
               ))}
@@ -308,24 +324,26 @@ const[SenData, set_SenData]=useState(false);
           <label className="block mt-4 text-sm w-full px-2">
             <span className="text-gray-700 dark:text-gray-800">Ciudad</span>
             <select
-            name="COD_DESTINATION_CITY"
+              name="COD_DESTINATION_CITY"
               onChange={(e) => {
-                  handleChange(e)
+                handleChange(e);
                 set_cityDestino(e.target.value);
               }}
               className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               value={DataCargada.COD_DESTINATION_CITY}
             >
               <option value="">-- Seleccione --</option>
-              {ApiCitiesDestino.map((item,index) => (
+              {ApiCitiesDestino.map((item, index) => (
                 <option
-                    key={index}
-                    defaultValue={item.COD_CITY === DataCargada.COD_DESTINATION_CITY}
-                    value={item.COD_CITY}
-                    >
-                    {item.NAM_CITY}
+                  key={index}
+                  defaultValue={
+                    item.COD_CITY === DataCargada.COD_DESTINATION_CITY
+                  }
+                  value={item.COD_CITY}
+                >
+                  {item.NAM_CITY}
                 </option>
-                ))}
+              ))}
             </select>
           </label>
           <label className="block mt-4 text-sm w-full px-2">
@@ -344,7 +362,8 @@ const[SenData, set_SenData]=useState(false);
                 <option
                   key={index}
                   defaultValue={
-                    item.value === DataCargada.CHECKPOINT_DELIVERY_STATUS_DESTINO
+                    item.value ===
+                    DataCargada.CHECKPOINT_DELIVERY_STATUS_DESTINO
                   }
                   value={item.value}
                 >
@@ -363,8 +382,7 @@ const[SenData, set_SenData]=useState(false);
             disabled={SenData}
             className="px-6 py-3 bg-indigo-700  shadow rounded text-sm text-white"
           >
-              {SenData ? <SpinnerButton /> : "Guardar"}
-            
+            {SenData ? <SpinnerButton /> : "Guardar"}
           </button>
         </div>
       </div>

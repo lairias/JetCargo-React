@@ -8,8 +8,6 @@ export const UserInfromation = ({
     <>
       <h1
         className="
-  
-        
         mb-4 text-xl font-semibold text-gray-700 dark:text-gray-800"
       >
         {title}

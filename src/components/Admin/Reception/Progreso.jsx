@@ -47,7 +47,6 @@ export default function Progreso({
   const [DataOrigen, loadding_Origen] = useFetchToken(
     `trackingInformation/origenDestinoAll/${COD_ORDEN}`
   );
-  console.log(DataOrigen);
   const selectStatusTracking = [
     { value: "PENDING" },
     { value: "RECEIVED" },

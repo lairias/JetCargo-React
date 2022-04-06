@@ -1,10 +1,11 @@
+import { IoIosArrowUp,IoIosArrowDown} from "react-icons/io";
 export const SidebarData = [
   {
     title: "Inicio",
     icon: "",
     cant: "dasboard.inicio",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
     subNav: [
       {
         title: "Casilleros",
@@ -15,11 +16,11 @@ export const SidebarData = [
     ],
   },
   {
-    title: "Recepción de paquetes",
+    title: "Recepción",
     cant: "dasboard.seguimiento",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
     subNav: [
       {
         title: "Miami",
@@ -37,8 +38,8 @@ export const SidebarData = [
     title: "Roles",
     cant: "dasboard.roles",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
@@ -49,15 +50,15 @@ export const SidebarData = [
     ],
   },
   {
-    title: "Categorias de paquetes",
+    title: "Categorias",
     cant: "dasboard.categorias",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
-        title: "Categorias",
+        title: "Paquetes",
         path: "/admin/category/package",
         icon: "",
       },
@@ -67,8 +68,8 @@ export const SidebarData = [
     title: "Seguridad",
     cant: "dasboard.seguridad",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
@@ -87,8 +88,8 @@ export const SidebarData = [
     title: "Paypal",
     cant: "home.view",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
@@ -102,8 +103,8 @@ export const SidebarData = [
     title: "Usuarios",
     cant: "dasboard.usurario",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
@@ -122,8 +123,8 @@ export const SidebarData = [
     title: "Casilleros",
     cant: "dasboard.lockers",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
@@ -142,8 +143,8 @@ export const SidebarData = [
     title: "Paquetes",
     cant: "dasboard.packages",
     icon: "",
-    iconClosed: "",
-    iconOpened: "",
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {

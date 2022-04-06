@@ -1,6 +1,6 @@
 export default function CardLtEdit({
   element,
-  typeUsesState,
+  permisos,
   setselectChecked,
   selecChecked,
 }) {
@@ -20,7 +20,7 @@ export default function CardLtEdit({
             type="checkbox"
             value={element.COD_PERMISO}
             onChange={handleSelect}
-            defaultChecked={typeUsesState.permisos.some(
+            defaultChecked={permisos.some(
               (element2) => element2.COD_PERMISO === element.COD_PERMISO
             )}
           />

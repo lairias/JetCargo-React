@@ -326,7 +326,8 @@ export const Formulario = () => {
                       }}
                       className="px-3 py-1 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-sky-600 border border-transparent rounded-md active:bg-sky-400 hover:bg-sky-700 focus:outline-none focus:shadow-outline-purple"
                     >
-                      <i className="fas fa-angle-double-left"></i>
+                       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path></svg>
+                      
                     </button>
                     <button
                       onClick={(_) => {
@@ -341,7 +342,7 @@ export const Formulario = () => {
                       {Datoslocalizacion.validado ? (
                         "Guardar"
                       ) : (
-                        <i className="fas fa-angle-double-right"></i>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                       )}
                     </button>
                   </div>

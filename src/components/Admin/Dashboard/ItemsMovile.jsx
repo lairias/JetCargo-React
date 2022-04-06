@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import { SidebarData } from "../../../service/ServiceItemsDashboard";
 import { SubItems } from "./SubItems";
 export const ItemsMovile = ({ setShow, show }) => {
+  const { permission } = useSelector((state) => state.auth);
   return (
     <>
       {" "}
@@ -50,11 +52,10 @@ export const ItemsMovile = ({ setShow, show }) => {
                 </div>
               </div>
               <div className="flex flex-col justify-start items-center  w-full mx-4  ">
-                {SidebarData.map((element, Dindex) => {
-                  return (
+                {SidebarData.map((element, Dindex) =>  permission.includes(element.cant) && (
                     <SubItems item={element} Dindex={Dindex} key={Dindex} />
-                  );
-                })}
+                  )
+                )}
               </div>
             </div>
           </div>

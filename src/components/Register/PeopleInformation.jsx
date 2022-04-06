@@ -1,5 +1,7 @@
-import toast from "react-hot-toast";
 
+import { InputText } from 'primereact/inputtext';
+import toast from "react-hot-toast";
+import { InputMask } from 'primereact/inputmask';
 export const PeopleInformation = ({
   title,
   DatosPersonales,
@@ -30,18 +32,15 @@ export const PeopleInformation = ({
           <span className="text-gray-700 dark:text-gray-800">
             Identificación
           </span>
-          <input
-            onChange={(e) => {
-              set_DatosPersonales({
-                ...DatosPersonales,
-                identificacion: e.target.value,
-              });
-            }}
-            className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder="---- ----"
-            type="text"
-            value={DatosPersonales.identificacion}
-          />
+          <InputMask 
+          className="w-full"           
+          id="basic" mask="9999-9999-99999"
+          value={DatosPersonales.identificacion} onChange={(e) => 
+            set_DatosPersonales({
+              ...DatosPersonales,
+              identificacion: e.target.value,
+            })
+            }></InputMask>
         </label>
         <label className="block mt-4 text-sm">
           <span className="text-gray-700 dark:text-gray-800">
@@ -66,42 +65,37 @@ export const PeopleInformation = ({
       </div>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-800">Primer Nombre</span>
-        <input
-          onChange={(e) => {
+        <InputText className="w-full" onChange={(e) => {
             set_DatosPersonales({ ...DatosPersonales, nombre: e.target.value });
-          }}
-          className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          type="text"
-          value={DatosPersonales.nombre}
-        />
+          }} id="alpha" keyfilter="alpha" value={DatosPersonales.nombre} />
+       
+     
       </label>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-800">Segundo Nombre</span>
-        <input
+        <InputMask 
+          className="w-full"           
+          id="basic" mask="9999-9999-99999"
           onChange={(e) => {
             set_DatosPersonales({
               ...DatosPersonales,
               segundoNombre: e.target.value,
             });
-          }}
-          className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          type="text"
-          value={DatosPersonales.segundoNombre}
-        />
+          }} value={DatosPersonales.segundoNombre} ></InputMask>
+
       </label>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-800">Apellidos</span>
-        <input
+        <InputMask 
+          className="w-full"           
+          id="basic" mask="9999-9999-99999"
           onChange={(e) => {
             set_DatosPersonales({
               ...DatosPersonales,
               apellido: e.target.value,
             });
-          }}
-          className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          type="text"
-          value={DatosPersonales.apellido}
-        />
+          }} value={DatosPersonales.apellido} ></InputMask>
+        
       </label>
       <div className=" md:justify-between md:flex  ">
         <label className="block mt-4 text-sm">

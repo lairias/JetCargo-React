@@ -46,6 +46,7 @@ import { PayPackage } from "../components/Package/PayPackage";
 import OrdenCaptureSucces from "../components/Error/OrdenCapture";
 import EmailVery from "../components/Error/EmailVery";
 import UpdateInformationTrackin from "../components/Admin/Reception/UpdateInformationTrackin";
+import IndexPermisos from "../components/Admin/TypeUsers/IndexPermisos";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
@@ -194,6 +195,16 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <IndexTypes />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/roles/edit/:COD_TYPEUSERS"
+            element={
+              <>
+                <Admin>
+                  <IndexPermisos />
                 </Admin>
               </>
             }

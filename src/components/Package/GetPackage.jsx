@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import ListPackageUser from "./List/ListPackageUser";
-import ModalInvoicePackage from "../Modal/Package/invoice/ModalInvoicePackage";
+
 import { useParams } from "react-router-dom";
 import {useFetchToken} from "../../hooks/useFetch";
 import SpinnerButton from "../Spinners/SpinnerButton";
+import TrackingPackage from "./TrackingPackage";
 export const GetPackage = () => {
   const {NUM_LOCKER,COD_LOCKER,COD_PACKAGE,COD_TRACKING}=useParams();
   //*********************************Variables de State */
-  const [showInvoice, setshoInvoice] = useState(false);
+  
   //*************************************************** */
   //*********************************Variables de Hooks*/
   const [DataOrden,loaddin_DataOrden] =  useFetchToken(`orden/tracking_cod/${COD_TRACKING}`);
+  const [DataTracking,loaddin_DataTrackin] =  useFetchToken(`tracking/GetBytracking/${COD_TRACKING}`);
+  
   //*************************************************** */
   //*********************************Variables de Funciones */
   //*************************************************** */
@@ -25,21 +27,9 @@ export const GetPackage = () => {
             Últimos movimientos del paquete
           </h2>
         </div>
-        {/* Insertar contenido de las paginas **/}
-        {showInvoice ? (
-          <ModalInvoicePackage
-            showInvoice={showInvoice}
-            setshoInvoice={setshoInvoice}
-          />
-        ) : (
-          ""
-        )}
-        {loaddin_DataOrden ? (<ListPackageUser
-        COD_ORDEN={DataOrden.COD_ORDEN}
-        COD_TRACKING={DataOrden.COD_TRACKING}
-          showInvoice={showInvoice}
-          setshoInvoice={setshoInvoice}
-        />):(<SpinnerButton />)}
+        {loaddin_DataTrackin && loaddin_DataOrden ? ( <TrackingPackage DataOrden={DataOrden} DataTracking={DataTracking} NUM_LOCKER={NUM_LOCKER} COD_LOCKER={COD_LOCKER}COD_PACKAGE={COD_PACKAGE} COD_TRACKING={COD_TRACKING} />):(<SpinnerButton />)}
+       
+      
         
       </div>
     </>

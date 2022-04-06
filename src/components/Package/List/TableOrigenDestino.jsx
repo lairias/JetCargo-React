@@ -5,7 +5,7 @@ import Origen from "./../../../img/mapa.png"
 import Destino from "../../../img/destino.png"
 import { LisOrigenDesino } from "./LisOrigenDesino";
 
-export default function TableOrigenDestino({ COD_ORDEN }) {
+export default function TableOrigenDestino({ COD_ORDEN,showInvoice, setshoInvoice }) {
   const [DataOrigen, loadding_Origen] = useFetchToken(
     `trackingInformation/origenDestinoAll/${COD_ORDEN}`
   );
