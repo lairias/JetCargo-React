@@ -223,15 +223,7 @@ export function PostTrackingServiceCustomer(
     }
   };
 }
-export function GetTrackindnewOrden(id) {
-  return async function (dispatch) {
-    const data = await fetchConToken(`tracking/orden/${id}`, {}, "GET");
-    const json = await data.json();
-    if (json.ok) {
-      dispatch(DataTrackingOrden(json.tracking));
-    }
-  };
-}
+
 
 const DataSearcTrackingService = (search) => ({
   type: types.SearcTrackingService,
