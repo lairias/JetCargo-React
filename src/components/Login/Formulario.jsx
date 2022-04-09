@@ -9,8 +9,8 @@ export const Formulario = () => {
 
   //Importacion de la funcion de Hooks para formularios
   const [{ correo, password }, handleInputChange] = useForms({
-    correo: "lairias@unah.hn",
-    password: "Honduchat3",
+    correo: "",
+    password: "",
   });
 
   //Creacion de funcion para enviar los datos del formulario
