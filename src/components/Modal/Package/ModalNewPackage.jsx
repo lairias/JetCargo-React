@@ -1,9 +1,11 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SpinnerButton from "../../Spinners/SpinnerButton";
+import Select from "react-select";
 import { PostTrackingServiceCustomer } from "../../../actions/trackingAction";
-import { Toaster } from "react-hot-toast";
+import toast,{ Toaster } from "react-hot-toast";
+import { useFetchToken } from "../../../hooks/useFetch";
 export default function ModalVeryTracking({
   isOpen,
   setIsOpen,
@@ -30,27 +32,27 @@ export default function ModalVeryTracking({
   // /****************************************************Variables de funciones */
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(
-      PostTrackingServiceCustomer(
-        COD_SERVICE,
-        COD_CATEGORY,
-        COD_TYPE,
-        NUM_TRACKING,
-        NAME_PACKAGE,
-        DES_PACKAGE,
-        COD_LOCKER,
-        COD_CUSTOMER,
-        setIsOpen,
-        setStatusSend
-      )
-    );
+      dispatch(
+        PostTrackingServiceCustomer(
+          COD_SERVICE,
+          COD_CATEGORY,
+          COD_TYPE,
+          NUM_TRACKING,
+          NAME_PACKAGE,
+          DES_PACKAGE,
+          COD_LOCKER,
+          COD_CUSTOMER,
+          setIsOpen,
+          setStatusSend,
+        )
+      );
   };
+  
   const handleRegresar = (e) => {
     handleShoModal(true);
     handleShoModalNewPackage(false);
   };
-  
+
 
   /********************************************************************** */
   /********************************************************************** */
@@ -58,11 +60,11 @@ export default function ModalVeryTracking({
     <>
       <Toaster />
       <div id="popup" className="z-10 fixed w-full flex justify-center inset-0">
-        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
+        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0 overflow-visible " />
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog
             as="div"
-            className="fixed inset-0 w-full z-10 overflow-y-auto"
+            className="fixed inset-0 w-full h-full z-10 overflow-y-auto overflow-visible overscroll-contain"
             onClose={setIsOpen}
           >
             <div className="min-h-screen px-4 text-center">
@@ -106,11 +108,7 @@ export default function ModalVeryTracking({
                       Regresar
                     </button>
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <h1 className="text-center text-bold py-4 pb-4">
-                      Esta seguro de crear un nuevo paquete?
-                    </h1>
-                  </div>
+                  <h1>Su producto se agregara dentro de la lista de pendientes.</h1>
                   <div className="mt-4 flex justify-between">
                     <button
                       type="button"

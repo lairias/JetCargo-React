@@ -34,8 +34,7 @@ export const Register_Identificacion = yup.object().shape({
     .string("La identificación no permite letras")
     .required("El dato identificación es necesario")
     .trim("El dato identificación  no puede contener espacios")
-    .strict(true)
-    .matches(/^[0-9]*$/, "El dato identificación  no puede contener letras"),
+    .strict(true),
 });
 export const Register_typeDocumentacion = yup.object().shape({
   tipodocumento: yup
@@ -86,12 +85,9 @@ export const Register_Nacimiento = yup.object().shape({
 });
 export const Register_telefono = yup.object().shape({
   telefono: yup
-    .string("El dato  teléfono no permite letras")
+  .string("El dato teléfono es necesario")
     .required("El dato teléfono es necesario")
-    .trim("El dato  teléfono  no puede contener espacios")
-    .strict(true)
-    .matches(/^[0-9]*$/, "El dato teléfono  no puede contener letras")
-    .max(12, "El dato teléfono maxímo de caracteres permitidos 12")
+    .max(17, "El dato teléfono maxímo de caracteres permitidos 12")
     .min(7, " El dato teléfono minímo de caracteres permitidos 7 "),
 });
 export const Register_Area = yup.object().shape({

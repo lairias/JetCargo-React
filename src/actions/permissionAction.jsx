@@ -17,6 +17,22 @@ export function Startgetallpermission() {
     }
   };
 }
+export function GetPermissoRol(COD_TYPEUSERS) {
+  return async function (dispatch) {
+    const data = await fetchConToken(`roles/${COD_TYPEUSERS}`, {}, "GET");
+    const json = await data.json();
+    if (json.ok) {
+      dispatch(
+        GetAllPermissionRol({
+          COD_PERMISO_ROL: json.permisos.COD_PERMISO,
+        })
+      );
+    } else {
+      console.log("error dentro del proceso");
+    }
+  };
+}
+
 export function Startgetpermision(COD_TYPEUSERS) {
   return async function (dispatch) {
     const data = await fetchConToken(`roles/${COD_TYPEUSERS}`, {}, "GET");
@@ -50,6 +66,10 @@ export function Starteditpermision(COD_TYPEUSERS) {
 
 const GetAllPermission = (permisos) => ({
   type: types.GetAllPermission,
+  payload: permisos,
+});
+const GetAllPermissionRol = (permisos) => ({
+  type: types.GetAllPermissionRole,
   payload: permisos,
 });
 const GetPermission = (permisos) => ({

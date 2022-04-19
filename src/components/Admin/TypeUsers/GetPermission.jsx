@@ -1,104 +1,140 @@
-import { SelectDisplay } from "../Reception/SelectDisplay";
-import TbodyTd from "./components/TbodyTd";
 import { SpinerLoader } from "../../Spinners/Loader";
-
+import 'primeicons/primeicons.css';
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Startgetallpermission } from "../../../actions/permissionAction";
 import { useState } from "react";
-import { useFetchToken } from "../../../hooks/useFetch";
 import { Link, NavLink } from "react-router-dom";
-import MUIDataTable from "mui-datatables";
+import { PickList } from 'primereact/picklist';
+import { InputText } from 'primereact/inputtext';
+import toast,{ Toaster} from "react-hot-toast";
+import { fetchConToken } from "../../../util/fetch";
 
-import CardLtEdit from "./components/CardLtEdit";
-export default function GetPermission({DataPersmissionRol,DataPersmission}){
-const [selecChecked, setselectChecked] = useState([])
-const{PermissionUser}=DataPersmission;
+export default function GetPermission({DataPersmissionRol,DataPersmission,DataRol,COD_TYPEUSERS}){
+const{permisos}=DataPersmission;//Todos
+const [sednDatos, setsednDatos] = useState(false);
 
-const{permisos}=DataPersmissionRol;
+const{permisosDis}=DataPersmissionRol; //permisos rol
 
-  const columns = [
-    
-    {
-      name: "COD_PERMISO",
-      label: "Codigó Permiso",
-      options: {
-        filter: true,
-        sort: true,
-        display: false,
-        empty: true,
+console.log(COD_TYPEUSERS)
+
+const [source, setSource] = useState([permisos]);
+const [target, setTarget] = useState([]);
+useEffect(() => {
+  setSource(permisos)
+  setTarget( permisosDis)
+
+},[permisos,permisosDis])
+const onChange = (event) => {
+  setSource(event.source);
+  setTarget(event.target);
+}
+
+const handleSubmit =(e)=>{
+  e.preventDefault();
+  if(source.length === 0 ){
+    toast.error("El rol tiene que contener más de un permiso")
+  }else if(task.NOM_TYPE === "" || task.NOM_TYPE === " " ||  
+    task.DES_TYPE === "" ||  task.DES_TYPE === " " ){
+      toast.error("Todos los datos son necesario")
+  }else{
+    const NewPermisos = new Array();
+    source.forEach(item=>{
+NewPermisos.push(item.COD_PERMISO);
+    })
+
+    fetchConToken(
+      `roles/${COD_TYPEUSERS}`,
+      {
+        NOM_TYPE : task.NOM_TYPE
+        , DES_TYPE : task.DES_TYPE
+        
+        , PERMISSION : NewPermisos, 
+        TODO : false
+         
       },
-    },
-    {
-      name: "DES_PERMISOS",
-      label: "Descripcion permiso",
-      options: {
-        filter: true,
-        sort: true,
-        empty: true,
-      },
-    },
-    {
-      name: "NAM_PERMISOS",
-      label: "Permiso",
-      options: {
-        filter: true,
-        sort: true,
-        empty: true,
-      },
-    },
-    {
-        name: "Acciones",
-        label: "Acciones",
-        options: {
-          filter: true,
-          sort: false,
-          empty: true,
-          customBodyRender: (data, tableMeta, rowIndex) => {
+      "PUT"
+    );
+  }
+
+}
+  const itemTemplate = (item) => {
+    return (
+        <div className="product-item">
             
-            return (
-             
-                <input
-                className="form-check-input appearance-none h-4 w-4 border border-sky-500 rounded-sm bg-white checked:bg-blue-600 checked:border-blue-600 focus:outline-none transition duration-200 mt-1 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer"
-                type="checkbox"
-               
-              />
-            );
-          },
-        },
-      },
+            <div className="product-list-detail">
+                <i className="pi pi-ticket product-category-icon"></i>
+                <span className="product-category">{item.DES_PERMISOS} - {item.NAM_PERMISOS}</span>
+            </div>
+            
+        </div>
+    );
+}
+const [task, setTask] = useState({
+  COD_TYPEUSERS: DataRol.COD_TYPEUSERS,
+DAT_ADD:DataRol.DAT_ADD,
+DAT_UPD: DataRol.DAT_UPD,
+DES_TYPE:DataRol.DES_TYPE,
+NOM_TYPE: DataRol.NOM_TYPE,
+USR_ADD: DataRol.USR_ADD,
+USR_UPD: DataRol.USR_UPD,
+});
+const handleChange = (e) =>
+setTask({ ...task, [e.target.name]: e.target.value });
 
-  ];
 
- 
 
   return (
     <>
-                <MUIDataTable
-      title={"Lista de Roles"}
-      data={PermissionUser}
-      columns={columns}
-      
-    />
-                    {/* {PermissionUser.map((element) => (
-                        <CardLtEdit
-                          key={element.COD_PERMISO}
-                          permisos={permisos}
-                          element={element}
-                          selecChecked={selecChecked}
-                          setselectChecked={setselectChecked}
-                        />
-                      ))
-                    } */}
-             <div className="bg-gray-100 rounded-tl-md rounded-tr-md px-4 md:px-8 md:py-4 py-7 flex items-center justify-between">
-              <button className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                Guardar cambios <span className="ml-2">+</span>
-              </button>
-              <button className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                Cancelar <span className="ml-2">+</span>
-              </button>
-            </div>
+    <Toaster/>
+    <div className="flex justify-between">
+    <h2 className="my-6 text-2xl font-semibold text-gray-700">
+      Tracking Residido
+    </h2>
+  </div>
+  <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-20 pb-10 py-5 shadow-xl rounded-lg ">
+  <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Nombre rol
+            </span>
+            <InputText id="alphanum" keyfilter="alphanum" name="NOM_TYPE"
+              onChange={handleChange}
+              value={task.NOM_TYPE} />
+           
+          </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Descripción rol
+            </span>
+            <InputText id="alphanum" keyfilter="alphanum" name="DES_TYPE"
+              onChange={handleChange}
+              value={task.DES_TYPE} />
+           
+          </label>
+          
+        </div>
+    <div className="picklist-demo">
+        <div className="card">
+            <PickList source={source} target={target} itemTemplate={itemTemplate}
+                sourceHeader="Permisos actuales" targetHeader="Permisos disponibles"
+                sourceStyle={{ height: '342px' }} targetStyle={{ height: '342px' }}
+                onChange={onChange}></PickList>
+        </div>
+    </div>
+    <div className="flex items-center justify-around mt-9">
+            <button className="px-6 py-3 bg-gray-400 hover:bg-gray-500 shadow rounded text-sm text-white">
+              Cancelar
+            </button>
+            <button
+              onClick={handleSubmit}
+              disabled={sednDatos}
+              className="px-6 py-3 bg-indigo-700  shadow rounded text-sm text-white"
+            >
+              {sednDatos ? <SpinnerButton /> : " Guardar"}
+            </button>
+          </div>
+    </div>
     </>
-  );
+    
+);
 }
 

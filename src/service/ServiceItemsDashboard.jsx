@@ -1,8 +1,19 @@
 import { IoIosArrowUp,IoIosArrowDown} from "react-icons/io";
+import SvgCasillero from "../components/svg/SvgCasillero";
+import SvgHome from "../components/svg/SvgHome";
+import { SvgResection } from "../components/svg/SvgResection";
+import { SvgCountry } from "../components/svg/SvgCountry";
+import { SvgRoles } from "../components/svg/SvgRoles";
+import { SvgCategoria } from "../components/svg/SvgCategoria";
+import { SvgPackage } from "../components/svg/SvgPackage";
+import { SvgSeguridad } from "../components/svg/SvgSeguridad";
+import { SvgPayment } from "../components/svg/SvgPayment";
+import { SvgUsers } from "../components/svg/SvgUsers";
+import { SvgCasilleros } from "../components/svg/SvgCasilleros";
 export const SidebarData = [
   {
     title: "Inicio",
-    icon: "",
+    icon: <SvgHome />,
     cant: "dasboard.inicio",
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
@@ -10,7 +21,7 @@ export const SidebarData = [
       {
         title: "Casilleros",
         path: "/admin/",
-        icon: "",
+        icon: <SvgCasillero />,
         cant: "",
       },
     ],
@@ -18,26 +29,26 @@ export const SidebarData = [
   {
     title: "Recepción",
     cant: "dasboard.seguimiento",
-    icon: "",
+    icon: <SvgResection />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
     subNav: [
       {
         title: "Miami",
         path: "/admin/reception/country/2",
-        icon: "",
+        icon: <SvgCountry />,
       },
       {
         title: "Honduras",
         path: "/admin/reception/country/3",
-        icon: "",
+        icon:  <SvgCountry />,
       },
     ],
   },
   {
     title: "Roles",
     cant: "dasboard.roles",
-    icon: "",
+    icon: <SvgRoles />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 
@@ -45,6 +56,7 @@ export const SidebarData = [
       {
         title: "Roles administrativos",
         path: "/admin/roles",
+        cant: "dasboard.roles",
         icon: "",
       },
     ],
@@ -52,7 +64,7 @@ export const SidebarData = [
   {
     title: "Categorias",
     cant: "dasboard.categorias",
-    icon: "",
+    icon: <SvgCategoria />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 
@@ -67,34 +79,30 @@ export const SidebarData = [
   {
     title: "Seguridad",
     cant: "dasboard.seguridad",
-    icon: "",
+    icon: <SvgSeguridad />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
-        title: "Users",
-        path: "/overview/users",
+        title: "Seguridad",
+        path: "/admin/seguridad/",
         icon: "fa-solid fa-user-group-crown",
       },
-      {
-        title: "Revenue",
-        path: "/overview/revenue",
-        icon: "fa-solid fa-user-robot",
-      },
+     
     ],
   },
   {
     title: "Paypal",
     cant: "home.view",
-    icon: "",
+    icon: <SvgPayment />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
         title: "Users",
-        path: "/overview/users",
+        path: "/admin/users/",
         icon: "fa-solid fa-user-group-crown",
       },
     ],
@@ -102,39 +110,47 @@ export const SidebarData = [
   {
     title: "Usuarios",
     cant: "dasboard.usurario",
-    icon: "",
+    icon: <SvgUsers />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 
     subNav: [
       {
-        title: "Clientes",
-        path: "/overview/users",
+        title: "Usuarios",
+        path: "/admin/users/",
         icon: "fa-solid fa-user-group-crown",
       },
-      {
-        title: "personas",
-        path: "/overview/revenue",
-        icon: "fa-solid fa-user-robot",
-      },
+     
     ],
   },
   {
     title: "Casilleros",
     cant: "dasboard.lockers",
-    icon: "",
+    icon: <SvgCasilleros />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 
     subNav: [
+     
       {
-        title: "Users",
-        path: "/overview/users",
-        icon: "fa-solid fa-user-group-crown",
+        title: "Casilleros",
+        path: "/admin/casilleros/",
+        icon: "fa-solid fa-user-robot",
       },
+    ],
+  },
+  {
+    title: "Costo de Envio",
+    cant: "dasboard.lockers",
+    icon: <SvgCasilleros />,
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
+
+    subNav: [
+     
       {
-        title: "Revenue",
-        path: "/overview/revenue",
+        title: "Costo de envios",
+        path: "/admin/costoEnvio/",
         icon: "fa-solid fa-user-robot",
       },
     ],
@@ -142,7 +158,7 @@ export const SidebarData = [
   {
     title: "Paquetes",
     cant: "dasboard.packages",
-    icon: "",
+    icon: <SvgPackage />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 

@@ -8,9 +8,9 @@ import { GetCustomerReception } from "../../../actions/receptionAction";
 import { useFetchToken } from "../../../hooks/useFetch";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import toast from "react-hot-toast";
-import {
-  StartTrackingRecived,
-} from "../../../actions/trackingAction";
+import { Message } from "primereact/message";
+import { Checkbox } from "primereact/checkbox";
+import { StartTrackingRecived } from "../../../actions/trackingAction";
 export default function EditNewTrackingPendiente({
   COD_COUNTRY,
   COD_CUSTOMER,
@@ -20,9 +20,12 @@ export default function EditNewTrackingPendiente({
   const history = useNavigate();
   const dispatch = useDispatch();
   const [sednDatos, setsednDatos] = useState(false);
+  const [shoMensajevolumetrico, setshoMensajevolumetrico] = useState(false);
+  const [shoMensajeDolares, setshoMensajeDolares] = useState(false);
   const { services, loadingServices } = useSelector((state) => state.services);
   const [calculoDolares, setCaluloDolares] = useState(0);
   const [calculoLempiras, setCaluloLempiras] = useState(0);
+  const [caculuVolumetrico, setCalculovolumetrico] = useState(0);
   const { TypePackage, loadingTypePackage } = useSelector(
     (state) => state.typepackage
   );
@@ -35,9 +38,7 @@ export default function EditNewTrackingPendiente({
   const { categoryPackage, loading } = useSelector(
     (state) => state.categorypackage
   );
-  const { TrackingPendiente, loaddinPendiente } = useSelector(
-    (state) => state.reception
-  );
+
   const [task, setTask] = useState({
     HEIGHT_PACKAGE: "",
     WIDTH_PACKAGE: "",
@@ -55,9 +56,19 @@ export default function EditNewTrackingPendiente({
     PRICE_PACKAGE: "",
     IND_TRACKING: "",
     COD_PACKAGE: "",
+    COD_SECTION: "",
+    COD_SHIPPINGCOST: "",
+    ALTURA_PACKAGE: "",
+    ANCHO_PACKAGE: "",
+    LARGO_PACKAGE: "",
+    DATOS_METRICOS: "",
   });
   const [Precio, statusServicio] = useFetchToken(
     `typepackage/${task.COD_TYPEPACKAGE}`
+  );
+
+  const [Shopping, LoaddinShopping] = useFetchToken(
+    `shopping/${task.COD_SHIPPINGCOST}`
   );
   useEffect(() => {
     dispatch(
@@ -88,15 +99,72 @@ export default function EditNewTrackingPendiente({
     if (
       task.WEIGHT_PACKAGE === " " ||
       task.WEIGHT_PACKAGE === 0 ||
+      task.ALTURA_PACKAGE === " " ||
+      task.ALTURA_PACKAGE === 0 ||
+      task.ANCHO_PACKAGE === " " ||
+      task.ANCHO_PACKAGE === 0 ||
+      task.LARGO_PACKAGE === " " ||
+      task.LARGO_PACKAGE === 0 ||
       task.WEIGHT_PACKAGE <= 0
     ) {
       toast.error(`Todos los datos son necesario`);
+    } else if (task.RECEIVED_TRACKING_ === "PENDING") {
+      toast.error(`Modifique el que no sea PENDING`);
     } else {
-      dispatch(StartTrackingRecived(task, COD_CUSTOMER, setsednDatos));
+      dispatch(
+        StartTrackingRecived(
+          task,
+          COD_CUSTOMER,
+          setsednDatos,
+          caculuVolumetrico,
+          calculoDolares
+        )
+      );
 
       history(`/admin/reception/country/${COD_COUNTRY}/`);
     }
   };
+
+  const handleCalculoVolumentrico = (e) => {
+    e.preventDefault();
+    if (
+      task.ALTURA_PACKAGE !== "" &&
+      task.ANCHO_PACKAGE !== "" &&
+      task.LARGO_PACKAGE !== ""
+    ) {
+      const denominador =
+        parseFloat(task.ALTURA_PACKAGE) *
+        parseFloat(task.ANCHO_PACKAGE) *
+        parseFloat(task.LARGO_PACKAGE);
+      const nominador = Shopping.DATA_METRICO;
+      const resultado = parseFloat(denominador / nominador);
+      setCalculovolumetrico(Math.ceil(resultado));
+    }
+  };
+  const onChangeState = (e) => {
+    e.preventDefault();
+    setChecked(!checked);
+  };
+  const estadoArray = [
+    {
+      value: 1,
+      date: "Activo",
+    },
+    {
+      value: 0,
+      date: "Inactivo",
+    },
+  ];
+
+  useEffect(() => {
+    if (caculuVolumetrico > calculoDolares) {
+      setshoMensajevolumetrico(true);
+      setshoMensajeDolares(false);
+    } else if (calculoDolares > caculuVolumetrico) {
+      setshoMensajeDolares(true);
+      setshoMensajevolumetrico(false);
+    }
+  }, [caculuVolumetrico, , calculoDolares]);
   return (
     <>
       <div className="flex justify-between">
@@ -104,7 +172,7 @@ export default function EditNewTrackingPendiente({
           Tracking Pendiente
         </h2>
       </div>
-      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-20 pb-10 py-5 shadow-xl rounded-lg mt-16 ">
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-20 pb-10 py-5 shadow-xl rounded-lg ">
         <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
           <label className="block mt-4 text-sm w-full md:px-2">
             <span className="text-gray-700 dark:text-gray-900">
@@ -115,12 +183,12 @@ export default function EditNewTrackingPendiente({
               placeholder="Peso de tracking"
               name="RECEIVED_TRACKING_"
               onChange={handleChange}
-              value={task.RECEIVED_TRACKING_} >
+              value={task.RECEIVED_TRACKING_}
+            >
               {selectStatusTracking.map((item) => (
                 <option
                   key={item.value}
                   defaultValue={item.value === task.RECEIVED_TRACKING_}
-                  disabled={item.value === task.RECEIVED_TRACKING_ }
                 >
                   {item.value}
                 </option>
@@ -143,6 +211,7 @@ export default function EditNewTrackingPendiente({
                   <option
                     key={item.COD_TYPEPACKAGE}
                     defaultValue={task.COD_TYPEPACKAGE === item.COD_TYPEPACKAGE}
+                    value={item.COD_TYPEPACKAGE}
                   >
                     {" "}
                     {item.NAM_TYPEPACKAGE}{" "}
@@ -191,7 +260,33 @@ export default function EditNewTrackingPendiente({
             />
           </label>
         </div>
+
         <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">Categoria</span>
+            {loading ? (
+              <select
+                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Tipo de envio  tracking"
+                name="COD_CATPACKAGE"
+                onChange={handleChange}
+                value={task.COD_CATPACKAGE}
+              >
+                {categoryPackage.map((item) => (
+                  <option
+                    key={item.COD_CATPACKAGE}
+                    defaultValue={task.COD_CATPACKAGE === item.COD_CATPACKAGE}
+                    value={item.COD_CATPACKAGE}
+                  >
+                    {" "}
+                    {item.NAM_CATPACKAGE}{" "}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <SpinnerButton />
+            )}
+          </label>
           <label className="block mt-4 text-sm w-full md:px-2">
             <span className="text-gray-700 dark:text-gray-900 items-center">
               Descripción tracking
@@ -216,25 +311,6 @@ export default function EditNewTrackingPendiente({
               onChange={handleChange}
             ></textarea>
           </label>
-          {/* <label className="flex justify-center mt-4 text-sm w-full md:px-2 pt-12">
-            <span className="text-gray-700 dark:text-gray-900 items-center">
-              Estado Tracking
-            </span>
-            <select
-                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Numero de tracking"
-                name="IND_TRACKING"
-                onChange={handleChange}
-                value={task.IND_TRACKING}
-                >
-                  <option
-                    key={item.value}
-                    defaultValue={task.SERVICE_NAME === item.value}
-                  >
-                    {item.label}{" "}
-                  </option>
-              </select>
-          </label> */}
         </div>
 
         <form>
@@ -271,11 +347,12 @@ export default function EditNewTrackingPendiente({
             </label>
             <label className="block mt-4 text-sm w-full md:px-2">
               <span className="text-gray-700 dark:text-gray-900">
-                Peso paquete *
+                Peso paquete LBS*
               </span>
               <input
                 className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Pesode tracking"
+                min={0}
                 type="number"
                 name="WEIGHT_PACKAGE"
                 onChange={(e) => {
@@ -284,9 +361,11 @@ export default function EditNewTrackingPendiente({
                 value={task.WEIGHT_PACKAGE}
               />
             </label>
+          </div>
+          <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
             <label className="block mt-4 text-sm w-full md:px-2">
               <span className="text-gray-700 dark:text-gray-900">
-                Calculo en dolares USD
+                Cálculo en USD
               </span>
               <input
                 className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -294,10 +373,13 @@ export default function EditNewTrackingPendiente({
                 disabled={true}
                 value={isNaN(calculoDolares) ? 0 : calculoDolares}
               />
+              {shoMensajeDolares && (
+                <Message severity="success" text="Mejor opciòn" />
+              )}
             </label>
             <label className="block mt-4 text-sm w-full md:px-2">
               <span className="text-gray-700 dark:text-gray-900">
-                Calculo en Lempiras LPS
+                Cálculo en LPS
               </span>
               <input
                 className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -306,6 +388,115 @@ export default function EditNewTrackingPendiente({
                 value={isNaN(calculoLempiras) ? 0 : calculoLempiras}
               />
             </label>
+            <label className="block mt-4 text-sm w-full md:px-2">
+              <span className="text-gray-700 dark:text-gray-900">
+                Estado Tracking
+              </span>
+              <select
+                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Tipo de envio  tracking"
+                name="IND_TRACKING"
+                onChange={handleChange}
+                value={task.IND_TRACKING}
+              >
+                {estadoArray.map((item, index) => (
+                  <option
+                    key={index}
+                    defaultValue={task.IND_TRACKING === item.value}
+                    value={item.value}
+                  >
+                    {item.date}
+                  </option>
+                ))}
+              </select>
+            </label>
+          </div>
+          <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+            <label className="block mt-4 text-sm w-full md:px-2">
+              <span className="text-gray-700 dark:text-gray-900">
+                Altura cm.
+              </span>
+              <input
+                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Costo dolares de tracking"
+                type="number"
+                name="ALTURA_PACKAGE"
+                min={0}
+                value={task.ALTURA_PACKAGE}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleCalculoVolumentrico(e);
+                }}
+              />
+            </label>
+            <label className="block mt-4 text-sm w-full md:px-2">
+              <span className="text-gray-700 dark:text-gray-900">
+                Anchura cm.
+              </span>
+              <input
+                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Numero de tracking"
+                type="number"
+                name="ANCHO_PACKAGE"
+                min={0}
+                value={task.ANCHO_PACKAGE}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleCalculoVolumentrico(e);
+                }}
+              />
+            </label>
+            <label className="block mt-4 text-sm w-full md:px-2">
+              <span className="text-gray-700 dark:text-gray-900">
+                Largo cm.
+              </span>
+              <input
+                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Numero de tracking"
+                min={0}
+                type="number"
+                name="LARGO_PACKAGE"
+                value={task.LARGO_PACKAGE}
+                onChange={(e) => {
+                  handleChange(e);
+                  handleCalculoVolumentrico(e);
+                }}
+              />
+            </label>
+          </div>
+          <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+            <label className="block mt-4 text-sm w-full md:px-2">
+              {LoaddinShopping ? (
+                <>
+                  <span className="text-gray-700 dark:text-gray-900">
+                    {Shopping.NOM_METRICO}
+                  </span>
+                  <input
+                    className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                    placeholder="Costo dolares de tracking"
+                    min={0}
+                    disabled
+                    value={Shopping.DATA_METRICO}
+                  />
+                </>
+              ) : (
+                <SpinnerButton />
+              )}
+            </label>
+            <label className="block mt-4 text-sm w-full md:px-2">
+              Cálculo volumetrico
+              <input
+                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Costo dolares de tracking"
+                min={0}
+                disabled
+                value={caculuVolumetrico}
+              />
+              {shoMensajevolumetrico && (
+                <Message severity="success" text="Mejor opciòn" />
+              )}
+            </label>
+            <label className="block mt-4 text-sm w-full md:px-2"></label>
           </div>
 
           <div className="flex items-center justify-around mt-9">

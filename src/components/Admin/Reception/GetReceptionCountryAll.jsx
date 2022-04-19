@@ -12,7 +12,6 @@ import {useParams} from "react-router-dom";
 
 export const GetReceptionCountryAll = ({  RECEIVED_TRACKING }) => {
   const dispatch = useDispatch();
-  let [isOpen, setIsOpen] = useState(false);
   const [dataTracking, set_dataTracking] = useState([]);
   const [Loading, setLoading] = useState(false);
   const { permission } = useSelector((state) => state.auth);
@@ -27,31 +26,7 @@ export const GetReceptionCountryAll = ({  RECEIVED_TRACKING }) => {
     );
   }, [dispatch]);
 
-  const ShowModalPendiente = (data) => {
-    dispatch(GetCustomerReception(
-     dataTracking[data]));
-    setIsOpen(!isOpen);
-  };
-  const ShowModalProgreso = (data) => {
-    // set_dataNewModal(dataTracking[data.rowIndex]);
-    // setIsOpen(!isOpen);
-    alert("En proceso");
-  };
-  const ShowModalRecibido = (data) => {
-    // set_dataNewModal(dataTracking[data.rowIndex]);
-    // setIsOpen(!isOpen);
-    alert("Recibido");
-  };
-  const ShowModalEntregado = (data) => {
-    // set_dataNewModal(dataTracking[data.rowIndex]);
-    // setIsOpen(!isOpen);
-    alert("Entregado");
-  };
-  const ShowModalCancelado = (data) => {
-    // set_dataNewModal(dataTracking[data.rowIndex]);
-    // setIsOpen(!isOpen);
-    alert("Cancelado");
-  };
+  
 
   const columns = [
     

@@ -35,6 +35,7 @@ import EditNewTrackingPendiente from "../components/Admin/Reception/EditNewTrack
 import { ForgotPassword } from "../pages/ForgotPassword";
 //Contexto
 import { ShowPackages } from "../components/Package/IndePakage";
+import IndexSeguridad  from "../components/Seguridad/IndexSeguridad";
 import { GetPackage } from "../components/Package/GetPackage";
 import { IndexReceptionCountry } from "../components/Admin/Reception/IndexReceptionCountry";
 import IndexTypes from "../components/Admin/TypeUsers/IndexType";
@@ -47,6 +48,8 @@ import OrdenCaptureSucces from "../components/Error/OrdenCapture";
 import EmailVery from "../components/Error/EmailVery";
 import UpdateInformationTrackin from "../components/Admin/Reception/UpdateInformationTrackin";
 import IndexPermisos from "../components/Admin/TypeUsers/IndexPermisos";
+import IndexUsers from "../components/Admin/users/IndexUsers";
+import IndexCasilleros from "../components/Admin/Casilleros/IndexCasilleros";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
@@ -103,6 +106,36 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <IndexCatPackage />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="admin/seguridad"
+            element={
+              <>
+                <Admin>
+                  <IndexSeguridad />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="admin/users"
+            element={
+              <>
+                <Admin>
+                  <IndexUsers />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="admin/casilleros/"
+            element={
+              <>
+                <Admin>
+                  <IndexCasilleros />
                 </Admin>
               </>
             }

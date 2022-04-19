@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
-import TrTable from "./components/TrTable";
+import SpinnerButton from "../../Spinners/SpinnerButton";
+import { Button } from 'primereact/button';
+import ModalNewCatPackage from "../../Modal/CategoryPackage/ModelEditCatPackage"
+import moment from "moment";
+
+import MUIDataTable from "mui-datatables";
+
 export const GetCategoryPackage = () => {
+  const [ShoModal,setShoModal] = useState(false)
+  const [IdShoModal,setIdShoModal] = useState(false)
   /****************************************Variables State */
   /******************************************* */
 
@@ -17,6 +25,115 @@ export const GetCategoryPackage = () => {
   }, [dispatch]);
   /******************************************* */
 
+
+  const columns = [
+    
+    {
+      name: "COD_CATPACKAGE",
+      label: "Números de categoria paquete",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+        empty: true,
+      },
+    },
+    {
+      name: "NAM_CATPACKAGE",
+      label: "Nombre categoria",
+      options: {
+        filter: true,
+        sort: true,
+        empty: true,
+      },
+    },
+    {
+      name: "IND_CATPACKAGE",
+      label: "Estado",
+      options: {
+        filter: true,
+        sort: true,
+        empty: true,
+        customBodyRender: (data, tableMeta, rowIndex) => {
+          return data  ? (
+            <div className="bg-green-200 h-8 w-24 mb-4 md:mb-0 rounded-md flex items-center justify-center">
+              <div className="flex items-center">
+                <div className="h-1 w-1 rounded-full bg-green-500 mr-1" />
+                <span className="text-xs text-green-500 font-normal">
+                  Activo
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-red-200 h-8 w-24 mb-4 md:mb-0 rounded-md flex items-center justify-center">
+              <div className="flex items-center">
+                <div className="h-1 w-1 rounded-full bg-red-500 mr-1" />
+                <span className="text-xs text-red-500 font-normal">
+                  Inactivo
+                </span>
+              </div>
+            </div>
+          ) 
+        },
+      },
+    },
+    
+    {
+      name: "DAT_ADD_CATPACKAGE",
+      label: "Fecha de registro",
+      options: {
+        filter: true,
+        sort: true,
+        empty: true,
+        customBodyRender: (value, tableMeta, updateValue) => {
+            return (
+                    moment(value).format('L') 
+            );
+        }
+      },
+    },
+   
+    {
+      name: "Acciones",
+      label: "Acciones",
+      options: {
+        filter: true,
+        sort: false,
+        empty: true,
+        customBodyRender: (data, tableMeta, rowIndex) => {
+
+          return (
+            <Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0]); }} />
+           
+          );
+        },
+      },
+    },
+  ];
+
+  const options = {
+    filterType: "checkbox",
+    fixedHeader: false,
+    textLabels: {
+      body: {
+        noMatch:  'Datos no encontrados'
+      }
+    }
+  };
+
+     
+  const handleShoModal = (e,_id) => {
+    e.preventDefault();
+    setIdShoModal(_id)
+    setShoModal(!ShoModal)
+}
+
+const onHide = (name) => {
+    dialogFuncMap[`${name}`](false);
+}
+
+
+     
   /****************************************Variables Funciones*/
   /******************************************* */
   return (
@@ -24,108 +141,20 @@ export const GetCategoryPackage = () => {
       <div>
         <div className="sm:px-6 ">
           <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
-            <div className="block lg:flex xl:flex md:block items-center justify-between">
-              <div className="flex items-center">
-                <NavLink
-                  to={"/admin/reception/country/2"}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-indigo-700 rounded-full bg-indigo-100"
-                      : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
-                  }
-                >
-                  <div className="py-2 px-4  ">
-                    <p>All</p>
-                  </div>
-                </NavLink>
-                <NavLink
-                  to={"/admin/reception/country/2"}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-indigo-700 rounded-full bg-indigo-100"
-                      : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
-                  }
-                >
-                  <div className="py-2 px-4  ml-4 sm:ml-8">
-                    <p>Done</p>
-                  </div>
-                </NavLink>
-                <NavLink
-                  to={"/admin/reception/country/2"}
-                  className={({ isActive }) =>
-                    isActive
-                      ? "text-indigo-700 rounded-full bg-indigo-100"
-                      : "text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
-                  }
-                >
-                  <div className="py-2 px-4  mr-4  sm:ml-8">
-                    <p>Pending</p>
-                  </div>
-                </NavLink>
-                <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer"></div>
-              </div>
-              <div className="flex justify-between">
-                <div className="py-3 md:w-full lg:w-full xl:w-full w-1/2   flex items-center  text-sm font-medium leading-none cursor-pointer">
-                  <div className="relative w-full">
-                    <div className="text-gray-500 absolute ml-4 inset-0 m-auto w-4 h-4">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-search"
-                        width={16}
-                        height={16}
-                        viewBox="0 0 24 24"
-                        strokeWidth={1}
-                        stroke="#A0AEC0"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <path stroke="none" d="M0 0h24v24H0z" />
-                        <circle cx={10} cy={10} r={7} />
-                        <line x1={21} y1={21} x2={15} y2={15} />
-                      </svg>
-                    </div>
-                    <input
-                      className=" focus:outline-none rounded w-full text-sm text-gray-500 bg-gray-100 pl-10 py-2"
-                      type="text"
-                      placeholder="Search"
-                    />
-                  </div>
-                </div>
-
-                <div className="py-3 px-4 flex items-center text-sm font-medium leading-none cursor-pointer"></div>
-              </div>
-            </div>
-
-            <div className="mt-7 overflow-x-auto">
-              <table className="w-full whitespace-nowrap ">
-                <thead>
-                  <tr className="w-full h-16 border-gray-300 dark:border-gray-200 border-b py-8">
-                    <th className="pl-8 text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Nombre del producto
-                    </th>
-
-                    <th className="text-gray-600 dark:text-gray-400 font-normal pr-6 text-left text-sm tracking-normal leading-4">
-                      Fecha
-                    </th>
-
-                    <td className="text-gray-600 dark:text-gray-400 font-normal pr-8 text-left text-sm tracking-normal leading-4">
-                      More
-                    </td>
-                  </tr>
-                </thead>
-                <tbody>
-                  {loading &&
-                    categoryPackage &&
-                    categoryPackage.map((elemento) => (
-                      <TrTable elemento={elemento} />
-                    ))}
-                </tbody>
-              </table>
-            </div>
+            {loading ? (<MUIDataTable
+        title={"Lista de Trackings"}
+        data={categoryPackage}
+        columns={columns}
+        options={options}
+        
+      />) : ( <SpinnerButton />)}
+          
           </div>
         </div>
       </div>
+
+      {ShoModal && <ModalNewCatPackage handleShoModal={handleShoModal} IdShoModal={IdShoModal}/>}
     </>
   );
 };
+

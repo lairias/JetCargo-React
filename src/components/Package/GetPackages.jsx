@@ -36,7 +36,7 @@ export const GetPackages = ({ items }) => {
               Número Tracking
             </p>
             <p className="text-sm font-medium leading-none text-gray-600 mt-1">
-              {items.DES_TRACKING}
+              {items.NUM_TRACKING}
             </p>
           </div>
         </div>

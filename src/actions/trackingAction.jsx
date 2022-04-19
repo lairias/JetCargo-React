@@ -20,7 +20,7 @@ export function GetTrackingAll(set_dataTracking, setLoading, url) {
   };
 }
 
-export function StartTrackingRecived(task,COD_CUSTOMER,setsednDatos) {
+export function StartTrackingRecived(task,COD_CUSTOMER,setsednDatos,caculuVolumetrico,calculoDolares) {
   return async function (dispatch) {
     setsednDatos(true)
     if(task.NUM_TRACKING_ === "" || task.NUM_TRACKING_ === " " || task.DES_TRACKING === "" || task.DES_TRACKING === " " || task.NOM_PACKAGE === "" || task.NOM_PACKAGE === " "){
@@ -43,8 +43,13 @@ export function StartTrackingRecived(task,COD_CUSTOMER,setsednDatos) {
           RECEIVED_TRACKING:task.RECEIVED_TRACKING_,
           NUM_TRACKING:task.NUM_TRACKING_,
           DES_TRACKING:task.DES_TRACKING,
+          ALTURA_PACKAGE:task.ALTURA_PACKAGE,
+          ANCHO_PACKAGE:task.ANCHO_PACKAGE,
+          LARGO_PACKAGE:task.LARGO_PACKAGE,
           COD_PACKAGE:task.COD_PACKAGE,
+          IND_TRACKING:task.IND_TRACKING,
           COD_CUSTOMER,
+          caculuVolumetrico,calculoDolares
         },
         "PUT"
       );
@@ -191,7 +196,8 @@ export function PostTrackingServiceCustomer(
   COD_LOCKER,
   COD_CUSTOMER,
   setIsOpen,
-  setStatusSend
+  setStatusSend,
+  selectedSection
 ) {
   return async function (dispatch) {
     setStatusSend(true);
@@ -207,6 +213,7 @@ export function PostTrackingServiceCustomer(
         NUM_TRACKING,
         COD_LOCKER,
         COD_CUSTOMER,
+        selectedSection
       },
       "POST"
     );
@@ -233,6 +240,28 @@ export function GetTrackindnewOrden(id) {
   };
 }
 
+export function PostTrackingAdminCustomer(selectCumstomer,selectedTypePackage,selectedType,selectedServices,NUM_TRACKING,NAM_PACKAGE,COD_LOCKER,DES_PACKAGE,setSendData,handleShoModal) {
+  return async function (dispatch) {
+    const dataPost = await fetchConToken(
+      `tracking`,
+      {
+        COD_SERVICE : selectedServices.value,
+        COD_CATPACKAGE: selectedType.value,
+        COD_TYPEPACKAGE: selectedTypePackage.value,
+        NOM_PACKAGE: NAM_PACKAGE,
+        DES_TRACKING: DES_PACKAGE,
+        NUM_TRACKING,
+        COD_LOCKER,
+        COD_CUSTOMER : selectCumstomer.value,
+      },
+      "POST"
+    );
+    if(dataPost.statusText === "OK"){
+      handleShoModal()
+      setSendData(false)
+    }
+  }
+}
 const DataSearcTrackingService = (search) => ({
   type: types.SearcTrackingService,
   payload: search,

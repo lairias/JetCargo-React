@@ -15,6 +15,7 @@ export const types = {
   GetAllPermission: "[Permission] Get All Permission",
   GetAPermission: "[Permission] Get one Permission",
   GetAPermissionEdit: "[Permission] Get one Permission",
+  GetAllPermissionRole: "[Permission] Get All Permission Role",
 
   ///Bucador de datos
   DataSearch: "[DataSearch] DataSearch",

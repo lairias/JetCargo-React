@@ -82,11 +82,11 @@ export default function ModalVeryTracking({
     <>
       <Toaster />
       <div id="popup" className="fixed w-full flex justify-center inset-0">
-        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0" />
+        <div className="w-full h-full bg-gray-500 bg-opacity-50 z-0 absolute inset-0 " />
         <Transition appear show={isOpen} as={Fragment}>
           <Dialog
             as="div"
-            className="fixed inset-0 w-full z-0 overflow-y-auto"
+            className="fixed inset-0 w-full z-0 overflow-y-auto "
             onClose={setIsOpen}
           >
             <div className="min-h-screen px-4  text-center">

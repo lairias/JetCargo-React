@@ -34,9 +34,9 @@ export function GetAllCategoryPackage(type = false) {
     }
   };
 }
-export function GetCategoryPackage(_id) {
+export function GetCategoryPackage(IdShoModal) {
   return async function (dispatch) {
-    const data = await fetchConToken(`catpackage/${_id}`, {}, "GET");
+    const data = await fetchConToken(`catpackage/${IdShoModal}`, {}, "GET");
     const json = await data.json();
     if (json.ok) {
       dispatch(

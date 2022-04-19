@@ -1,7 +1,8 @@
-const baseUrl = "http://localhost:4000/api";
+import env from "react-dotenv";
+// const baseUrl = "http://localhost:4000/api";
 
 export const fetchSinToken = (endpoint, data, method = "GET") => {
-  const url = `${baseUrl}/${endpoint}`;
+  const url = `http://159.223.229.68:4000/${endpoint}`;
 
   if (method === "GET") {
     return fetch(url);
@@ -17,9 +18,11 @@ export const fetchSinToken = (endpoint, data, method = "GET") => {
 };
 
 export const fetchConToken = (endpoint, data, method = "GET") => {
-  const url = `${baseUrl}/${endpoint}`;
+  const url = `http://159.223.229.68:4000/${endpoint}`;
   const token = localStorage.getItem("Jet-Cargo_jwt_login") || "";
+  console.log(token);
   if (method === "GET") {
+
     return fetch(url, {
       method,
       headers: {

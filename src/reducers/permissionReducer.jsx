@@ -11,6 +11,11 @@ export const permissionReducer = (state = initialState, action) => {
         ...action.payload,
         loading: true,
       };
+    case types.GetAllPermissionRole:
+      return {
+        ...state,
+        ...action.payload,
+      };
     case types.GetAPermission:
       return {
         ...action.payload,

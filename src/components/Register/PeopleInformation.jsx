@@ -32,7 +32,7 @@ export const PeopleInformation = ({
           <span className="text-gray-700 dark:text-gray-800">
             Identificación
           </span>
-          <InputMask 
+          <InputMask
           className="w-full"           
           id="basic" mask="9999-9999-99999"
           value={DatosPersonales.identificacion} onChange={(e) => 
@@ -65,36 +65,33 @@ export const PeopleInformation = ({
       </div>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-800">Primer Nombre</span>
-        <InputText className="w-full" onChange={(e) => {
+        <InputText  id="alphanum" keyfilter="alphanum"   className="w-full" 
+        onChange={(e) => {
             set_DatosPersonales({ ...DatosPersonales, nombre: e.target.value });
-          }} id="alpha" keyfilter="alpha" value={DatosPersonales.nombre} />
-       
-     
+          }} value={DatosPersonales.nombre} />
       </label>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-800">Segundo Nombre</span>
-        <InputMask 
+        <InputText id="alphanum" keyfilter="alphanum"  
           className="w-full"           
-          id="basic" mask="9999-9999-99999"
           onChange={(e) => {
             set_DatosPersonales({
               ...DatosPersonales,
               segundoNombre: e.target.value,
             });
-          }} value={DatosPersonales.segundoNombre} ></InputMask>
+          }} value={DatosPersonales.segundoNombre} />
 
       </label>
       <label className="block mt-4 text-sm">
         <span className="text-gray-700 dark:text-gray-800">Apellidos</span>
-        <InputMask 
-          className="w-full"           
-          id="basic" mask="9999-9999-99999"
+        <InputText id="alphanum" keyfilter="alphanum" className="w-full"           
+          
           onChange={(e) => {
             set_DatosPersonales({
               ...DatosPersonales,
               apellido: e.target.value,
             });
-          }} value={DatosPersonales.apellido} ></InputMask>
+          }} value={DatosPersonales.apellido}  />
         
       </label>
       <div className=" md:justify-between md:flex  ">

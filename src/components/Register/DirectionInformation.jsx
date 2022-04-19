@@ -8,6 +8,7 @@ import { SelectCity } from "./Select/SelectCity";
 import { SelectCountry } from "./Select/SelectCountry";
 import { SelectState } from "./Select/SelectState";
 import { SelectArea } from "./Select/SelectArea";
+import { InputMask } from "primereact/inputmask";
 
 export const DirectionInformation = ({
   title,
@@ -18,20 +19,25 @@ export const DirectionInformation = ({
   const [ApiCities, set_ApiCities] = useState([]);
   const [ApiCountry, set_ApiCountry] = useState([]);
   const [ApiState, set_ApiState] = useState([]);
-  const [Pais, set_pais] = useState();
-  const [State, set_state] = useState();
+  const [Pais, set_pais] = useState(null);
+  const [State, set_state] = useState(null);
   const [City, set_city] = useState();
   ///*********************UseEfect***********************/
   useEffect(() => {
     CountryService().then((element) => {
       set_ApiCountry(element.data);
     });
-    StateService(Pais).then((element) => {
-      set_ApiState(element.data);
-    });
-    CityService(State).then((element) => {
-      set_ApiCities(element.data);
-    });
+    if(Pais){
+      StateService(Pais).then((element) => {
+        set_ApiState(element.data);
+      });
+      if(State){
+        CityService(State).then((element) => {
+          set_ApiCities(element.data);
+        });
+      }
+    }
+    
   }, [Pais, State]);
   ///*********************Funciones de peticiones Http********************** */
   return (
@@ -61,7 +67,7 @@ export const DirectionInformation = ({
           <span className="text-gray-700 dark:text-gray-800">
             Número teléfonico
           </span>
-          <input
+          <InputMask id="phone" mask={`(${Datoslocalizacion?.area}) 9999-9999`}
             onChange={(e) =>
               set_Datoslocalizacion({
                 ...Datoslocalizacion,
@@ -69,7 +75,6 @@ export const DirectionInformation = ({
               })
             }
             className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-            placeholder="---- ----"
             type="text"
             value={Datoslocalizacion.telefono}
           />

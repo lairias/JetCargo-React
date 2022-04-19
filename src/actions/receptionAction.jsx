@@ -7,7 +7,9 @@ export function GetCustomerReception(ruta,setTask,) {
     
     const data = await fetchConToken(ruta, {}, "GET");
     const json = await data.json();
+    console.log(json)
     if (json.ok) {
+
         setTask({ HEIGHT_PACKAGE: json.tracking[0].HEIGHT_PACKAGE === null ? 0 : json.tracking[0].HEIGHT_PACKAGE,
         WIDTH_PACKAGE: json.tracking[0].WIDTH_PACKAGE === null ? 0 : json.tracking[0].WIDTH_PACKAGE,
       WEIGHT_PACKAGE: json.tracking[0].WEIGHT_PACKAGE === null ? 0 : json.tracking[0].WEIGHT_PACKAGE,
@@ -23,7 +25,15 @@ export function GetCustomerReception(ruta,setTask,) {
       COD_TRACKING: json.tracking[0].COD_TRACKING === null ? "" : json.tracking[0].COD_TRACKING,
       IND_TRACKING: json.tracking[0].IND_TRACKING,
       COD_PACKAGE:json.tracking[0].COD_PACKAGE,
-      PRICE_PACKAGE:json.tracking[0].PRICE_PACKAGE === null ? 0 : json.tracking[0].PRICE_PACKAGE,})
+      PRICE_PACKAGE:json.tracking[0].PRICE_PACKAGE === null ? 0 : json.tracking[0].PRICE_PACKAGE,
+      COD_SECTION:json.tracking[0].COD_SECTION === null ? 0 : json.tracking[0].COD_SECTION,
+      ALTURA_PACKAGE:json.tracking[0].ALTURA_PACKAGE === null ? 0 : json.tracking[0].ALTURA_PACKAGE,
+      ANCHO_PACKAGE:json.tracking[0].ANCHO_PACKAGE === null ? 0 : json.tracking[0].ANCHO_PACKAGE,
+      LARGO_PACKAGE:json.tracking[0].LARGO_PACKAGE === null ? 0 : json.tracking[0].LARGO_PACKAGE,
+      COD_SHIPPINGCOST:json.tracking[0].COD_SHIPPINGCOST })
+
+
+
         dispatch(
           GetDataCategoryPackage({
             TrackingPendiente: json.tracking[0],

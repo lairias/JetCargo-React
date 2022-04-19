@@ -17,7 +17,7 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
   //-----------------------------------------------------------
   return (
     <>
-      <div className="w-full  mb-4 my-6 h-96 shadow sm:px-10 px-4 py-6 bg-white  rounded-md">
+      <div className="w-full  mb-4 my-6 h-full shadow sm:px-10 px-4 py-6 bg-white  rounded-md">
         <p className="text-normal text-gray-800 font-semibold mb-4">
           {DataTrackinNotOrden[0].NUM_TRACKING}
         </p>
@@ -98,6 +98,27 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
                   ) : (
                     <SpinnerButton />
                   )}
+                </td>
+              </tr>
+              <tr className="text-normal leading-3 text-gray-800 text-left border-b border-gray-200">
+                <td className="py-4">Altura cmt*</td>
+                <td className="py-4"></td>
+                <td className="py-4 text-right">
+                  {DataTrackinNotOrden[0].ALTURA_PACKAGE}
+                </td>
+              </tr>
+              <tr className="text-normal leading-3 text-gray-800 text-left border-b border-gray-200">
+                <td className="py-4">Anchura cmt*</td>
+                <td className="py-4"></td>
+                <td className="py-4 text-right">
+                  {DataTrackinNotOrden[0].ANCHO_PACKAGE}
+                </td>
+              </tr>
+              <tr className="text-normal leading-3 text-gray-800 text-left border-b border-gray-200">
+                <td className="py-4">Largo cmt*</td>
+                <td className="py-4"></td>
+                <td className="py-4 text-right">
+                  {DataTrackinNotOrden[0].LARGO_PACKAGE}
                 </td>
               </tr>
               <tr className="text-normal leading-3 text-gray-800 text-left border-b border-gray-200">

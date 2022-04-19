@@ -15,7 +15,6 @@ export default function GetTypeUsers() {
 
 
  const [{ok,role},loaddinRoles] = useFetchToken("roles")
-  console.log(role)
   
 
   //
