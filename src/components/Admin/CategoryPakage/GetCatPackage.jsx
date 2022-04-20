@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { GetAllCategoryPackage } from "../../../actions/categorypackageAction";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { Button } from 'primereact/button';
@@ -14,6 +13,7 @@ export const GetCategoryPackage = () => {
   const [IdShoModal,setIdShoModal] = useState(false)
   /****************************************Variables State */
   /******************************************* */
+  const { permission } = useSelector((state) => state.auth);
 
   /****************************************Variables Hooks*/
   const { categoryPackage, loading } = useSelector(
@@ -103,7 +103,8 @@ export const GetCategoryPackage = () => {
         customBodyRender: (data, tableMeta, rowIndex) => {
 
           return (
-            <Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0]); }} />
+            permission.includes("categoripaquete.update")  &&(<Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0]); }} />)
+            
            
           );
         },
@@ -142,7 +143,7 @@ const onHide = (name) => {
         <div className="sm:px-6 ">
           <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
             {loading ? (<MUIDataTable
-        title={"Lista de Trackings"}
+        title={"Tabla de datos"}
         data={categoryPackage}
         columns={columns}
         options={options}

@@ -4,7 +4,6 @@ export const usePermisossuper = (Data, permiso) => {
   useEffect(() => {
     const valor = Data.includes(permiso);
     setstate(valor);
-    console.log(valor);
   }, [Data, permiso]);
   return [state];
 };

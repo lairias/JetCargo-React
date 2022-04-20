@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useVeryPermisso } from "../../../hooks/useVeryPermission";
 import ModalNewCatPackage from "../../Modal/CategoryPackage/ModelNewCatPackage";
 import { GetCategoryPackage } from "./GetCatPackage";
 
@@ -11,7 +10,6 @@ export default function IndexCatPackage() {
   };
   //importaciones de permisos
   const { permission } = useSelector((state) => state.auth);
-  const [Crear_ad] = useVeryPermisso(permission, "categoripaquete.crear");
   return (
     <>
       <div className="flex justify-between">
@@ -19,26 +17,19 @@ export default function IndexCatPackage() {
           {" "}
           Categoria de Paquetes{" "}
         </h2>
-        {Crear_ad ? (
           <div className=" my-6">
+            {permission.includes("categoripaquete.crear") && (
             <button
               onClick={handleShoModal}
-              className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
-            >
+              className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
               Nueva Categoria de Paquetes <span className="ml-2">+</span>
-            </button>
+            </button>)}
           </div>
-        ) : (
-          ""
-        )}
-
-        {shoModal ? (
+        {shoModal  && permission.includes("categoripaquete.view") && ( 
           <ModalNewCatPackage
             handleShoModal={handleShoModal}
             isOpen={shoModal}
           />
-        ) : (
-          ""
         )}
       </div>
       {/* Insertar contenido de las paginas **/}

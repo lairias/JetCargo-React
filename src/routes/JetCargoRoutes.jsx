@@ -19,7 +19,6 @@ import { Admin } from "../pages/Admin";
 
 //Componentes de las páginas
 import { NotFound } from "../components/Error/NotFound";
-import { Fooder } from "../components/Admin/Fooder/Fooder";
 import { Header } from "../components/Header/Header";
 
 //Componentes de Inicio de administrativo
@@ -50,6 +49,7 @@ import UpdateInformationTrackin from "../components/Admin/Reception/UpdateInform
 import IndexPermisos from "../components/Admin/TypeUsers/IndexPermisos";
 import IndexUsers from "../components/Admin/users/IndexUsers";
 import IndexCasilleros from "../components/Admin/Casilleros/IndexCasilleros";
+import IndexCosto from "../components/Admin/CostoEnvio/IndexCosto";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
@@ -116,6 +116,16 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <IndexSeguridad />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="admin/costoEnvio"
+            element={
+              <>
+                <Admin>
+                  <IndexCosto />
                 </Admin>
               </>
             }

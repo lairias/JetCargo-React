@@ -9,6 +9,7 @@ export const IndexReceptionCountry = () => {
   //****************************Variables state */
   const [shoModal, set_shoModal] = useState(false);
   //**********************************************
+
   //****************************Variables Hooks */
   const dispatch = useDispatch();
   //**********************************************
@@ -18,14 +19,12 @@ export const IndexReceptionCountry = () => {
     set_shoModal(!shoModal);
   };
   const { permission } = useSelector((state) => state.auth);
-
   //**********************************************
   return (
     <>
       <div className="flex justify-between">
         <h2 className="my-6 text-2xl font-semibold text-gray-700">
-          {" "}
-          Seguimiento de Trackings{" "}
+          Seguimiento de Trackings
         </h2>
         <div className=" my-6">
           {permission.includes('seguimiento.crear') && (
@@ -36,7 +35,6 @@ export const IndexReceptionCountry = () => {
             {" "}
             Nuevo paquete <span className="ml-2">+</span>
           </button>
-
           )}
         </div>
         {shoModal ? <ModalNewPackage handleShoModal={handleShoModal} /> : ""}

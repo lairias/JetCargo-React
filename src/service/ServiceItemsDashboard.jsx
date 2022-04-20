@@ -10,6 +10,7 @@ import { SvgSeguridad } from "../components/svg/SvgSeguridad";
 import { SvgPayment } from "../components/svg/SvgPayment";
 import { SvgUsers } from "../components/svg/SvgUsers";
 import { SvgCasilleros } from "../components/svg/SvgCasilleros";
+import SvgCategoriaPago from "../components/svg/SvgCatagoriaPago";
 export const SidebarData = [
   {
     title: "Inicio",
@@ -37,11 +38,6 @@ export const SidebarData = [
         title: "Miami",
         path: "/admin/reception/country/2",
         icon: <SvgCountry />,
-      },
-      {
-        title: "Honduras",
-        path: "/admin/reception/country/3",
-        icon:  <SvgCountry />,
       },
     ],
   },
@@ -93,8 +89,8 @@ export const SidebarData = [
     ],
   },
   {
-    title: "Paypal",
-    cant: "home.view",
+    title: "Ordenes",
+    cant: "dasboard.orden",
     icon: <SvgPayment />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
@@ -141,8 +137,8 @@ export const SidebarData = [
   },
   {
     title: "Costo de Envio",
-    cant: "dasboard.lockers",
-    icon: <SvgCasilleros />,
+    cant: "dasboard.costos",
+    icon: <SvgCategoriaPago />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 

@@ -1,14 +1,14 @@
 import axios from "axios";
 import env from "react-dotenv";
 export const LoginService = async ({ EMAIL, PAS_USER }) => {
-  return await axios.post(`http://159.223.229.68:4000/api/auth/signin`, {
+  return await axios.post(`http://localhost:4000/api/auth/signin`, {
     EMAIL,
     PAS_USER,
   });
 };
 
 export const RegisterVeryEmail = async (EMAIL) => {
-  return await axios.get(`http://159.223.229.68:4000/api/email/${EMAIL}`);
+  return await axios.get(`http://localhost:4000/api/email/${EMAIL}`);
 };
 
 export const RegisterService = async (
@@ -16,7 +16,7 @@ export const RegisterService = async (
   DatosCuente,
   Datoslocalizacion
 ) => {
-  return axios.post(`http://159.223.229.68:4000/api/auth/signup`, {
+  return axios.post(`http://localhost:4000/api/auth/signup`, {
     ID: DatosPersonales.identificacion,
     TIP_DOCUMENT: DatosPersonales.tipodocumento,
     FRISTNAME: DatosPersonales.nombre,

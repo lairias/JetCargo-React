@@ -11,7 +11,6 @@ import { SelectState } from "../../Register/Select/SelectState";
 import { SelectCity } from "../../Register/Select/SelectCity";
 export const DialogoNewUsers = ({ handleShoModal, role }) => {
 
-
   const [ApiCities, set_ApiCities] = useState([]);
   const [ApiCountry, set_ApiCountry] = useState([]);
   const [ApiState, set_ApiState] = useState([]);
@@ -73,7 +72,6 @@ export const DialogoNewUsers = ({ handleShoModal, role }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(task)
     if (
       task.ID === "" || task.ID === " " ||
       task.TIP_DOCUMENT === "" || task.TIP_DOCUMENT === " " ||
@@ -94,7 +92,6 @@ export const DialogoNewUsers = ({ handleShoModal, role }) => {
       ) {
       toast.error("Todos los datos son necesarios");
     } else {
-      console.log(selectedServices.COD_TYPEUSERS)
       fetchConToken(
         `auth/signupAdmin`,
         {

@@ -100,7 +100,6 @@ const {ok,locker} = DataLockerUser
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(task);
     if (
       task.ID === "" ||
       task.ID === " " ||

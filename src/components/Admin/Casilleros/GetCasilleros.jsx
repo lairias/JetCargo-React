@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { Button } from 'primereact/button';
 // import ModalEditSeguridad from "./ModalEditUsers"
@@ -12,14 +12,13 @@ import ModalEditCasillero from "./ModalEditCasillero";
 
 export const GetCasilleros = () => {
     const [DataSeguridad, loaadinSeguridad]= useFetchToken("locker/admin")
-    
+    const { permission } = useSelector((state) => state.auth);
   const [ShoModal,setShoModal] = useState(false)
   const [IdShoModal,setIdShoModal] = useState(false)
   /****************************************Variables State */
   /******************************************* */
 
   /****************************************Variables Hooks*/
- console.log(DataSeguridad)
   const dispatch = useDispatch();
   useEffect(() => {
   }, [dispatch]);
@@ -132,7 +131,8 @@ export const GetCasilleros = () => {
         customBodyRender: (data, tableMeta, rowIndex) => {
 
           return (
-            <Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0]); }} />
+            permission.includes("locker.update") && (<Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0]); }} />)
+            
            
           );
         },
@@ -153,7 +153,6 @@ export const GetCasilleros = () => {
      
   const handleShoModal = (e,_id) => {
     e.preventDefault();
-    console.log(_id)
     setIdShoModal(_id)
     setShoModal(!ShoModal)
 }
@@ -172,7 +171,7 @@ const onHide = (name) => {
         <div className="sm:px-6 ">
           <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
             {loaadinSeguridad ? (<MUIDataTable
-        title={"Lista de Trackings"}
+        title={"Tabla de datos"}
         data={DataSeguridad}
         columns={columns}
         options={options}

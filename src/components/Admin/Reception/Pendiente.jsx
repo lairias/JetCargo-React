@@ -62,6 +62,7 @@ export default function EditNewTrackingPendiente({
     ANCHO_PACKAGE: "",
     LARGO_PACKAGE: "",
     DATOS_METRICOS: "",
+    ABBRE_TYPEPACKAGE: "",
   });
   const [Precio, statusServicio] = useFetchToken(
     `typepackage/${task.COD_TYPEPACKAGE}`
@@ -469,7 +470,7 @@ export default function EditNewTrackingPendiente({
               {LoaddinShopping ? (
                 <>
                   <span className="text-gray-700 dark:text-gray-900">
-                    {Shopping.NOM_METRICO}
+                    {Shopping.NOM_METRICO} - 
                   </span>
                   <input
                     className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -495,6 +496,17 @@ export default function EditNewTrackingPendiente({
               {shoMensajevolumetrico && (
                 <Message severity="success" text="Mejor opciòn" />
               )}
+            </label>
+            <label className="block mt-4 text-sm w-full md:px-2">
+              tipo de paquete
+              <input
+                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                placeholder="Costo dolares de tracking"
+                min={0}
+                disabled
+                value={task.ABBRE_TYPEPACKAGE}
+              />
+              
             </label>
             <label className="block mt-4 text-sm w-full md:px-2"></label>
           </div>

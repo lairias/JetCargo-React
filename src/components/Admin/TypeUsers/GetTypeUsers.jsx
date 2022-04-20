@@ -1,22 +1,23 @@
-import { SelectDisplay } from "../Reception/SelectDisplay";
-import TbodyTd from "./components/TbodyTd";
-import { SpinerLoader } from "../../Spinners/Loader";
 import MUIDataTable from "mui-datatables";
-
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Startgetallpermission } from "../../../actions/permissionAction";
-import { useState } from "react";
 import { useFetchToken } from "../../../hooks/useFetch";
-import { Link, NavLink } from "react-router-dom";
-
+import { Link } from "react-router-dom";
+import SpinnerButton from "../../Spinners/SpinnerButton";
+import ModalEditPermiso from "./ModalEditPermiso";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 export default function GetTypeUsers() {
-  
+  const [shoModal1, set_shoModal1] = useState(false);
+  const [IdPermiso, set_idPermiso] = useState(false);
 
+  const handleShoModal1 = (e, id) => {
+    e.preventDefault();
+    set_idPermiso(id);
+    set_shoModal1(!shoModal1);
+  };
+  const { permission } = useSelector((state) => state.auth);
 
  const [{ok,role},loaddinRoles] = useFetchToken("roles")
-  
-
+ const [{PermissionUser}, loaddindata]= useFetchToken("permission")
   //
   const columns = [
     
@@ -59,10 +60,51 @@ export default function GetTypeUsers() {
         customBodyRender: (data, tableMeta, rowIndex) => {
           
           return (
+            permission.includes("typeuser.update") && (
             <Link to={`edit/${tableMeta.rowData[0]}`}>
             
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            </Link>
+            </Link>)
+          );
+        },
+      },
+    },
+  ];
+  const columns2 = [
+    
+    {
+      name: "COD_PERMISO",
+      label: "Números de cliente",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+        empty: true,
+      },
+    },
+    {
+      name: "DES_PERMISOS",
+      label: "Descripcion Permiso",
+      options: {
+        filter: true,
+        sort: true,
+        empty: true,
+      },
+    },
+    {
+      name: "Acciones",
+      label: "Acciones",
+      options: {
+        filter: true,
+        sort: false,
+        empty: true,
+        customBodyRender: (data, tableMeta, rowIndex) => {
+          
+          return (
+            permission.includes("permisos.update") && (
+            <button onClick={e=>{handleShoModal1(e,tableMeta.rowData[0])}}>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            </button>)
           );
         },
       },
@@ -78,17 +120,45 @@ export default function GetTypeUsers() {
       }
     }
   };
+  const options2 = {
+    filterType: "checkbox",
+    fixedHeader: false,
+    textLabels: {
+      body: {
+        noMatch:'Datos no encontrados',
+      }
+    }
+  };
 
   return (
     <>
-      <MUIDataTable
+    { permission.includes("typeuser.view")  && (loaddinRoles  ? (<MUIDataTable
         title={"Lista de Roles"}
         data={role}
         columns={columns}
         options={options}
         
-      />
+      />) : (<SpinnerButton />)) }
+      
+      <div className="flex justify-between">
+        <h2 className="my-6 text-2xl font-semibold text-gray-700">
+          {" "}
+          Permisos{" "}
+        </h2>
+       
+
      
+      </div>
+
+        { permission.includes("permisos.view") && (loaddindata ? (<MUIDataTable
+        title={"Permisos descripción"}
+        data={PermissionUser}
+        columns={columns2}
+        options={options2}
+        
+      />): (<SpinnerButton />))}
+      
+      {shoModal1 ? <ModalEditPermiso handleShoModal1={handleShoModal1} IdPermiso={IdPermiso} /> : ""}
     </>
   );
 }

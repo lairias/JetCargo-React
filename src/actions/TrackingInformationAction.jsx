@@ -57,7 +57,6 @@ return async function(dispatch){
 }
 export function SendTrackingInformation(task, Direcciones, COD_CUSTOMER,COD_ORDEN) {
   return async function (dispatch) {
-    console.log("Funciona");
     const data = await fetchConToken(
       `trackingInformation`,
       {task, Direcciones, COD_CUSTOMER,COD_ORDEN},

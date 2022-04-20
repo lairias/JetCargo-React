@@ -97,7 +97,6 @@ export default function FormularioUpdateInformationTracking({
     if (DataCargada.COD_DESTINATION_COUNTRY) {
       StateService(DataCargada.COD_DESTINATION_COUNTRY).then((element) => {
         set_ApiStateDestino(element.data);
-        console.log(element.data);
       });
     }
 

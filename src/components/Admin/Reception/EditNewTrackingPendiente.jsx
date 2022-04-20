@@ -11,7 +11,6 @@ export default function EditNewTrackingPendiente() {
   const { COD_COUNTRY, COD_CUSTOMER, RECEIVED_TRACKING, NUM_TRACKING}=useParams();
   const [DataTracking, loaddin_dataTracking] = useFetchToken(`tracking/${NUM_TRACKING}`);
   const [DataOrden, loaddin_dataOrden] = useFetchToken(`orden/tracking_number/${NUM_TRACKING}`);
-  console.log(DataOrden)
   return (
     <>
     <Toaster/>

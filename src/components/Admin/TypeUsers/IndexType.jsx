@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { useVeryPermisso } from "../../../hooks/useVeryPermission";
-import ModalNewTypeUsers from "../../Modal/Package/TypeUsers/ModalNewTypeUsers";
+import ModalNewRol from "./ModalNewRol";
 import GetTypeUsers from "./GetTypeUsers";
 
 export default function IndexTypes() {
@@ -9,9 +8,9 @@ export default function IndexTypes() {
   const handleShoModal = () => {
     set_shoModal(!shoModal);
   };
+
   //importaciones de permisos
   const { permission } = useSelector((state) => state.auth);
-  const [Crear_ad] = useVeryPermisso(permission, "admin.crear");
   return (
     <>
       <div className="flex justify-between">
@@ -19,7 +18,7 @@ export default function IndexTypes() {
           {" "}
           Perfiles administrativos{" "}
         </h2>
-        {Crear_ad ? (
+        {permission.includes("typeuser.crear") && (
           <div className=" my-6">
             <button
               onClick={handleShoModal}
@@ -27,16 +26,14 @@ export default function IndexTypes() {
             >
               Nuevo Rol <span className="ml-2">+</span>
             </button>
-          </div>
-        ) : (
-          ""
-        )}
+          </div>)}
 
-        {shoModal ? <ModalNewTypeUsers handleShoModal={handleShoModal} /> : ""}
+        {shoModal ? <ModalNewRol handleShoModal={handleShoModal} /> : ""}
       </div>
       {/* Insertar contenido de las paginas **/}
-
+      {permission.includes("typeuser.view") && (
       <GetTypeUsers />
+      )}
     </>
   );
 }

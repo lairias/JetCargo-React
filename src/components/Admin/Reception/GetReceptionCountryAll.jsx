@@ -118,7 +118,7 @@ export const GetReceptionCountryAll = ({  RECEIVED_TRACKING }) => {
   return (
     <>
       <MUIDataTable
-        title={"Lista de Trackings"}
+        title={"Tabla de datos"}
         data={dataTracking}
         columns={columns}
         options={options}

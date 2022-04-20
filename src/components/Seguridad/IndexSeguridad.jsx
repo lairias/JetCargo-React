@@ -24,7 +24,8 @@ export default function IndexSeguridad() {
        
       </div>
       {/* Insertar contenido de las paginas **/}
-      <GetSeguridad  />
+      {permission.includes("seguridad.view") ? ( <GetSeguridad  />) : "Permiso Denegado"}
+     
     </>
   );
 }

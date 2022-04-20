@@ -14,7 +14,6 @@ const [sednDatos, setsednDatos] = useState(false);
 
 const{permisosDis}=DataPersmissionRol; //permisos rol
 
-console.log(COD_TYPEUSERS)
 
 const [source, setSource] = useState([permisos]);
 const [target, setTarget] = useState([]);

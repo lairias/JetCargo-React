@@ -1,7 +1,6 @@
 
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import { Button } from 'primereact/button';
 // import ModalEditSeguridad from "./ModalEditUsers"
@@ -13,7 +12,8 @@ import ModalEditUsers from "./ModalEditUsers";
 
 export const GetUsers = () => {
     const [DataSeguridad, loaadinSeguridad]= useFetchToken("users")
-    
+    const { permission } = useSelector((state) => state.auth);
+
   const [ShoModal,setShoModal] = useState(false)
   const [IdShoModal,setIdShoModal] = useState(false)
   const [IdShoModalCustomer,setIdShoModalCustomer] = useState(false)
@@ -162,7 +162,8 @@ export const GetUsers = () => {
         customBodyRender: (data, tableMeta, rowIndex) => {
 
           return (
-            <Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0],tableMeta.rowData[1] ); }} />
+            permission.includes("user.update") &&(
+            <Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0],tableMeta.rowData[1] ); }} />)
            
           );
         },
@@ -202,7 +203,7 @@ const onHide = (name) => {
         <div className="sm:px-6 ">
           <div className="bg-white py-4 md:py-7 px-4 md:px-8 xl:px-10">
             {loaadinSeguridad ? (<MUIDataTable
-        title={"Lista de Trackings"}
+        title={"Tabla de datos"}
         data={DataSeguridad}
         columns={columns}
         options={options}

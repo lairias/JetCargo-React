@@ -1,19 +1,19 @@
-import {DialogoNewUsers} from "./DialogoNewUsers";
+import {DialogoNewRol} from "./DialogoNewRol";
 import { Toaster } from "react-hot-toast";
 import {useFetchToken} from "../../../hooks/useFetch"
 import SpinnerButton from "../../Spinners/SpinnerButton";
 
-export default function ModalNewUser({ handleShoModal }) {
-  const [{role},loaddinRoles] = useFetchToken("roles")
+export default function ModalNewRol({ handleShoModal }) {
   /********************************Variables de State */
-  
+  const [Datapermisos, loaddindata]= useFetchToken("permission")
+
 
 
   /************************************************** */
   return (
     <>
       <Toaster />
-      {loaddinRoles &&  <DialogoNewUsers  handleShoModal={handleShoModal} role={role} /> }
+      { loaddindata ? (<DialogoNewRol  handleShoModal={handleShoModal} Datapermisos={Datapermisos}  />) : ("")}
       
      
     </>

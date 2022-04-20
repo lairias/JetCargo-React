@@ -6,5 +6,5 @@ export const TypeUserService = async (token, id) => {
     "x-access-token": token,
   };
 
-  return await axios.get(`http://159.223.229.68:4000/api/roles/${id}/`, headers);
+  return await axios.get(`http://localhost:4000/api/roles/${id}/`, headers);
 };

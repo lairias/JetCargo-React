@@ -9,7 +9,6 @@ import { SelectState } from "../../Register/Select/SelectState";
 import { SelectCity } from "../../Register/Select/SelectCity";
 export const DialogoEditCasillero = ({ handleShoModal, dataCategory, id }) => {
 
-    console.log(dataCategory)
   ///*********************UseEfect***********************/
   const estadoArray = [
     {
@@ -45,7 +44,6 @@ export const DialogoEditCasillero = ({ handleShoModal, dataCategory, id }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(task);
     if (
       task.NUM_LOCKER === "" ||
       task.NUM_LOCKER === " " ||
@@ -77,6 +75,7 @@ export const DialogoEditCasillero = ({ handleShoModal, dataCategory, id }) => {
     TEL_LOCKER: dataCategory.TEL_LOCKER,
     TYP_LOCKER: dataCategory.TYP_LOCKER
   });
+
 
   const handleChange = (e) =>
     setTask({ ...task, [e.target.name]: e.target.value });

@@ -7,7 +7,6 @@ export function GetCustomerReception(ruta,setTask,) {
     
     const data = await fetchConToken(ruta, {}, "GET");
     const json = await data.json();
-    console.log(json)
     if (json.ok) {
 
         setTask({ HEIGHT_PACKAGE: json.tracking[0].HEIGHT_PACKAGE === null ? 0 : json.tracking[0].HEIGHT_PACKAGE,
@@ -24,6 +23,7 @@ export function GetCustomerReception(ruta,setTask,) {
       COD_TYPEPACKAGE: json.tracking[0].COD_TYPEPACKAGE === null ? 0 :json.tracking[0].COD_TYPEPACKAGE ,
       COD_TRACKING: json.tracking[0].COD_TRACKING === null ? "" : json.tracking[0].COD_TRACKING,
       IND_TRACKING: json.tracking[0].IND_TRACKING,
+      ABBRE_TYPEPACKAGE: json.tracking[0].ABBRE_TYPEPACKAGE,
       COD_PACKAGE:json.tracking[0].COD_PACKAGE,
       PRICE_PACKAGE:json.tracking[0].PRICE_PACKAGE === null ? 0 : json.tracking[0].PRICE_PACKAGE,
       COD_SECTION:json.tracking[0].COD_SECTION === null ? 0 : json.tracking[0].COD_SECTION,

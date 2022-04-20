@@ -2,7 +2,6 @@ import { NavLink } from "react-router-dom";
 import box from "../../img/box-1299001_1280.png";
 import moment from "moment";
 export const GetPackages = ({ items }) => {
-  console.log(items);
   return (
     <>
       <div className="w-64 p-4  rounded border hover:shadow-lg bg-white">

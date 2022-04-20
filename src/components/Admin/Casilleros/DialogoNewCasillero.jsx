@@ -36,7 +36,6 @@ export const DialogoNewCasillero = ({ handleShoModal,  }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(task)
     if (
       task.NUM_LOCKER === "" || task.NUM_LOCKER === " " ||
       task.ADDRES_LOCKER === "" || task.ADDRES_LOCKER === " " ||
