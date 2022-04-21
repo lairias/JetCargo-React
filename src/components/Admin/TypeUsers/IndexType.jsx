@@ -4,9 +4,9 @@ import ModalNewRol from "./ModalNewRol";
 import GetTypeUsers from "./GetTypeUsers";
 
 export default function IndexTypes() {
-  const [shoModal, set_shoModal] = useState(false);
+  const [shoModalIndex, set_shoModalIndex] = useState(false);
   const handleShoModal = () => {
-    set_shoModal(!shoModal);
+    set_shoModalIndex(!shoModalIndex);
   };
 
   //importaciones de permisos
@@ -28,11 +28,11 @@ export default function IndexTypes() {
             </button>
           </div>)}
 
-        {shoModal ? <ModalNewRol handleShoModal={handleShoModal} /> : ""}
+        {shoModalIndex ? <ModalNewRol handleShoModal={handleShoModal} /> : ""}
       </div>
       {/* Insertar contenido de las paginas **/}
       {permission.includes("typeuser.view") && (
-      <GetTypeUsers />
+      <GetTypeUsers shoModalIndex={shoModalIndex} />
       )}
     </>
   );

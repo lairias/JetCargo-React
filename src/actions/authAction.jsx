@@ -27,6 +27,7 @@ export function StarLogin(correo, password) {
         PAS_USER: password,
       });
       if (data.token) {
+        console.log(data);
         const PermisosAray = new Array();
         data.PermissionUser.forEach((element) => {
           PermisosAray.push(element.NAM_PERMISOS);
@@ -42,6 +43,7 @@ export function StarLogin(correo, password) {
             name: data.NAME,
             lastname: data.LASTNAME,
             email: data.EMAIL,
+            IND_INS: data.IND_INS,
             img_perfil: data.IMG_FHOTO,
             permission: PermisosAray,
             customer: data.CustomerUser,
@@ -70,6 +72,7 @@ export function startCheckingLogin() {
   return async function (dispatch) {
     const data = await RenewTokenService();
     if (data.ok) {
+      console.log(data)
       const PermisosAray = new Array();
       data.PermissionUser.forEach((element) => {
         PermisosAray.push(element.NAM_PERMISOS);
@@ -86,6 +89,7 @@ export function startCheckingLogin() {
           name: data.NAME,
           lastname: data.LASTNAME,
           email: data.EMAIL,
+          IND_INS: data.IND_INS,
           img_perfil: data.IMG_FHOTO,
           permission: PermisosAray,
           customer: data.CustomerUser,

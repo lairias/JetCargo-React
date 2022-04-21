@@ -8,7 +8,7 @@ import {
 
 export function GetAllCategoryPackage(type = false) {
   return async function (dispatch) {
-    const data = await fetchConToken("catpackage", {}, "GET");
+    const data = await fetchConToken("catpackage/ind", {}, "GET");
     const json = await data.json();
     if (type) {
       const DataArray = new Array();

@@ -11,6 +11,13 @@ import { SvgPayment } from "../components/svg/SvgPayment";
 import { SvgUsers } from "../components/svg/SvgUsers";
 import { SvgCasilleros } from "../components/svg/SvgCasilleros";
 import SvgCategoriaPago from "../components/svg/SvgCatagoriaPago";
+import SvgRolItems from "../components/svg/SvgRolItems";
+import SvgSeguridadItems from "../components/svg/SvgSeguridadItems";
+import SvgOrdenesItems from "../components/svg/SvgOrdenesItems";
+import { SvgUserItems } from "../components/svg/SvgUserItems";
+import { SvgCasillerosItems } from "../components/svg/SvgCasillerosItems";
+import { SvgCostoItems } from "../components/svg/SvgCostoItems";
+import { SvgDireciones } from "../components/svg/SvgDireciones";
 export const SidebarData = [
   {
     title: "Inicio",
@@ -43,7 +50,7 @@ export const SidebarData = [
   },
   {
     title: "Roles",
-    cant: "dasboard.roles",
+    cant: "dasboard.roles",//
     icon: <SvgRoles />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
@@ -53,7 +60,7 @@ export const SidebarData = [
         title: "Roles administrativos",
         path: "/admin/roles",
         cant: "dasboard.roles",
-        icon: "",
+        icon: <SvgRolItems />,
       },
     ],
   },
@@ -68,7 +75,7 @@ export const SidebarData = [
       {
         title: "Paquetes",
         path: "/admin/category/package",
-        icon: "",
+        icon: <SvgRolItems />,
       },
     ],
   },
@@ -83,9 +90,8 @@ export const SidebarData = [
       {
         title: "Seguridad",
         path: "/admin/seguridad/",
-        icon: "fa-solid fa-user-group-crown",
+        icon: <SvgSeguridadItems />,
       },
-     
     ],
   },
   {
@@ -97,9 +103,9 @@ export const SidebarData = [
 
     subNav: [
       {
-        title: "Users",
+        title: "Ordenes",
         path: "/admin/users/",
-        icon: "fa-solid fa-user-group-crown",
+        icon: <SvgOrdenesItems />,
       },
     ],
   },
@@ -114,7 +120,7 @@ export const SidebarData = [
       {
         title: "Usuarios",
         path: "/admin/users/",
-        icon: "fa-solid fa-user-group-crown",
+        icon: <SvgUserItems />,
       },
      
     ],
@@ -125,13 +131,11 @@ export const SidebarData = [
     icon: <SvgCasilleros />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
-
     subNav: [
-     
       {
         title: "Casilleros",
         path: "/admin/casilleros/",
-        icon: "fa-solid fa-user-robot",
+        icon: <SvgCasillerosItems />,
       },
     ],
   },
@@ -147,28 +151,35 @@ export const SidebarData = [
       {
         title: "Costo de envios",
         path: "/admin/costoEnvio/",
-        icon: "fa-solid fa-user-robot",
+        icon: <SvgCostoItems />,
       },
     ],
   },
   {
-    title: "Paquetes",
-    cant: "dasboard.packages",
-    icon: <SvgPackage />,
+    title: "Direcciones",
+    cant: "dasboard.costos",
+    icon: <SvgCategoriaPago />,
     iconClosed: <IoIosArrowDown />,
     iconOpened: <IoIosArrowUp />,
 
     subNav: [
+     
       {
-        title: "Users",
-        path: "/overview/users",
-        icon: "fa-solid fa-user-group-crown",
+        title: "Paises",
+        path: "/admin/paises/",
+        icon: <SvgDireciones />,
       },
       {
-        title: "Revenue",
-        path: "/overview/revenue",
-        icon: "fa-solid fa-user-robot",
+        title: "Departamentos",
+        path: "/admin/departamentos/",
+        icon: <SvgDireciones />,
+      },
+      {
+        title: "Ciudades",
+        path: "/admin/ciudades/",
+        icon: <SvgDireciones />,
       },
     ],
   },
+
 ];

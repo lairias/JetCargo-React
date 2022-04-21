@@ -1,13 +1,17 @@
 import MUIDataTable from "mui-datatables";
-import { useFetchToken } from "../../../hooks/useFetch";
 import { Link } from "react-router-dom";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import ModalEditPermiso from "./ModalEditPermiso";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-export default function GetTypeUsers() {
+import { fetchConToken } from "../../../util/fetch";
+export default function GetTypeUsers({shoModalIndex}) {
   const [shoModal1, set_shoModal1] = useState(false);
-  const [IdPermiso, set_idPermiso] = useState(false);
+
+  const [Datarole, set_role] = useState();
+  const [DataPermissionUser, set_PermissionUser] = useState();
+  const [loaddinRoles, set_loaddinRoles] = useState(false);
+  const [loaddindata, set_loaddindata] = useState(false);
 
   const handleShoModal1 = (e, id) => {
     e.preventDefault();
@@ -16,9 +20,19 @@ export default function GetTypeUsers() {
   };
   const { permission } = useSelector((state) => state.auth);
 
- const [{ok,role},loaddinRoles] = useFetchToken("roles")
- const [{PermissionUser}, loaddindata]= useFetchToken("permission")
-  //
+  useEffect(() => {
+    (async () => {
+      const data = await fetchConToken("roles");
+      const json = await data.json();
+      set_role(json);
+      set_loaddinRoles(true);
+      const data1 = await fetchConToken("permission");
+      const json1 = await data1.json();
+      set_PermissionUser(json1);
+      set_loaddindata(true);
+    })();
+  }, [shoModal1,shoModalIndex]);
+
   const columns = [
     
     {
@@ -134,7 +148,7 @@ export default function GetTypeUsers() {
     <>
     { permission.includes("typeuser.view")  && (loaddinRoles  ? (<MUIDataTable
         title={"Lista de Roles"}
-        data={role}
+        data={Datarole.role}
         columns={columns}
         options={options}
         
@@ -152,7 +166,7 @@ export default function GetTypeUsers() {
 
         { permission.includes("permisos.view") && (loaddindata ? (<MUIDataTable
         title={"Permisos descripción"}
-        data={PermissionUser}
+        data={DataPermissionUser.PermissionUser}
         columns={columns2}
         options={options2}
         

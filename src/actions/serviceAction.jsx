@@ -3,7 +3,7 @@ import { fetchConToken } from "../util/fetch";
 
 export function GetAllservices(evento) {
   return async function (dispatch) {
-    const data = await fetchConToken(`service`, {}, "GET");
+    const data = await fetchConToken(`service/ind`, {}, "GET");
     const json = await data.json();
 
     if (json.ok) {

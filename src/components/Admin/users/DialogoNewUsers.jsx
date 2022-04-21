@@ -80,7 +80,6 @@ export const DialogoNewUsers = ({ handleShoModal, role }) => {
       task.LASTNAME === "" || task.LASTNAME === " " ||
       task.AGE === "" || task.AGE === " " ||
       task.EMAIL === "" || task.EMAIL === " " ||
-      task.PAS_USER === "" || task.PAS_USER === " " ||
       selectedServices === "" || selectedServices === " " ||
       task.DAT_BIRTH === "" || task.DAT_BIRTH === " " ||
       task.COD_COUNTRY === "" || task.COD_COUNTRY === " " ||
@@ -102,7 +101,6 @@ export const DialogoNewUsers = ({ handleShoModal, role }) => {
     LASTNAME: task.LASTNAME,
     AGE: task.AGE,
     EMAIL: task.EMAIL,
-    PAS_USER: task.PAS_USER,
     ROL: selectedServices.COD_TYPEUSERS,
     DAT_BIRTH: task.DAT_BIRTH,
     COD_COUNTRY: task.COD_COUNTRY,
@@ -127,7 +125,6 @@ export const DialogoNewUsers = ({ handleShoModal, role }) => {
     LASTNAME: "",
     AGE: "",
     EMAIL: "",
-    PAS_USER: "",
     ROL: "",
     DAT_BIRTH: "",
     COD_COUNTRY: "",
@@ -267,19 +264,6 @@ export const DialogoNewUsers = ({ handleShoModal, role }) => {
             />
           </label>
 
-          <label className="block mt-4 text-sm w-full md:px-2">
-            <span className="text-gray-700 dark:text-gray-900">
-              Contraseña{" "}
-            </span>
-            <input
-              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Contraseña "
-              type="password"
-              name="PAS_USER"
-              onChange={handleChange}
-              value={task.PAS_USER}
-            />
-          </label>
           <label className="block mt-4 text-sm w-full md:px-2">
             <span className="text-gray-700 dark:text-gray-900">Rol </span>
             <Select
