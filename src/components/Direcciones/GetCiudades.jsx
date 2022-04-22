@@ -12,7 +12,6 @@ import { ModalEditPais } from "./ModalEditPais";
 
 export const GetCiudades = () => {
     const [DataSeguridad, loaadinSeguridad]= useFetchToken("cities/admin")
-    console.log(DataSeguridad)
     const { permission } = useSelector((state) => state.auth);
   const [ShoModal,setShoModal] = useState(false)
   const [IdShoModal,setIdShoModal] = useState(false)
