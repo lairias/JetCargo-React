@@ -25,6 +25,7 @@ import {
   GetTrackingByInformation,
   SendTrackingInformation,
 } from "../../../actions/TrackingInformationAction";
+import { fetchConToken } from "../../../util/fetch";
 export default function Progreso({
   COD_COUNTRY,
   COD_CUSTOMER,
@@ -39,14 +40,23 @@ export default function Progreso({
   const [sednDatos, setsednDatos] = useState(false);
   const { services, loadingServices } = useSelector((state) => state.services);
   const [calculoDolares, setCaluloDolares] = useState(0);
+  const [DataOrigen, setDataOrigen] = useState(0);
+  const [loadding_Origen, setloadding_Origen] = useState(0);
+  const [Efecto, setEfecto] = useState(false);
   const [calculoLempiras, setCaluloLempiras] = useState(0);
   const { TypePackage, loadingTypePackage } = useSelector(
     (state) => state.typepackage
   );
   const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
-  const [DataOrigen, loadding_Origen] = useFetchToken(
-    `trackingInformation/origenDestinoAll/${COD_ORDEN}`
-  );
+  useEffect(() => {
+    (async () => {
+      const data = await fetchConToken(`trackingInformation/origenDestinoAll/${COD_ORDEN}`);
+      const json = await data.json();
+      setDataOrigen(json);
+      setloadding_Origen(true);
+    })();
+  }, [Efecto]);
+  
   const selectStatusTracking = [
     { value: "PENDING" },
     { value: "RECEIVED" },
@@ -54,12 +64,7 @@ export default function Progreso({
     { value: "DELIVERED" },
     { value: "IN_PROGRESS" },
   ];
-  const { categoryPackage, loading } = useSelector(
-    (state) => state.categorypackage
-  );
-  const { TrackingPendiente, loaddinPendiente } = useSelector(
-    (state) => state.reception
-  );
+  
   const [task, setTask] = useState({
     HEIGHT_PACKAGE: "",
     WIDTH_PACKAGE: "",
@@ -183,13 +188,13 @@ export default function Progreso({
     ) {
       toast.error(`Todos los datos son necesario`);
     } else {
-      dispatch(StartTrackingRecived(task, COD_CUSTOMER, setsednDatos));
+      // dispatch(StartTrackingRecived(task, COD_CUSTOMER, setsednDatos));
       dispatch(
         SendTrackingInformation(
           task,
           Direcciones,
           COD_CUSTOMER,
-          COD_ORDEN
+          COD_ORDEN,setEfecto
         )
       );
       // history(`/admin/reception/country/${COD_COUNTRY}/`);

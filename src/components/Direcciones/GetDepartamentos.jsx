@@ -8,7 +8,7 @@ import moment from "moment";
 
 import MUIDataTable from "mui-datatables";
 import { useFetchToken } from "../../hooks/useFetch";
-import { ModalEditPais } from "./ModalEditPais";
+import { ModalEditDepartemento } from "./ModalEditDepartemento";
 // import ModalEditCasillero from "./ModalEditCasillero";
 
 export const GetDepartamentos = () => {
@@ -16,6 +16,7 @@ export const GetDepartamentos = () => {
     const { permission } = useSelector((state) => state.auth);
   const [ShoModal,setShoModal] = useState(false)
   const [IdShoModal,setIdShoModal] = useState(false)
+  const [IdShoModalCountry,setIdShoModalCountry] = useState(false)
   /****************************************Variables State */
   /******************************************* */
   /****************************************Variables Hooks*/
@@ -26,7 +27,17 @@ export const GetDepartamentos = () => {
   const columns = [
     {
       name: "COD_STATE",
-      label: "Codígo pais",
+      label: "Codígo departamento",
+      options: {
+        filter: true,
+        sort: true,
+        display: false,
+        empty: true,
+      },
+    },
+    {
+      name: "COD_COUNTRY",
+      label: "Codígo país",
       options: {
         filter: true,
         sort: true,
@@ -119,7 +130,7 @@ export const GetDepartamentos = () => {
         customBodyRender: (data, tableMeta, rowIndex) => {
 
           return (
-            permission.includes("locker.update") && (<Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0]); }} />)
+            permission.includes("locker.update") && (<Button   onClick={e=>{handleShoModal(e,tableMeta.rowData[0],tableMeta.rowData[1]); }} />)
             
            
           );
@@ -138,9 +149,10 @@ export const GetDepartamentos = () => {
     }
   };
 
-  const handleShoModal = (e,_id) => {
+  const handleShoModal = (e,_id,country) => {
     e.preventDefault();
     setIdShoModal(_id)
+    setIdShoModalCountry(country)
     setShoModal(!ShoModal)
 }
 
@@ -163,7 +175,7 @@ export const GetDepartamentos = () => {
         </div>
       </div>
 
-      {ShoModal && <ModalEditPais handleShoModal={handleShoModal} IdShoModal={IdShoModal} />}
+      {ShoModal && <ModalEditDepartemento handleShoModal={handleShoModal} IdShoModal={IdShoModal} IdShoModalCountry={IdShoModalCountry}/>}
     </>
   );
 };

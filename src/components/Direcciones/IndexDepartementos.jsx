@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { GetDepartamentos } from "./GetDepartamentos";
-import {ModalNewPais} from "./ModalNewPais";
+import {ModalNewDepartemento} from "./ModalNewDepartemento";
 export default function IndexDepartementos() {
   const [shoModal, set_shoModal] = useState(false);
   const handleShoModal = () => {
     set_shoModal(!shoModal);
   };
-  //importaciones de permisos
   const { permission } = useSelector((state) => state.auth);
+
   return (
     <>
       <div className="flex justify-between">
@@ -23,10 +23,8 @@ export default function IndexDepartementos() {
             </button>
             )}
           </div>
-
-
         {shoModal  && (
-          <ModalNewPais
+          <ModalNewDepartemento
             handleShoModal={handleShoModal}
           />
         ) }

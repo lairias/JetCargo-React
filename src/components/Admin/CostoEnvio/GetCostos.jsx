@@ -103,7 +103,7 @@ export const GetCostos = ({shoModalIndex}) => {
         empty: true,
         customBodyRender: (data, tableMeta, rowIndex) => {
           return (
-            permission.includes("user.update") && (
+            permission.includes("shipping.update") && (
               <Button
                 onClick={(e) => {
                   handleShoModal2(tableMeta.rowData[0]);
@@ -226,7 +226,6 @@ export const GetCostos = ({shoModalIndex}) => {
         },
       },
     },
-
     {
       name: "Acciones",
       label: "Acciones",
@@ -236,7 +235,7 @@ export const GetCostos = ({shoModalIndex}) => {
         empty: true,
         customBodyRender: (data, tableMeta, rowIndex) => {
           return (
-            permission.includes("user.update") && (
+            permission.includes("shipping.update") && (
               <Button
                 onClick={(e) => {
                   handleShoModal( tableMeta.rowData[0], tableMeta.rowData[1]);
@@ -295,7 +294,7 @@ export const GetCostos = ({shoModalIndex}) => {
               Tipos de Cobros de paquetes{" "}
             </h2>
             <div className=" my-6">
-              {permission.includes("user.crear") && (
+              {permission.includes("shipping.crear") && (
                 <button
                   onClick={handleShoModal1}
                   className="flex items-center justify-between  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"

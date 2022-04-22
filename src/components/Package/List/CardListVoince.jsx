@@ -9,7 +9,7 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
   const [DataSeguridad, SeguridadLoading] = useFetchToken(`seguridad/9`);
   const mensaje = `Tracking-N°:${DataTrackinNotOrden[0].NUM_TRACKING} Loker-N°:${DataTrackinNotOrden[0].NUM_LOCKER} Paquete-N°:${DataTrackinNotOrden[0].NUM_PACKAGE} 
   Descripción:${DataTrackinNotOrden[0].NOM_PACKAGE} - ${DataTrackinNotOrden[0].DES_TRACKING}`;
-  const [DataCreateOrden, CreateOrdenLoading] = useFetchToken(
+  const [{data}, CreateOrdenLoading] = useFetchToken(
     `payment/create-orden`,
     { mensaje, DataTrackinNotOrden },
     "POST"
@@ -27,7 +27,7 @@ export const CardListVoince = ({ DataTrackinNotOrden }) => {
           </p>
           {CreateOrdenLoading ? (
             <a
-              href={DataCreateOrden.links[1].href}
+              href={data.links[1].href}
               className="flex items-center justify-between   px-4 py-2 text-normal font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
             >
               <>

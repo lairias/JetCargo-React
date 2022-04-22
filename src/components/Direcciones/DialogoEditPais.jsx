@@ -7,11 +7,11 @@ export const DialogoEditPais = ({ handleShoModal,dataPais}) => {
   
     const estadoArray = [
         {
-          value: 1,
+          value: true,
           date: "Activo",
         },
         {
-          value: 0,
+          value: false,
           date: "Inactivo",
         },
       ];

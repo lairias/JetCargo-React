@@ -57,11 +57,16 @@ return async function(dispatch){
 }
 export function SendTrackingInformation(task, Direcciones, COD_CUSTOMER,COD_ORDEN) {
   return async function (dispatch) {
-    const data = await fetchConToken(
-      `trackingInformation`,
-      {task, Direcciones, COD_CUSTOMER,COD_ORDEN},
-      "POST",
-    );
+    try{
+      const data = await fetchConToken(
+        `trackingInformation/admin`,
+        {task, Direcciones, COD_CUSTOMER,COD_ORDEN},
+        "POST",
+      );
+      
+      setEfecto(true);
+    }catch(error){
+    }
   };
 }
 export function PutTrackingOrigenDestino(

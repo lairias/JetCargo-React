@@ -9,7 +9,6 @@ import moment from "moment";
 import MUIDataTable from "mui-datatables";
 import { useFetchToken } from "../../hooks/useFetch";
 import { ModalEditPais } from "./ModalEditPais";
-// import ModalEditCasillero from "./ModalEditCasillero";
 
 export const GetCiudades = () => {
     const [DataSeguridad, loaadinSeguridad]= useFetchToken("cities/admin")

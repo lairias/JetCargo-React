@@ -5,10 +5,9 @@ import toast, { Toaster } from "react-hot-toast";
 import Select from "react-select";
 
 import { fetchConToken } from "../../util/fetch";
-export const DialogoNewCiudad = ({ handleShoModal,DataCountry,    DataState }) => {
+export const DialogoNewCiudad = ({ handleShoModal,DataState,DataCountry }) => {
     const [selectedState, setSelectedState] = useState();
     const [selectedCountry, setSelectedCountry] = useState();
-console.log(DataState)
  
   const renderFooter = (name) => {
     return (
@@ -54,9 +53,13 @@ console.log(DataState)
     }
   };
   const [task, setTask] = useState({
-    NAM_COUNTRY:"",
-    DES_COUNTRY:"",
-    AREA_COUNTRY:"",
+    NAM_CITY:"",
+    ZIP_CODE:"",
+    POS_CODE:"",
+    POPULATION:"",
+    CURRENCY:"",
+    TIMEZONE:"",
+    DES_CITY:"",
   });
   const handleChange = (e) =>
     setTask({ ...task, [e.target.name]: e.target.value });
@@ -73,48 +76,18 @@ console.log(DataState)
         <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
           <label className="block mt-4 text-sm w-full md:px-2">
             <span className="text-gray-700 dark:text-gray-900">
-              Nombre país
+              Nombre de ciudad
             </span>
             <input
               className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Nombre país"
-              name="NAM_COUNTRY"
+              name="NAM_CITY"
               onChange={handleChange}
-              value={task.NAM_COUNTRY}
+              value={task.NAM_CITY}
             />
           </label>
           <label className="block mt-4 text-sm w-full md:px-2">
-            <span className="text-gray-700 dark:text-gray-900">
-              Area de país{" "}
-            </span>
-            <input
-              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Area de país"
-              name="AREA_COUNTRY"
-              onChange={handleChange}
-              value={task.AREA_COUNTRY}
-            />
-          </label>
-         
-</div>
-        <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
-        <label className="block mt-4 text-sm w-full md:px-2">
-            <span className="text-gray-700 dark:text-gray-900">Rol </span>
-            <Select
-              menuPlacement="auto"
-              defaultValue={selectedCountry}
-              onChange={setSelectedCountry}
-              options={DataCountry}
-              formatOptionLabel={(services) => (
-                <div className="flex justify-between">
-                  
-                  <span>{services.NAM_COUNTRY}</span>
-                </div>
-              )}
-            />
-          </label>
-        <label className="block mt-4 text-sm w-full md:px-2">
-            <span className="text-gray-700 dark:text-gray-900">Rol </span>
+            <span className="text-gray-700 dark:text-gray-900">Departamento </span>
             <Select
               menuPlacement="auto"
               defaultValue={selectedState}
@@ -128,15 +101,73 @@ console.log(DataState)
               )}
             />
           </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">Codigo país </span>
+            <Select
+              menuPlacement="auto"
+              defaultValue={selectedCountry}
+              onChange={setSelectedCountry}
+              options={DataCountry}
+              formatOptionLabel={(services) => (
+                <div className="flex justify-between">
+                  
+                  <span>{services.AREA_COUNTRY} - {services.NAM_COUNTRY}</span>
+                </div>
+              )}
+            />
+          </label>
+          </div>
+          <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Codigo postal
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Area de país"
+              name="POS_CODE"
+              onChange={handleChange}
+              value={task.POS_CODE}
+            />
+          </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Población
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Area de país"
+              name="POPULATION"
+              onChange={handleChange}
+              value={task.POPULATION}
+            />
+          </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Moneda
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Area de país"
+              name="CURRENCY"
+              onChange={handleChange}
+              value={task.CURRENCY}
+            />
+          </label>
+         
+</div>
+        <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+       
+       
         <label className="block mt-4 text-sm w-full md:px-2">
             <span className="text-gray-700 dark:text-gray-900">Dirección país</span>
             <textarea
           cols="3"
           rows="3"
           onChange={handleChange}
-          name="DES_COUNTRY"
+          name="DES_CITY"
           className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-          value={task.DES_COUNTRY}
+          value={task.DES_CITY}
         >
         </textarea>
           </label>
