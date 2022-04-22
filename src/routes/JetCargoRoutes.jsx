@@ -50,6 +50,7 @@ import IndexPermisos from "../components/Admin/TypeUsers/IndexPermisos";
 import IndexUsers from "../components/Admin/users/IndexUsers";
 import IndexCasilleros from "../components/Admin/Casilleros/IndexCasilleros";
 import IndexCosto from "../components/Admin/CostoEnvio/IndexCosto";
+import IndexCiudades from "../components/Direcciones/IndexCiudades";
 import IndexPaises from "../components/Direcciones/IndexPaises";
 import IndexDepartementos from "../components/Direcciones/IndexDepartementos";
 function JetCargoRoutes() {
@@ -128,6 +129,16 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <IndexPaises />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="/admin/ciudades/"
+            element={
+              <>
+                <Admin>
+                  <IndexCiudades />
                 </Admin>
               </>
             }

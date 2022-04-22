@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { GetCasilleros } from "./GetCasilleros";
-import ModalNewCasillero from "./ModalNewCasillero";
-export default function IndexCasilleros() {
+import { GetCiudades } from "./GetCiudades";
+import ModalNewCiudad from "./ModalNewCiudad";
+export default function IndexCiudades() {
   const [shoModal, set_shoModal] = useState(false);
   const handleShoModal = () => {
     set_shoModal(!shoModal);
@@ -23,12 +23,12 @@ export default function IndexCasilleros() {
             )}
           </div>
         {shoModal && permission.includes("locker.crear") && (
-          <ModalNewCasillero
+          <ModalNewCiudad
             handleShoModal={handleShoModal}
           />
         ) }
       </div>
-      <GetCasilleros />
+      <GetCiudades />
     </>
   );
 }
