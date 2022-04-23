@@ -5,9 +5,10 @@ import TableOrigenDestino from "./TableOrigenDestino";
 export default function ListPackageUser({ showInvoice, setshoInvoice,COD_ORDEN,
   COD_TRACKING}) {
     const [DataOrigenDestino, loadding_OrigenDestino] =useFetchToken(`trackingInformation/origenDestino/${COD_ORDEN}`);
+    const [DataTrackin, LoadingTracking] = useFetchToken(`tracking/admin/${COD_TRACKING}`);
   return (
     <>
-    {loadding_OrigenDestino ? (   <TableOrigenDestino  showInvoice={showInvoice} setshoInvoice={setshoInvoice} COD_ORDEN={DataOrigenDestino.OrriginDestino.COD_ORDEN}/> )   :(<SpinnerButton />)  }
+    {LoadingTracking && loadding_OrigenDestino ? (   <TableOrigenDestino  showInvoice={showInvoice} setshoInvoice={setshoInvoice} DataTrackin={DataTrackin} COD_ORDEN={DataOrigenDestino.OrriginDestino.COD_ORDEN}/> )   :(<SpinnerButton />)  }
       
     </>
   );

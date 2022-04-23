@@ -29,6 +29,7 @@ export default function EditNewTrackingPendiente({
     (state) => state.typepackage
   );
   const [Dataseguridad, statusSeguridad] = useFetchToken(`seguridad/9`);
+  const [DataCliente, statuCliente] = useFetchToken(`users/customer/${COD_CUSTOMER}`);
   const selectStatusTracking = [
     { value: "PENDING" },
     { value: "RECEIVED" },
@@ -182,7 +183,6 @@ export default function EditNewTrackingPendiente({
               className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Peso de tracking"
               name="RECEIVED_TRACKING_"
-              onChange={handleChange}
               value={task.RECEIVED_TRACKING_}
             >
               {selectStatusTracking.map((item) => (
@@ -204,7 +204,6 @@ export default function EditNewTrackingPendiente({
                 className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Tipo de envio  tracking"
                 name="COD_TYPEPACKAGE"
-                onChange={handleChange}
                 value={task.COD_TYPEPACKAGE}
               >
                 {TypePackage.map((item) => (
@@ -231,7 +230,6 @@ export default function EditNewTrackingPendiente({
                 className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Numero de tracking"
                 name="SERVICE_NAME"
-                onChange={handleChange}
                 value={task.SERVICE_NAME}
               >
                 {services.map((item) => (
@@ -255,7 +253,6 @@ export default function EditNewTrackingPendiente({
               className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               placeholder="Numero de tracking"
               name="NUM_TRACKING_"
-              onChange={handleChange}
               value={task.NUM_TRACKING_}
             />
           </label>
@@ -269,7 +266,6 @@ export default function EditNewTrackingPendiente({
                 className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Tipo de envio  tracking"
                 name="COD_CATPACKAGE"
-                onChange={handleChange}
                 value={task.COD_CATPACKAGE}
               >
                 {categoryPackage.map((item) => (
@@ -295,7 +291,6 @@ export default function EditNewTrackingPendiente({
               placeholder="Description"
               className="p-3 m-3 overflow-y-auto h-16 border rounded w-full border-gray-200 resize-none focus:outline-none"
               name="DES_TRACKING"
-              onChange={handleChange}
               value={task.DES_TRACKING}
             />
           </label>
@@ -308,7 +303,6 @@ export default function EditNewTrackingPendiente({
               className="p-3 m-3 overflow-y-auto h-16 border rounded w-full border-gray-200  resize-none focus:outline-none"
               name="NOM_PACKAGE"
               value={task.NOM_PACKAGE}
-              onChange={handleChange}
             ></textarea>
           </label>
         </div>
@@ -396,7 +390,6 @@ export default function EditNewTrackingPendiente({
                 className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                 placeholder="Tipo de envio  tracking"
                 name="IND_TRACKING"
-                onChange={handleChange}
                 value={task.IND_TRACKING}
               >
                 {estadoArray.map((item, index) => (
@@ -524,6 +517,186 @@ export default function EditNewTrackingPendiente({
           </div>
         </form>
       </div>
+      <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-20 pb-10 py-5 shadow-xl rounded-lg ">
+        
+
+
+{statuCliente ? (<><div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Primer Nombre
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Primer nombre"
+              name="FRISTNAME"
+              value={DataCliente[0].FRISTNAME}
+            />
+          </label>
+
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Segundo Nombre{" "}
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Segundo Nombre"
+              name="LASTNAME"
+              value={DataCliente[0].LASTNAME}
+            />
+          </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Primer Apellido{" "}
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Segundo Nombre"
+              name="MIDDLENAME"
+              value={DataCliente[0].MIDDLENAME}
+            />
+          </label>
+        </div>
+        <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Identificación{" "}
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              name="ID"
+              value={DataCliente[0].ID}
+            />
+          </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Correo electrónico
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Correo electrónico "
+              name="EMAIL"
+              value={DataCliente[0].EMAIL}
+            />
+          </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Número de tefono
+            </span>
+            <input
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Contraseña "
+              name="NUM_PHONE"
+              value={DataCliente[0].NUM_PHONE}
+            />
+          </label>
+          {/* <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">Cassillero usuario </span>
+              <select
+              className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              placeholder="Tipo de envio  tracking"
+              name="COD_LOCKER"
+              value={task.COD_LOCKER}
+            >
+              <option value="">-- Seleccione --</option>
+              {lockers.map((item, index) => (
+                <option
+                key={index}
+                defaultValue={task.COD_LOCKER === item.COD_LOCKER}
+                value={item.COD_LOCKER}
+                >
+                  {item.NUM_LOCKER}
+                </option>
+              ))}
+            </select>
+              {ok ?  "": (<Message severity="info" text="Sin casillero" />) }
+           
+           
+          </label> */}
+          </div>
+
+        {/* <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Número Area
+            </span>
+            <select
+              name="NUM_AREA"
+              value={DataCliente[0].NUM_AREA}
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            >
+              <option value="">-- Seleccione --</option>
+              <SelectArea ApiCountry={ApiCountry} />
+            </select>
+          </label> */}
+
+         
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">Dirección</span>
+            <textarea
+              cols="3"
+              rows="3"
+              name="DES_ADDRESS"
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+              value={DataCliente[0].DES_ADDRESS}
+            ></textarea>
+          </label>
+        {/* <div className=" md:justify-between mb-4 md:flex w-full md:px-2">
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">País</span>
+            <select
+              name="COD_COUNTRY"
+              onChange={(e) => {
+                handleChange(e);
+                set_pais(e.target.value);
+              }}
+              value={task.COD_COUNTRY}
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            >
+              <option value="">-- Seleccione --</option>
+              <SelectCountry ApiCountry={ApiCountry} />
+            </select>
+          </label>
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-900">
+              Departamento
+            </span>
+            <select
+              disabled={task.COD_COUNTRY ? false : true}
+              name="COD_STATE"
+              onChange={(e) => {
+                handleChange(e);
+                set_state(e.target.value);
+              }}
+              value={task.COD_STATE}
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            >
+              <option value="">-- Seleccione --</option>
+              <SelectState ApiState={ApiState} />
+            </select>
+          </label>
+
+          <label className="block mt-4 text-sm w-full md:px-2">
+            <span className="text-gray-700 dark:text-gray-800">Ciudad</span>
+            <select
+              name="COD_CITY"
+              value={task.COD_CITY}
+              disabled={task.COD_STATE ? false : true}
+              onChange={(e) => {
+                handleChange(e);
+                set_city(e.target.value);
+              }}
+              className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+            >
+              <option value="">-- Seleccione --</option>
+              <SelectCity ApiCities={ApiCities} />
+            </select>
+          </label>
+        </div> */}
+        </>
+):(<SpinnerButton />)}
+      
+        </div>
     </>
   );
 }

@@ -10,11 +10,9 @@ import {
   CountryService,
   StateService,
 } from "../../../service/ServiceDireciont";
-import {useFetchToken} from "../../../hooks/useFetch"
 import { SelectCountry } from "../../Register/Select/SelectCountry";
 import { SelectState } from "../../Register/Select/SelectState";
 import { SelectCity } from "../../Register/Select/SelectCity";
-import SpinnerButton from "../../Spinners/SpinnerButton";
 export const DialogoEditUsers = ({ handleShoModal, role, dataCategory, id,dataLockers , DataLockerUser}) => {
   const [ApiCities, set_ApiCities] = useState([]);
   const [ApiCountry, set_ApiCountry] = useState([]);

@@ -5,7 +5,7 @@ import Origen from "./../../../img/mapa.png"
 import Destino from "../../../img/destino.png"
 import { LisOrigenDesino } from "./LisOrigenDesino";
 
-export default function TableOrigenDestino({ COD_ORDEN,showInvoice, setshoInvoice }) {
+export default function TableOrigenDestino({ COD_ORDEN,showInvoice, setshoInvoice,DataTrackin }) {
   const [DataOrigen, loadding_Origen] = useFetchToken(
     `trackingInformation/origenDestinoAll/${COD_ORDEN}`
   );
@@ -13,6 +13,8 @@ export default function TableOrigenDestino({ COD_ORDEN,showInvoice, setshoInvoic
   const handleShowInvoice = () => {
     setshoInvoice(!showInvoice);
   };
+
+  
 
   return (
     <>
@@ -24,17 +26,37 @@ export default function TableOrigenDestino({ COD_ORDEN,showInvoice, setshoInvoic
                   onClick={handleShowInvoice}
                   className="flex items-center justify-between w-full  px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                 >
-                  {" "}
                   Factura <span className="ml-2"></span>
                 </button>
               </div>
               <p className="text-sm lg:text-xl font-semibold leading-tight text-gray-800">
-                Product Sales
+              Datos de Origen y Destino
               </p>
-              <div className="flex cursor-pointer items-center justify-center px-3 py-2.5 border rounded border-gray-100">
-                <p className="text-xs md:text-sm leading-none text-gray-600">
-                  Filter by: Latest
-                </p>
+              <div className="flex  items-center justify-center px-3 py-2.5 border rounded border-gray-100">
+                Estado actual del tracking
+                
+                <div className="flex justify-center">
+          {DataTrackin.tracking.RECEIVED_TRACKING === "PENDING" ? (
+            <div className="py-2.5 px-5 my-2 bg-red-100 rounded-full w-full text-xs leading-3 text-red-800  sm:w-auto text-center">
+              Pendiente
+            </div>
+          ) : DataTrackin.tracking.RECEIVED_TRACKING === "RECEIVED" ? (
+            <div className="py-2.5 px-5 bg-yellow-100 rounded-full w-full text-xs leading-3 text-yellow-800  sm:w-auto text-center">
+              Recibido
+            </div>
+          ) : DataTrackin.tracking.RECEIVED_TRACKING === "IN_PROGRESS" ? (
+            <div className="py-2.5 px-5 bg-sky-100 rounded-full w-full text-xs leading-3 text-sky-800  sm:w-auto text-center">
+              En progreso
+            </div>
+          ) : (
+            DataTrackin.tracking.RECEIVED_TRACKING === "DELIVERED" && (
+              <div className="py-2.5 px-5 bg-green-100 rounded-full full text-xs leading-3 text-green-800  sm:w-auto text-center">
+                Entregado
+              </div>
+            )
+          )}
+        </div>
+                
               </div>
             </div>
             <div className="px-3 pt-6 ">

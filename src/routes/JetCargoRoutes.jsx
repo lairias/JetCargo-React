@@ -53,6 +53,7 @@ import IndexCosto from "../components/Admin/CostoEnvio/IndexCosto";
 import IndexCiudades from "../components/Direcciones/IndexCiudades";
 import IndexPaises from "../components/Direcciones/IndexPaises";
 import IndexDepartementos from "../components/Direcciones/IndexDepartementos";
+import IndexErrores from "../components/Error/IndexErrores";
 function JetCargoRoutes() {
   const { checking, id } = useSelector((state) => state.auth);
   const distance = useDispatch();
@@ -180,6 +181,26 @@ function JetCargoRoutes() {
               <>
                 <Admin>
                   <IndexCasilleros />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="admin/errores/"
+            element={
+              <>
+                <Admin>
+                  <IndexErrores />
+                </Admin>
+              </>
+            }
+          />
+          <Route
+            path="admin/trackin_usuarios/"
+            element={
+              <>
+                <Admin>
+                  <IndexErrores />
                 </Admin>
               </>
             }

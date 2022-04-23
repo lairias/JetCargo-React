@@ -9,7 +9,6 @@ import { useFetchToken } from "../../../hooks/useFetch";
 import MUIDataTable from "mui-datatables";
 import SpinnerButton from "../../Spinners/SpinnerButton";
 import toast from "react-hot-toast";
-import { StartTrackingRecived } from "../../../actions/trackingAction";
 import { TabPanel, TabView } from "primereact/tabview";
 import { SpinerLoader } from "../../Spinners/Loader";
 import {
@@ -34,7 +33,6 @@ export default function Progreso({
   COD_TRACKING,
   COD_ORDEN,
 }) {
-  const history = useNavigate();
   const dispatch = useDispatch();
 
   const [sednDatos, setsednDatos] = useState(false);
@@ -197,7 +195,6 @@ export default function Progreso({
           COD_ORDEN,setEfecto
         )
       );
-      // history(`/admin/reception/country/${COD_COUNTRY}/`);
     }
   };
   const columns = [
@@ -650,25 +647,7 @@ export default function Progreso({
                 onChange={handleChange}
               ></textarea>
             </label>
-            {/* <label className="flex justify-center mt-4 text-sm w-full md:px-2 pt-12">
-            <span className="text-gray-700 dark:text-gray-900 items-center">
-              Estado Tracking
-            </span>
-            <select
-                className=" form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition  ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                placeholder="Numero de tracking"
-                name="IND_TRACKING"
-                onChange={handleChange}
-                value={task.IND_TRACKING}
-                >
-                  <option
-                    key={item.value}
-                    defaultValue={task.SERVICE_NAME === item.value}
-                  >
-                    {item.label}{" "}
-                  </option>
-              </select>
-          </label> */}
+      
           </div>
 
           <form>
@@ -767,6 +746,30 @@ export default function Progreso({
                   </tbody>
                 </table>
               </div>
+            </>
+          ) : (
+            <h2 className="my-6 text-2xl font-semibold text-gray-700 text-center mt-10">
+              El tracking {task.NUM_TRACKING_} no cuenta con registros de
+              transporte
+            </h2>
+          )}
+        </>
+      ) : (
+        <SpinerLoader />
+      )}
+        {loadding_Origen ? (
+        <>
+          {DataOrigen.length >= 1 ? (
+            <>
+              <div className="flex justify-between mt-10">
+                <h2 className="my-6 text-2xl font-semibold text-gray-700">
+                  Realizar entrega  - {task.NUM_TRACKING_}
+                </h2>
+              </div>
+
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-20 shadow-xl rounded-lg mt-16 ">
+              
+            </div>
             </>
           ) : (
             <h2 className="my-6 text-2xl font-semibold text-gray-700 text-center mt-10">

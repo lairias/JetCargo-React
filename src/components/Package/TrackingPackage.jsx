@@ -13,6 +13,7 @@ export default function TrackingPackage ({DataOrden,DataTracking,NUM_LOCKER,COD_
       const [DataTrackinNotOrden, NotOrdenLoading] = useFetchToken(
         `tracking/${COD_TRACKING}/${COD_PACKAGE}/${NUM_LOCKER}/${customer.COD_CUSTOMER}`
       );
+      
 
       const handleShowInvoice= ()=>{
         setshoInvoice(!showInvoice);
@@ -32,7 +33,7 @@ export default function TrackingPackage ({DataOrden,DataTracking,NUM_LOCKER,COD_
         )}
         {loadding_Origen ?
          (<>
-         {DataOrigen.length >=1 ? (<ListPackageUser
+         { DataOrigen.length >=1 ? (<ListPackageUser
         COD_ORDEN={DataOrden.COD_ORDEN}
         COD_TRACKING={DataOrden.COD_TRACKING}
           showInvoice={showInvoice}

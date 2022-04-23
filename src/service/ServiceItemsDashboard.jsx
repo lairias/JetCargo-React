@@ -17,6 +17,7 @@ import SvgOrdenesItems from "../components/svg/SvgOrdenesItems";
 import { SvgUserItems } from "../components/svg/SvgUserItems";
 import { SvgCasillerosItems } from "../components/svg/SvgCasillerosItems";
 import { SvgCostoItems } from "../components/svg/SvgCostoItems";
+import { SvgError } from "../components/svg/SvgError";
 import { SvgDireciones } from "../components/svg/SvgDireciones";
 export const SidebarData = [
   {
@@ -140,6 +141,34 @@ export const SidebarData = [
     ],
   },
   {
+    title: "Trackin Usuarios",
+    cant: "dasboard.lockers",
+    icon: <SvgCasilleros />,
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
+    subNav: [
+      {
+        title: "Casilleros",
+        path: "/admin/trackin_usuarios/",
+        icon: <SvgCasillerosItems />,
+      },
+    ],
+  },
+  {
+    title: "Trackin Lockers",
+    cant: "dasboard.lockers",
+    icon: <SvgCasilleros />,
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
+    subNav: [
+      {
+        title: "Casilleros",
+        path: "/admin/casilleros/",
+        icon: <SvgCasillerosItems />,
+      },
+    ],
+  },
+  {
     title: "Costo de Envio",
     cant: "dasboard.costos",
     icon: <SvgCategoriaPago />,
@@ -177,6 +206,22 @@ export const SidebarData = [
       {
         title: "Ciudades",
         path: "/admin/ciudades/",
+        icon: <SvgDireciones />,
+      },
+    ],
+  },
+  {
+    title: "Errores",
+    cant: "dasboard.costos",
+    icon: <SvgError />,
+    iconClosed: <IoIosArrowDown />,
+    iconOpened: <IoIosArrowUp />,
+
+    subNav: [
+     
+      {
+        title: "Errores registrados",
+        path: "/admin/errores/",
         icon: <SvgDireciones />,
       },
     ],

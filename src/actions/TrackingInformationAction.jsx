@@ -55,7 +55,7 @@ return async function(dispatch){
     setLoaddin(true);
 }
 }
-export function SendTrackingInformation(task, Direcciones, COD_CUSTOMER,COD_ORDEN) {
+export function SendTrackingInformation(task, Direcciones, COD_CUSTOMER,COD_ORDEN,setEfecto) {
   return async function (dispatch) {
     try{
       const data = await fetchConToken(
@@ -81,7 +81,7 @@ export function PutTrackingOrigenDestino(
 STATUS_DESTINO,
 set_SenData) {
   return async function (dispatch) {
-    const data = await fetchConToken(
+    await fetchConToken(
       `trackingInformation`,
       {PaisOrigin,
         PaisDestino,
@@ -94,10 +94,7 @@ set_SenData) {
         STATUS_DESTINO},
       "PUT",
     );
-    const json = await data.json();
-    if(json.ok){
       set_SenData(true);
-    }
   };
 }
 
